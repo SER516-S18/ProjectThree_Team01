@@ -12,6 +12,7 @@ import javax.websocket.server.ServerEndpoint;
 
 public class EmotivComposer extends JFrame {
 
+  private static final long serialVersionUID = 6196061116172281774L;
   private JPanel contentPane;
 
   /**
@@ -19,7 +20,7 @@ public class EmotivComposer extends JFrame {
    */
   public static void main(String[] args) {
     org.glassfish.tyrus.server.Server server = new org.glassfish.tyrus.server.Server("localhost", 10001,
-        "/ws", ServerEndpoint.class);
+        "/pro3", ServerEndpoint.class);
     try {
       server.start();
       System.out.println("Press any key to stop the server..");

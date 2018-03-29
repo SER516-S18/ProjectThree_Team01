@@ -11,7 +11,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import data.EmotivData;
 
-@ServerEndpoint(value = "")
+@ServerEndpoint(value = "/composer")
 public class ServerWebSocket {
 
   @OnOpen
