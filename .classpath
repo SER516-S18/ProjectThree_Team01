@@ -2,11 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/Project3/lib/javax.websocket-api-1.0-rc4.jar"/>
-	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/Project3/lib/jcommon-1.0.23.jar"/>
-	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/Project3/lib/jfreechart-1.0.19.jar"/>
-	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/Project3/lib/jgoodies-forms-1.4.0.jar"/>
-	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/Project3/lib/json.jar"/>
-	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/Project3/lib/tyrus-server-1.2.1.jar"/>
+	<classpathentry kind="lib" path="/Users/carmstr7/git/SER516/Emotiv/lib/javax.websocket-api-1.0-rc4.jar"/>
+	<classpathentry kind="lib" path="/Users/carmstr7/git/SER516/Emotiv/lib/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="/Users/carmstr7/git/SER516/Emotiv/lib/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="/Users/carmstr7/git/SER516/Emotiv/lib/jgoodies-forms-1.4.0.jar"/>
+	<classpathentry kind="lib" path="/Users/carmstr7/git/SER516/Emotiv/lib/json.jar"/>
+	<classpathentry kind="lib" path="/Users/carmstr7/git/SER516/Emotiv/lib/tyrus-server-1.2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
