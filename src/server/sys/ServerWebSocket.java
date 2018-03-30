@@ -1,8 +1,10 @@
 package server.sys;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.websocket.EncodeException;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -13,19 +15,23 @@ import data.EmotivData;
 
 @ServerEndpoint(value = "/composer")
 public class ServerWebSocket {
+  private EmotivData emotivData = new EmotivData();
+
+  // Using a SET to ensure uniqueness
+  static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
 
   @OnOpen
   public void onOpen(Session session) {
+    clients.add(session);
   }
 
   @OnMessage
-  public void onMesage(EmotivData emotivData, Session session) throws IOException, EncodeException {
-
+  public void onMesage(String emotivDataString, Session session) throws IOException {
+    emotivData.toJson(emotivDataString);
   }
 
   @OnClose
-  public void onClose() throws IOException, EncodeException {
+  public void onClose() throws IOException {
 
   }
-
 }

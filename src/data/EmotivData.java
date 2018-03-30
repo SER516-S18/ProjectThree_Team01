@@ -107,6 +107,15 @@ public class EmotivData {
     return jsonObject;
   }
 
+  public void toJson(String jsonString) {
+    JSONObject json = new JSONObject(jsonString);
+    this.expressive = json.getJSONObject("Expressive");
+    this.affective = json.getJSONObject("Affective");
+
+    this.parseAffective(this.expressive);
+    this.parseAffective(this.affective);
+  }
+
   public double getLookingRight() {
     return lookingRight;
   }
