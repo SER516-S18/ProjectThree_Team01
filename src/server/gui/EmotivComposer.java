@@ -1,6 +1,10 @@
 package server.gui;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.time.LocalTime;
 
 import javax.swing.DefaultComboBoxModel;
@@ -41,6 +45,8 @@ public class EmotivComposer extends JFrame {
   private JPanel detectionPanel;
   private UpDownButton incrementDecrement;
 
+  private boolean isAutoResetChecked = false;
+
   /**
    * Launch the application.
    */
@@ -70,7 +76,7 @@ public class EmotivComposer extends JFrame {
     JMenu mnDropDown = new JMenu("Drop Down");
     menuBar.add(mnDropDown);
     contentPane = new JPanel();
-    contentPane.setBackground(Constants.SALMON);
+    contentPane.setBackground(Constants.PEACH);
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     setContentPane(contentPane);
     contentPane.setLayout(null);
@@ -105,10 +111,30 @@ public class EmotivComposer extends JFrame {
 
     sendButton = new JButton("Send");
     sendButton.setBounds(330, 55, 100, 30);
+    sendButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        handleStartStopSend();
+      }
+    });
     interactive.add(sendButton);
 
     autoResetCheckBox = new JCheckBox("Auto Reset");
     autoResetCheckBox.setBounds(170, 55, 115, 18);
+    autoResetCheckBox.addItemListener(new ItemListener() {
+      @Override
+      public void itemStateChanged(ItemEvent e) {
+        System.out.println("Checked: " + autoResetCheckBox.isSelected());
+        if (autoResetCheckBox.isSelected()) {
+          sendButton.setText("Start");
+          autoResetCheckBox.setEnabled(false);
+          isAutoResetChecked = true;
+        } else {
+          sendButton.setText("Send");
+          isAutoResetChecked = false;
+        }
+      }
+    });
     interactive.add(autoResetCheckBox);
 
     playerComboBox = new JComboBox();
@@ -148,5 +174,21 @@ public class EmotivComposer extends JFrame {
    */
   private void updateConsolePanel(String message) {
     consolePanel.updateText(message + "&emsp;&emsp&lt;" + LocalTime.now() + "&gt;");
+  }
+
+  private void handleStartStopSend() {
+    if (isAutoResetChecked) {
+      if (sendButton.getText().equalsIgnoreCase("Start")) {
+        // Send based on frequency
+        sendButton.setText("Stop");
+        autoResetCheckBox.setEnabled(false);
+      } else {
+        // Close websocket
+        sendButton.setText("Start");
+        autoResetCheckBox.setEnabled(true);
+      }
+    } else {
+      // Send one message
+    }
   }
 }
