@@ -57,13 +57,14 @@ public class EmotivComposer extends JFrame {
     setContentPane(contentPane);
     contentPane.setLayout(null);
 
-    JPanel topSection = new JPanel();
-    topSection.setBorder(new LineBorder(Color.RED));
-    topSection.setBounds(2, 0, 444, 125);
-    contentPane.add(topSection);
+    JPanel startSection = new JPanel();
+    startSection.setBounds(2, 0, 444, 125);
+    contentPane.add(startSection);
+    startSection.setLayout(null);
 
-    tabbedPane = new JTabbedPane(JTabbedPane.LEFT);
-    topSection.add(tabbedPane);
+    tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+    tabbedPane.setBounds(0, 0, 444, 100);
+    startSection.add(tabbedPane);
 
     JPanel emoScript = new JPanel();
     tabbedPane.addTab("EMOSCRIPT", null, emoScript, null);
@@ -75,7 +76,7 @@ public class EmotivComposer extends JFrame {
 
     JPanel panel = new JPanel();
     panel.setBorder(new LineBorder(Color.RED));
-    panel.setBounds(2, 150, 444, 338);
+    panel.setBounds(2, 163, 444, 338);
     contentPane.add(panel);
 
     consolePanel = new ConsolePanel();
