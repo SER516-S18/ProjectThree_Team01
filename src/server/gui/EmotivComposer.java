@@ -1,6 +1,8 @@
 package server.gui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -8,17 +10,17 @@ import java.awt.event.ItemListener;
 import java.time.LocalTime;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.websocket.DeploymentException;
 
 import server.sys.ServerWebSocket;
@@ -32,7 +34,6 @@ public class EmotivComposer extends JFrame {
   private JPanel contentPane;
   private ConsolePanel consolePanel;
   private JTabbedPane tabbedPane;
-  private JMenuBar menuBar;
   private JPanel startPanel;
   private JPanel interactive;
   private JLabel playerLabel;
@@ -44,6 +45,11 @@ public class EmotivComposer extends JFrame {
   private JPanel emostate;
   private JPanel detectionPanel;
   private UpDownButton incrementDecrement;
+  private JLabel menuLabel;
+  private JLabel dropDownLabel;
+  private JPanel dropDownPanel;
+  private JPanel signalPanel;
+  private JLabel signalLabel;
 
   private boolean isAutoResetChecked = false;
 
@@ -70,11 +76,6 @@ public class EmotivComposer extends JFrame {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setBounds(100, 100, 450, 800);
 
-    menuBar = new JMenuBar();
-    setJMenuBar(menuBar);
-
-    JMenu mnDropDown = new JMenu("Drop Down");
-    menuBar.add(mnDropDown);
     contentPane = new JPanel();
     contentPane.setBackground(Constants.PEACH);
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -82,7 +83,7 @@ public class EmotivComposer extends JFrame {
     contentPane.setLayout(null);
 
     startPanel = new JPanel();
-    startPanel.setBounds(2, 0, 444, 125);
+    startPanel.setBounds(2, 50, 444, 125);
     contentPane.add(startPanel);
     startPanel.setLayout(null);
 
@@ -108,6 +109,38 @@ public class EmotivComposer extends JFrame {
     secLabel = new JLabel("Sec");
     secLabel.setBounds(370, 15, 30, 15);
     interactive.add(secLabel);
+    JPanel menuBarPanel = new JPanel();
+    menuBarPanel.setBounds(0, 0, 444, 50);
+    contentPane.add(menuBarPanel);
+    menuBarPanel.setLayout(null);
+
+    dropDownPanel = new JPanel();
+    dropDownPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+    dropDownPanel.setBounds(0, 0, 50, 50);
+    menuBarPanel.add(dropDownPanel);
+    dropDownPanel.setLayout(null);
+
+    menuLabel = new JLabel(new ImageIcon("./img/menu.png"));
+    menuLabel.setBounds(0, 0, 50, 50);
+    dropDownPanel.add(menuLabel);
+
+    signalPanel = new JPanel();
+    signalPanel.setBounds(394, 0, 50, 50);
+    signalPanel.setBackground(Color.WHITE);
+    menuBarPanel.add(signalPanel);
+    signalPanel.setLayout(null);
+
+    JLabel signalLabel = new JLabel(Character.toString((char) 0x2022), SwingConstants.CENTER);
+    signalLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+    signalLabel.setForeground(Constants.GREEN);
+    signalLabel.setFont(new Font("DejaVu Sans", Font.PLAIN, 100));
+    signalLabel.setBounds(0, 0, 50, 50);
+    signalPanel.add(signalLabel);
+
+    signalLabel.setForeground(Color.GREEN);
+    signalLabel.setFont(new Font("DejaVu Sans", Font.PLAIN, 85));
+    signalLabel.setBounds(0, 0, 50, 50);
+    signalPanel.add(signalLabel);
 
     sendButton = new JButton("Send");
     sendButton.setBounds(330, 55, 100, 30);
@@ -151,7 +184,7 @@ public class EmotivComposer extends JFrame {
     emostate.setLayout(null);
 
     detectionPanel = new JPanel();
-    detectionPanel.setBounds(2, 150, 444, 588);
+    detectionPanel.setBounds(2, 200, 444, 538);
     contentPane.add(detectionPanel);
     // startServer();
   }
