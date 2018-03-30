@@ -63,7 +63,7 @@ public class ConsolePanel extends JPanel{
 	 * @param message. This is the message that needs to be displayed on the console.
 	 * @return void.
 	 */
-	public static void updateText(String message) {
+	public void updateText(String message) {
 		completeMessage = completeMessage + message + "<br/>" ;
 		messageDisplay = completeMessage + "</html>";
 		consoleMessageLabel.setText(messageDisplay);

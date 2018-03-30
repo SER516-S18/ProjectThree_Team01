@@ -2,7 +2,7 @@ package server.gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.util.Scanner;
+import java.time.LocalTime;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,27 +10,19 @@ import javax.swing.border.EmptyBorder;
 import javax.websocket.DeploymentException;
 import javax.websocket.server.ServerEndpoint;
 
+import util.ConsolePanel;
+import util.Constants;
+
 public class EmotivComposer extends JFrame {
 
   private static final long serialVersionUID = 6196061116172281774L;
   private JPanel contentPane;
+  private ConsolePanel consolePanel;
 
   /**
    * Launch the application.
    */
   public static void main(String[] args) {
-    org.glassfish.tyrus.server.Server server = new org.glassfish.tyrus.server.Server("localhost", 10001,
-        "/pro3", ServerEndpoint.class);
-    try {
-      server.start();
-      System.out.println("Press any key to stop the server..");
-      new Scanner(System.in).nextLine();
-    } catch (DeploymentException e) {
-      throw new RuntimeException(e);
-    } finally {
-      server.stop();
-    }
-
     EventQueue.invokeLater(new Runnable() {
       public void run() {
         try {
@@ -38,7 +30,7 @@ public class EmotivComposer extends JFrame {
           frame.setVisible(true);
         } catch (Exception e) {
           e.printStackTrace();
-        }
+        } 
       }
     });
   }
@@ -53,6 +45,30 @@ public class EmotivComposer extends JFrame {
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     contentPane.setLayout(new BorderLayout(0, 0));
     setContentPane(contentPane);
+    
+    consolePanel = new ConsolePanel();
+    
+    startServer();
+  }
+  
+  private void startServer() {
+    org.glassfish.tyrus.server.Server server = new org.glassfish.tyrus.server.Server("localhost", Constants.PORT,
+        Constants.LINK, ServerEndpoint.class);
+    
+    try {
+      server.start();
+    } catch (DeploymentException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+  
+  /**
+   * Updating the Console to output status message
+   * @param message
+   */
+  private void updateConsolePanel(String message) {
+    consolePanel.updateText(message + "&emsp;&emsp&lt;" + LocalTime.now() + "&gt;");
   }
 
 }
