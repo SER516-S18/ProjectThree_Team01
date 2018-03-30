@@ -68,7 +68,7 @@ public class EmotivComposer extends JFrame {
    */
   public EmotivComposer() {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setBounds(100, 100, 450, 650);
+    setBounds(100, 100, 450, 800);
 
     menuBar = new JMenuBar();
     setJMenuBar(menuBar);
@@ -151,7 +151,7 @@ public class EmotivComposer extends JFrame {
     emostate.setLayout(null);
 
     detectionPanel = new JPanel();
-    detectionPanel.setBounds(2, 150, 444, 438);
+    detectionPanel.setBounds(2, 150, 444, 588);
     contentPane.add(detectionPanel);
     // startServer();
   }
