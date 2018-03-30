@@ -1,6 +1,5 @@
 package server.gui;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.time.LocalTime;
 
@@ -16,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import javax.websocket.DeploymentException;
 
 import server.sys.ServerWebSocket;
@@ -72,7 +70,7 @@ public class EmotivComposer extends JFrame {
     JMenu mnDropDown = new JMenu("Drop Down");
     menuBar.add(mnDropDown);
     contentPane = new JPanel();
-    contentPane.setBackground(new Color(255, 250, 240));
+    contentPane.setBackground(Constants.SALMON);
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     setContentPane(contentPane);
     contentPane.setLayout(null);
@@ -127,10 +125,9 @@ public class EmotivComposer extends JFrame {
     emostate.setLayout(null);
 
     detectionPanel = new JPanel();
-    detectionPanel.setBorder(new LineBorder(Color.RED));
     detectionPanel.setBounds(2, 150, 444, 438);
     contentPane.add(detectionPanel);
-    startServer();
+    // startServer();
   }
 
   private void startServer() {
