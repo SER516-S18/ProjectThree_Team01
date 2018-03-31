@@ -32,6 +32,7 @@ import util.UpDownButton;
 public class EmotivComposer extends JFrame {
 
   private static final long serialVersionUID = 6196061116172281774L;
+  private static final String URI = "localhost";
 
   private JPanel contentPane;
   private ConsolePanel consolePanel;
@@ -283,7 +284,7 @@ public class EmotivComposer extends JFrame {
     skillComboBox = new JComboBox();
     skillComboBox.setBounds(20, 137, 120, 30);
     emoStatePanel.add(skillComboBox);
-    upperFace = new Express();
+    upperFace = new Express(detectionPanel.getWidth(), 150);
     upperFace.setBounds(0, 175, 444, 150);
     detectionPanel.add(upperFace);
 
@@ -324,13 +325,12 @@ public class EmotivComposer extends JFrame {
     emoStatePanel.add(overallSkillLabel);
 
     setResizable(false);
-
     // startServer();
   }
 
   private void startServer() {
-    org.glassfish.tyrus.server.Server server = new org.glassfish.tyrus.server.Server("localhost",
-        Constants.PORT, Constants.LINK, ServerWebSocket.class);
+    org.glassfish.tyrus.server.Server server = new org.glassfish.tyrus.server.Server(URI, Constants.PORT,
+        Constants.LINK, ServerWebSocket.class);
     try {
       server.start();
       System.out.println("Server started successfully...");

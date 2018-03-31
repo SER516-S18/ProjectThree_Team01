@@ -12,8 +12,9 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import data.EmotivData;
+import util.Constants;
 
-@ServerEndpoint(value = "/composer")
+@ServerEndpoint(value = Constants.ENDPOINT)
 public class ServerWebSocket {
   private EmotivData emotivData = new EmotivData();
 

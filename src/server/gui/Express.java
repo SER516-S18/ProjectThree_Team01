@@ -38,16 +38,16 @@ public class Express extends JPanel {
   /**
    * Create the application.
    */
-  public Express() {
-    initialize();
+  public Express(int width, int height) {
+    initialize(width, height);
     setLayout(null);
   }
 
   /**
    * Initialize the contents of the frame.
    */
-  private void initialize() {
-    setBounds(0, 0, 444, 150);
+  private void initialize(int width, int height) {
+    setBounds(0, 0, width, height);
 
     upperfaceupdownButton = new UpDownButton(70, 0.1, false);
     upperfaceupdownButton.setBounds(135, 30, 70, 30);
