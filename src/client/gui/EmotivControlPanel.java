@@ -13,12 +13,14 @@ import javax.websocket.DeploymentException;
 import org.glassfish.tyrus.client.ClientManager;
 
 import client.sys.ClientWebSocket;
+import util.Constants;
 
 public class EmotivControlPanel extends JFrame {
   private static final long serialVersionUID = 8528760467775723790L;
+
   private JPanel contentPane;
   private JPanel facialExpressionPanel;
-
+  private String uri = "localhost";
   public static EmotivControlPanel clientInstance = null;
 
   /**
@@ -57,19 +59,19 @@ public class EmotivControlPanel extends JFrame {
     graphPanel.setBounds(199, 0, 218, 213);
     graphPanel.setBackground(Color.GRAY);
     facialExpressionPanel.add(graphPanel);
-    
-    //remove later
-    //ConnectToServer();
+
+    // remove later
+    // ConnectToServer();
   }
-  
-  private void ConnectToServer()
-  {
+
+  private void ConnectToServer() {
     ClientManager client = ClientManager.createClient();
     try {
-        client.connectToServer(ClientWebSocket.class, new URI("ws://localhost:10001/pro3/composer"));
-        
+      client.connectToServer(ClientWebSocket.class, new URI(
+          Constants.PROTOCOL + uri + ':' + Constants.PORT + Constants.LINK + Constants.ENDPOINT));
+
     } catch (DeploymentException | URISyntaxException e) {
-        throw new RuntimeException(e);
+      throw new RuntimeException(e);
     }
   }
 }

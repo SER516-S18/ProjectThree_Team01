@@ -14,5 +14,6 @@
 	<classpathentry kind="lib" path="lib/tyrus-server-1.2.1.jar"/>
 	<classpathentry kind="lib" path="lib/tyrus-spi-1.2.1.jar"/>
 	<classpathentry kind="lib" path="lib/tyrus-websocket-core-1.2.1.jar"/>
+	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/ProjectThree_Team01/lib/tyrus-client-cli-1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

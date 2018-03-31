@@ -14,6 +14,8 @@ import java.awt.Color;
 public class Constants {
   public static final int PORT = 10001;
   public static final String LINK = "/pro3";
+  public static final String ENDPOINT = "/composer";
+  public static final String PROTOCOL = "ws://";
 
   public static final Color GREEN = new Color(50, 205, 50);
   public static final Color RED = new Color(220, 20, 60);
