@@ -23,7 +23,7 @@ import javax.swing.border.EtchedBorder;
 public class UpDownButton extends JPanel {
   private static final long serialVersionUID = 1L;
 
-  private JTextField frequencyTextBox;
+  private JTextField outputTextBox;
   private JLabel incrementButton;
   private JLabel decrementButton;
   private JPanel panel;
@@ -46,9 +46,9 @@ public class UpDownButton extends JPanel {
     this.setMinimumSize(new Dimension(70, 30));
     setBounds(0, 0, newWidth < 70 ? 70 : newWidth, 30);
 
-    frequencyTextBox = new JTextField("0.0");
-    frequencyTextBox.setBounds(0, 0, newWidth - 30, 30);
-    add(frequencyTextBox);
+    outputTextBox = new JTextField("0.0");
+    outputTextBox.setBounds(0, 0, newWidth - 30, 30);
+    add(outputTextBox);
 
     panel = new JPanel();
     panel.setBounds(newWidth - 28, 0, 28, 30);
@@ -60,7 +60,7 @@ public class UpDownButton extends JPanel {
       @Override
       public void mouseClicked(MouseEvent e) {
         try {
-          double x = Double.parseDouble(frequencyTextBox.getText());
+          double x = Double.parseDouble(outputTextBox.getText());
           double value = 0.1;
           if (!isFrequency && x + step > 1.0) {
             value = 1.0;
@@ -70,8 +70,8 @@ public class UpDownButton extends JPanel {
 
           formatDoubleFirst(value);
         } catch (NumberFormatException exception) {
-          frequencyTextBox.setForeground(Color.RED);
-          frequencyTextBox.selectAll();
+          outputTextBox.setForeground(Color.RED);
+          outputTextBox.selectAll();
         }
       }
 
@@ -96,7 +96,7 @@ public class UpDownButton extends JPanel {
       @Override
       public void mouseClicked(MouseEvent e) {
         try {
-          double x = Double.parseDouble(frequencyTextBox.getText());
+          double x = Double.parseDouble(outputTextBox.getText());
 
           double value = 0.1;
           if (x - step > 0.0) {
@@ -105,8 +105,8 @@ public class UpDownButton extends JPanel {
 
           formatDoubleFirst(value);
         } catch (NumberFormatException exception) {
-          frequencyTextBox.setForeground(Color.RED);
-          frequencyTextBox.selectAll();
+          outputTextBox.setForeground(Color.RED);
+          outputTextBox.selectAll();
         }
       }
 
@@ -129,7 +129,11 @@ public class UpDownButton extends JPanel {
 
   private void formatDoubleFirst(double value) {
     DecimalFormat df = new DecimalFormat("0.00");
-    this.frequencyTextBox.setText("" + df.format(value));
-    this.frequencyTextBox.setForeground(Color.BLACK);
+    this.outputTextBox.setText("" + df.format(value));
+    this.outputTextBox.setForeground(Color.BLACK);
+  }
+
+  public void setOutputText(String txt) {
+    this.outputTextBox.setText(txt);
   }
 }

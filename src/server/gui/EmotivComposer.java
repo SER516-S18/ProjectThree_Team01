@@ -1,12 +1,12 @@
 package server.gui;
 
 import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.time.LocalTime;
 
 import javax.swing.DefaultComboBoxModel;
@@ -19,8 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import javax.websocket.DeploymentException;
 
 import server.sys.ServerWebSocket;
@@ -31,6 +31,7 @@ import util.UpDownButton;
 public class EmotivComposer extends JFrame {
 
   private static final long serialVersionUID = 6196061116172281774L;
+
   private JPanel contentPane;
   private ConsolePanel consolePanel;
   private JTabbedPane tabbedPane;
@@ -41,38 +42,45 @@ public class EmotivComposer extends JFrame {
   private JLabel secLabel;
   private JButton sendButton;
   private JCheckBox autoResetCheckBox;
-  private JComboBox playerComboBox;
+  private JComboBox<String> playerComboBox;
   private JPanel emostate;
-  private JPanel detectionPanel;
+  private JPanel lowerPanel;
   private UpDownButton incrementDecrement;
   private JLabel menuLabel;
   private JLabel dropDownLabel;
   private JPanel dropDownPanel;
   private JPanel signalPanel;
   private JLabel signalLabel;
+  private JTabbedPane lowerTabbedPane;
+  private JPanel contactQualityPanel;
+  private JPanel detectionPanel;
+  private Express upperFace;
 
   private boolean isAutoResetChecked = false;
+  private JPanel panel;
+
+  private static EmotivComposer instance = null;
 
   /**
    * Launch the application.
    */
   public static void main(String[] args) {
-    EventQueue.invokeLater(new Runnable() {
-      public void run() {
-        try {
-          EmotivComposer frame = new EmotivComposer();
-          frame.setVisible(true);
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
-      }
-    });
+    EmotivComposer frame = EmotivComposer.getInstance();
+    frame.setVisible(true);
   }
+
+  public static EmotivComposer getInstance() {
+    if (instance == null) {
+      instance = new EmotivComposer();
+    }
+    return instance;
+  };
 
   /**
    * Create the frame.
    */
-  public EmotivComposer() {
+  private EmotivComposer() {
+    setTitle("Emotiv Composer Project 3");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setBounds(100, 100, 450, 800);
 
@@ -90,6 +98,10 @@ public class EmotivComposer extends JFrame {
     tabbedPane = new JTabbedPane(JTabbedPane.TOP);
     tabbedPane.setBounds(0, 0, 444, 120);
     startPanel.add(tabbedPane);
+
+    emostate = new JPanel();
+    tabbedPane.addTab("EMOSCRIPT", null, emostate, null);
+    emostate.setLayout(null);
 
     interactive = new JPanel();
     tabbedPane.addTab("INTERACTIVE", null, interactive, null);
@@ -115,32 +127,56 @@ public class EmotivComposer extends JFrame {
     menuBarPanel.setLayout(null);
 
     dropDownPanel = new JPanel();
-    dropDownPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+    dropDownPanel.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseEntered(MouseEvent e) {
+        System.out.println("Mouse entered");
+        dropDownPanel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+      }
+
+      @Override
+      public void mouseExited(MouseEvent e) {
+        System.out.println("Mouse exited");
+        dropDownPanel.setBorder(null);
+      }
+    });
     dropDownPanel.setBounds(0, 0, 50, 50);
     menuBarPanel.add(dropDownPanel);
     dropDownPanel.setLayout(null);
 
-    menuLabel = new JLabel(new ImageIcon("./img/menu.png"));
-    menuLabel.setBounds(0, 0, 50, 50);
+    menuLabel = new JLabel(new ImageIcon("img/menu.png"));
+    menuLabel.setBounds(0, 0, 49, 49);
     dropDownPanel.add(menuLabel);
 
     signalPanel = new JPanel();
+    signalPanel.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseEntered(MouseEvent e) {
+        System.out.println("Mouse entered");
+        signalPanel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+      }
+
+      @Override
+      public void mouseExited(MouseEvent e) {
+        System.out.println("Mouse exited");
+        signalPanel.setBorder(null);
+      }
+    });
     signalPanel.setBounds(394, 0, 50, 50);
     signalPanel.setBackground(Color.WHITE);
     menuBarPanel.add(signalPanel);
     signalPanel.setLayout(null);
 
-    JLabel signalLabel = new JLabel(Character.toString((char) 0x2022), SwingConstants.CENTER);
+    signalLabel = new JLabel(new ImageIcon("img/strong.png"));
     signalLabel.setHorizontalTextPosition(SwingConstants.CENTER);
     signalLabel.setForeground(Constants.GREEN);
-    signalLabel.setFont(new Font("DejaVu Sans", Font.PLAIN, 100));
-    signalLabel.setBounds(0, 0, 50, 50);
+    signalLabel.setBounds(0, 0, 49, 49);
     signalPanel.add(signalLabel);
 
-    signalLabel.setForeground(Color.GREEN);
-    signalLabel.setFont(new Font("DejaVu Sans", Font.PLAIN, 85));
-    signalLabel.setBounds(0, 0, 50, 50);
-    signalPanel.add(signalLabel);
+    panel = new JPanel();
+    panel.setBackground(Constants.WHITE);
+    panel.setBounds(52, 0, 341, 50);
+    menuBarPanel.add(panel);
 
     sendButton = new JButton("Send");
     sendButton.setBounds(330, 55, 100, 30);
@@ -170,22 +206,37 @@ public class EmotivComposer extends JFrame {
     });
     interactive.add(autoResetCheckBox);
 
-    playerComboBox = new JComboBox();
-    playerComboBox.setModel(new DefaultComboBoxModel(new String[] { "0", "1", "2" }));
+    playerComboBox = new JComboBox<String>();
+    playerComboBox.setModel(new DefaultComboBoxModel(new String[] { "0", "1" }));
     playerComboBox.setBounds(65, 10, 80, 30);
     interactive.add(playerComboBox);
 
     incrementDecrement = new UpDownButton(110, 0.5, true);
     incrementDecrement.setLocation(250, 10);
+    incrementDecrement.setOutputText("0.25");
     interactive.add(incrementDecrement);
 
-    emostate = new JPanel();
-    tabbedPane.addTab("EMOSCRIPT", null, emostate, null);
-    emostate.setLayout(null);
+    lowerPanel = new JPanel();
+    lowerPanel.setBounds(2, 205, 444, 550);
+    contentPane.add(lowerPanel);
+    lowerPanel.setLayout(null);
+
+    lowerTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+    lowerTabbedPane.setBounds(0, 0, 444, 550);
+    lowerPanel.add(lowerTabbedPane);
+
+    contactQualityPanel = new JPanel();
+    lowerTabbedPane.addTab("Contact Quality", null, contactQualityPanel, null);
+    contactQualityPanel.setLayout(null);
 
     detectionPanel = new JPanel();
-    detectionPanel.setBounds(2, 200, 444, 538);
-    contentPane.add(detectionPanel);
+    detectionPanel.setLayout(null);
+    upperFace = new Express();
+    upperFace.setBounds(0, 175, 444, 150);
+    detectionPanel.add(upperFace);
+
+    lowerTabbedPane.addTab("Detection", null, detectionPanel, null);
+
     // startServer();
   }
 
