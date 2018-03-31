@@ -48,6 +48,7 @@ public class EmotivComposerTest extends JFrame {
   private UpDownButton incrementDecrement;
   private JLabel menuLabel;
   private JLabel dropDownLabel;
+
   private JPanel dropDownPanel;
   private JPanel signalPanel;
   private JLabel signalLabel;
@@ -76,7 +77,12 @@ public class EmotivComposerTest extends JFrame {
   private UpDownButton incrementDecrementOverallSkill;
   private UpDownButton incrementDecrementUpperFace;
   private UpDownButton incrementDecrementLowerFace;
-  private UpDownButton incrementDecrementEye;
+  private JButton activateButton;
+  private JRadioButton activateRadioButton;
+  private JCheckBox autoResetCheck;
+  private JRadioButton epoc;
+  private JRadioButton insight;
+  private ButtonGroup epocInsight;
 
   /**
    * Launch the application.
@@ -138,6 +144,30 @@ public class EmotivComposerTest extends JFrame {
     menuBarPanel.setBounds(0, 0, 444, 50);
     contentPane.add(menuBarPanel);
     menuBarPanel.setLayout(null);
+    
+    epoc= new JRadioButton("EPOC",true);
+    epoc.setBounds(100,10,100,30);
+    menuBarPanel.add(epoc);
+    
+    insight= new JRadioButton("Insight");
+    insight.setBounds(205,10,100,30);
+    menuBarPanel.add(insight);
+    
+    ButtonGroup epocInsight=new ButtonGroup();
+    epocInsight.add(epoc);
+    epocInsight.add(insight);
+    
+    epoc.addItemListener(new ItemListener(){
+      @Override
+      public void itemStateChanged(ItemEvent e) {
+        System.out.println("Checked: " + autoResetCheckBox.isSelected());
+        if (epoc.isSelected()) {
+        	upperFaceComboBox.setModel(new DefaultComboBoxModel(new String[] { "Raise Brow", "Furrow Brow"  }));
+        } else {
+        	upperFaceComboBox.setModel(new DefaultComboBoxModel(new String[] { "Surprise", "Frown"  }));
+        }
+      }
+    });
 
     dropDownPanel = new JPanel();
     dropDownPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -185,10 +215,17 @@ public class EmotivComposerTest extends JFrame {
         System.out.println("Checked: " + autoResetCheckBox.isSelected());
         if (autoResetCheckBox.isSelected()) {
           sendButton.setText("Start");
-          autoResetCheckBox.setEnabled(false);
+          activateButton=new JButton("Activate");
+          activateButton.setBounds(185,327,100,30);
+          activateRadioButton.setVisible(false);
+          detectionPanel.add(activateButton);
+          //autoResetCheckBox.setEnabled(false);
           isAutoResetChecked = true;
         } else {
           sendButton.setText("Send");
+          activateButton.setVisible(false);
+          activateRadioButton.setVisible(true);
+          activateRadioButton.setSelected(false);
           isAutoResetChecked = false;
         }
       }
@@ -279,6 +316,14 @@ public class EmotivComposerTest extends JFrame {
     eyeComboBox.setModel(new DefaultComboBoxModel(
         new String[] { "Blink", "Wink Left", "Wink Right", "Look Left", "Look Right" }));
     eyeComboBox.setBounds(10, 327, 170, 30);
+    
+    activateRadioButton= new JRadioButton("Activate");
+    activateRadioButton.setBounds(185,327,100,30);
+    detectionPanel.add(activateRadioButton);
+    
+    autoResetCheck = new JCheckBox("Auto Reset",true);
+    autoResetCheck.setBounds(295, 327, 115, 30);
+    detectionPanel.add(autoResetCheck);
 
     trainingResultLabel = new JLabel("TRAINING RESULT ");
     trainingResultLabel.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -324,9 +369,6 @@ public class EmotivComposerTest extends JFrame {
     incrementDecrementLowerFace.setLocation(181, 262);
     detectionPanel.add(incrementDecrementLowerFace);
 
-    incrementDecrementEye = new UpDownButton(110, 0.5, true);
-    incrementDecrementEye.setLocation(181, 327);
-    detectionPanel.add(incrementDecrementEye);
 
     detectionPanel.add(emoStatLabel);
     detectionPanel.add(timeLabel);
