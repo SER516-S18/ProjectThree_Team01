@@ -1,6 +1,7 @@
 package client.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 
@@ -50,6 +51,7 @@ public class EmotivControlPanel extends JFrame {
     tabbedPane.addTab("Facial Expressions", facialExpressionPanel);
     JPanel graphPanel = new JPanel();
     graphPanel.setBounds(199, 0, 218, 213);
+    graphPanel.setBackground(Color.GRAY);
     facialExpressionPanel.add(graphPanel);
 	}
 
