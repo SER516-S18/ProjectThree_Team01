@@ -160,6 +160,7 @@ public class EmotivComposer extends JFrame {
     dropDownPanel.setBounds(0, 0, 50, 50);
     menuBarPanel.add(dropDownPanel);
     dropDownPanel.setLayout(null);
+    System.out.println(getClass().getClassLoader());
 
     menuLabel = new JLabel(new ImageIcon("img/menu.png"));
     menuLabel.setBounds(0, 0, 49, 49);
