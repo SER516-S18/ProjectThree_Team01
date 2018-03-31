@@ -325,7 +325,7 @@ public class EmotivComposer extends JFrame {
     emoStatePanel.add(overallSkillLabel);
 
     setResizable(false);
-    // startServer();
+    startServer();
   }
 
   private void startServer() {
