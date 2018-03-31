@@ -21,6 +21,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.websocket.DeploymentException;
 
 import server.sys.ServerWebSocket;
@@ -60,6 +61,21 @@ public class EmotivComposer extends JFrame {
   private JPanel panel;
 
   private static EmotivComposer instance = null;
+  private JPanel emoStatePanel;
+  private JLabel lblEmostate;
+  private JLabel lblTime;
+  private JLabel timeTrackerLabel;
+  private JLabel secondsLabel;
+  private JButton clearLogButton;
+  private JLabel lblNewLabel;
+  private JPanel emotivLogPanel;
+  private JLabel mentalCommandsLabel;
+  private JComboBox skillComboBox;
+  private JComboBox neutralComboBox;
+  private UpDownButton neutral;
+  private UpDownButton skill;
+  private UpDownButton overallSkill;
+  private JLabel overallSkillLabel;
 
   /**
    * Launch the application.
@@ -231,11 +247,83 @@ public class EmotivComposer extends JFrame {
 
     detectionPanel = new JPanel();
     detectionPanel.setLayout(null);
+
+    emoStatePanel = new JPanel();
+    emoStatePanel.setBounds(0, 0, 440, 175);
+    detectionPanel.add(emoStatePanel);
+    emoStatePanel.setLayout(null);
+
+    lblEmostate = new JLabel("EMOSTATE");
+    lblEmostate.setBounds(0, 5, 100, 30);
+    emoStatePanel.add(lblEmostate);
+
+    lblTime = new JLabel("Time:");
+    lblTime.setBounds(20, 40, 40, 25);
+    emoStatePanel.add(lblTime);
+
+    timeTrackerLabel = new JLabel("0.0");
+    timeTrackerLabel.setBorder(new LineBorder(Color.DARK_GRAY));
+    timeTrackerLabel.setForeground(Color.BLACK);
+    timeTrackerLabel.setBackground(Color.DARK_GRAY);
+    timeTrackerLabel.setBounds(65, 40, 125, 25);
+    emoStatePanel.add(timeTrackerLabel);
+
+    secondsLabel = new JLabel("Seconds");
+    secondsLabel.setBounds(195, 40, 65, 25);
+    emoStatePanel.add(secondsLabel);
+
+    mentalCommandsLabel = new JLabel("Mental Commands");
+    mentalCommandsLabel.setBounds(20, 75, 150, 25);
+    emoStatePanel.add(mentalCommandsLabel);
+
+    neutralComboBox = new JComboBox();
+    neutralComboBox.setBounds(20, 105, 120, 30);
+    emoStatePanel.add(neutralComboBox);
+
+    skillComboBox = new JComboBox();
+    skillComboBox.setBounds(20, 137, 120, 30);
+    emoStatePanel.add(skillComboBox);
     upperFace = new Express();
     upperFace.setBounds(0, 175, 444, 150);
     detectionPanel.add(upperFace);
 
     lowerTabbedPane.addTab("Detection", null, detectionPanel, null);
+
+    emotivLogPanel = new JPanel();
+    emotivLogPanel.setBounds(0, 325, 444, 195);
+    emotivLogPanel.setLayout(null);
+
+    lblNewLabel = new JLabel("EMOENGINE LOG");
+    lblNewLabel.setBounds(5, 0, 120, 30);
+    emotivLogPanel.add(lblNewLabel);
+
+    consolePanel = new ConsolePanel();
+    consolePanel.setBounds(5, 30, 430, 125);
+    emotivLogPanel.add(consolePanel);
+
+    detectionPanel.add(emotivLogPanel);
+
+    clearLogButton = new JButton("Clear Log");
+    clearLogButton.setBounds(5, 160, 110, 30);
+    emotivLogPanel.add(clearLogButton);
+
+    neutral = new UpDownButton(70, 0.1, false);
+    neutral.setLocation(140, 105);
+    skill = new UpDownButton(70, 0.1, false);
+    skill.setLocation(140, 137);
+    overallSkill = new UpDownButton(70, 0.1, false);
+    overallSkill.setLocation(370, 105);
+
+    emoStatePanel.add(neutral);
+    emoStatePanel.add(skill);
+    emoStatePanel.add(overallSkill);
+
+    overallSkillLabel = new JLabel("Overall Skill");
+    overallSkillLabel.setBorder(new LineBorder(Constants.DARKGRAY));
+    overallSkillLabel.setBounds(250, 105, 120, 30);
+    emoStatePanel.add(overallSkillLabel);
+
+    setResizable(false);
 
     // startServer();
   }

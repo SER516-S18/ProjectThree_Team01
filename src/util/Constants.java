@@ -23,5 +23,6 @@ public class Constants {
   public static final Color GRAY = new Color(238, 238, 238);
   public static final Color WHITE = new Color(255, 255, 255);
   public static final Color PEACH = new Color(255, 250, 240);
+  public static final Color DARKGRAY = Color.DARK_GRAY;
 
 }
