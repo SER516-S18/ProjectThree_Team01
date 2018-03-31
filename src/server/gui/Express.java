@@ -1,5 +1,8 @@
 package server.gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -35,6 +38,22 @@ public class Express extends JPanel {
   private JRadioButton eyeActive;
   private JCheckBox chckbxNewCheckBox;
 
+  
+  private double lookingRight;
+  private double eyebrowRaise;
+  private double lookingLeft;
+  private double lookingDown;
+  private double lookingUp;
+  private double rightWink;
+  private double leftWink;
+  private double blink;
+  private double eyesOpen;
+  private double smile;
+  private double clench;
+  private double laugh;
+  
+  
+  
   /**
    * Create the application.
    */
@@ -58,10 +77,77 @@ public class Express extends JPanel {
     lowerfaceupdownButton.setVisible(true);
 
     upperfaceComboBox = new JComboBox();
+    
+    /**
+     * uppercombobox action
+     */
+    
+    upperfaceComboBox.addActionListener(new ActionListener() {
+      //private Object upperfaceupdownButton;
+
+    public void actionPerformed(ActionEvent e) {
+      
+      String Item = upperfaceComboBox.getSelectedItem().toString();
+      String upperbuttonValue = upperfaceupdownButton.getText();
+      double upperfaceValue =  Double.parseDouble(upperbuttonValue);
+      if(Item.equals("Raise Brow")) {
+        lookingUp = upperfaceValue;
+        
+        //System.out.println(upperfaceValue +","+ Item);  //test
+      }
+      
+      if(Item.equals("Furrow Brow")) {
+        lookingDown = upperfaceValue;
+        
+        //System.out.println(upperfaceValue +","+ Item);   //test
+      }
+       
+        }} );
+    
     upperfaceComboBox.setBounds(10, 30, 125, 30);
     upperfaceComboBox.setModel(new DefaultComboBoxModel(new String[] { "Raise Brow", "Furrow Brow" }));
 
     lowerfaceComboBox = new JComboBox();
+    
+    
+    /**
+     * lowerfaceComboBox action
+     */
+    lowerfaceComboBox.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent arg0) {
+        
+        String Item = lowerfaceComboBox.getSelectedItem().toString();
+        String lowerbuttonValue = lowerfaceupdownButton.getText();
+      
+        double lowerfaceValue =  Double.parseDouble(lowerbuttonValue);
+        if(Item.equals("Smile")) {
+          smile = lowerfaceValue;
+        
+          //System.out.println(smile +","+ Item);  //test
+        
+        }else if(Item.equals("Clench")) {
+          clench = lowerfaceValue;
+          //System.out.println(clench +","+ Item);   //test
+        
+        }else if(Item.equals("Smirk Left")){
+          lookingLeft = lowerfaceValue;
+        
+         // System.out.println(lookingLeft +","+ Item);   //test
+        
+        }else if(Item.equals("Smirk Right")){
+          lookingRight = lowerfaceValue;
+        
+          //System.out.println(lookingRight +","+ Item);   //test
+        }else if(Item.equals("Laugh")) {
+          laugh = lowerfaceValue;
+        
+         // System.out.println(laugh +","+ Item);   //test
+        }else {
+        
+      }
+      }
+    });
+    
     lowerfaceComboBox.setBounds(245, 30, 125, 30);
     lowerfaceComboBox.setModel(new DefaultComboBoxModel(
         new String[] { "Smile", "Clench", "Smirk Left", "Smirk Right", "Laugh" }));
