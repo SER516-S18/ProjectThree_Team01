@@ -1,6 +1,8 @@
 package client.gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -11,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import javax.websocket.DeploymentException;
 
 import org.glassfish.tyrus.client.ClientManager;
+import org.jfree.chart.ChartPanel;
 
 import client.sys.ClientWebSocketTest;
 import util.ConstantsTest;
@@ -21,6 +24,7 @@ public class EmotivControlPanel extends JFrame {
   private JPanel contentPane;
   private JPanel facialExpressionPanel;
   private String uri = "localhost";
+  private DisplayGraph displayGraph ;
   public static EmotivControlPanel clientInstance = null;
 
   /**
@@ -29,6 +33,7 @@ public class EmotivControlPanel extends JFrame {
   public static void main(String[] args) {
     EmotivControlPanel frame = EmotivControlPanel.getInstance();
     frame.setVisible(true);
+  //frame.setSize(1000,1000);
   }
 
   public static EmotivControlPanel getInstance() {
@@ -43,22 +48,32 @@ public class EmotivControlPanel extends JFrame {
    */
   private EmotivControlPanel() {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setBounds(100, 100, 450, 300);
+    setBounds(100, 100, 982, 919);
     contentPane = new JPanel();
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     setContentPane(contentPane);
     contentPane.setLayout(null);
     facialExpressionPanel = new JPanel();
-    facialExpressionPanel.setLayout(null);
     JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-    tabbedPane.setBounds(5, 5, 422, 243);
+    tabbedPane.setBounds(5, 13,959, 992);
     contentPane.add(tabbedPane);
     tabbedPane.setName("Facial Expressions");
     tabbedPane.addTab("Facial Expressions", facialExpressionPanel);
+    facialExpressionPanel.setLayout(null);
     JPanel graphPanel = new JPanel();
-    graphPanel.setBounds(199, 0, 218, 213);
-    graphPanel.setBackground(Color.GRAY);
+    graphPanel.setBounds(456, 0, 500, 841);
+   // graphPanel.setBackground(Color.GRAY);
     facialExpressionPanel.add(graphPanel);
+    
+    displayGraph= new DisplayGraph();
+    displayGraph.chartPanel= new ChartPanel(displayGraph.graph);
+    
+    displayGraph.chartPanel.setLocation(12, 26);
+    displayGraph.chartPanel.setSize(new Dimension(500,800));
+    facialExpressionPanel.setLayout(null);
+
+    graphPanel.add(displayGraph.chartPanel);
+    graphPanel.setLayout(null);
 
     // remove later
     // ConnectToServer();
