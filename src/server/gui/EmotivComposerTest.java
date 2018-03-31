@@ -85,7 +85,7 @@ public class EmotivComposerTest extends JFrame {
     EventQueue.invokeLater(new Runnable() {
       public void run() {
         try {
-          EmotivComposer frame = new EmotivComposer();
+          EmotivComposerTest frame = new EmotivComposerTest();
           frame.setVisible(true);
         } catch (Exception e) {
           e.printStackTrace();
@@ -97,7 +97,7 @@ public class EmotivComposerTest extends JFrame {
   /**
    * Create the frame.
    */
-  public EmotivComposer() {
+  public EmotivComposerTest() {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setBounds(100, 100, 450, 800);
 
@@ -212,117 +212,122 @@ public class EmotivComposerTest extends JFrame {
     detectionPanel.setBounds(2, 200, 444, 538);
     detectionPanel.setLayout(null);
     contentPane.add(detectionPanel);
-    
+
     emoStatLabel = new JLabel("EMOSTAT");
     emoStatLabel.setHorizontalTextPosition(SwingConstants.CENTER);
     emoStatLabel.setHorizontalAlignment(SwingConstants.LEFT);
     emoStatLabel.setBounds(10, 10, 60, 15);
-    
+
     timeLabel = new JLabel("Time: ");
     timeLabel.setHorizontalTextPosition(SwingConstants.CENTER);
     timeLabel.setHorizontalAlignment(SwingConstants.LEFT);
     timeLabel.setBounds(10, 40, 60, 15);
-    
-    enterTime=new JTextField("0");
-	enterTime.setBounds(70,35,100,25);
-	
-	secondsLabel = new JLabel("Seconds ");
+
+    enterTime = new JTextField("0");
+    enterTime.setBounds(70, 35, 100, 25);
+
+    secondsLabel = new JLabel("Seconds ");
     secondsLabel.setHorizontalTextPosition(SwingConstants.CENTER);
     secondsLabel.setHorizontalAlignment(SwingConstants.LEFT);
     secondsLabel.setBounds(180, 40, 60, 15);
-    
+
     mentalCommandLabel = new JLabel("Mental Command ");
     mentalCommandLabel.setHorizontalTextPosition(SwingConstants.CENTER);
     mentalCommandLabel.setHorizontalAlignment(SwingConstants.LEFT);
     mentalCommandLabel.setBounds(10, 70, 150, 15);
-    
+
     mentalCommandComboBox1 = new JComboBox();
-    mentalCommandComboBox1.setModel(new DefaultComboBoxModel(new String[] { "Neutral", "Push","Pull","Lift","Drop","Left","Right","Rotate Left","Rotate Right","Rotate Clockwise","Rotate Counter-clockwise","Rotate Forward","Rotate Reverse","Disappear"  }));
+    mentalCommandComboBox1.setModel(new DefaultComboBoxModel(new String[] { "Neutral", "Push", "Pull",
+        "Lift", "Drop", "Left", "Right", "Rotate Left", "Rotate Right", "Rotate Clockwise",
+        "Rotate Counter-clockwise", "Rotate Forward", "Rotate Reverse", "Disappear" }));
     mentalCommandComboBox1.setBounds(10, 90, 170, 30);
-    
+
     mentalCommandComboBox2 = new JComboBox();
-    mentalCommandComboBox2.setModel(new DefaultComboBoxModel(new String[] { "Push Skill"  }));
+    mentalCommandComboBox2.setModel(new DefaultComboBoxModel(new String[] { "Push Skill" }));
     mentalCommandComboBox2.setBounds(10, 121, 170, 30);
-    
+
     overallSkillLabel = new JLabel("Overall Skill");
     overallSkillLabel.setHorizontalTextPosition(SwingConstants.CENTER);
     overallSkillLabel.setHorizontalAlignment(SwingConstants.LEFT);
     overallSkillLabel.setBounds(10, 152, 150, 30);
-    
+
     upperFaceLabel = new JLabel("Upper Face ");
     upperFaceLabel.setHorizontalTextPosition(SwingConstants.CENTER);
     upperFaceLabel.setHorizontalAlignment(SwingConstants.LEFT);
     upperFaceLabel.setBounds(10, 181, 150, 15);
-    
+
     upperFaceComboBox = new JComboBox();
-    upperFaceComboBox.setModel(new DefaultComboBoxModel(new String[] { "Raise Brow", "Furrow Brow"  }));
+    upperFaceComboBox.setModel(new DefaultComboBoxModel(new String[] { "Raise Brow", "Furrow Brow" }));
     upperFaceComboBox.setBounds(10, 201, 170, 30);
-    
+
     lowerFaceLabel = new JLabel("Lower Face ");
     lowerFaceLabel.setHorizontalTextPosition(SwingConstants.CENTER);
     lowerFaceLabel.setHorizontalAlignment(SwingConstants.LEFT);
     lowerFaceLabel.setBounds(10, 246, 150, 15);
-    
+
     lowerFaceComboBox = new JComboBox();
-    lowerFaceComboBox.setModel(new DefaultComboBoxModel(new String[] { "Smile", "Clench","Smirk Left","Smirk Right","Laugh"   }));
+    lowerFaceComboBox.setModel(new DefaultComboBoxModel(
+        new String[] { "Smile", "Clench", "Smirk Left", "Smirk Right", "Laugh" }));
     lowerFaceComboBox.setBounds(10, 262, 170, 30);
-    
+
     eyeLabel = new JLabel("Eye ");
     eyeLabel.setHorizontalTextPosition(SwingConstants.CENTER);
     eyeLabel.setHorizontalAlignment(SwingConstants.LEFT);
     eyeLabel.setBounds(10, 307, 150, 15);
-    
+
     eyeComboBox = new JComboBox();
-    eyeComboBox.setModel(new DefaultComboBoxModel(new String[] { "Blink","Wink Left", "Wink Right","Look Left","Look Right"   }));
+    eyeComboBox.setModel(new DefaultComboBoxModel(
+        new String[] { "Blink", "Wink Left", "Wink Right", "Look Left", "Look Right" }));
     eyeComboBox.setBounds(10, 327, 170, 30);
-    
+
     trainingResultLabel = new JLabel("TRAINING RESULT ");
     trainingResultLabel.setHorizontalTextPosition(SwingConstants.CENTER);
     trainingResultLabel.setHorizontalAlignment(SwingConstants.LEFT);
     trainingResultLabel.setBounds(10, 372, 150, 15);
-    
+
     mentalCommandsLabel = new JLabel("Mental Commands ");
     mentalCommandsLabel.setHorizontalTextPosition(SwingConstants.CENTER);
     mentalCommandsLabel.setHorizontalAlignment(SwingConstants.LEFT);
     mentalCommandsLabel.setBounds(10, 402, 150, 15);
-    
+
     mentalCommandsComboBox = new JComboBox();
-    mentalCommandsComboBox.setModel(new DefaultComboBoxModel(new String[] { "OK","Not enough data" }));
+    mentalCommandsComboBox.setModel(new DefaultComboBoxModel(new String[] { "OK", "Not enough data" }));
     mentalCommandsComboBox.setBounds(10, 422, 170, 30);
-    
+
     performanceMetricsLabel = new JLabel("Performance Metrics ");
     performanceMetricsLabel.setHorizontalTextPosition(SwingConstants.CENTER);
     performanceMetricsLabel.setHorizontalAlignment(SwingConstants.LEFT);
     performanceMetricsLabel.setBounds(10, 467, 150, 15);
-    
+
     performanceMetricsComboBox = new JComboBox();
-    performanceMetricsComboBox.setModel(new DefaultComboBoxModel(new String[] { "OK","Not enough data" }));
+    performanceMetricsComboBox
+        .setModel(new DefaultComboBoxModel(new String[] { "OK", "Not enough data" }));
     performanceMetricsComboBox.setBounds(10, 487, 170, 30);
-    
+
     incrementDecrementMentalCommand1 = new UpDownButton(110, 0.5, true);
     incrementDecrementMentalCommand1.setLocation(181, 90);
     detectionPanel.add(incrementDecrementMentalCommand1);
-    
+
     incrementDecrementMentalCommand2 = new UpDownButton(110, 0.5, true);
     incrementDecrementMentalCommand2.setLocation(181, 121);
     detectionPanel.add(incrementDecrementMentalCommand2);
-    
+
     incrementDecrementOverallSkill = new UpDownButton(110, 0.5, true);
     incrementDecrementOverallSkill.setLocation(181, 152);
     detectionPanel.add(incrementDecrementOverallSkill);
-    
+
     incrementDecrementUpperFace = new UpDownButton(110, 0.5, true);
     incrementDecrementUpperFace.setLocation(181, 200);
     detectionPanel.add(incrementDecrementUpperFace);
-    
+
     incrementDecrementLowerFace = new UpDownButton(110, 0.5, true);
     incrementDecrementLowerFace.setLocation(181, 262);
     detectionPanel.add(incrementDecrementLowerFace);
-    
+
     incrementDecrementEye = new UpDownButton(110, 0.5, true);
     incrementDecrementEye.setLocation(181, 327);
     detectionPanel.add(incrementDecrementEye);
-    
+
     detectionPanel.add(emoStatLabel);
     detectionPanel.add(timeLabel);
     detectionPanel.add(enterTime);
@@ -342,7 +347,7 @@ public class EmotivComposerTest extends JFrame {
     detectionPanel.add(mentalCommandsComboBox);
     detectionPanel.add(performanceMetricsLabel);
     detectionPanel.add(performanceMetricsComboBox);
-    
+
     // startServer();
   }
 
