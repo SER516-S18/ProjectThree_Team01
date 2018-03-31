@@ -11,12 +11,12 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import data.EmotivDataTest;
+import data.EmotivData;
 import util.ConstantsTest;
 
 @ServerEndpoint(value = ConstantsTest.ENDPOINT)
-public class ServerWebSocket {
-  private EmotivDataTest emotivData = new EmotivDataTest();
+public class ServerWebSocketTest {
+  private EmotivData emotivData = new EmotivData();
 
   // Using a SET to ensure uniqueness
   static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());

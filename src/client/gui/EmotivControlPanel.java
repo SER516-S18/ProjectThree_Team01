@@ -12,8 +12,8 @@ import javax.websocket.DeploymentException;
 
 import org.glassfish.tyrus.client.ClientManager;
 
-import client.sys.ClientWebSocket;
-import util.Constants;
+import client.sys.ClientWebSocketTest;
+import util.ConstantsTest;
 
 public class EmotivControlPanel extends JFrame {
   private static final long serialVersionUID = 8528760467775723790L;
@@ -27,11 +27,11 @@ public class EmotivControlPanel extends JFrame {
    * Launch the application.
    */
   public static void main(String[] args) {
-    EmotivControlPanel frame = new EmotivControlPanel();
+    EmotivControlPanel frame = EmotivControlPanel.getInstance();
     frame.setVisible(true);
   }
 
-  public EmotivControlPanel getInstance() {
+  public static EmotivControlPanel getInstance() {
     if (clientInstance == null) {
       clientInstance = new EmotivControlPanel();
     }
@@ -67,8 +67,8 @@ public class EmotivControlPanel extends JFrame {
   private void ConnectToServer() {
     ClientManager client = ClientManager.createClient();
     try {
-      client.connectToServer(ClientWebSocket.class, new URI(
-          Constants.PROTOCOL + uri + ':' + Constants.PORT + Constants.LINK + Constants.ENDPOINT));
+      client.connectToServer(ClientWebSocketTest.class, new URI(ConstantsTest.PROTOCOL + uri + ':'
+          + ConstantsTest.PORT + ConstantsTest.LINK + ConstantsTest.ENDPOINT));
     } catch (DeploymentException | URISyntaxException e) {
       throw new RuntimeException(e);
     }

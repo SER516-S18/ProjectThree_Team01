@@ -1,7 +1,7 @@
 package client.data;
 
-import data.EmotivData;
+import data.EmotivDataTest;
 
 public class ClientData {
-  EmotivData emotivData;
+  EmotivDataTest emotivData;
 }
