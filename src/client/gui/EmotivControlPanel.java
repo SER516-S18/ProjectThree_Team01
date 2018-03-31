@@ -69,7 +69,6 @@ public class EmotivControlPanel extends JFrame {
     try {
       client.connectToServer(ClientWebSocket.class, new URI(
           Constants.PROTOCOL + uri + ':' + Constants.PORT + Constants.LINK + Constants.ENDPOINT));
-
     } catch (DeploymentException | URISyntaxException e) {
       throw new RuntimeException(e);
     }
