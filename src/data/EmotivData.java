@@ -19,6 +19,7 @@ public class EmotivData {
   private double lookingRight;
   private double eyebrowRaise;
   private double lookingLeft;
+  private double eyebrowFurrow;
   private double lookingDown;
   private double lookingUp;
   private double rightWink;
@@ -44,6 +45,7 @@ public class EmotivData {
     this.lookingRight = 0.0;
     this.lookingUp = 0.0;
     this.eyebrowRaise = 0.0;
+    this.eyebrowFurrow = 0.0;
     this.eyesOpen = 0.0;
     this.rightWink = 0.0;
     this.leftWink = 0.0;
@@ -78,6 +80,7 @@ public class EmotivData {
     JSONObject expressive = new JSONObject();
     expressive.put("LookingRight", this.lookingRight);
     expressive.put("EyebrowRaise", this.eyebrowRaise);
+    expressive.put("EyebrowFurrow", this.eyebrowFurrow);
     expressive.put("LookingLeft", this.lookingLeft);
     expressive.put("LookingDown", this.lookingDown);
     expressive.put("LookingUp", this.lookingUp);
@@ -92,11 +95,11 @@ public class EmotivData {
 
   public JSONObject getAffective() {
     JSONObject affective = new JSONObject();
-    expressive.put("Mediation", this.mediation);
-    expressive.put("EngagementBoredom", this.engagementBoredom);
-    expressive.put("ExcitementShortTerm", this.excitementShortTerm);
-    expressive.put("Frustration", this.frustration);
-    expressive.put("ExcitementLongTerm", this.excitementLongTerm);
+    affective.put("Mediation", this.mediation);
+    affective.put("EngagementBoredom", this.engagementBoredom);
+    affective.put("ExcitementShortTerm", this.excitementShortTerm);
+    affective.put("Frustration", this.frustration);
+    affective.put("ExcitementLongTerm", this.excitementLongTerm);
     return affective;
   }
 
@@ -124,8 +127,16 @@ public class EmotivData {
     return eyebrowRaise;
   }
 
+  public double getEyebrowFurrow() {
+    return eyebrowFurrow;
+  }
+
   public double getLookingLeft() {
     return lookingLeft;
+  }
+
+  public double getLookingUp() {
+    return lookingUp;
   }
 
   public double getLookingDown() {
@@ -194,8 +205,16 @@ public class EmotivData {
     this.eyebrowRaise = eyebrowRaise;
   }
 
+  public void setEyebrowFurrow(double eyebrowFurrow) {
+    this.eyebrowFurrow = eyebrowFurrow;
+  }
+
   public void setLookingLeft(double lookingLeft) {
     this.lookingLeft = lookingLeft;
+  }
+
+  public void setLookingUp(double lookingUp) {
+    this.lookingUp = lookingUp;
   }
 
   public void setLookingDown(double lookingDown) {
@@ -260,6 +279,7 @@ public class EmotivData {
     this.lookingRight = expressive.getDouble("LookingRight");
     this.lookingUp = expressive.getDouble("LookingUp");
     this.eyebrowRaise = expressive.getDouble("EyebrowRaise");
+    this.eyebrowFurrow = expressive.getDouble("EyebrowFurrow");
     this.eyesOpen = expressive.getDouble("EyesOpen");
     this.rightWink = expressive.getDouble("RightWink");
     this.leftWink = expressive.getDouble("LeftWink");
@@ -278,7 +298,7 @@ public class EmotivData {
 
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append(this.toJson());
+    sb.append(toJson());
     return sb.toString();
   }
 }

@@ -3,29 +3,20 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="lib/grizzly-core-2.4.3.jar"/>
-	<classpathentry kind="lib" path="lib/grizzly-framework-2.3.3.jar"/>
-	<classpathentry kind="lib" path="lib/grizzly-http-2.3.3.jar"/>
-	<classpathentry kind="lib" path="lib/grizzly-http-all-2.2.8.jar"/>
-	<classpathentry kind="lib" path="lib/grizzly-http-server-2.3.3.jar"/>
-	<classpathentry kind="lib" path="lib/grizzly-rcm-2.3.3.jar"/>
-	<classpathentry kind="lib" path="lib/javax.websocket-api-1.0-rc4.jar"/>
-	<classpathentry kind="lib" path="lib/javax.websocket-api-1.0.jar"/>
-	<classpathentry kind="lib" path="lib/jcommon-1.0.23.jar"/>
-	<classpathentry kind="lib" path="lib/jfreechart-1.0.19.jar"/>
-	<classpathentry kind="lib" path="lib/jgoodies-forms-1.4.0.jar"/>
-	<classpathentry kind="lib" path="lib/json-20180130.jar"/>
-	<classpathentry kind="lib" path="lib/json.jar"/>
-	<classpathentry kind="lib" path="lib/tyrus-client-1.1.jar"/>
-	<classpathentry kind="lib" path="lib/tyrus-container-grizzly-1.1.jar"/>
-	<classpathentry kind="lib" path="lib/tyrus-container-grizzly-1.2.1.jar"/>
-	<classpathentry kind="lib" path="lib/tyrus-core-1.1.jar"/>
-	<classpathentry kind="lib" path="lib/tyrus-core-1.2.1.jar"/>
-	<classpathentry kind="lib" path="lib/tyrus-server-1.1.jar"/>
-	<classpathentry kind="lib" path="lib/tyrus-server-1.2.1.jar"/>
-	<classpathentry kind="lib" path="lib/tyrus-spi-1.1.jar"/>
-	<classpathentry kind="lib" path="lib/tyrus-spi-1.2.1.jar"/>
-	<classpathentry kind="lib" path="lib/tyrus-websocket-core-1.1.jar"/>
-	<classpathentry kind="lib" path="lib/tyrus-websocket-core-1.2.1.jar"/>
+	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/ProjectThree_Team01/lib/grizzly-framework-2.3.3.jar"/>
+	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/ProjectThree_Team01/lib/grizzly-http-2.3.3.jar"/>
+	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/ProjectThree_Team01/lib/grizzly-http-server-2.3.3.jar"/>
+	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/ProjectThree_Team01/lib/grizzly-rcm-2.3.3.jar"/>
+	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/ProjectThree_Team01/lib/javax.websocket-api-1.0.jar"/>
+	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/ProjectThree_Team01/lib/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/ProjectThree_Team01/lib/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/ProjectThree_Team01/lib/jgoodies-forms-1.4.0.jar"/>
+	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/ProjectThree_Team01/lib/json-20180130.jar"/>
+	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/ProjectThree_Team01/lib/tyrus-client-1.1.jar"/>
+	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/ProjectThree_Team01/lib/tyrus-container-grizzly-1.1.jar"/>
+	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/ProjectThree_Team01/lib/tyrus-core-1.1.jar"/>
+	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/ProjectThree_Team01/lib/tyrus-server-1.1.jar"/>
+	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/ProjectThree_Team01/lib/tyrus-spi-1.1.jar"/>
+	<classpathentry kind="lib" path="/home/carmstr7/git/SER516/ProjectThree_Team01/lib/tyrus-websocket-core-1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

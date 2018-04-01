@@ -136,8 +136,7 @@ public class UpDownButton extends JPanel {
   public void setOutputText(String txt) {
     this.outputTextBox.setText(txt);
   }
-  
-  
+
   public String getText() {
     return outputTextBox.getText();
   }
