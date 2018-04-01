@@ -333,6 +333,8 @@ public class EmotivComposer extends JFrame implements WindowListener {
     emoStatePanel.add(overallSkillLabel);
 
     setResizable(false);
+    this.tabbedPane.setSelectedIndex(1);
+    this.lowerTabbedPane.setSelectedIndex(1);
     startServer();
   }
 
