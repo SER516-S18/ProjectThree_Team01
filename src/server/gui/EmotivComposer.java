@@ -7,6 +7,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.time.LocalTime;
 
 import javax.swing.DefaultComboBoxModel;
@@ -24,14 +26,20 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.websocket.DeploymentException;
 
+import org.glassfish.tyrus.server.Server;
+
+import server.sys.ServerThread;
 import server.sys.ServerWebSocket;
+import server.sys.WorkerThread;
 import util.ConsolePanel;
 import util.Constants;
 import util.UpDownButton;
 
-public class EmotivComposer extends JFrame {
+public class EmotivComposer extends JFrame implements WindowListener {
 
   private static final long serialVersionUID = 6196061116172281774L;
+  private static WorkerThread worker;
+  private static Thread workerThread;
   private static final String URI = "localhost";
 
   private JPanel contentPane;
@@ -97,8 +105,8 @@ public class EmotivComposer extends JFrame {
    * Create the frame.
    */
   private EmotivComposer() {
-    setTitle("Emotiv Composer Project 3");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setTitle("Emotiv Composer Project 3");
     setBounds(100, 100, 450, 800);
 
     contentPane = new JPanel();
@@ -160,7 +168,6 @@ public class EmotivComposer extends JFrame {
     dropDownPanel.setBounds(0, 0, 50, 50);
     menuBarPanel.add(dropDownPanel);
     dropDownPanel.setLayout(null);
-    System.out.println(getClass().getClassLoader());
 
     menuLabel = new JLabel(new ImageIcon("img/menu.png"));
     menuLabel.setBounds(0, 0, 49, 49);
@@ -326,15 +333,17 @@ public class EmotivComposer extends JFrame {
     emoStatePanel.add(overallSkillLabel);
 
     setResizable(false);
+    this.tabbedPane.setSelectedIndex(1);
+    this.lowerTabbedPane.setSelectedIndex(1);
     startServer();
   }
 
   private void startServer() {
-    org.glassfish.tyrus.server.Server server = new org.glassfish.tyrus.server.Server(URI, Constants.PORT,
-        Constants.LINK, ServerWebSocket.class);
+    Server server = new Server(URI, Constants.PORT, Constants.LINK, ServerWebSocket.class);
     try {
       server.start();
       System.out.println("Server started successfully...");
+      new Thread(new ServerThread(server)).start();
     } catch (DeploymentException e) {
       throw new RuntimeException(e);
     }
@@ -350,18 +359,77 @@ public class EmotivComposer extends JFrame {
   }
 
   private void handleStartStopSend() {
+    String strText = sendButton.getText();
+    if (worker == null)
+      worker = new WorkerThread(timeTrackerLabel);
+
+    worker.setButtonStatus(strText);
+    worker.setInterval(Double.parseDouble(incrementDecrement.getText()));
+
+    System.out.println("Text: " + Double.parseDouble(incrementDecrement.getText()));
+
     if (isAutoResetChecked) {
-      if (sendButton.getText().equalsIgnoreCase("Start")) {
-        // Send based on frequency
+      if (strText.equalsIgnoreCase("Start")) {
         sendButton.setText("Stop");
         autoResetCheckBox.setEnabled(false);
       } else {
-        // Close websocket
         sendButton.setText("Start");
         autoResetCheckBox.setEnabled(true);
       }
-    } else {
-      // Send one message
     }
+
+    workerThread = new Thread(worker);
+    workerThread.start();
+  }
+
+  public void setTimeTracker(String str) {
+    timeTrackerLabel.setText(str);
+  }
+
+  @Override
+  public void windowOpened(WindowEvent e) {
+    // TODO Auto-generated method stub
+    System.out.println("Opened");
+
+  }
+
+  @Override
+  public void windowClosing(WindowEvent e) {
+    // TODO Auto-generated method stub
+    System.out.println("Closing");
+    ServerThread.isClosing = true;
+    System.exit(0);
+  }
+
+  @Override
+  public void windowClosed(WindowEvent e) {
+    // TODO Auto-generated method stub
+    System.out.println("closed");
+    ServerThread.isClosing = true;
+    System.exit(0);
+  }
+
+  @Override
+  public void windowIconified(WindowEvent e) {
+    // TODO Auto-generated method stub
+  }
+
+  @Override
+  public void windowDeiconified(WindowEvent e) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void windowActivated(WindowEvent e) {
+    // TODO Auto-generated method stub
+    System.out.println("Activated");
+
+  }
+
+  @Override
+  public void windowDeactivated(WindowEvent e) {
+    // TODO Auto-generated method stub
+    System.out.println("Deactivated");
   }
 }

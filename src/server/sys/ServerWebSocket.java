@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.websocket.OnClose;
+import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
@@ -24,6 +25,7 @@ public class ServerWebSocket {
   @OnOpen
   public void onOpen(Session session) {
     clients.add(session);
+    System.out.println(String.format("%s: connected, welcome!", session));
   }
 
   @OnMessage
@@ -32,7 +34,12 @@ public class ServerWebSocket {
   }
 
   @OnClose
-  public void onClose() throws IOException {
+  public void onClose(Session session) throws IOException {
+    clients.remove(session);
+    System.out.println(String.format("%s: disconnected", session));
+  }
 
+  @OnError
+  public void onError(Session session, Throwable t) {
   }
 }
