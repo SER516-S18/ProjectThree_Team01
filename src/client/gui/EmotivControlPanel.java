@@ -15,7 +15,9 @@ import javax.websocket.DeploymentException;
 import org.glassfish.tyrus.client.ClientManager;
 import org.jfree.chart.ChartPanel;
 
+import client.sys.ClientThread;
 import client.sys.ClientWebSocketTest;
+import server.sys.ServerThread;
 import util.ConstantsTest;
 
 public class EmotivControlPanel extends JFrame {
@@ -76,16 +78,10 @@ public class EmotivControlPanel extends JFrame {
     graphPanel.setLayout(null);
 
     // remove later
-    // ConnectToServer();
+    ConnectToServer();
   }
 
   private void ConnectToServer() {
-    ClientManager client = ClientManager.createClient();
-    try {
-      client.connectToServer(ClientWebSocketTest.class, new URI(ConstantsTest.PROTOCOL + uri + ':'
-          + ConstantsTest.PORT + ConstantsTest.LINK + ConstantsTest.ENDPOINT));
-    } catch (DeploymentException | URISyntaxException e) {
-      throw new RuntimeException(e);
-    }
+    new Thread(new ClientThread(uri)).start();
   }
 }

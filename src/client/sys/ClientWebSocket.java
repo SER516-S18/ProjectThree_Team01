@@ -5,10 +5,13 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 
+import data.EmotivData;
+
 import javax.websocket.ClientEndpoint;
 
 @ClientEndpoint()
 public class ClientWebSocket {
+  EmotivData emotivData = new EmotivData();
   
   @OnOpen
   public void onOpen(Session session) {
@@ -17,7 +20,7 @@ public class ClientWebSocket {
 
   @OnMessage
   public void onMessage(String message, Session session) {
-     
+     emotivData.toJson(message);
   }
 
   @OnClose
