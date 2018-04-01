@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,10 +19,13 @@ import org.jfree.chart.ChartPanel;
 
 import client.sys.ClientThread;
 import client.sys.ClientWebSocketTest;
+import data.EmotivData;
 import server.sys.ServerThread;
 import util.ConstantsTest;
 
-public class EmotivControlPanel extends JFrame {
+import interfaces.*;
+
+public class EmotivControlPanel extends JFrame implements ClientObserver{
   private static final long serialVersionUID = 8528760467775723790L;
 
   private JPanel contentPane;
@@ -83,5 +88,11 @@ public class EmotivControlPanel extends JFrame {
 
   private void ConnectToServer() {
     new Thread(new ClientThread(uri)).start();
+  }
+
+  @Override
+  public void notify(EmotivData data) {
+    // TODO Auto-generated method stub
+    
   }
 }

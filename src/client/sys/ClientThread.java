@@ -3,6 +3,7 @@ package client.sys;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import javax.websocket.ClientEndpoint;
 import javax.websocket.DeploymentException;
 
 import org.glassfish.tyrus.client.ClientManager;
@@ -22,7 +23,7 @@ public class ClientThread implements Runnable {
   public void run() {
     ClientManager client = ClientManager.createClient();
     try {
-      client.connectToServer(ClientWebSocketTest.class, new URI(ConstantsTest.PROTOCOL + uri + ':'
+      client.connectToServer(ClientWebSocket.class, new URI(ConstantsTest.PROTOCOL + uri + ':'
           + ConstantsTest.PORT + ConstantsTest.LINK + ConstantsTest.ENDPOINT));
     } catch (DeploymentException | URISyntaxException e) {
       throw new RuntimeException(e);
