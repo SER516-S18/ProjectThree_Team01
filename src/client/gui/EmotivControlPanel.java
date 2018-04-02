@@ -82,8 +82,6 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 
   @Override
   public void notifyObserver(EmotivData data) {
-    // TODO Auto-generated method stub
-    System.out.println("notified");
-
+   //call graph and emotional expression methods
   }
 }
