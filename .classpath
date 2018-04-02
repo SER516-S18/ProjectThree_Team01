@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="lib"/>
 	<classpathentry kind="src" path="img"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/grizzly-framework-2.3.3.jar"/>
 	<classpathentry kind="lib" path="lib/grizzly-http-2.3.3.jar"/>
 	<classpathentry kind="lib" path="lib/grizzly-http-server-2.3.3.jar"/>
