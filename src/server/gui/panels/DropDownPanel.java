@@ -1,4 +1,4 @@
-package server.gui;
+package server.gui.panels;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;

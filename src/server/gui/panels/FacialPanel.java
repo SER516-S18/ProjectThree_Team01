@@ -1,4 +1,4 @@
-package server.gui;
+package server.gui.panels;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,11 +13,8 @@ import javax.swing.SwingConstants;
 
 import util.UpDownButton;
 
-public class Express extends JPanel {
+public class FacialPanel extends JPanel {
 
-  /**
-   * 
-   */
   private static final long serialVersionUID = 3981755002828308262L;
 
   private JComboBox<String> comboBox;
@@ -28,13 +25,13 @@ public class Express extends JPanel {
   private JPanel containerPanel;
   private JPanel graphPanel;
   private JLabel upperfaceLabel;
-  private JComboBox upperfaceComboBox;
+  private JComboBox<String> upperfaceComboBox;
   private UpDownButton upperfaceupdownButton;
   private JLabel lowerfaceLabel;
-  private JComboBox lowerfaceComboBox;
+  private JComboBox<String> lowerfaceComboBox;
   private UpDownButton lowerfaceupdownButton;
   private JLabel eyeLabel;
-  private JComboBox eyecomboBox;
+  private JComboBox<String> eyecomboBox;
   private JRadioButton eyeActive;
   private JCheckBox chckbxNewCheckBox;
 
@@ -52,28 +49,22 @@ public class Express extends JPanel {
   private double clench;
   private double laugh;
   
-  
-  
-  /**
-   * Create the application.
-   */
-  public Express(int width, int height) {
-    initialize(width, height);
+  public FacialPanel() {
+    setBounds(0, 0, 440, 150);
+    initialize();
     setLayout(null);
   }
 
   /**
    * Initialize the contents of the frame.
    */
-  private void initialize(int width, int height) {
-    setBounds(0, 0, width, height);
-
+  private void initialize() {
     upperfaceupdownButton = new UpDownButton(70, 0.1, false);
     upperfaceupdownButton.setBounds(135, 30, 70, 30);
     upperfaceupdownButton.setVisible(true);
 
     lowerfaceupdownButton = new UpDownButton(70, 0.1, false);
-    lowerfaceupdownButton.setBounds(370, 30, 70, 30);
+    lowerfaceupdownButton.setBounds(365, 30, 70, 30);
     lowerfaceupdownButton.setVisible(true);
 
     upperfaceComboBox = new JComboBox();
@@ -88,7 +79,7 @@ public class Express extends JPanel {
     public void actionPerformed(ActionEvent e) {
       
       String Item = upperfaceComboBox.getSelectedItem().toString();
-      String upperbuttonValue = upperfaceupdownButton.getText();
+      String upperbuttonValue = upperfaceupdownButton.getOutputText();
       double upperfaceValue =  Double.parseDouble(upperbuttonValue);
       if(Item.equals("Raise Brow")) {
         lookingUp = upperfaceValue;
@@ -105,7 +96,7 @@ public class Express extends JPanel {
         }} );
     
     upperfaceComboBox.setBounds(10, 30, 125, 30);
-    upperfaceComboBox.setModel(new DefaultComboBoxModel(new String[] { "Raise Brow", "Furrow Brow" }));
+    upperfaceComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Raise Brow", "Furrow Brow" }));
 
     lowerfaceComboBox = new JComboBox();
     
@@ -117,7 +108,7 @@ public class Express extends JPanel {
       public void actionPerformed(ActionEvent arg0) {
         
         String Item = lowerfaceComboBox.getSelectedItem().toString();
-        String lowerbuttonValue = lowerfaceupdownButton.getText();
+        String lowerbuttonValue = lowerfaceupdownButton.getOutputText();
       
         double lowerfaceValue =  Double.parseDouble(lowerbuttonValue);
         if(Item.equals("Smile")) {
@@ -148,8 +139,8 @@ public class Express extends JPanel {
       }
     });
     
-    lowerfaceComboBox.setBounds(245, 30, 125, 30);
-    lowerfaceComboBox.setModel(new DefaultComboBoxModel(
+    lowerfaceComboBox.setBounds(240, 30, 125, 30);
+    lowerfaceComboBox.setModel(new DefaultComboBoxModel<String>(
         new String[] { "Smile", "Clench", "Smirk Left", "Smirk Right", "Laugh" }));
 
     upperfaceLabel = new JLabel("Upperface:");
@@ -157,7 +148,7 @@ public class Express extends JPanel {
     upperfaceLabel.setHorizontalAlignment(SwingConstants.LEFT);
 
     lowerfaceLabel = new JLabel("Lowerface:");
-    lowerfaceLabel.setBounds(245, 10, 100, 20);
+    lowerfaceLabel.setBounds(240, 10, 100, 20);
     lowerfaceLabel.setHorizontalAlignment(SwingConstants.LEFT);
 
     eyeLabel = new JLabel("Eye:");
@@ -166,7 +157,7 @@ public class Express extends JPanel {
 
     eyecomboBox = new JComboBox();
     eyecomboBox.setBounds(10, 100, 125, 30);
-    eyecomboBox.setModel(new DefaultComboBoxModel(
+    eyecomboBox.setModel(new DefaultComboBoxModel<String>(
         new String[] { "Blink", "Wink Left", "Wink Right", "Look Left", "Look Right" }));
 
     eyeActive = new JRadioButton("Active");

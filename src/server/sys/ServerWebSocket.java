@@ -12,8 +12,8 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import data.EmotivDataTest;
-import util.ConstantsTest;
+import data.EmotivData;
+import util.Constants;
 
 /**
  * The purpose of this class is to provide the websocket logic for the different
@@ -24,9 +24,9 @@ import util.ConstantsTest;
  *
  */
 
-@ServerEndpoint(value = ConstantsTest.ENDPOINT)
+@ServerEndpoint(value = Constants.ENDPOINT)
 public class ServerWebSocket {
-  public EmotivDataTest emotivData = new EmotivDataTest();
+  public EmotivData emotivData = new EmotivData();
 
   // Using a List so we can index and keep order
   static List<Session> clients = Collections.synchronizedList(new ArrayList<Session>());

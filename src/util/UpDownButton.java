@@ -61,7 +61,7 @@ public class UpDownButton extends JPanel {
       public void mouseClicked(MouseEvent e) {
         try {
           double x = Double.parseDouble(outputTextBox.getText());
-          double value = 0.1;
+          double value = 0.0;
           if (!isFrequency && x + step > 1.0) {
             value = 1.0;
           } else {
@@ -98,11 +98,15 @@ public class UpDownButton extends JPanel {
         try {
           double x = Double.parseDouble(outputTextBox.getText());
 
-          double value = 0.01;
-          if (x - step > 0.0) {
+          double value = 0.00;
+          if (!isFrequency && x - step > 0.0) {
             value = x - step;
+          } else if (isFrequency){
+            value = 0.01;
+            if (x - step > 0.01) {
+              value = x - step;
+            }
           }
-
           formatDoubleFirst(value);
         } catch (NumberFormatException exception) {
           outputTextBox.setForeground(Color.RED);
@@ -137,7 +141,7 @@ public class UpDownButton extends JPanel {
     this.outputTextBox.setText(txt);
   }
 
-  public String getText() {
+  public String getOutputText() {
     return outputTextBox.getText();
   }
 }

@@ -86,14 +86,18 @@ public class WorkerThread implements Runnable {
     data = er.getRandomData();
     Session temp = null;
     List<Session> clients = ServerWebSocket.getClients();
-    temp = clients.get(0);
 
     try {
+      temp = clients.get(0);
       ServerWebSocket.sendMessage(temp, data.toString());
-      updateConsolePanel(String.format("Sent to data to client: %s", temp.getId()));
-    } catch (IOException | NullPointerException e) {
+      updateConsolePanel(String.format("Sent data to client: %s", temp.getId()));
+    } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
+    } catch (NullPointerException e) {
+      updateConsolePanel ("Session not bound to this connection...");
+    } catch (IndexOutOfBoundsException e) {
+      updateConsolePanel("Client not found...");
     }
   }
 
