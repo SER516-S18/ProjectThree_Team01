@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="lib"/>
+	<classpathentry kind="src" path="img"/>
+	<classpathentry kind="lib" path="lib/grizzly-framework-2.3.3.jar"/>
+	<classpathentry kind="lib" path="lib/grizzly-http-2.3.3.jar"/>
+	<classpathentry kind="lib" path="lib/grizzly-http-server-2.3.3.jar"/>
+	<classpathentry kind="lib" path="lib/grizzly-rcm-2.3.3.jar"/>
+	<classpathentry kind="lib" path="lib/javax.websocket-api-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="lib/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="lib/jgoodies-forms-1.4.0.jar"/>
+	<classpathentry kind="lib" path="lib/json-20180130.jar"/>
+	<classpathentry kind="lib" path="lib/tyrus-client-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/tyrus-container-grizzly-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/tyrus-core-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/tyrus-server-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/tyrus-spi-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/tyrus-websocket-core-1.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

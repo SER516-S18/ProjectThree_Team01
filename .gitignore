@@ -22,7 +22,7 @@
 # excluding editor specific settings
 
 # Eclipse Specific #
-.classpath
+#.classpath
 .project
 .settings
 bin/
