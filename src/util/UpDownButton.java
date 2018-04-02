@@ -21,7 +21,7 @@ import javax.swing.border.EtchedBorder;
  */
 
 public class UpDownButton extends JPanel {
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = -7926485727775080081L;
 
   private JTextField outputTextBox;
   private JLabel incrementButton;
@@ -129,7 +129,7 @@ public class UpDownButton extends JPanel {
 
   private void formatDoubleFirst(double value) {
     DecimalFormat df = new DecimalFormat("0.00");
-    this.outputTextBox.setText("" + df.format(value));
+    this.outputTextBox.setText(df.format(value));
     this.outputTextBox.setForeground(Color.BLACK);
   }
 

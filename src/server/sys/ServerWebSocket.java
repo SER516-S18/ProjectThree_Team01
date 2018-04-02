@@ -15,6 +15,15 @@ import javax.websocket.server.ServerEndpoint;
 import data.EmotivDataTest;
 import util.ConstantsTest;
 
+/**
+ * The purpose of this class is to provide the websocket logic for the different
+ * life cycles and other static methods to expose the websocket since all of the
+ * interaction is from the server outwards.
+ * 
+ * @author Cephas Armstrong-Mensah
+ *
+ */
+
 @ServerEndpoint(value = ConstantsTest.ENDPOINT)
 public class ServerWebSocket {
   public EmotivDataTest emotivData = new EmotivDataTest();

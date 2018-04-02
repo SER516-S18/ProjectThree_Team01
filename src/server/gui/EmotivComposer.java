@@ -36,6 +36,13 @@ import util.ConsolePanel;
 import util.Constants;
 import util.UpDownButton;
 
+/**
+ * The purpose of this class is to provide the GUI handler for the server and
+ * serves as the main interaction between the user, server and client.
+ * 
+ * @author Cephas Armstrong-Mensah
+ *
+ */
 public class EmotivComposer extends JFrame implements WindowListener {
 
   private static final long serialVersionUID = 6196061116172281774L;

@@ -11,6 +11,14 @@ import javax.websocket.Session;
 import data.EmotivData;
 import util.ConsolePanel;
 
+/**
+ * The purpose of this class is to implement a working thread to handle the
+ * server interaction by sending random data to the client on the other end.
+ * 
+ * @author Cephas Armstrong-Mensah
+ *
+ */
+
 public class WorkerThread implements Runnable {
   private static int INTERVAL = 1000;
   private static double timer = 0.0;
