@@ -1,6 +1,10 @@
 package server.sys;
 
+import java.io.IOException;
+import java.util.List;
+
 import javax.swing.JLabel;
+import javax.websocket.Session;
 
 import data.EmotivData;
 
@@ -12,6 +16,7 @@ public class WorkerThread implements Runnable {
   private EmotivRandomizer er;
   private EmotivData data;
   private JLabel timeTracker;
+  private Session session;
 
   private enum ButtonStatus {
     SEND, STARTED, STOPPED;
@@ -40,7 +45,6 @@ public class WorkerThread implements Runnable {
 
   @Override
   public void run() {
-
     switch (state) {
     case SEND:
       fetchRandomData();
@@ -67,6 +71,15 @@ public class WorkerThread implements Runnable {
 
   private void fetchRandomData() {
     data = er.getRandomData();
-    System.out.println("Data for this is: " + data);
+    Session temp = null;
+    List<Session> clients = ServerWebSocket.getClients();
+    temp = clients.get(0);
+
+    try {
+      ServerWebSocket.sendMessage(temp, data.toString());
+    } catch (IOException | NullPointerException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
   }
 }

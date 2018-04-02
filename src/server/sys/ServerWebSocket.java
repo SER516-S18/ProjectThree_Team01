@@ -1,9 +1,9 @@
 package server.sys;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -19,13 +19,15 @@ import util.ConstantsTest;
 public class ServerWebSocket {
   public EmotivDataTest emotivData = new EmotivDataTest();
 
-  // Using a SET to ensure uniqueness
-  static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
+  // Using a List so we can index
+  static List<Session> clients = Collections.synchronizedList(new ArrayList<Session>());
 
   @OnOpen
   public void onOpen(Session session) {
-    clients.add(session);
-    System.out.println(String.format("%s: connected, welcome!", session));
+    if (!clients.contains(session)) {
+      clients.add(session);
+      System.out.println(String.format("Welcome client: %s", session.getId()));
+    }
   }
 
   @OnMessage
@@ -36,19 +38,21 @@ public class ServerWebSocket {
   @OnClose
   public void onClose(Session session) throws IOException {
     clients.remove(session);
-    System.out.println(String.format("%s: disconnected", session));
+    System.out.println(String.format("%s: disconnected", session.getId()));
   }
 
   @OnError
   public void onError(Session session, Throwable t) {
   }
 
-  public static void sendMessage(Session session) throws IOException {
-    System.out.printf("Testing this sendMessage handle\n");
-    session.getBasicRemote().sendText("");
+  public static void sendMessage(Session session, String message) throws IOException {
+    if (clients.contains(session))
+      session.getBasicRemote().sendText(message);
+    else
+      throw new NullPointerException();
   }
 
-  public static Set<Session> getClients() {
+  public static List<Session> getClients() {
     return clients;
   }
 }

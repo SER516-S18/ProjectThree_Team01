@@ -3,10 +3,10 @@ package data;
 import org.json.JSONObject;
 
 /**
- * This class represents the model we will be using to handle our Objects. It has getters
- * and setters for each object individually as well as getters, setters and toString() for
- * any of the sub objects. The client and the server will both utilize this to provide a
- * data model for the project.
+ * This class represents the model we will be using to handle our Objects. It
+ * has getters and setters for each object individually as well as getters,
+ * setters and toString() for any of the sub objects. The client and the server
+ * will both utilize this to provide a data model for the project.
  * 
  * @author Cephas Armstrong-Mensah
  *
@@ -68,6 +68,10 @@ public class EmotivData {
     parseAffective(this.affective);
   }
 
+  public EmotivData(String strData) {
+    this.toJson(strData);
+  }
+
   public EmotivData(JSONObject expressive, JSONObject affective) {
     this.expressive = expressive;
     this.affective = affective;
@@ -115,7 +119,7 @@ public class EmotivData {
     this.expressive = json.getJSONObject("Expressive");
     this.affective = json.getJSONObject("Affective");
 
-    this.parseAffective(this.expressive);
+    this.parseExpressive(this.expressive);
     this.parseAffective(this.affective);
   }
 
