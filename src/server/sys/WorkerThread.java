@@ -1,12 +1,15 @@
 package server.sys;
 
 import java.io.IOException;
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.websocket.Session;
 
 import data.EmotivData;
+import util.ConsolePanel;
 
 public class WorkerThread implements Runnable {
   private static int INTERVAL = 1000;
@@ -16,17 +19,19 @@ public class WorkerThread implements Runnable {
   private EmotivRandomizer er;
   private EmotivData data;
   private JLabel timeTracker;
+  private ConsolePanel consolePanel;
   private Session session;
 
   private enum ButtonStatus {
     SEND, STARTED, STOPPED;
   }
 
-  public WorkerThread(JLabel timeTracker) {
+  public WorkerThread(JLabel timeTracker, JPanel console) {
     data = new EmotivData();
     er = new EmotivRandomizer();
     state = ButtonStatus.STOPPED;
     this.timeTracker = timeTracker;
+    this.consolePanel = (ConsolePanel) console;
   }
 
   public void setButtonStatus(String val) {
@@ -77,9 +82,19 @@ public class WorkerThread implements Runnable {
 
     try {
       ServerWebSocket.sendMessage(temp, data.toString());
+      updateConsolePanel(String.format("Sent to data to client: %s", temp.getId()));
     } catch (IOException | NullPointerException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
+  }
+
+  /**
+   * Updating the Console to output status message
+   * 
+   * @param message
+   */
+  private void updateConsolePanel(String message) {
+    consolePanel.updateText(message + "&emsp;&emsp&lt;" + LocalTime.now() + "&gt;");
   }
 }

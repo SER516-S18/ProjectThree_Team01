@@ -313,6 +313,11 @@ public class EmotivComposer extends JFrame implements WindowListener {
     detectionPanel.add(emotivLogPanel);
 
     clearLogButton = new JButton("Clear Log");
+    clearLogButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        clearConsolePanel();
+      }
+    });
     clearLogButton.setBounds(5, 160, 110, 30);
     emotivLogPanel.add(clearLogButton);
 
@@ -363,10 +368,19 @@ public class EmotivComposer extends JFrame implements WindowListener {
     consolePanel.updateText(message + "&emsp;&emsp&lt;" + LocalTime.now() + "&gt;");
   }
 
+  /**
+   * Updating the Console to output status message
+   * 
+   * @param message
+   */
+  private void clearConsolePanel() {
+    consolePanel.clearText();
+  }
+
   private void handleStartStopSend() {
     String strText = sendButton.getText();
     if (worker == null)
-      worker = new WorkerThread(timeTrackerLabel);
+      worker = new WorkerThread(timeTrackerLabel, consolePanel);
 
     worker.setButtonStatus(strText);
     worker.setInterval(Double.parseDouble(incrementDecrement.getText()));

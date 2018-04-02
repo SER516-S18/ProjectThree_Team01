@@ -13,8 +13,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 
 /**
- * This class is used as a general utility for a field needing an increment and decrement
- * with a text box
+ * This class is used as a general utility for a field needing an increment and
+ * decrement with a text box
  * 
  * @author Cephas Armstrong-Mensah
  *
@@ -98,7 +98,7 @@ public class UpDownButton extends JPanel {
         try {
           double x = Double.parseDouble(outputTextBox.getText());
 
-          double value = 0.1;
+          double value = 0.01;
           if (x - step > 0.0) {
             value = x - step;
           }

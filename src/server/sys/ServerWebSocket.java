@@ -19,7 +19,7 @@ import util.ConstantsTest;
 public class ServerWebSocket {
   public EmotivDataTest emotivData = new EmotivDataTest();
 
-  // Using a List so we can index
+  // Using a List so we can index and keep order
   static List<Session> clients = Collections.synchronizedList(new ArrayList<Session>());
 
   @OnOpen
