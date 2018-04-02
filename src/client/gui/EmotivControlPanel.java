@@ -17,7 +17,9 @@ import javax.websocket.DeploymentException;
 import org.glassfish.tyrus.client.ClientManager;
 import org.jfree.chart.ChartPanel;
 
+import client.sys.ClientSubject;
 import client.sys.ClientThread;
+import client.sys.ClientWebSocket;
 import client.sys.ClientWebSocketTest;
 import data.EmotivData;
 import server.sys.ServerThread;
@@ -70,7 +72,7 @@ public class EmotivControlPanel extends JFrame implements ClientObserver{
     JPanel graphPanel = new JPanel();
     graphPanel.setBounds(456, 0, 500, 841);
    // graphPanel.setBackground(Color.GRAY);
-    facialExpressionPanel.add(graphPanel);
+    facialExpressionPanel.add(graphPanel); 
     
     displayGraph= new DisplayGraph();
     displayGraph.chartPanel= new ChartPanel(displayGraph.graph);
@@ -87,12 +89,14 @@ public class EmotivControlPanel extends JFrame implements ClientObserver{
   }
 
   private void ConnectToServer() {
+    ClientSubject.getInstance().addObserver(this);
     new Thread(new ClientThread(uri)).start();
   }
 
   @Override
-  public void notify(EmotivData data) {
+  public void notifyObserver(EmotivData data) {
     // TODO Auto-generated method stub
+    System.out.println("notified");
     
   }
 }

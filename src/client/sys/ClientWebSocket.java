@@ -14,47 +14,26 @@ import java.util.*;
 import javax.websocket.ClientEndpoint;
 
 @ClientEndpoint()
-public class ClientWebSocket implements ClientObservable{
-  
+public class ClientWebSocket {
+
   EmotivData emotivData = new EmotivData();
-  ArrayList<ClientObserver> observerList = new ArrayList<>();
-  
+
   @OnOpen
   public void onOpen(Session session) {
-      System.out.println("Connected to server");
+    System.out.println("Connected to server");
+    // test remove later
+    ClientSubject.getInstance().updateObservers(emotivData);
   }
 
   @OnMessage
   public void onMessage(String message, Session session) {
-     emotivData.toJson(message);
-     
+    emotivData.toJson(message);
+
   }
 
   @OnClose
   public void onClose() {
-      
-  }
 
-  @Override
-  public void addObserver(ClientObserver observer) {
-    observerList.add(observer);
-    
   }
-
-  @Override
-  public void removeObserver(ClientObserver observer) {
-    observerList.remove(observer);
-    
-  }
-
-  @Override
-  public void notifyObserver(ArrayList<ClientObserver> observers) {
-    for(ClientObserver obs: observers ) {
-      obs.notify();
-  }
-    
-  }
-
- 
 
 }
