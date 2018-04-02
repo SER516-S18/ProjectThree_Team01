@@ -39,6 +39,28 @@ public class Express extends JPanel {
   private JCheckBox chckbxNewCheckBox;
 
   
+  
+  
+  //upperface section
+  private double eyebrowRaise;
+  private double eyebrowFurrow;
+  
+  //eye section
+  private double rightWink;
+  private double leftWink;
+  private double blink;
+  private double lookingRight;
+  private double lookingLeft;
+ 
+  //lowerface setion
+  private double smrikLeft;
+  private double smrikRight;
+  private double laugh;	
+  private double smile;
+  private double clench;
+
+ /*
+  *  
   private double lookingRight;
   private double eyebrowRaise;
   private double lookingLeft;
@@ -51,8 +73,58 @@ public class Express extends JPanel {
   private double smile;
   private double clench;
   private double laugh;
-  
-  
+   */
+  private int eyeclickCount = 0;
+  private Double eyeActiveValue;
+
+public double getEyebrowRaise() {
+	return eyebrowRaise;
+}
+
+public double getEyebrowFurrow() {
+	return eyebrowFurrow;
+}
+
+public double getRightWink() {
+	return rightWink;
+}
+
+public double getLeftWink() {
+	return leftWink;
+}
+
+public double getBlink() {
+	return blink;
+}
+
+public double getLookingRight() {
+	return lookingRight;
+}
+
+public double getLookingLeft() {
+	return lookingLeft;
+}
+
+public double getSmrikLeft() {
+	return smrikLeft;
+}
+
+public double getSmrikRight() {
+	return smrikRight;
+}
+
+public double getLaugh() {
+	return laugh;
+}
+
+public double getSmile() {
+	return smile;
+}
+
+public double getClench() {
+	return clench;
+}
+
   
   /**
    * Create the application.
@@ -91,15 +163,15 @@ public class Express extends JPanel {
       String upperbuttonValue = upperfaceupdownButton.getText();
       double upperfaceValue =  Double.parseDouble(upperbuttonValue);
       if(Item.equals("Raise Brow")) {
-        lookingUp = upperfaceValue;
+    	  eyebrowRaise = upperfaceValue;
         
-        //System.out.println(upperfaceValue +","+ Item);  //test
+        //System.out.println(eyebrowRaise +","+ Item);  //test
       }
       
       if(Item.equals("Furrow Brow")) {
-        lookingDown = upperfaceValue;
+    	 eyebrowFurrow = upperfaceValue;
         
-        //System.out.println(upperfaceValue +","+ Item);   //test
+        //System.out.println(eyebrowFurrow +","+ Item);   //test
       }
        
         }} );
@@ -130,16 +202,16 @@ public class Express extends JPanel {
           //System.out.println(clench +","+ Item);   //test
         
         }else if(Item.equals("Smirk Left")){
-          lookingLeft = lowerfaceValue;
+        	smrikLeft = lowerfaceValue;
         
          // System.out.println(lookingLeft +","+ Item);   //test
         
         }else if(Item.equals("Smirk Right")){
-          lookingRight = lowerfaceValue;
+        	smrikRight = lowerfaceValue;
         
           //System.out.println(lookingRight +","+ Item);   //test
         }else if(Item.equals("Laugh")) {
-          laugh = lowerfaceValue;
+        	laugh = lowerfaceValue;
         
          // System.out.println(laugh +","+ Item);   //test
         }else {
@@ -165,6 +237,77 @@ public class Express extends JPanel {
     eyeLabel.setHorizontalAlignment(SwingConstants.LEFT);
 
     eyecomboBox = new JComboBox();
+    
+    eyeActive = new JRadioButton("Active");
+    //eyeActive.setActionCommand("1");//
+  
+    /**
+     * eye radioButton action
+     */
+    eyeActive.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+    		
+    		if(eyeclickCount % 2 == 0) {
+    			eyeActive.setActionCommand("1");
+    		}else {
+    			eyeActive.setActionCommand("0");
+    		}
+    		
+    		eyeActiveValue = Double.parseDouble(eyeActive.getActionCommand());
+    		
+    		eyeclickCount++;
+    		System.out.println("eye sectioon:"+ eyeActiveValue);		//test
+    	}
+    });
+    
+    eyeActive.setBounds(140, 105, 80, 20);
+    
+    /**
+     * eyecomboBox action 
+     */
+    eyecomboBox.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+
+    		String Item = eyecomboBox.getSelectedItem().toString();
+    		eyeActiveValue =  Double.parseDouble(eyeActive.getActionCommand());
+    		
+			//double eyeActiveValue =  Double.parseDouble(eyeActive.getText());
+			System.out.println(eyeActiveValue);			
+			
+			if(Item.equals("Blink")) {
+				blink = eyeActiveValue;
+				
+				System.out.println(blink +","+ Item);  //test
+				
+			}else if(Item.equals("Wink Left")) {
+				leftWink = eyeActiveValue;
+				System.out.println(leftWink +","+ Item);   //test
+				
+			}else if(Item.equals("Wink Right")){
+				rightWink = eyeActiveValue;
+				
+				System.out.println(rightWink +","+ Item);   //test
+				
+			}else if(Item.equals("Look Left")){
+				lookingLeft = eyeActiveValue;
+				
+				System.out.println(lookingLeft +","+ Item);   //test
+				
+			}else if(Item.equals("Look Right")) {
+				lookingRight = eyeActiveValue;
+				
+				System.out.println(lookingRight +","+ Item);   //test
+			}else {
+				
+			}
+    	}
+    });
+    
+    
+    
+    
+    
+    
     eyecomboBox.setBounds(10, 100, 125, 30);
     eyecomboBox.setModel(new DefaultComboBoxModel(
         new String[] { "Blink", "Wink Left", "Wink Right", "Look Left", "Look Right" }));
