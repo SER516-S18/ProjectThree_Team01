@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,10 +17,17 @@ import javax.websocket.DeploymentException;
 import org.glassfish.tyrus.client.ClientManager;
 import org.jfree.chart.ChartPanel;
 
+import client.sys.ClientSubject;
+import client.sys.ClientThread;
+import client.sys.ClientWebSocket;
 import client.sys.ClientWebSocketTest;
+import data.EmotivData;
+import server.sys.ServerThread;
 import util.ConstantsTest;
 
-public class EmotivControlPanel extends JFrame {
+import interfaces.*;
+
+public class EmotivControlPanel extends JFrame implements ClientObserver{
   private static final long serialVersionUID = 8528760467775723790L;
 
   private JPanel contentPane;
@@ -63,7 +72,7 @@ public class EmotivControlPanel extends JFrame {
     JPanel graphPanel = new JPanel();
     graphPanel.setBounds(456, 0, 500, 841);
    // graphPanel.setBackground(Color.GRAY);
-    facialExpressionPanel.add(graphPanel);
+    facialExpressionPanel.add(graphPanel); 
     
     displayGraph= new DisplayGraph();
     displayGraph.chartPanel= new ChartPanel(displayGraph.graph);
@@ -76,16 +85,18 @@ public class EmotivControlPanel extends JFrame {
     graphPanel.setLayout(null);
 
     // remove later
-    // ConnectToServer();
+    ConnectToServer();
   }
 
   private void ConnectToServer() {
-    ClientManager client = ClientManager.createClient();
-    try {
-      client.connectToServer(ClientWebSocketTest.class, new URI(ConstantsTest.PROTOCOL + uri + ':'
-          + ConstantsTest.PORT + ConstantsTest.LINK + ConstantsTest.ENDPOINT));
-    } catch (DeploymentException | URISyntaxException e) {
-      throw new RuntimeException(e);
-    }
+    ClientSubject.getInstance().addObserver(this);
+    new Thread(new ClientThread(uri)).start();
+  }
+
+  @Override
+  public void notifyObserver(EmotivData data) {
+    // TODO Auto-generated method stub
+    System.out.println("notified");
+    
   }
 }
