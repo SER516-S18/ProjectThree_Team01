@@ -9,7 +9,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.lang.reflect.Field;
 import java.time.LocalTime;
 
 import javax.swing.DefaultComboBoxModel;
@@ -26,6 +25,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.websocket.DeploymentException;
+import javax.websocket.Session;
 
 import org.glassfish.tyrus.server.Server;
 
@@ -105,7 +105,7 @@ public class EmotivComposer extends JFrame implements WindowListener {
    * Create the frame.
    */
   private EmotivComposer() {
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    addWindowListener(this);
     setTitle("Emotiv Composer Project 3");
     setBounds(100, 100, 450, 800);
 
@@ -343,10 +343,9 @@ public class EmotivComposer extends JFrame implements WindowListener {
     try {
       server.start();
       System.out.println("Server started successfully...");
-      System.out.println("Server classname: " + server.getClass());
 
-      for (Field field : server.getClass().getDeclaredFields()) {
-        System.out.println("Field: " + field);
+      for (Session client : ServerWebSocket.getClients()) {
+        System.out.println("Session: " + client);
       }
 
       new Thread(new ServerThread(server)).start();
@@ -394,48 +393,34 @@ public class EmotivComposer extends JFrame implements WindowListener {
 
   @Override
   public void windowOpened(WindowEvent e) {
-    // TODO Auto-generated method stub
-    System.out.println("Opened");
-
   }
 
   @Override
   public void windowClosing(WindowEvent e) {
     // TODO Auto-generated method stub
-    System.out.println("Closing");
     ServerThread.isClosing = true;
+
+    System.out.println("Closing");
     System.exit(0);
   }
 
   @Override
   public void windowClosed(WindowEvent e) {
-    // TODO Auto-generated method stub
-    System.out.println("closed");
-    ServerThread.isClosing = true;
-    System.exit(0);
   }
 
   @Override
   public void windowIconified(WindowEvent e) {
-    // TODO Auto-generated method stub
   }
 
   @Override
   public void windowDeiconified(WindowEvent e) {
-    // TODO Auto-generated method stub
-
   }
 
   @Override
   public void windowActivated(WindowEvent e) {
-    // TODO Auto-generated method stub
-    System.out.println("Activated");
-
   }
 
   @Override
   public void windowDeactivated(WindowEvent e) {
-    // TODO Auto-generated method stub
-    System.out.println("Deactivated");
   }
 }

@@ -17,7 +17,7 @@ import util.ConstantsTest;
 
 @ServerEndpoint(value = ConstantsTest.ENDPOINT)
 public class ServerWebSocket {
-  private EmotivDataTest emotivData = new EmotivDataTest();
+  public EmotivDataTest emotivData = new EmotivDataTest();
 
   // Using a SET to ensure uniqueness
   static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
@@ -43,12 +43,12 @@ public class ServerWebSocket {
   public void onError(Session session, Throwable t) {
   }
 
-  public void sendMessage(Session session) throws IOException {
+  public static void sendMessage(Session session) throws IOException {
     System.out.printf("Testing this sendMessage handle\n");
     session.getBasicRemote().sendText("");
   }
 
-  public Set<Session> getClients() {
+  public static Set<Session> getClients() {
     return clients;
   }
 }
