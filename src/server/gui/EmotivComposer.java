@@ -86,8 +86,8 @@ public class EmotivComposer extends JFrame implements WindowListener {
   private JLabel lblNewLabel;
   private JPanel emotivLogPanel;
   private JLabel mentalCommandsLabel;
-  private JComboBox skillComboBox;
-  private JComboBox neutralComboBox;
+  private JComboBox<String> skillComboBox;
+  private JComboBox<String> neutralComboBox;
   private UpDownButton neutral;
   private UpDownButton skill;
   private UpDownButton overallSkill;
@@ -108,9 +108,6 @@ public class EmotivComposer extends JFrame implements WindowListener {
     return instance;
   };
 
-  /**
-   * Create the frame.
-   */
   private EmotivComposer() {
     addWindowListener(this);
     setTitle("Emotiv Composer Project 3");
@@ -239,7 +236,7 @@ public class EmotivComposer extends JFrame implements WindowListener {
     interactive.add(autoResetCheckBox);
 
     playerComboBox = new JComboBox<String>();
-    playerComboBox.setModel(new DefaultComboBoxModel(new String[] { "0", "1" }));
+    playerComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "0", "1" }));
     playerComboBox.setBounds(65, 10, 80, 30);
     interactive.add(playerComboBox);
 
