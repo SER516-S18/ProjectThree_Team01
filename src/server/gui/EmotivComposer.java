@@ -9,6 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.lang.reflect.Field;
 import java.time.LocalTime;
 
 import javax.swing.DefaultComboBoxModel;
@@ -40,7 +41,6 @@ public class EmotivComposer extends JFrame implements WindowListener {
   private static final long serialVersionUID = 6196061116172281774L;
   private static WorkerThread worker;
   private static Thread workerThread;
-  private static final String URI = "localhost";
 
   private JPanel contentPane;
   private ConsolePanel consolePanel;
@@ -339,10 +339,16 @@ public class EmotivComposer extends JFrame implements WindowListener {
   }
 
   private void startServer() {
-    Server server = new Server(URI, Constants.PORT, Constants.LINK, ServerWebSocket.class);
+    Server server = new Server(Constants.URI, Constants.PORT, Constants.LINK, ServerWebSocket.class);
     try {
       server.start();
       System.out.println("Server started successfully...");
+      System.out.println("Server classname: " + server.getClass());
+
+      for (Field field : server.getClass().getDeclaredFields()) {
+        System.out.println("Field: " + field);
+      }
+
       new Thread(new ServerThread(server)).start();
     } catch (DeploymentException e) {
       throw new RuntimeException(e);

@@ -42,4 +42,13 @@ public class ServerWebSocket {
   @OnError
   public void onError(Session session, Throwable t) {
   }
+
+  public void sendMessage(Session session) throws IOException {
+    System.out.printf("Testing this sendMessage handle\n");
+    session.getBasicRemote().sendText("");
+  }
+
+  public Set<Session> getClients() {
+    return clients;
+  }
 }
