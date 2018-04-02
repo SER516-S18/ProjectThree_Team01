@@ -391,16 +391,18 @@ public class EmotivComposer extends JFrame implements WindowListener {
     timeTrackerLabel.setText(str);
   }
 
+  private synchronized void closeThread() {
+    notify();
+  }
+
   @Override
   public void windowOpened(WindowEvent e) {
   }
 
   @Override
   public void windowClosing(WindowEvent e) {
-    // TODO Auto-generated method stub
-    ServerThread.isClosing = true;
-
-    System.out.println("Closing");
+    closeThread();
+    System.out.println("Server is closing...");
     System.exit(0);
   }
 
