@@ -18,7 +18,6 @@ public class ClientSubject implements ClientObservable {
   }
 
   private ClientSubject() {
-
   }
 
   public static ClientSubject getInstance() {
@@ -31,7 +30,6 @@ public class ClientSubject implements ClientObservable {
   @Override
   public void addObserver(ClientObserver observer) {
     observerList.add(observer);
-
   }
 
   @Override
@@ -46,5 +44,4 @@ public class ClientSubject implements ClientObservable {
       obs.notifyObserver(emotivData);
     }
   }
-
 }

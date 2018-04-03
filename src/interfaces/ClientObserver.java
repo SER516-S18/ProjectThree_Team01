@@ -1,7 +1,7 @@
 package interfaces;
 
-import data.*;
+import data.EmotivData;
 
 public interface ClientObserver {
-   void notifyObserver(EmotivData data);
+  void notifyObserver(EmotivData data);
 }

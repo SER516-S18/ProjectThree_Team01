@@ -18,6 +18,7 @@ import org.glassfish.tyrus.server.Server;
 import server.gui.panels.EmoLogPanel;
 import server.gui.panels.EmoStatePanel;
 import server.gui.panels.FacialPanel;
+import server.gui.panels.HamburgerMenuPanel;
 import server.gui.panels.InteractivePanel;
 import server.gui.panels.MenuBarPanel;
 import server.sys.ServerThread;
@@ -55,6 +56,7 @@ public class EmotivComposer extends JFrame implements WindowListener {
   private static FacialPanel emoFacialPanel;
   private static MenuBarPanel menuBarPanel;
   private static EmoLogPanel emoLogPanel;
+  public static HamburgerMenuPanel exitMenu;
 
   public static boolean isAutoResetChecked = false;
 
@@ -95,6 +97,11 @@ public class EmotivComposer extends JFrame implements WindowListener {
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     setContentPane(contentPane);
     contentPane.setLayout(null);
+
+    exitMenu = new HamburgerMenuPanel();
+    exitMenu.setBounds(0, 50, 200, 101);
+    exitMenu.setVisible(false);
+    // contentPane.add(exitMenu);
 
     menuBarPanel = new MenuBarPanel();
     menuBarPanel.setSize(450, 50);

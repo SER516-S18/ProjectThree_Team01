@@ -28,5 +28,4 @@ public class ClientThread implements Runnable {
       throw new RuntimeException(e);
     }
   }
-
 }

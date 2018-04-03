@@ -8,21 +8,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
-import server.gui.EmotivComposer;
 import util.Constants;
 
-public class MenuBarPanel extends JPanel {
+public class SignalMenu extends JPanel {
 
   private static final long serialVersionUID = 744880228052339810L;
   private JPanel dropDownPanel;
   private JPanel signalPanel;
   private JPanel middlePanel;
   private JLabel menuLabel;
+  ClassLoader cl = getClass().getClassLoader();
   private JLabel signalLabel;
 
-  ClassLoader cl = getClass().getClassLoader();
-
-  public MenuBarPanel() {
+  public SignalMenu() {
     setBounds(0, 0, 450, 50);
     setLayout(null);
     initialize();
@@ -45,14 +43,6 @@ public class MenuBarPanel extends JPanel {
     });
 
     menuLabel = new JLabel(new ImageIcon(cl.getResource("menu.png")));
-    menuLabel.addMouseListener(new MouseAdapter() {
-      @Override
-      public void mouseClicked(MouseEvent e) {
-        boolean isVisible = EmotivComposer.exitMenu.isVisible();
-        System.out.println("Menu clicked: " + isVisible);
-        EmotivComposer.exitMenu.setVisible(!isVisible);
-      }
-    });
     menuLabel.setBounds(1, 1, 48, 48);
     dropDownPanel.add(menuLabel);
 

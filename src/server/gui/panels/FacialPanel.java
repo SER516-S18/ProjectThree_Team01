@@ -17,13 +17,6 @@ public class FacialPanel extends JPanel {
 
   private static final long serialVersionUID = 3981755002828308262L;
 
-  private JComboBox<String> comboBox;
-  private JLabel actualLowLabel;
-  private JLabel actualHighLabel;
-  private JLabel actualAverageLabel;
-  private JLabel actualFrequencyLabel;
-  private JPanel containerPanel;
-  private JPanel graphPanel;
   private JLabel upperfaceLabel;
   private JComboBox<String> upperfaceComboBox;
   private UpDownButton upperfaceupdownButton;
@@ -35,7 +28,6 @@ public class FacialPanel extends JPanel {
   private JRadioButton eyeActive;
   private JCheckBox chckbxNewCheckBox;
 
-  
   private double lookingRight;
   private double eyebrowRaise;
   private double lookingLeft;
@@ -48,7 +40,7 @@ public class FacialPanel extends JPanel {
   private double smile;
   private double clench;
   private double laugh;
-  
+
   public FacialPanel() {
     setBounds(0, 0, 440, 150);
     initialize();
@@ -67,78 +59,57 @@ public class FacialPanel extends JPanel {
     lowerfaceupdownButton.setBounds(365, 30, 70, 30);
     lowerfaceupdownButton.setVisible(true);
 
-    upperfaceComboBox = new JComboBox();
-    
-    /**
-     * uppercombobox action
-     */
-    
+    upperfaceComboBox = new JComboBox<String>();
+
     upperfaceComboBox.addActionListener(new ActionListener() {
-      //private Object upperfaceupdownButton;
+      public void actionPerformed(ActionEvent e) {
 
-    public void actionPerformed(ActionEvent e) {
-      
-      String Item = upperfaceComboBox.getSelectedItem().toString();
-      String upperbuttonValue = upperfaceupdownButton.getOutputText();
-      double upperfaceValue =  Double.parseDouble(upperbuttonValue);
-      if(Item.equals("Raise Brow")) {
-        lookingUp = upperfaceValue;
-        
-        //System.out.println(upperfaceValue +","+ Item);  //test
+        String Item = upperfaceComboBox.getSelectedItem().toString();
+        String upperbuttonValue = upperfaceupdownButton.getOutputText();
+        double upperfaceValue = Double.parseDouble(upperbuttonValue);
+        if (Item.equals("Raise Brow")) {
+          lookingUp = upperfaceValue;
+          // System.out.println(upperfaceValue +","+ Item); //test
+        }
+
+        if (Item.equals("Furrow Brow")) {
+          lookingDown = upperfaceValue;
+          // System.out.println(upperfaceValue +","+ Item); //test
+        }
       }
-      
-      if(Item.equals("Furrow Brow")) {
-        lookingDown = upperfaceValue;
-        
-        //System.out.println(upperfaceValue +","+ Item);   //test
-      }
-       
-        }} );
-    
+    });
+
     upperfaceComboBox.setBounds(10, 30, 125, 30);
-    upperfaceComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Raise Brow", "Furrow Brow" }));
+    upperfaceComboBox
+        .setModel(new DefaultComboBoxModel<String>(new String[] { "Raise Brow", "Furrow Brow" }));
 
-    lowerfaceComboBox = new JComboBox();
-    
-    
+    lowerfaceComboBox = new JComboBox<String>();
+
     /**
      * lowerfaceComboBox action
      */
     lowerfaceComboBox.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent arg0) {
-        
+
         String Item = lowerfaceComboBox.getSelectedItem().toString();
         String lowerbuttonValue = lowerfaceupdownButton.getOutputText();
-      
-        double lowerfaceValue =  Double.parseDouble(lowerbuttonValue);
-        if(Item.equals("Smile")) {
+
+        double lowerfaceValue = Double.parseDouble(lowerbuttonValue);
+        if (Item.equals("Smile")) {
           smile = lowerfaceValue;
-        
-          //System.out.println(smile +","+ Item);  //test
-        
-        }else if(Item.equals("Clench")) {
+        } else if (Item.equals("Clench")) {
           clench = lowerfaceValue;
-          //System.out.println(clench +","+ Item);   //test
-        
-        }else if(Item.equals("Smirk Left")){
+        } else if (Item.equals("Smirk Left")) {
           lookingLeft = lowerfaceValue;
-        
-         // System.out.println(lookingLeft +","+ Item);   //test
-        
-        }else if(Item.equals("Smirk Right")){
+        } else if (Item.equals("Smirk Right")) {
           lookingRight = lowerfaceValue;
-        
-          //System.out.println(lookingRight +","+ Item);   //test
-        }else if(Item.equals("Laugh")) {
+        } else if (Item.equals("Laugh")) {
           laugh = lowerfaceValue;
-        
-         // System.out.println(laugh +","+ Item);   //test
-        }else {
-        
-      }
+        } else {
+        }
       }
     });
-    
+
     lowerfaceComboBox.setBounds(240, 30, 125, 30);
     lowerfaceComboBox.setModel(new DefaultComboBoxModel<String>(
         new String[] { "Smile", "Clench", "Smirk Left", "Smirk Right", "Laugh" }));
@@ -155,7 +126,7 @@ public class FacialPanel extends JPanel {
     eyeLabel.setBounds(10, 80, 50, 20);
     eyeLabel.setHorizontalAlignment(SwingConstants.LEFT);
 
-    eyecomboBox = new JComboBox();
+    eyecomboBox = new JComboBox<String>();
     eyecomboBox.setBounds(10, 100, 125, 30);
     eyecomboBox.setModel(new DefaultComboBoxModel<String>(
         new String[] { "Blink", "Wink Left", "Wink Right", "Look Left", "Look Right" }));
