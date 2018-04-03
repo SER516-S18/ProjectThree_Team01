@@ -66,7 +66,6 @@ public class SignalMenu extends JPanel {
     });
 
     signalLabel = new JLabel(new ImageIcon(cl.getResource("strong.png")));
-    ;
     signalLabel.setBounds(1, 1, 48, 48);
     signalPanel.add(signalLabel);
 

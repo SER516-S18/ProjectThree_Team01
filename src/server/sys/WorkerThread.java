@@ -18,7 +18,6 @@ import util.ConsolePanel;
  * @author Cephas Armstrong-Mensah
  *
  */
-
 public class WorkerThread implements Runnable {
   private static int INTERVAL = 1000;
   private static double timer = 0.0;
@@ -86,7 +85,6 @@ public class WorkerThread implements Runnable {
     data = er.getRandomData();
     Session temp = null;
     List<Session> clients = ServerWebSocket.getClients();
-
     try {
       temp = clients.get(0);
       ServerWebSocket.sendMessage(temp, data.toString());
@@ -95,7 +93,7 @@ public class WorkerThread implements Runnable {
       // TODO Auto-generated catch block
       e.printStackTrace();
     } catch (NullPointerException e) {
-      updateConsolePanel ("Session not bound to this connection...");
+      updateConsolePanel("Session not bound to this connection...");
     } catch (IndexOutOfBoundsException e) {
       updateConsolePanel("Client not found...");
     }
