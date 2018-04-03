@@ -22,6 +22,7 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
   private String uri = "localhost";
   private DisplayGraph displayGraph;
   public static EmotivControlPanel clientInstance = null;
+  private FacePanel facePanel = null;
 
   /**
    * Launch the application.
@@ -60,6 +61,9 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
     graphPanel.setBounds(456, 0, 500, 841);
     // graphPanel.setBackground(Color.GRAY);
     facialExpressionPanel.add(graphPanel);
+    
+    facePanel = new FacePanel();
+    facialExpressionPanel.add(facePanel);
 
     displayGraph = new DisplayGraph();
     displayGraph.chartPanel = new ChartPanel(displayGraph.graph);
@@ -85,5 +89,8 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
     // call graph and emotional expression methods
     // System.out.println(data.getBlink());
     displayGraph.updateGraph(data);
+    if(facePanel!=null) {
+    	facePanel.updateFace(data);
+    }
   }
 }
