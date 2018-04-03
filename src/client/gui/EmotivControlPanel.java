@@ -83,5 +83,8 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
   @Override
   public void notifyObserver(EmotivData data) {
    //call graph and emotional expression methods
+	//  System.out.println(data.getBlink());
+	 displayGraph.updateGraph(data);
+	  
   }
 }
