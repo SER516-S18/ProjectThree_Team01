@@ -1,30 +1,28 @@
 package server.gui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.websocket.DeploymentException;
-import javax.websocket.Session;
 
 import org.glassfish.tyrus.server.Server;
 
+import server.gui.panels.EmoLogPanel;
+import server.gui.panels.EmoStatePanel;
+import server.gui.panels.FacialPanel;
+import server.gui.panels.InteractivePanel;
+import server.gui.panels.MenuBarPanel;
 import server.sys.ServerThread;
 import server.sys.ServerWebSocket;
 import server.sys.WorkerThread;
-import server.gui.panels.*;
-import util.ConsolePanel;
 import util.Constants;
-import javax.swing.border.EtchedBorder;
 
 /**
  * The purpose of this class is to provide the GUI handler for the server and
@@ -39,7 +37,8 @@ public class EmotivComposer extends JFrame implements WindowListener {
   private static EmotivComposer instance = null;
   private static WorkerThread worker;
   private static Thread workerThread;
-  
+  protected static boolean isStarted = false;
+
   private JTabbedPane tabbedPane;
   private JTabbedPane lowerTabbedPane;
   private JPanel contentPane;
@@ -49,28 +48,28 @@ public class EmotivComposer extends JFrame implements WindowListener {
   private JPanel lowerPanel;
   private JPanel qualityPanel;
   private JPanel detectionPanel;
-  
+
   private static InteractivePanel ip;
   private static EmoStatePanel emoStatePanel;
   private static FacialPanel emoFacialPanel;
   private static MenuBarPanel menuBarPanel;
   private static EmoLogPanel emoLogPanel;
-  
+
   public static boolean isAutoResetChecked = false;
- 
+
   /**
    * Launch the application.
    */
   public static void main(String[] args) {
     EmotivComposer frame;
-    try {    
+    try {
       for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-          if ("Nimbus".equals(info.getName())) {
-              UIManager.setLookAndFeel(info.getClassName());
-              frame = EmotivComposer.getInstance();
-              frame.setVisible(true);
-              break;
-          }
+        if ("Nimbus".equals(info.getName())) {
+          UIManager.setLookAndFeel(info.getClassName());
+          frame = EmotivComposer.getInstance();
+          frame.setVisible(true);
+          break;
+        }
       }
     } catch (Exception e) {
       frame = EmotivComposer.getInstance();
@@ -78,7 +77,7 @@ public class EmotivComposer extends JFrame implements WindowListener {
     }
   }
 
-  public static EmotivComposer getInstance() {    
+  public static EmotivComposer getInstance() {
     if (instance == null) {
       instance = new EmotivComposer();
     }
@@ -95,7 +94,7 @@ public class EmotivComposer extends JFrame implements WindowListener {
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     setContentPane(contentPane);
     contentPane.setLayout(null);
-    
+
     menuBarPanel = new MenuBarPanel();
     menuBarPanel.setBounds(0, 0, 440, 50);
     menuBarPanel.setLayout(null);
@@ -137,22 +136,22 @@ public class EmotivComposer extends JFrame implements WindowListener {
 
     detectionPanel = new JPanel();
     detectionPanel.setLayout(null);
-    
+
     emoStatePanel = new EmoStatePanel();
-    
+
     emoFacialPanel = new FacialPanel();
     emoFacialPanel.setBounds(0, 175, 440, 150);
-    
+
     emoLogPanel = new EmoLogPanel();
     emoLogPanel.setBounds(0, 325, 440, 205);
-    
+
     detectionPanel.add(emoFacialPanel);
     detectionPanel.add(emoStatePanel);
     detectionPanel.add(emoLogPanel);
 
     lowerTabbedPane.addTab("Contact Quality", null, qualityPanel, null);
     lowerTabbedPane.addTab("Detection", null, detectionPanel, null);
-   
+
     setResizable(false);
     tabbedPane.setSelectedIndex(1);
     lowerTabbedPane.setSelectedIndex(1);
@@ -162,22 +161,18 @@ public class EmotivComposer extends JFrame implements WindowListener {
   /**
    * This starts the tyrus server using the websocket class ServerWebSocket
    */
-  private void startServer() {
+  protected void startServer() {
     Server server = new Server(Constants.URI, Constants.PORT, Constants.LINK, ServerWebSocket.class);
     try {
       server.start();
       System.out.println("Server started successfully...");
-
-      for (Session client : ServerWebSocket.getClients()) {
-        System.out.println("Session: " + client);
-      }
-
+      isStarted = true;
       new Thread(new ServerThread(server)).start();
     } catch (DeploymentException e) {
       throw new RuntimeException(e);
     }
   }
-  
+
   public static void handleStartStopSend(String strText) {
     if (worker == null)
       worker = new WorkerThread(emoStatePanel.getTimeTrackerLabel(), emoLogPanel.getConsolePanel());

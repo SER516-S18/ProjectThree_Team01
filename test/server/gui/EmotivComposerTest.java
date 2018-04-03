@@ -1,6 +1,15 @@
 package server.gui;
 
-import javax.swing.JFrame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class EmotivComposerTest extends JFrame {
+import org.junit.jupiter.api.Test;
+
+class EmotivComposerTest {
+  EmotivComposer emotivComposer = EmotivComposer.getInstance();
+
+  @Test
+  public void testStartServer() {
+    assertTrue(EmotivComposer.isStarted);
+
+  }
 }
