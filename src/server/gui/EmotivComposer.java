@@ -1,5 +1,6 @@
 package server.gui;
 
+import java.awt.Component;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
@@ -96,18 +97,20 @@ public class EmotivComposer extends JFrame implements WindowListener {
     contentPane.setLayout(null);
 
     menuBarPanel = new MenuBarPanel();
-    menuBarPanel.setBounds(0, 0, 440, 50);
+    menuBarPanel.setSize(450, 50);
+    menuBarPanel.setSize(450, 50);
+    menuBarPanel.setBounds(0, 0, 450, 50);
     menuBarPanel.setLayout(null);
     contentPane.add(menuBarPanel);
 
     startPanel = new JPanel();
-    startPanel.setBounds(2, 50, 440, 120);
+    startPanel.setBounds(2, 50, 443, 120);
     contentPane.add(startPanel);
     startPanel.setLayout(null);
 
     tabbedPane = new JTabbedPane(JTabbedPane.TOP);
     tabbedPane.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
-    tabbedPane.setBounds(0, 0, 440, 120);
+    tabbedPane.setBounds(0, 0, 450, 120);
     startPanel.add(tabbedPane);
 
     emostate = new JPanel();
@@ -117,18 +120,22 @@ public class EmotivComposer extends JFrame implements WindowListener {
     interactive = new JPanel();
     tabbedPane.addTab("INTERACTIVE", null, interactive, null);
     ip = new InteractivePanel();
-    ip.setBounds(0, 0, 440, 90);
+    ip.setSize(444, 90);
+    ip.setAlignmentX(Component.LEFT_ALIGNMENT);
+    ip.setAlignmentY(Component.TOP_ALIGNMENT);
+    ip.setSize(449, 90);
+    ip.setBounds(0, 0, 444, 90);
     interactive.add(ip);
     interactive.setLayout(null);
 
     lowerPanel = new JPanel();
-    lowerPanel.setBounds(2, 205, 440, 565);
+    lowerPanel.setBounds(2, 205, 443, 560);
     contentPane.add(lowerPanel);
     lowerPanel.setLayout(null);
 
     lowerTabbedPane = new JTabbedPane(JTabbedPane.TOP);
     lowerTabbedPane.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
-    lowerTabbedPane.setBounds(0, 0, 440, 565);
+    lowerTabbedPane.setBounds(0, 0, 443, 555);
     lowerPanel.add(lowerTabbedPane);
 
     qualityPanel = new JPanel();
@@ -138,12 +145,19 @@ public class EmotivComposer extends JFrame implements WindowListener {
     detectionPanel.setLayout(null);
 
     emoStatePanel = new EmoStatePanel();
+    emoStatePanel.setSize(440, 175);
 
     emoFacialPanel = new FacialPanel();
+    emoFacialPanel.setSize(443, 150);
+    emoFacialPanel.setSize(448, 150);
     emoFacialPanel.setBounds(0, 175, 440, 150);
 
     emoLogPanel = new EmoLogPanel();
-    emoLogPanel.setBounds(0, 325, 440, 205);
+    emoLogPanel.setSize(443, 200);
+    emoLogPanel.setSize(440, 210);
+    emoLogPanel.setSize(443, 210);
+    emoLogPanel.setSize(443, 210);
+    emoLogPanel.setBounds(0, 325, 443, 200);
 
     detectionPanel.add(emoFacialPanel);
     detectionPanel.add(emoStatePanel);
@@ -161,7 +175,7 @@ public class EmotivComposer extends JFrame implements WindowListener {
   /**
    * This starts the tyrus server using the websocket class ServerWebSocket
    */
-  protected void startServer() {
+  private void startServer() {
     Server server = new Server(Constants.URI, Constants.PORT, Constants.LINK, ServerWebSocket.class);
     try {
       server.start();
