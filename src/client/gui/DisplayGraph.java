@@ -17,18 +17,15 @@ import client.sys.DisplayThread;
 import data.EmotivData;
 
 
-/*This panel represents the graph panel
+/*This class represents the graph panel
  * It contains the graph, dataset and other chart related parameters
  * 
  */
 
 public class DisplayGraph extends JPanel {
   JFreeChart graph;
-  int channel;
-  int value;
   TimeSeriesCollection dataset ;
-  public TimeSeries series;
-  public TimeSeries graphSeries[];
+  TimeSeries graphSeries[];
   ChartPanel chartPanel  ;
   String channelNames[];
   
@@ -55,7 +52,6 @@ public class DisplayGraph extends JPanel {
     
     for(int i=0;i<12;i++)
     {
-    	int channelno=i+1;
     graphSeries[i] = new TimeSeries(channelNames[i],Millisecond.class);
     dataset.addSeries(graphSeries[i]);
     }
@@ -79,9 +75,6 @@ public class DisplayGraph extends JPanel {
     final XYPlot plot = result.getXYPlot();
     ValueAxis axis = plot.getDomainAxis();
     axis.setAutoRange(true);
-    axis.setFixedAutoRange(60000.0);
-    //axis.setRange(0.0,1.0); 
-
     axis = plot.getRangeAxis();
     return result;
   }

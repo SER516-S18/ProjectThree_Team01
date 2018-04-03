@@ -22,7 +22,6 @@ public class DisplayThread implements Runnable {
 		this.data= data;
 		this.graphSeries = graphSeries;
 		this.dataset = dataset;
-		this.value = value;
 	}
 @Override
   public void run() {
@@ -30,18 +29,18 @@ public class DisplayThread implements Runnable {
   	  
     	double values[];
     	values = new double[12];
-    	values[0]= 10*data.getLookingRight();
-    	values[1]= 20*data.getEyebrowRaise();
-    	values[2]= 30*data.getLookingLeft();
-    	values[3]= 40*data.getEyebrowFurrow();
-    	values[4]= 50*data.getLookingDown();
-    	values[5]= 60*data.getLookingUp();
-    	values[6]= 70*data.getRightWink();
-    	values[7]= 80*data.getLeftWink();
-    	values[8]= 90*data.getBlink();
-    	values[9]= 100*data.getEyesOpen();
-    	values[10]= 110*data.getSmile();
-    	values[11]= 120*data.getClench();
+    	values[0]= 1+data.getLookingRight();
+    	values[1]= 2+data.getEyebrowRaise();
+    	values[2]= 3+data.getLookingLeft();
+    	values[3]= 4+data.getEyebrowFurrow();
+    	values[4]= 5+data.getLookingDown();
+    	values[5]= 6+data.getLookingUp();
+    	values[6]= 7+data.getRightWink();
+    	values[7]= 8+data.getLeftWink();
+    	values[8]= 9+data.getBlink();
+    	values[9]= 10+data.getEyesOpen();
+    	values[10]=11+data.getSmile();
+    	values[11]=12+data.getClench();
 
 				for(int i=0;i<12;i++)
 				{
