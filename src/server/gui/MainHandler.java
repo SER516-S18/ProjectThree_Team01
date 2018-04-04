@@ -38,7 +38,7 @@ public class MainHandler {
 
   private static void createGUIComponents() {
     // TODO Auto-generated method stub
-    HamburgerMenu exitMenu = new HamburgerMenu();
+    HamburgerMenu exitMenu = new HamburgerMenu(frame);
     MenuBarPanel menuBarPanel = new MenuBarPanel();
     JPanel startPanel = new JPanel();
     JPanel emostate = new JPanel();
