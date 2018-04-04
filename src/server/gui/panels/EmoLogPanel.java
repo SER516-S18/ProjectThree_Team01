@@ -1,12 +1,10 @@
 package server.gui.panels;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import server.gui.actions.EmoAction;
 import util.ConsolePanel;
 
 public class EmoLogPanel extends JPanel {
@@ -28,11 +26,7 @@ public class EmoLogPanel extends JPanel {
     consolePanel = new ConsolePanel();
     consolePanel.setBounds(5, 30, 434, 130);
     clearLogButton = new JButton("Clear Log");
-    clearLogButton.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        clearConsolePanel();
-      }
-    });
+    clearLogButton.addActionListener(new EmoAction(this));
     clearLogButton.setBounds(5, 165, 110, 30);
 
     add(labelLog);
@@ -41,7 +35,7 @@ public class EmoLogPanel extends JPanel {
     setVisible(true);
   }
 
-  private void clearConsolePanel() {
+  public void clearConsolePanel() {
     consolePanel.clearText();
   }
 

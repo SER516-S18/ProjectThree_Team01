@@ -18,14 +18,20 @@ public class EmoMouse implements MouseListener {
 
   @Override
   public void mouseClicked(MouseEvent arg0) {
+    JLabel label = (JLabel) arg0.getSource();
+    System.out.println("JLabel details: " + label);
     if (actionClass instanceof UpDownButton) {
-      JLabel label = (JLabel) arg0.getSource();
       if (label.getText().trim() == "v")
         ((UpDownButton) actionClass).decrementOutputText();
       else
         ((UpDownButton) actionClass).incrementOutputText();
     } else if (actionClass instanceof MenuBarPanel) {
-      ((MenuBarPanel) actionClass).showExitMenu();
+      String icon = label.getIcon().toString();
+      if (icon.contains("menu.png")) {
+        ((MenuBarPanel) actionClass).showExitMenu();
+      } else if (icon.contains("strong.png") || icon.contains("weak.png")) {
+        // Need to implement once we get the signal going
+      }
     }
   }
 
