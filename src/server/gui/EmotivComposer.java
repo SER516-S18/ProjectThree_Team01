@@ -25,8 +25,8 @@ import server.sys.WorkerThread;
 import util.Constants;
 
 /**
- * The purpose of this class is to provide the GUI handler for the server and serves as the
- * main interaction between the user, server and client.
+ * The purpose of this class is to provide the GUI handler for the server and serves as
+ * the main interaction between the user, server and client.
  * 
  * @author Cephas Armstrong-Mensah
  *
@@ -166,7 +166,7 @@ public class EmotivComposer extends JFrame implements WindowListener {
     contentPane.add(startPanel);
     contentPane.add(menuBarPanel);
 
-    // startServer();
+    startServer();
   }
 
   /**
