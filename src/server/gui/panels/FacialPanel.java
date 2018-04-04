@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
+import server.gui.actions.EmoAction;
 import util.UpDownButton;
 
 public class FacialPanel extends JPanel {
@@ -30,6 +31,7 @@ public class FacialPanel extends JPanel {
 
   private double lookingRight;
   private double eyebrowRaise;
+  private double eyebrowFurrow;
   private double lookingLeft;
   private double lookingDown;
   private double lookingUp;
@@ -40,6 +42,11 @@ public class FacialPanel extends JPanel {
   private double smile;
   private double clench;
   private double laugh;
+  
+  private int eyeclickCount = 0;
+  private Double eyeActiveValue;
+  
+  
 
   public FacialPanel() {
     setBounds(0, 0, 440, 150);
@@ -60,25 +67,8 @@ public class FacialPanel extends JPanel {
     lowerfaceupdownButton.setVisible(true);
 
     upperfaceComboBox = new JComboBox<String>();
-
-    upperfaceComboBox.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-
-        String Item = upperfaceComboBox.getSelectedItem().toString();
-        String upperbuttonValue = upperfaceupdownButton.getOutputText();
-        double upperfaceValue = Double.parseDouble(upperbuttonValue);
-        if (Item.equals("Raise Brow")) {
-          lookingUp = upperfaceValue;
-          // System.out.println(upperfaceValue +","+ Item); //test
-        }
-
-        if (Item.equals("Furrow Brow")) {
-          lookingDown = upperfaceValue;
-          // System.out.println(upperfaceValue +","+ Item); //test
-        }
-      }
-    });
-
+    
+    upperfaceComboBox.addActionListener(new EmoAction(this, "upperfaceComboBox"));
     upperfaceComboBox.setBounds(10, 30, 125, 30);
     upperfaceComboBox
         .setModel(new DefaultComboBoxModel<String>(new String[] { "Raise Brow", "Furrow Brow" }));
@@ -88,27 +78,8 @@ public class FacialPanel extends JPanel {
     /**
      * lowerfaceComboBox action
      */
-    lowerfaceComboBox.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent arg0) {
-
-        String Item = lowerfaceComboBox.getSelectedItem().toString();
-        String lowerbuttonValue = lowerfaceupdownButton.getOutputText();
-
-        double lowerfaceValue = Double.parseDouble(lowerbuttonValue);
-        if (Item.equals("Smile")) {
-          smile = lowerfaceValue;
-        } else if (Item.equals("Clench")) {
-          clench = lowerfaceValue;
-        } else if (Item.equals("Smirk Left")) {
-          lookingLeft = lowerfaceValue;
-        } else if (Item.equals("Smirk Right")) {
-          lookingRight = lowerfaceValue;
-        } else if (Item.equals("Laugh")) {
-          laugh = lowerfaceValue;
-        } else {
-        }
-      }
-    });
+    
+    lowerfaceComboBox.addActionListener(new EmoAction(this, "lowerfaceComboBox"));
 
     lowerfaceComboBox.setBounds(240, 30, 125, 30);
     lowerfaceComboBox.setModel(new DefaultComboBoxModel<String>(
@@ -132,6 +103,48 @@ public class FacialPanel extends JPanel {
         new String[] { "Blink", "Wink Left", "Wink Right", "Look Left", "Look Right" }));
 
     eyeActive = new JRadioButton("Active");
+    
+    eyeActive.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+    		
+    	if(eyeclickCount % 2 == 0) {
+    	  eyeActive.setActionCommand("1");
+    	}else {
+    	  eyeActive.setActionCommand("0");
+    	}
+    		
+    	  eyeActiveValue = Double.parseDouble(eyeActive.getActionCommand());
+    		
+    	  eyeclickCount++;
+    	  //System.out.println("eye sectioon:"+ eyeActiveValue);		//test
+    	}
+    });
+    
+    eyecomboBox.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+    	String Item = eyecomboBox.getSelectedItem().toString();
+    	eyeActiveValue =  Double.parseDouble(eyeActive.getActionCommand());
+		//System.out.println(eyeActiveValue);						
+		if(Item.equals("Blink")) {
+		  blink = eyeActiveValue;			
+		  //System.out.println(blink +","+ Item);  //test				
+		}else if(Item.equals("Wink Left")) {
+		  leftWink = eyeActiveValue;
+		 // System.out.println(leftWink +","+ Item);   //test			
+		}else if(Item.equals("Wink Right")){
+		  rightWink = eyeActiveValue;			
+		  //System.out.println(rightWink +","+ Item);   //test			
+		}else if(Item.equals("Look Left")){
+		  lookingLeft = eyeActiveValue;		
+		  System.out.println(lookingLeft +","+ Item);   //test			
+		}else if(Item.equals("Look Right")) {
+		  lookingRight = eyeActiveValue;				
+		  //System.out.println(lookingRight +","+ Item);   //test
+		}else {				
+		}
+      }
+   });
+    
     eyeActive.setBounds(140, 105, 80, 20);
 
     chckbxNewCheckBox = new JCheckBox("Auto Reset");
@@ -148,4 +161,180 @@ public class FacialPanel extends JPanel {
     add(chckbxNewCheckBox);
     add(eyeActive);
   }
+  
+public JComboBox<String> getUpperfaceComboBox() {
+	return upperfaceComboBox;
+}
+
+public void setUpperfaceComboBox(JComboBox<String> upperfaceComboBox) {
+	this.upperfaceComboBox = upperfaceComboBox;
+}
+
+public UpDownButton getUpperfaceupdownButton() {
+	return upperfaceupdownButton;
+}
+
+public void setUpperfaceupdownButton(UpDownButton upperfaceupdownButton) {
+	this.upperfaceupdownButton = upperfaceupdownButton;
+}
+
+public JLabel getLowerfaceLabel() {
+	return lowerfaceLabel;
+}
+
+public void setLowerfaceLabel(JLabel lowerfaceLabel) {
+	this.lowerfaceLabel = lowerfaceLabel;
+}
+
+public JComboBox<String> getLowerfaceComboBox() {
+	return lowerfaceComboBox;
+}
+
+
+public void setLowerfaceComboBox(JComboBox<String> lowerfaceComboBox) {
+	this.lowerfaceComboBox = lowerfaceComboBox;
+}
+
+public UpDownButton getLowerfaceupdownButton() {
+	return lowerfaceupdownButton;
+}
+
+public void setLowerfaceupdownButton(UpDownButton lowerfaceupdownButton) {
+	this.lowerfaceupdownButton = lowerfaceupdownButton;
+}
+
+public JComboBox<String> getEyecomboBox() {
+	return eyecomboBox;
+}
+
+public void setEyecomboBox(JComboBox<String> eyecomboBox) {
+	this.eyecomboBox = eyecomboBox;
+}
+
+public JRadioButton getEyeActive() {
+	return eyeActive;
+}
+
+public void setEyeActive(JRadioButton eyeActive) {
+	this.eyeActive = eyeActive;
+}
+
+public double getLookingRight() {
+	return lookingRight;
+}
+
+public void setLookingRight(double lookingRight) {
+	this.lookingRight = lookingRight;
+}
+
+public double getEyebrowRaise() {
+	return eyebrowRaise;
+}
+
+public void setEyebrowRaise(double eyebrowRaise) {
+	this.eyebrowRaise = eyebrowRaise;
+}
+
+public double getEyebrowFurrow() {
+	return eyebrowFurrow;
+}
+
+public void setEyebrowFurrow(double eyebrowFurrow) {
+	this.eyebrowFurrow = eyebrowFurrow;
+}
+
+public double getLookingLeft() {
+	return lookingLeft;
+}
+
+public void setLookingLeft(double lookingLeft) {
+	this.lookingLeft = lookingLeft;
+}
+
+public double getLookingDown() {
+	return lookingDown;
+}
+
+public void setLookingDown(double lookingDown) {
+	this.lookingDown = lookingDown;
+}
+
+public double getLookingUp() {
+	return lookingUp;
+}
+
+public void setLookingUp(double lookingUp) {
+	this.lookingUp = lookingUp;
+}
+
+public double getRightWink() {
+	return rightWink;
+}
+
+public void setRightWink(double rightWink) {
+	this.rightWink = rightWink;
+}
+
+public double getLeftWink() {
+	return leftWink;
+}
+
+public void setLeftWink(double leftWink) {
+	this.leftWink = leftWink;
+}
+
+public double getBlink() {
+	return blink;
+}
+
+public void setBlink(double blink) {
+	this.blink = blink;
+}
+
+public double getSmile() {
+	return smile;
+}
+
+public void setSmile(double smile) {
+	this.smile = smile;
+}
+
+public double getClench() {
+	return clench;
+}
+
+public void setClench(double clench) {
+	this.clench = clench;
+}
+
+public double getLaugh() {
+	return laugh;
+}
+
+public void setLaugh(double laugh) {
+	this.laugh = laugh;
+}
+
+public int getEyeclickCount() {
+	return eyeclickCount;
+}
+
+public void setEyeclickCount(int eyeclickCount) {
+	this.eyeclickCount = eyeclickCount;
+}
+
+public Double getEyeActiveValue() {
+	return eyeActiveValue;
+}
+
+public void setEyeActiveValue(Double eyeActiveValue) {
+	this.eyeActiveValue = eyeActiveValue;
+}
+
+
+
+
+
+
+
 }
