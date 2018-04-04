@@ -111,10 +111,10 @@ public class ClientGui extends JFrame {
 		
 		panel.add(panelEpocElectrodes);
 		ImageIcon iconHead = new ImageIcon("head.jpg");
-	    JLabel labelTimerHead = new JLabel();
-	    labelTimerHead.setIcon(iconHead);
-	    labelTimerHead.setBounds(10, 71, 604, 516);
-	    panelEpocElectrodes.add(labelTimerHead);
+	    	JLabel labelTimerHead = new JLabel();
+	    	labelTimerHead.setIcon(iconHead);
+	    	labelTimerHead.setBounds(10, 71, 604, 516);
+	    	panelEpocElectrodes.add(labelTimerHead);
 		
 		panelEpocElectrodes.setLayout(null);
 		
@@ -135,10 +135,10 @@ public class ClientGui extends JFrame {
 		panelSetupAndPairing.setLayout(null);
 		
 		ImageIcon iconStateSymbol = new ImageIcon("bottomRightText.jpg");
-	    JLabel labelTimerStateSymbol = new JLabel();
-	    labelTimerStateSymbol.setIcon(iconStateSymbol);
-	    labelTimerStateSymbol.setBounds(0, 352, 604, 229);
-	    panelSetupAndPairing.add(labelTimerStateSymbol);
+	  	JLabel labelTimerStateSymbol = new JLabel();
+	  	labelTimerStateSymbol.setIcon(iconStateSymbol);
+	  	labelTimerStateSymbol.setBounds(0, 352, 604, 229);
+	   	panelSetupAndPairing.add(labelTimerStateSymbol);
 		
 		JPanel panelSetupHeading = new JPanel();
 		panelSetupHeading.setBounds(0, 0, 610, 65);
@@ -177,12 +177,11 @@ public class ClientGui extends JFrame {
 		panel.add(panelTimer);
 		
 		ImageIcon timerIcon = new ImageIcon("icons8-timer-19.png");
-	    JLabel labelTimerImage = new JLabel();
-	    labelTimerImage.setForeground(Color.BLACK);
-	    labelTimerImage.setIcon(timerIcon);
-	    labelTimerImage.setBounds(1076, 20, 30, 25);
-	    panel.add(labelTimerImage);
-		
+	    	JLabel labelTimerImage = new JLabel();
+	    	labelTimerImage.setForeground(Color.BLACK);
+	    	labelTimerImage.setIcon(timerIcon);
+	    	labelTimerImage.setBounds(1076, 20, 30, 25);
+	    	panel.add(labelTimerImage);
 		JLabel labelTimer = new JLabel("00:00");
 		panelTimer.add(labelTimer);
 		labelTimer.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
