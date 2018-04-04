@@ -6,9 +6,17 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import server.gui.panels.HamburgerMenuPanel;
 import server.gui.panels.MenuBarPanel;
+import server.gui.panels.SignalMenuPanel;
 import util.UpDownButton;
 
+/**
+ * This class is responsible for handling Mouse Events triggered from the server
+ * 
+ * @author Cephas Armstrong-Mensah
+ *
+ */
 public class EmoMouse implements MouseListener {
   JPanel actionClass;
 
@@ -52,6 +60,10 @@ public class EmoMouse implements MouseListener {
       ((UpDownButton) actionClass).showHideBorder(label, false);
     } else if (actionClass instanceof MenuBarPanel) {
       ((MenuBarPanel) actionClass).showHideBorder(label, false);
+    } else if (actionClass instanceof HamburgerMenuPanel) {
+      ((HamburgerMenuPanel) actionClass).setVisibleFalse();
+    } else if (actionClass instanceof SignalMenuPanel) {
+      ((SignalMenuPanel) actionClass).setVisibleFalse();
     }
   }
 

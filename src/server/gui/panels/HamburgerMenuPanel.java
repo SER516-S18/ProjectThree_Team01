@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
+import server.gui.EmotivComposer;
+import server.gui.actions.EmoMouse;
 import util.Constants;
 
 public class HamburgerMenuPanel extends JPanel {
@@ -61,5 +63,11 @@ public class HamburgerMenuPanel extends JPanel {
     add(aboutPanel);
     add(separator);
     add(quitPanel);
+
+    addMouseListener(new EmoMouse(this));
+  }
+
+  public void setVisibleFalse() {
+    EmotivComposer.hideMenuItems();
   }
 }

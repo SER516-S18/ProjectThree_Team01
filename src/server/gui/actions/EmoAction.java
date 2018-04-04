@@ -9,6 +9,13 @@ import server.gui.panels.EmoLogPanel;
 import server.gui.panels.FacialPanel;
 import server.gui.panels.InteractivePanel;
 
+/**
+ * This class is responsible for handling Action Events triggered from the
+ * server
+ * 
+ * @author Cephas Armstrong-Mensah
+ *
+ */
 public class EmoAction implements ActionListener {
   private JPanel actionClass;
   private String item;

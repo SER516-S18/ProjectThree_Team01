@@ -7,6 +7,13 @@ import javax.swing.JPanel;
 
 import server.gui.panels.InteractivePanel;
 
+/**
+ * This class is responsible for handling Item Listener Events triggered from
+ * the server
+ * 
+ * @author Cephas Armstrong-Mensah
+ *
+ */
 public class EmoItemListener implements ItemListener {
 
   JPanel actionItem;

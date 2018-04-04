@@ -7,6 +7,13 @@ import javax.swing.JFrame;
 
 import server.gui.EmotivComposer;
 
+/**
+ * This class is responsible for handling Window Events triggered from the
+ * server
+ * 
+ * @author Cephas Armstrong-Mensah
+ *
+ */
 public class EmoWindow implements WindowListener {
   private JFrame window;
 

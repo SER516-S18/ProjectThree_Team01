@@ -79,7 +79,7 @@ public class SignalMenuPanel extends JPanel {
     add(weakSignalPanel);
   }
 
-  public void showSignalMenu() {
-    EmotivComposer.showSignalItems();
+  public void setVisibleFalse() {
+    EmotivComposer.hideSignalItems();
   }
 }

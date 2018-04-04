@@ -223,11 +223,17 @@ public class EmotivComposer extends JFrame {
 
   public static void showMenuItems() {
     exitMenu.setVisible(!exitMenu.isVisible());
-    System.out.println("zorder exit: " + instance.getComponentZOrder(exitMenu));
-    System.out.println("zorder startup: " + instance.getComponentZOrder(startPanel));
   }
 
   public static void showSignalItems() {
     signalMenu.setVisible(!signalMenu.isVisible());
+  }
+
+  public static void hideMenuItems() {
+    exitMenu.setVisible(false);
+  }
+
+  public static void hideSignalItems() {
+    signalMenu.setVisible(false);
   }
 }

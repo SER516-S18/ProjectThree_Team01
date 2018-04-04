@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
 import server.gui.EmotivComposer;
-import server.gui.actions.EmoMouse;
 import util.Constants;
 
 public class MenuBarPanel extends JPanel {
@@ -32,7 +31,7 @@ public class MenuBarPanel extends JPanel {
     dropDownPanel.setBounds(0, 0, 50, 50);
 
     menuLabel = new JLabel(new ImageIcon(loader.getResource("menu.png")));
-    menuLabel.addMouseListener(new EmoMouse(this));
+    // menuLabel.addMouseListener(new EmoMouse(this));
     menuLabel.setBounds(1, 1, 48, 48);
     dropDownPanel.add(menuLabel);
 
@@ -45,7 +44,7 @@ public class MenuBarPanel extends JPanel {
     signalPanel.setBounds(400, 0, 50, 50);
 
     signalLabel = new JLabel(new ImageIcon(loader.getResource("strong.png")));
-    signalLabel.addMouseListener(new EmoMouse(this));
+    // signalLabel.addMouseListener(new EmoMouse(this));
     signalLabel.setBounds(1, 1, 48, 48);
     signalPanel.add(signalLabel);
 
