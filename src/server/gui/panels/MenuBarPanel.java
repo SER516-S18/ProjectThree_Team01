@@ -1,14 +1,12 @@
 package server.gui.panels;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
+import javax.swing.border.EtchedBorder;
 
 import server.gui.EmotivComposer;
+import server.gui.actions.EmoMouse;
 import util.Constants;
 
 public class MenuBarPanel extends JPanel {
@@ -20,7 +18,7 @@ public class MenuBarPanel extends JPanel {
   private JLabel menuLabel;
   private JLabel signalLabel;
 
-  ClassLoader cl = getClass().getClassLoader();
+  ClassLoader loader = getClass().getClassLoader();
 
   public MenuBarPanel() {
     setBounds(0, 0, 450, 50);
@@ -32,27 +30,9 @@ public class MenuBarPanel extends JPanel {
     dropDownPanel = new JPanel();
     dropDownPanel.setLayout(null);
     dropDownPanel.setBounds(0, 0, 50, 50);
-    dropDownPanel.addMouseListener(new MouseAdapter() {
-      @Override
-      public void mouseEntered(MouseEvent e) {
-        dropDownPanel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-      }
 
-      @Override
-      public void mouseExited(MouseEvent e) {
-        dropDownPanel.setBorder(null);
-      }
-    });
-
-    menuLabel = new JLabel(new ImageIcon(cl.getResource("menu.png")));
-    menuLabel.addMouseListener(new MouseAdapter() {
-      @Override
-      public void mouseClicked(MouseEvent e) {
-        boolean isVisible = EmotivComposer.exitMenu.isVisible();
-        System.out.println("Menu clicked: " + isVisible);
-        EmotivComposer.exitMenu.setVisible(!isVisible);
-      }
-    });
+    menuLabel = new JLabel(new ImageIcon(loader.getResource("menu.png")));
+    menuLabel.addMouseListener(new EmoMouse(this));
     menuLabel.setBounds(1, 1, 48, 48);
     dropDownPanel.add(menuLabel);
 
@@ -63,25 +43,26 @@ public class MenuBarPanel extends JPanel {
     signalPanel = new JPanel();
     signalPanel.setLayout(null);
     signalPanel.setBounds(400, 0, 50, 50);
-    signalPanel.addMouseListener(new MouseAdapter() {
-      @Override
-      public void mouseEntered(MouseEvent e) {
-        signalPanel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-      }
 
-      @Override
-      public void mouseExited(MouseEvent e) {
-        signalPanel.setBorder(null);
-      }
-    });
-
-    signalLabel = new JLabel(new ImageIcon(cl.getResource("strong.png")));
-    ;
+    signalLabel = new JLabel(new ImageIcon(loader.getResource("strong.png")));
+    signalLabel.addMouseListener(new EmoMouse(this));
     signalLabel.setBounds(1, 1, 48, 48);
     signalPanel.add(signalLabel);
 
     add(dropDownPanel);
     add(middlePanel);
     add(signalPanel);
+  }
+
+  public void showHideBorder(JLabel clickedButton, boolean needsBorder) {
+    if (needsBorder) {
+      clickedButton.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
+    } else {
+      clickedButton.setBorder(null);
+    }
+  }
+
+  public void showExitMenu() {
+    EmotivComposer.showMenuItems();
   }
 }

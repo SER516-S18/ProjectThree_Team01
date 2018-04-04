@@ -6,15 +6,14 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import server.gui.panels.MenuBarPanel;
 import util.UpDownButton;
 
 public class EmoMouse implements MouseListener {
-  JLabel item;
   JPanel actionClass;
 
-  public EmoMouse(JPanel actionClass, JLabel item) {
+  public EmoMouse(JPanel actionClass) {
     this.actionClass = actionClass;
-    this.item = item;
   }
 
   @Override
@@ -25,22 +24,28 @@ public class EmoMouse implements MouseListener {
         ((UpDownButton) actionClass).decrementOutputText();
       else
         ((UpDownButton) actionClass).incrementOutputText();
+    } else if (actionClass instanceof MenuBarPanel) {
+      ((MenuBarPanel) actionClass).showExitMenu();
     }
   }
 
   @Override
   public void mouseEntered(MouseEvent arg0) {
+    JLabel label = (JLabel) arg0.getSource();
     if (actionClass instanceof UpDownButton) {
-      JLabel label = (JLabel) arg0.getSource();
       ((UpDownButton) actionClass).showHideBorder(label, true);
+    } else if (actionClass instanceof MenuBarPanel) {
+      ((MenuBarPanel) actionClass).showHideBorder(label, true);
     }
   }
 
   @Override
   public void mouseExited(MouseEvent arg0) {
+    JLabel label = (JLabel) arg0.getSource();
     if (actionClass instanceof UpDownButton) {
-      JLabel label = (JLabel) arg0.getSource();
       ((UpDownButton) actionClass).showHideBorder(label, false);
+    } else if (actionClass instanceof MenuBarPanel) {
+      ((MenuBarPanel) actionClass).showHideBorder(label, false);
     }
   }
 

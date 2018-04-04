@@ -28,6 +28,7 @@ public class EmoStatePanel extends JPanel {
   private UpDownButton skill;
   private UpDownButton overallSkill;
   private JLabel overallSkillLabel;
+  private JLabel lblNewLabel;
 
   public EmoStatePanel() {
     setBounds(0, 0, 440, 175);
@@ -73,6 +74,9 @@ public class EmoStatePanel extends JPanel {
     overallSkillLabel.setBorder(new LineBorder(Constants.DARKGRAY));
     overallSkillLabel.setBounds(250, 105, 120, 30);
 
+    lblNewLabel = new JLabel("EMOSTATE");
+    lblNewLabel.setBounds(5, 5, 100, 30);
+
     add(lblTime);
     add(timeTrackerLabel);
     add(mentalCommandsLabel);
@@ -83,9 +87,6 @@ public class EmoStatePanel extends JPanel {
     add(neutral);
     add(skill);
     add(overallSkill);
-
-    JLabel lblNewLabel = new JLabel("EMOSTATE");
-    lblNewLabel.setBounds(5, 5, 100, 30);
     add(lblNewLabel);
   }
 

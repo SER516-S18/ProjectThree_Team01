@@ -1,10 +1,5 @@
 package server.gui.panels;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -14,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import server.gui.EmotivComposer;
+import server.gui.actions.EmoAction;
+import server.gui.actions.EmoItemListener;
 import util.UpDownButton;
 
 public class InteractivePanel extends JPanel {
@@ -36,7 +33,6 @@ public class InteractivePanel extends JPanel {
   }
 
   private void initialize() {
-
     playerLabel = new JLabel("Player");
     playerLabel.setVerticalAlignment(SwingConstants.TOP);
     playerLabel.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -53,29 +49,12 @@ public class InteractivePanel extends JPanel {
 
     sendButton = new JButton("Send");
     sendButton.setBounds(330, 55, 100, 30);
-    sendButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        EmotivComposer.handleStartStopSend(sendButton.getText());
-      }
-    });
+    sendButton.addActionListener(new EmoAction(this));
 
     autoResetCheckBox = new JCheckBox("Auto Reset");
     autoResetCheckBox.setVerticalAlignment(SwingConstants.TOP);
     autoResetCheckBox.setBounds(170, 55, 115, 30);
-    autoResetCheckBox.addItemListener(new ItemListener() {
-      @Override
-      public void itemStateChanged(ItemEvent e) {
-        System.out.println("Checked: " + autoResetCheckBox.isSelected());
-        if (autoResetCheckBox.isSelected()) {
-          sendButton.setText("Start");
-          EmotivComposer.isAutoResetChecked = true;
-        } else {
-          sendButton.setText("Send");
-          EmotivComposer.isAutoResetChecked = false;
-        }
-      }
-    });
+    autoResetCheckBox.addItemListener(new EmoItemListener(this));
 
     playerComboBox = new JComboBox<String>();
     playerComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "0", "1" }));
@@ -101,5 +80,19 @@ public class InteractivePanel extends JPanel {
   public void setInteractiveFields(String text, boolean isAutoReset) {
     autoResetCheckBox.setEnabled(isAutoReset);
     sendButton.setText(text);
+  }
+
+  public void triggerStartStopSend() {
+    EmotivComposer.handleStartStopSend(sendButton.getText());
+  }
+
+  public void itemStateAction() {
+    if (autoResetCheckBox.isSelected()) {
+      sendButton.setText("Start");
+      EmotivComposer.isAutoResetChecked = true;
+    } else {
+      sendButton.setText("Send");
+      EmotivComposer.isAutoResetChecked = false;
+    }
   }
 }

@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
+import server.gui.actions.EmoMouse;
 import util.Constants;
 
 public class SignalMenu extends JPanel {
@@ -53,17 +54,7 @@ public class SignalMenu extends JPanel {
     signalPanel = new JPanel();
     signalPanel.setLayout(null);
     signalPanel.setBounds(400, 0, 50, 50);
-    signalPanel.addMouseListener(new MouseAdapter() {
-      @Override
-      public void mouseEntered(MouseEvent e) {
-        signalPanel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-      }
-
-      @Override
-      public void mouseExited(MouseEvent e) {
-        signalPanel.setBorder(null);
-      }
-    });
+    signalPanel.addMouseListener(new EmoMouse(this));
 
     signalLabel = new JLabel(new ImageIcon(cl.getResource("strong.png")));
     signalLabel.setBounds(1, 1, 48, 48);

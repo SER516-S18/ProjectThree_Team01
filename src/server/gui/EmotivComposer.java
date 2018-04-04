@@ -41,7 +41,6 @@ public class EmotivComposer extends JFrame {
   private JTabbedPane tabbedPane;
   private JTabbedPane lowerTabbedPane;
   private JPanel contentPane;
-  private JPanel startPanel;
   private JPanel interactive;
   private JPanel emostate;
   private JPanel lowerPanel;
@@ -53,7 +52,8 @@ public class EmotivComposer extends JFrame {
   private static FacialPanel emoFacialPanel;
   private static MenuBarPanel menuBarPanel;
   private static EmoLogPanel emoLogPanel;
-  public static HamburgerMenuPanel exitMenu;
+  private static HamburgerMenuPanel exitMenu;
+  private static JPanel startPanel;
 
   public static boolean isAutoResetChecked = false;
 
@@ -98,7 +98,7 @@ public class EmotivComposer extends JFrame {
 
     exitMenu.setBounds(0, 50, 200, 101);
     exitMenu.setVisible(false);
-    // contentPane.add(exitMenu);
+    contentPane.add(exitMenu);
 
     menuBarPanel.setSize(450, 50);
     menuBarPanel.setSize(450, 50);
@@ -210,5 +210,11 @@ public class EmotivComposer extends JFrame {
     notify();
     System.out.println("Server is closing...");
     System.exit(0);
+  }
+
+  public static void showMenuItems() {
+    exitMenu.setVisible(!exitMenu.isVisible());
+    System.out.println("zorder exit: " + instance.getComponentZOrder(exitMenu));
+    System.out.println("zorder startup: " + instance.getComponentZOrder(startPanel));
   }
 }
