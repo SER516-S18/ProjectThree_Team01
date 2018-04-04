@@ -7,8 +7,6 @@ import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.websocket.DeploymentException;
@@ -27,8 +25,8 @@ import server.sys.WorkerThread;
 import util.Constants;
 
 /**
- * The purpose of this class is to provide the GUI handler for the server and
- * serves as the main interaction between the user, server and client.
+ * The purpose of this class is to provide the GUI handler for the server and serves as the
+ * main interaction between the user, server and client.
  * 
  * @author Cephas Armstrong-Mensah
  *
@@ -60,26 +58,6 @@ public class EmotivComposer extends JFrame implements WindowListener {
 
   public static boolean isAutoResetChecked = false;
 
-  /**
-   * Launch the application.
-   */
-  public static void main(String[] args) {
-    EmotivComposer frame;
-    try {
-      for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-        if ("Nimbus".equals(info.getName())) {
-          UIManager.setLookAndFeel(info.getClassName());
-          frame = EmotivComposer.getInstance();
-          frame.setVisible(true);
-          break;
-        }
-      }
-    } catch (Exception e) {
-      frame = EmotivComposer.getInstance();
-      frame.setVisible(true);
-    }
-  }
-
   public static EmotivComposer getInstance() {
     if (instance == null) {
       instance = new EmotivComposer();
@@ -93,56 +71,66 @@ public class EmotivComposer extends JFrame implements WindowListener {
     setBounds(100, 100, 450, 800);
 
     contentPane = new JPanel();
+    contentPane.setBounds(0, 0, 450, 800);
     contentPane.setBackground(Constants.PEACH);
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-    setContentPane(contentPane);
     contentPane.setLayout(null);
+    setContentPane(contentPane);
+    initialize();
+  }
 
+  private void initialize() {
     exitMenu = new HamburgerMenuPanel();
-    exitMenu.setBounds(0, 50, 200, 101);
-    exitMenu.setVisible(false);
-    // contentPane.add(exitMenu);
-
     menuBarPanel = new MenuBarPanel();
-    menuBarPanel.setSize(450, 50);
-    menuBarPanel.setSize(450, 50);
-    menuBarPanel.setBounds(0, 0, 450, 50);
-    menuBarPanel.setLayout(null);
-    contentPane.add(menuBarPanel);
-
     startPanel = new JPanel();
-    startPanel.setBounds(2, 50, 443, 120);
-    contentPane.add(startPanel);
-    startPanel.setLayout(null);
 
     tabbedPane = new JTabbedPane(JTabbedPane.TOP);
     tabbedPane.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
     tabbedPane.setBounds(0, 0, 450, 120);
-    startPanel.add(tabbedPane);
+
+    lowerTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+    lowerTabbedPane.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
+    lowerTabbedPane.setBounds(0, 0, 443, 555);
 
     emostate = new JPanel();
+    emoFacialPanel = new FacialPanel();
+    emoStatePanel = new EmoStatePanel();
+    emoLogPanel = new EmoLogPanel();
+
+    exitMenu.setBounds(0, 50, 200, 101);
+    exitMenu.setVisible(false);
+    // contentPane.add(exitMenu);
+
+    menuBarPanel.setSize(450, 50);
+    menuBarPanel.setSize(450, 50);
+    menuBarPanel.setBounds(0, 0, 450, 50);
+    menuBarPanel.setLayout(null);
+
+    startPanel.setBounds(2, 50, 443, 120);
+    startPanel.setLayout(null);
+
+    startPanel.add(tabbedPane);
+
     tabbedPane.addTab("EMOSCRIPT", null, emostate, null);
     emostate.setLayout(null);
 
     interactive = new JPanel();
     tabbedPane.addTab("INTERACTIVE", null, interactive, null);
+
     ip = new InteractivePanel();
     ip.setSize(444, 90);
     ip.setAlignmentX(Component.LEFT_ALIGNMENT);
     ip.setAlignmentY(Component.TOP_ALIGNMENT);
     ip.setSize(449, 90);
     ip.setBounds(0, 0, 444, 90);
+
     interactive.add(ip);
     interactive.setLayout(null);
 
     lowerPanel = new JPanel();
     lowerPanel.setBounds(2, 205, 443, 560);
-    contentPane.add(lowerPanel);
     lowerPanel.setLayout(null);
 
-    lowerTabbedPane = new JTabbedPane(JTabbedPane.TOP);
-    lowerTabbedPane.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
-    lowerTabbedPane.setBounds(0, 0, 443, 555);
     lowerPanel.add(lowerTabbedPane);
 
     qualityPanel = new JPanel();
@@ -151,15 +139,12 @@ public class EmotivComposer extends JFrame implements WindowListener {
     detectionPanel = new JPanel();
     detectionPanel.setLayout(null);
 
-    emoStatePanel = new EmoStatePanel();
     emoStatePanel.setSize(440, 175);
 
-    emoFacialPanel = new FacialPanel();
     emoFacialPanel.setSize(443, 150);
     emoFacialPanel.setSize(448, 150);
     emoFacialPanel.setBounds(0, 175, 440, 150);
 
-    emoLogPanel = new EmoLogPanel();
     emoLogPanel.setSize(443, 200);
     emoLogPanel.setSize(440, 210);
     emoLogPanel.setSize(443, 210);
@@ -176,7 +161,12 @@ public class EmotivComposer extends JFrame implements WindowListener {
     setResizable(false);
     tabbedPane.setSelectedIndex(1);
     lowerTabbedPane.setSelectedIndex(1);
-    startServer();
+
+    contentPane.add(lowerPanel);
+    contentPane.add(startPanel);
+    contentPane.add(menuBarPanel);
+
+    // startServer();
   }
 
   /**

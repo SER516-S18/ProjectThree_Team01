@@ -2,8 +2,6 @@ package util;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 
 import javax.swing.JLabel;
@@ -12,9 +10,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 
+import server.gui.actions.EmoMouse;
+
 /**
- * This class is used as a general utility for a field needing an increment and
- * decrement with a text box
+ * This class is used as a general utility for a field needing an increment and decrement with
+ * a text box
  * 
  * @author Cephas Armstrong-Mensah
  *
@@ -56,79 +56,21 @@ public class UpDownButton extends JPanel {
     panel.setLayout(null);
 
     incrementButton = new JLabel(Character.toString((char) 0x028C));
-    incrementButton.addMouseListener(new MouseAdapter() {
-      @Override
-      public void mouseClicked(MouseEvent e) {
-        try {
-          double x = Double.parseDouble(outputTextBox.getText());
-          double value = 0.0;
-          if (!isFrequency && x + step > 1.0) {
-            value = 1.0;
-          } else {
-            value = x + step;
-          }
-
-          formatDoubleFirst(value);
-        } catch (NumberFormatException exception) {
-          outputTextBox.setForeground(Color.RED);
-          outputTextBox.selectAll();
-        }
-      }
-
-      @Override
-      public void mouseEntered(MouseEvent e) {
-        incrementButton.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
-      }
-
-      @Override
-      public void mouseExited(MouseEvent e) {
-        incrementButton.setBorder(null);
-      }
-    });
     incrementButton.setBounds(0, 0, 26, 15);
-    panel.add(incrementButton);
     incrementButton.setVerticalAlignment(SwingConstants.BOTTOM);
     incrementButton.setHorizontalTextPosition(SwingConstants.CENTER);
     incrementButton.setHorizontalAlignment(SwingConstants.CENTER);
+    incrementButton.addMouseListener(new EmoMouse(this, "increment"));
 
     decrementButton = new JLabel("v");
-    decrementButton.addMouseListener(new MouseAdapter() {
-      @Override
-      public void mouseClicked(MouseEvent e) {
-        try {
-          double x = Double.parseDouble(outputTextBox.getText());
-
-          double value = 0.00;
-          if (!isFrequency && x - step > 0.0) {
-            value = x - step;
-          } else if (isFrequency){
-            value = 0.01;
-            if (x - step > 0.01) {
-              value = x - step;
-            }
-          }
-          formatDoubleFirst(value);
-        } catch (NumberFormatException exception) {
-          outputTextBox.setForeground(Color.RED);
-          outputTextBox.selectAll();
-        }
-      }
-
-      @Override
-      public void mouseEntered(MouseEvent e) {
-        decrementButton.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
-      }
-
-      @Override
-      public void mouseExited(MouseEvent e) {
-        decrementButton.setBorder(null);
-      }
-    });
     decrementButton.setBounds(0, 15, 26, 15);
-    panel.add(decrementButton);
     decrementButton.setVerticalAlignment(SwingConstants.TOP);
     decrementButton.setHorizontalTextPosition(SwingConstants.CENTER);
     decrementButton.setHorizontalAlignment(SwingConstants.CENTER);
+    decrementButton.addMouseListener(new EmoMouse(this, "decrement"));
+
+    panel.add(decrementButton);
+    panel.add(incrementButton);
   }
 
   private void formatDoubleFirst(double value) {
@@ -143,5 +85,50 @@ public class UpDownButton extends JPanel {
 
   public String getOutputText() {
     return outputTextBox.getText();
+  }
+
+  public void incrementOutputText() {
+    try {
+      double x = Double.parseDouble(outputTextBox.getText());
+      double value = 0.0;
+      if (!isFrequency && x + step > 1.0) {
+        value = 1.0;
+      } else {
+        value = x + step;
+      }
+
+      formatDoubleFirst(value);
+    } catch (NumberFormatException exception) {
+      outputTextBox.setForeground(Color.RED);
+      outputTextBox.selectAll();
+    }
+  }
+
+  public void decrementOutputText() {
+    try {
+      double x = Double.parseDouble(outputTextBox.getText());
+
+      double value = 0.00;
+      if (!isFrequency && x - step > 0.0) {
+        value = x - step;
+      } else if (isFrequency) {
+        value = 0.01;
+        if (x - step > 0.01) {
+          value = x - step;
+        }
+      }
+      formatDoubleFirst(value);
+    } catch (NumberFormatException exception) {
+      outputTextBox.setForeground(Color.RED);
+      outputTextBox.selectAll();
+    }
+  }
+
+  public void showHideBorder(JLabel clickedButton, boolean needsBorder) {
+    if (needsBorder) {
+      clickedButton.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
+    } else {
+      clickedButton.setBorder(null);
+    }
   }
 }
