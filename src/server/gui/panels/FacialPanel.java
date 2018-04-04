@@ -30,6 +30,7 @@ public class FacialPanel extends JPanel {
 
   private double lookingRight;
   private double eyebrowRaise;
+  private double eyebrowFurrow;
   private double lookingLeft;
   private double lookingDown;
   private double lookingUp;
@@ -40,7 +41,10 @@ public class FacialPanel extends JPanel {
   private double smile;
   private double clench;
   private double laugh;
-
+  
+  private int eyeclickCount = 0;
+  private Double eyeActiveValue;
+  
   public FacialPanel() {
     setBounds(0, 0, 440, 150);
     initialize();
@@ -60,7 +64,7 @@ public class FacialPanel extends JPanel {
     lowerfaceupdownButton.setVisible(true);
 
     upperfaceComboBox = new JComboBox<String>();
-
+   
     upperfaceComboBox.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
 
@@ -68,12 +72,12 @@ public class FacialPanel extends JPanel {
         String upperbuttonValue = upperfaceupdownButton.getOutputText();
         double upperfaceValue = Double.parseDouble(upperbuttonValue);
         if (Item.equals("Raise Brow")) {
-          lookingUp = upperfaceValue;
+        	eyebrowRaise = upperfaceValue;
           // System.out.println(upperfaceValue +","+ Item); //test
         }
 
         if (Item.equals("Furrow Brow")) {
-          lookingDown = upperfaceValue;
+        	eyebrowFurrow = upperfaceValue;
           // System.out.println(upperfaceValue +","+ Item); //test
         }
       }
@@ -100,7 +104,7 @@ public class FacialPanel extends JPanel {
         } else if (Item.equals("Clench")) {
           clench = lowerfaceValue;
         } else if (Item.equals("Smirk Left")) {
-          lookingLeft = lowerfaceValue;
+          lookingUp = lowerfaceValue;
         } else if (Item.equals("Smirk Right")) {
           lookingRight = lowerfaceValue;
         } else if (Item.equals("Laugh")) {
@@ -132,6 +136,50 @@ public class FacialPanel extends JPanel {
         new String[] { "Blink", "Wink Left", "Wink Right", "Look Left", "Look Right" }));
 
     eyeActive = new JRadioButton("Active");
+    
+    eyeActive.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+    		
+    	if(eyeclickCount % 2 == 0) {
+    	  eyeActive.setActionCommand("1");
+    	}else {
+    	  eyeActive.setActionCommand("0");
+    		}
+    		
+    	  eyeActiveValue = Double.parseDouble(eyeActive.getActionCommand());
+    		
+    	  eyeclickCount++;
+    	  //System.out.println("eye sectioon:"+ eyeActiveValue);		//test
+    	}
+    });
+    
+    eyecomboBox.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+
+    	String Item = eyecomboBox.getSelectedItem().toString();
+    	eyeActiveValue =  Double.parseDouble(eyeActive.getActionCommand());
+		//System.out.println(eyeActiveValue);						
+		if(Item.equals("Blink")) {
+		  blink = eyeActiveValue;			
+		  //System.out.println(blink +","+ Item);  //test				
+		}else if(Item.equals("Wink Left")) {
+		  leftWink = eyeActiveValue;
+		 // System.out.println(leftWink +","+ Item);   //test			
+		}else if(Item.equals("Wink Right")){
+		  rightWink = eyeActiveValue;			
+		  //System.out.println(rightWink +","+ Item);   //test			
+		}else if(Item.equals("Look Left")){
+		  lookingLeft = eyeActiveValue;		
+		  System.out.println(lookingLeft +","+ Item);   //test			
+		}else if(Item.equals("Look Right")) {
+		  lookingRight = eyeActiveValue;				
+		  //System.out.println(lookingRight +","+ Item);   //test
+		}else {				
+		}
+      }
+   });
+    
+    
     eyeActive.setBounds(140, 105, 80, 20);
 
     chckbxNewCheckBox = new JCheckBox("Auto Reset");
