@@ -33,16 +33,47 @@ public class EmoAction implements ActionListener {
   public void actionPerformed(ActionEvent arg0) {
     if (actionClass instanceof InteractivePanel) {
       ((InteractivePanel) actionClass).triggerStartStopSend();
-    } else if (item == "upperfaceComboBox") {
-      upperfaceAction();
-    } else if (item == "lowerfaceComboBox") {
-      lowerfaceAction();
-    } else if (item == "") {
+      
+    } else if (actionClass instanceof FacialPanel) {
+    	if (item == "upperfaceComboBox") {
+    	  ((FacialPanel) actionClass).upperfaceAction();
+    	}
+    	
+    	else if (item == "lowerfaceComboBox") {
+    	  ((FacialPanel) actionClass).lowerfaceAction();
+    	  
+       } else if (item == "eyeComboBox") {
+    	  ((FacialPanel) actionClass).eyecomboBoxAction(); 
+    	  
+       }else if(item == "eyeActive") {
+    	   ((FacialPanel) actionClass).eyeAction(); 
+       }
+    	
     } else if (actionClass instanceof EmoLogPanel) {
       ((EmoLogPanel) actionClass).clearConsolePanel();
     }
   }
-
+   
+  
+  
+  /*
+} else if (item == "upperfaceComboBox") {
+	if (actionClass instanceof FacialPanel) {
+		
+		((FacialPanel) actionClass)¡£upperfaceAction();
+	}
+	} else if (item == "lowerfaceComboBox") {
+  lowerfaceAction();
+} else if (item == "") {
+} else if (actionClass instanceof EmoLogPanel) {
+  ((EmoLogPanel) actionClass).clearConsolePanel();
+}
+}
+*/
+  
+  
+  
+  /*
   public void upperfaceAction() {
     if (actionClass instanceof FacialPanel) {
 
@@ -95,4 +126,6 @@ public class EmoAction implements ActionListener {
       }
     }
   }
+  
+ */ 
 }
