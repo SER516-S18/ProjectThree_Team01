@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
+import server.gui.actions.EmoAction;
 import util.UpDownButton;
 
 public class FacialPanel extends JPanel {
@@ -46,61 +47,135 @@ public class FacialPanel extends JPanel {
   private Double eyeActiveValue;
   
   
-  
-  public double getLookingRight() {
+
+public double getLookingRight() {
 	return lookingRight;
-  }
+}
 
 
 
-  public double getEyebrowRaise() {
-    return eyebrowRaise;
-  }
+public double getEyebrowRaise() {
+	return eyebrowRaise;
+}
+
+public void setEyebrowRaise(double eyebrowRaise) {
+	this.eyebrowRaise = eyebrowRaise;
+}
+
+public double getEyebrowFurrow() {
+	return eyebrowFurrow;
+}
+
+public void setEyebrowFurrow(double eyebrowFurrow) {
+	this.eyebrowFurrow = eyebrowFurrow;
+}
+
+public double getLookingLeft() {
+	return lookingLeft;
+}
 
 
-  public double getEyebrowFurrow() {
-    return eyebrowFurrow;
-  }
+
+public void setLookingLeft(double lookingLeft) {
+	this.lookingLeft = lookingLeft;
+}
 
 
-  public double getLookingLeft() {
-    return lookingLeft;
-  }
+
+public double getLookingDown() {
+	return lookingDown;
+}
 
 
-  public double getLookingDown() {
-    return lookingDown;
-  }
+
+public void setLookingDown(double lookingDown) {
+	this.lookingDown = lookingDown;
+}
 
 
-  public double getLookingUp() {
-    return lookingUp;
- }
+
+public double getLookingUp() {
+	return lookingUp;
+}
 
 
-  public double getRightWink() {
-    return rightWink;
-  }
+
+public void setLookingUp(double lookingUp) {
+	this.lookingUp = lookingUp;
+}
 
 
-  public double getLeftWink() {
-    return leftWink;
-  }
+
+public double getLeftWink() {
+	return leftWink;
+}
 
 
-  public double getBlink() {
-    return blink;
-  }
+
+public void setLeftWink(double leftWink) {
+	this.leftWink = leftWink;
+}
 
 
-  public double getSmile() {
-    return smile;
-  }
+
+public double getBlink() {
+	return blink;
+}
 
 
-  public double getLaugh() {
-    return laugh;
-  }
+
+public void setBlink(double blink) {
+	this.blink = blink;
+}
+
+
+
+public double getClench() {
+	return clench;
+}
+
+
+
+public void setClench(double clench) {
+	this.clench = clench;
+}
+
+
+
+public double getLaugh() {
+	return laugh;
+}
+
+
+
+public void setLaugh(double laugh) {
+	this.laugh = laugh;
+}
+
+
+
+public void setUpperfaceComboBox(JComboBox<String> upperfaceComboBox) {
+	this.upperfaceComboBox = upperfaceComboBox;
+}
+
+
+
+public UpDownButton getUpperfaceupdownButton() {
+	return upperfaceupdownButton;
+}
+
+
+
+public void setUpperfaceupdownButton(UpDownButton upperfaceupdownButton) {
+	this.upperfaceupdownButton = upperfaceupdownButton;
+}
+
+
+
+public JComboBox<String> getUpperfaceComboBox() {
+	return upperfaceComboBox;
+}
+
 
 
 public FacialPanel() {
@@ -122,7 +197,9 @@ public FacialPanel() {
     lowerfaceupdownButton.setVisible(true);
 
     upperfaceComboBox = new JComboBox<String>();
-   
+    
+    upperfaceComboBox.addActionListener(new EmoAction(this));
+   /*
     upperfaceComboBox.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
 
@@ -140,7 +217,7 @@ public FacialPanel() {
         }
       }
     });
-
+  */
     upperfaceComboBox.setBounds(10, 30, 125, 30);
     upperfaceComboBox
         .setModel(new DefaultComboBoxModel<String>(new String[] { "Raise Brow", "Furrow Brow" }));
@@ -254,4 +331,11 @@ public FacialPanel() {
     add(chckbxNewCheckBox);
     add(eyeActive);
   }
+
+
+
+
+
+
+
 }
