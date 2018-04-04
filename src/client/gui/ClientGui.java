@@ -56,7 +56,7 @@ public class ClientGui extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu menu = new JMenu("MENU");
-		menu.setIcon(new ImageIcon("icons8-menu-10.png"));
+		menu.setIcon(new ImageIcon("img/icons8-menu-10.png"));
 		menuBar.add(menu);
 		
 		JMenu applicationsOption = new JMenu("APPLICATION");
@@ -121,7 +121,7 @@ public class ClientGui extends JFrame {
 		
 		
 		panel.add(panelEpocElectrodes);
-		ImageIcon iconHead = new ImageIcon("head.jpg");
+		ImageIcon iconHead = new ImageIcon("img/head.jpg");
 	    	JLabel labelTimerHead = new JLabel();
 	    	labelTimerHead.setIcon(iconHead);
 	    	labelTimerHead.setBounds(10, 71, 604, 516);
@@ -145,7 +145,7 @@ public class ClientGui extends JFrame {
 		
 		panelSetupAndPairing.setLayout(null);
 		
-		ImageIcon iconStateSymbol = new ImageIcon("bottomRightText.jpg");
+		ImageIcon iconStateSymbol = new ImageIcon("img/bottomRightText.jpg");
 	  	JLabel labelTimerStateSymbol = new JLabel();
 	  	labelTimerStateSymbol.setIcon(iconStateSymbol);
 	  	labelTimerStateSymbol.setBounds(0, 352, 604, 229);
@@ -187,7 +187,7 @@ public class ClientGui extends JFrame {
 		panelTimer.setBounds(1122, 20, 53, 25);
 		panel.add(panelTimer);
 		
-		ImageIcon timerIcon = new ImageIcon("icons8-timer-19.png");
+		ImageIcon timerIcon = new ImageIcon("img/icons8-timer-19.png");
 	    	JLabel labelTimerImage = new JLabel();
 	    	labelTimerImage.setForeground(Color.BLACK);
 	    	labelTimerImage.setIcon(timerIcon);
