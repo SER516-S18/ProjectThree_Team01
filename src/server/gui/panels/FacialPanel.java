@@ -45,7 +45,65 @@ public class FacialPanel extends JPanel {
   private int eyeclickCount = 0;
   private Double eyeActiveValue;
   
-  public FacialPanel() {
+  
+  
+  public double getLookingRight() {
+	return lookingRight;
+  }
+
+
+
+  public double getEyebrowRaise() {
+    return eyebrowRaise;
+  }
+
+
+  public double getEyebrowFurrow() {
+    return eyebrowFurrow;
+  }
+
+
+  public double getLookingLeft() {
+    return lookingLeft;
+  }
+
+
+  public double getLookingDown() {
+    return lookingDown;
+  }
+
+
+  public double getLookingUp() {
+    return lookingUp;
+ }
+
+
+  public double getRightWink() {
+    return rightWink;
+  }
+
+
+  public double getLeftWink() {
+    return leftWink;
+  }
+
+
+  public double getBlink() {
+    return blink;
+  }
+
+
+  public double getSmile() {
+    return smile;
+  }
+
+
+  public double getLaugh() {
+    return laugh;
+  }
+
+
+public FacialPanel() {
     setBounds(0, 0, 440, 150);
     initialize();
     setLayout(null);
