@@ -65,4 +65,8 @@ public class MenuBarPanel extends JPanel {
   public void showExitMenu() {
     EmotivComposer.showMenuItems();
   }
+
+  public void showSignalMenu() {
+    EmotivComposer.showSignalItems();
+  }
 }

@@ -10,7 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
-public class SignalMenu extends JPanel {
+import server.gui.EmotivComposer;
+
+public class SignalMenuPanel extends JPanel {
 
   private static final long serialVersionUID = 744880228052339810L;
 
@@ -23,9 +25,9 @@ public class SignalMenu extends JPanel {
   private JLabel goodIcon;
   private JLabel goodSignalLabel;
 
-  private ClassLoader loader;
+  private ClassLoader loader = getClass().getClassLoader();;
 
-  public SignalMenu() {
+  public SignalMenuPanel() {
     setBounds(0, 0, 200, 101);
     setLayout(null);
     initialize();
@@ -38,6 +40,7 @@ public class SignalMenu extends JPanel {
     goodSignalPanel.setLayout(null);
 
     goodIcon = new JLabel(new ImageIcon(loader.getResource("strong.png")));
+    goodIcon.setIcon(new ImageIcon(loader.getResource("strong.png")));
     goodIcon.setBounds(1, 1, 48, 48);
 
     goodSignalLabel = new JLabel("Good Signal");
@@ -74,5 +77,9 @@ public class SignalMenu extends JPanel {
     add(goodSignalPanel);
     add(separator);
     add(weakSignalPanel);
+  }
+
+  public void showSignalMenu() {
+    EmotivComposer.showSignalItems();
   }
 }

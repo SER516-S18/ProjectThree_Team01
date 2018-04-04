@@ -30,7 +30,7 @@ public class EmoMouse implements MouseListener {
       if (icon.contains("menu.png")) {
         ((MenuBarPanel) actionClass).showExitMenu();
       } else if (icon.contains("strong.png") || icon.contains("weak.png")) {
-        // Need to implement once we get the signal going
+        ((MenuBarPanel) actionClass).showSignalMenu();
       }
     }
   }

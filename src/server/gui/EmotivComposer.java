@@ -18,6 +18,7 @@ import server.gui.panels.FacialPanel;
 import server.gui.panels.HamburgerMenuPanel;
 import server.gui.panels.InteractivePanel;
 import server.gui.panels.MenuBarPanel;
+import server.gui.panels.SignalMenuPanel;
 import server.sys.ServerThread;
 import server.sys.ServerWebSocket;
 import server.sys.WorkerThread;
@@ -53,6 +54,7 @@ public class EmotivComposer extends JFrame {
   private static MenuBarPanel menuBarPanel;
   private static EmoLogPanel emoLogPanel;
   private static HamburgerMenuPanel exitMenu;
+  private static SignalMenuPanel signalMenu;
   private static JPanel startPanel;
 
   public static boolean isAutoResetChecked = false;
@@ -80,6 +82,7 @@ public class EmotivComposer extends JFrame {
 
   private void initialize() {
     exitMenu = new HamburgerMenuPanel();
+    signalMenu = new SignalMenuPanel();
     menuBarPanel = new MenuBarPanel();
     startPanel = new JPanel();
 
@@ -98,7 +101,9 @@ public class EmotivComposer extends JFrame {
 
     exitMenu.setBounds(0, 50, 200, 101);
     exitMenu.setVisible(false);
-    contentPane.add(exitMenu);
+
+    signalMenu.setBounds(250, 50, 200, 101);
+    signalMenu.setVisible(false);
 
     menuBarPanel.setSize(450, 50);
     menuBarPanel.setSize(450, 50);
@@ -161,6 +166,8 @@ public class EmotivComposer extends JFrame {
     tabbedPane.setSelectedIndex(1);
     lowerTabbedPane.setSelectedIndex(1);
 
+    contentPane.add(exitMenu);
+    contentPane.add(signalMenu);
     contentPane.add(lowerPanel);
     contentPane.add(startPanel);
     contentPane.add(menuBarPanel);
@@ -218,5 +225,9 @@ public class EmotivComposer extends JFrame {
     exitMenu.setVisible(!exitMenu.isVisible());
     System.out.println("zorder exit: " + instance.getComponentZOrder(exitMenu));
     System.out.println("zorder startup: " + instance.getComponentZOrder(startPanel));
+  }
+
+  public static void showSignalItems() {
+    signalMenu.setVisible(!signalMenu.isVisible());
   }
 }
