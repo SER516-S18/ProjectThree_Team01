@@ -60,14 +60,14 @@ public class UpDownButton extends JPanel {
     incrementButton.setVerticalAlignment(SwingConstants.BOTTOM);
     incrementButton.setHorizontalTextPosition(SwingConstants.CENTER);
     incrementButton.setHorizontalAlignment(SwingConstants.CENTER);
-    incrementButton.addMouseListener(new EmoMouse(this, "increment"));
+    incrementButton.addMouseListener(new EmoMouse(this, incrementButton));
 
     decrementButton = new JLabel("v");
     decrementButton.setBounds(0, 15, 26, 15);
     decrementButton.setVerticalAlignment(SwingConstants.TOP);
     decrementButton.setHorizontalTextPosition(SwingConstants.CENTER);
     decrementButton.setHorizontalAlignment(SwingConstants.CENTER);
-    decrementButton.addMouseListener(new EmoMouse(this, "decrement"));
+    decrementButton.addMouseListener(new EmoMouse(this, decrementButton));
 
     panel.add(decrementButton);
     panel.add(incrementButton);

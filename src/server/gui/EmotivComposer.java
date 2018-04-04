@@ -1,8 +1,6 @@
 package server.gui;
 
 import java.awt.Component;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,6 +11,7 @@ import javax.websocket.DeploymentException;
 
 import org.glassfish.tyrus.server.Server;
 
+import server.gui.actions.EmoWindow;
 import server.gui.panels.EmoLogPanel;
 import server.gui.panels.EmoStatePanel;
 import server.gui.panels.FacialPanel;
@@ -25,13 +24,13 @@ import server.sys.WorkerThread;
 import util.Constants;
 
 /**
- * The purpose of this class is to provide the GUI handler for the server and serves as the
- * main interaction between the user, server and client.
+ * The purpose of this class is to provide the GUI handler for the server and
+ * serves as the main interaction between the user, server and client.
  * 
  * @author Cephas Armstrong-Mensah
  *
  */
-public class EmotivComposer extends JFrame implements WindowListener {
+public class EmotivComposer extends JFrame {
 
   private static final long serialVersionUID = 6196061116172281774L;
   private static EmotivComposer instance = null;
@@ -66,7 +65,7 @@ public class EmotivComposer extends JFrame implements WindowListener {
   };
 
   private EmotivComposer() {
-    addWindowListener(this);
+    addWindowListener(new EmoWindow(this));
     setTitle("Emotiv Composer Project 3");
     setBounds(100, 100, 450, 800);
 
@@ -166,7 +165,7 @@ public class EmotivComposer extends JFrame implements WindowListener {
     contentPane.add(startPanel);
     contentPane.add(menuBarPanel);
 
-    // startServer();
+    startServer();
   }
 
   /**
@@ -207,38 +206,9 @@ public class EmotivComposer extends JFrame implements WindowListener {
     emoStatePanel.setTimeTrackerLabelText(str);
   }
 
-  private synchronized void closeThread() {
+  public synchronized void closeThread() {
     notify();
-  }
-
-  @Override
-  public void windowOpened(WindowEvent e) {
-  }
-
-  @Override
-  public void windowClosing(WindowEvent e) {
-    closeThread();
     System.out.println("Server is closing...");
     System.exit(0);
-  }
-
-  @Override
-  public void windowClosed(WindowEvent e) {
-  }
-
-  @Override
-  public void windowIconified(WindowEvent e) {
-  }
-
-  @Override
-  public void windowDeiconified(WindowEvent e) {
-  }
-
-  @Override
-  public void windowActivated(WindowEvent e) {
-  }
-
-  @Override
-  public void windowDeactivated(WindowEvent e) {
   }
 }
