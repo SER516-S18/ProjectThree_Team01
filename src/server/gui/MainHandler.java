@@ -7,7 +7,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import server.gui.panels.EmoLogPanel;
 import server.gui.panels.EmoStatePanel;
 import server.gui.panels.FacialPanel;
-import server.gui.panels.HamburgerMenuPanel;
+import server.gui.panels.HamburgerMenu;
 import server.gui.panels.MenuBarPanel;
 
 /**
@@ -38,7 +38,7 @@ public class MainHandler {
 
   private static void createGUIComponents() {
     // TODO Auto-generated method stub
-    HamburgerMenuPanel exitMenu = new HamburgerMenuPanel();
+    HamburgerMenu exitMenu = new HamburgerMenu();
     MenuBarPanel menuBarPanel = new MenuBarPanel();
     JPanel startPanel = new JPanel();
     JPanel emostate = new JPanel();

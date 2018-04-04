@@ -80,6 +80,15 @@ public class SignalMenuPanel extends JPanel {
   }
 
   public void setVisibleFalse() {
-    EmotivComposer.hideSignalItems();
+    EmotivComposer.hideMenuItems();
+  }
+
+  public void triggerActionEvent(JLabel source) {
+    System.out.println("Source: " + source);
+    if (source.getText().contains("strong") || source.getText().toLowerCase().contains("Good")) {
+      System.out.println("Strong Signal");
+    } else {
+      System.out.println("Weak Signal");
+    }
   }
 }

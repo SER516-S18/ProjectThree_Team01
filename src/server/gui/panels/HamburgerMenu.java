@@ -3,6 +3,7 @@ package server.gui.panels;
 import java.awt.Component;
 import java.awt.Font;
 
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
@@ -12,10 +13,11 @@ import server.gui.EmotivComposer;
 import server.gui.actions.EmoMouse;
 import util.Constants;
 
-public class HamburgerMenuPanel extends JPanel {
+public class HamburgerMenu extends JDialog {
 
   private static final long serialVersionUID = 744880228052339810L;
 
+  private EmotivComposer parent;
   private JPanel aboutPanel;
   private JPanel quitPanel;
   private JSeparator separator;
@@ -23,9 +25,19 @@ public class HamburgerMenuPanel extends JPanel {
   private JLabel aboutLabel;
   private JLabel quitLabel;
 
-  public HamburgerMenuPanel() {
-    setBounds(0, 0, 200, 101);
-    setLayout(null);
+  private JPanel contentPane;
+
+  public HamburgerMenu(EmotivComposer parent) {
+    super(parent);
+    this.parent = parent;
+    setLocationRelativeTo(parent);
+    setUndecorated(true);
+
+    contentPane = new JPanel();
+    contentPane.setBounds(0, 0, 200, 101);
+    contentPane.setLayout(null);
+    setContentPane(contentPane);
+
     initialize();
   }
 
@@ -51,6 +63,7 @@ public class HamburgerMenuPanel extends JPanel {
     aboutLabel.setAlignmentY(Component.TOP_ALIGNMENT);
     aboutLabel.setFont(new Font("Dialog", Font.BOLD, 16));
     aboutLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    aboutLabel.addMouseListener(new EmoMouse(this));
     aboutPanel.add(aboutLabel);
 
     quitLabel = new JLabel("Quit");
@@ -58,16 +71,30 @@ public class HamburgerMenuPanel extends JPanel {
     quitLabel.setAlignmentY(Component.TOP_ALIGNMENT);
     quitLabel.setFont(new Font("Dialog", Font.BOLD, 16));
     quitLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    quitLabel.addMouseListener(new EmoMouse(this));
     quitPanel.add(quitLabel);
 
-    add(aboutPanel);
-    add(separator);
-    add(quitPanel);
+    contentPane.add(aboutPanel);
+    contentPane.add(separator);
+    contentPane.add(quitPanel);
 
     addMouseListener(new EmoMouse(this));
   }
 
-  public void setVisibleFalse() {
-    EmotivComposer.hideMenuItems();
+  public void setVisibleFalse(Component exited) {
+    System.out.println("Component: " + exited.getClass());
+    if (!(exited instanceof JPanel) && !(exited instanceof JLabel) && !(exited instanceof JSeparator)) {
+      EmotivComposer.hideMenuItems();
+    } else {
+      System.out.println("Something else");
+    }
+  }
+
+  public void triggerActionEvent(JLabel source) {
+    if (source.getText().equalsIgnoreCase("quit")) {
+      parent.closeThread();
+    } else {
+      System.out.println("About Action Happened");
+    }
   }
 }

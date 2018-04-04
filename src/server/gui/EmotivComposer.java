@@ -15,7 +15,7 @@ import server.gui.actions.EmoWindow;
 import server.gui.panels.EmoLogPanel;
 import server.gui.panels.EmoStatePanel;
 import server.gui.panels.FacialPanel;
-import server.gui.panels.HamburgerMenuPanel;
+import server.gui.panels.HamburgerMenu;
 import server.gui.panels.InteractivePanel;
 import server.gui.panels.MenuBarPanel;
 import server.gui.panels.SignalMenuPanel;
@@ -25,8 +25,8 @@ import server.sys.WorkerThread;
 import util.Constants;
 
 /**
- * The purpose of this class is to provide the GUI handler for the server and
- * serves as the main interaction between the user, server and client.
+ * The purpose of this class is to provide the GUI handler for the server and serves as the
+ * main interaction between the user, server and client.
  * 
  * @author Cephas Armstrong-Mensah
  *
@@ -53,7 +53,7 @@ public class EmotivComposer extends JFrame {
   private static FacialPanel emoFacialPanel;
   private static MenuBarPanel menuBarPanel;
   private static EmoLogPanel emoLogPanel;
-  private static HamburgerMenuPanel exitMenu;
+  private static HamburgerMenu exitMenu;
   private static SignalMenuPanel signalMenu;
   private static JPanel startPanel;
 
@@ -81,7 +81,6 @@ public class EmotivComposer extends JFrame {
   }
 
   private void initialize() {
-    exitMenu = new HamburgerMenuPanel();
     signalMenu = new SignalMenuPanel();
     menuBarPanel = new MenuBarPanel();
     startPanel = new JPanel();
@@ -98,9 +97,6 @@ public class EmotivComposer extends JFrame {
     emoFacialPanel = new FacialPanel();
     emoStatePanel = new EmoStatePanel();
     emoLogPanel = new EmoLogPanel();
-
-    exitMenu.setBounds(0, 50, 200, 101);
-    exitMenu.setVisible(false);
 
     signalMenu.setBounds(250, 50, 200, 101);
     signalMenu.setVisible(false);
@@ -166,7 +162,7 @@ public class EmotivComposer extends JFrame {
     tabbedPane.setSelectedIndex(1);
     lowerTabbedPane.setSelectedIndex(1);
 
-    contentPane.add(exitMenu);
+    // contentPane.add(exitMenu);
     contentPane.add(signalMenu);
     contentPane.add(lowerPanel);
     contentPane.add(startPanel);
@@ -222,7 +218,12 @@ public class EmotivComposer extends JFrame {
   }
 
   public static void showMenuItems() {
-    exitMenu.setVisible(!exitMenu.isVisible());
+    exitMenu = new HamburgerMenu(instance);
+    exitMenu.setSize(200, 101);
+    exitMenu.setLocation(instance.getX() + 5, instance.getY() + 75);
+    exitMenu.setVisible(true);
+    // exitMenu.setVisible(!exitMenu.isVisible());
+    // instance.repaint();
   }
 
   public static void showSignalItems() {
