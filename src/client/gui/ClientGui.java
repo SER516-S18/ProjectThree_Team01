@@ -12,6 +12,17 @@ import java.awt.Font;
 import javax.swing.border.LineBorder;
 import javax.swing.JTextArea;
 
+/**
+ * The FacePanel implements a JPanel to create a Panel for displaying 
+ * different facial expressions
+ * 
+ * @author Chetanya Ahuja
+ * @author Group 1 #001 - #013
+ * @version 1.0
+ * @since 2018-04-04
+ *
+ */
+
 public class ClientGui extends JFrame {
 	JFrame f = new JFrame();
 
