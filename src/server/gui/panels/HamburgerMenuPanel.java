@@ -15,7 +15,6 @@ public class HamburgerMenuPanel extends JPanel {
 
   private static final long serialVersionUID = 744880228052339810L;
 
-  private ClassLoader loader = getClass().getClassLoader();
   private JLabel aboutLabel;
   private JSeparator separator;
   private JLabel quitLabel;

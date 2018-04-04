@@ -13,10 +13,7 @@ import util.UpDownButton;
 
 public class EmoStatePanel extends JPanel {
 
-  /**
-   * 
-   */
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = -283118474254668985L;
   private JLabel lblTime;
   private JLabel timeTrackerLabel;
   private JLabel secondsLabel;
