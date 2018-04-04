@@ -3,7 +3,17 @@ package server.gui.actions;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import javax.swing.JFrame;
+
+import server.gui.EmotivComposer;
+
 public class EmoWindow implements WindowListener {
+
+  private JFrame window;
+
+  public EmoWindow(JFrame window) {
+    this.window = window;
+  }
 
   @Override
   public void windowActivated(WindowEvent arg0) {
@@ -19,8 +29,9 @@ public class EmoWindow implements WindowListener {
 
   @Override
   public void windowClosing(WindowEvent arg0) {
-    // TODO Auto-generated method stub
-
+    if (window instanceof EmotivComposer) {
+      ((EmotivComposer) window).closeThread();
+    }
   }
 
   @Override
