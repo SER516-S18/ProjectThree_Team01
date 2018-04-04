@@ -12,7 +12,7 @@ public class EmoAction implements ActionListener {
   private JPanel actionClass;
   private String item;
 
-  public EmoAction(JPanel actionItem) {
+  public EmoAction(JPanel actionClass) {
     this.actionClass = actionClass;
   }
 

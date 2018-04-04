@@ -190,6 +190,8 @@ public class EmotivComposer extends JFrame {
     worker.setButtonStatus(strText);
     worker.setInterval(Double.parseDouble(ip.getOutputText()));
 
+    System.out.println("Getting here");
+
     if (isAutoResetChecked) {
       if (strText.equalsIgnoreCase("Start")) {
         ip.setInteractiveFields("Stop", false);
