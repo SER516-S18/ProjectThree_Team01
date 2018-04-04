@@ -48,7 +48,7 @@ public class FacialPanel extends JPanel {
   
   
 
-public FacialPanel() {
+  public FacialPanel() {
     setBounds(0, 0, 440, 150);
     initialize();
     setLayout(null);
@@ -111,7 +111,7 @@ public FacialPanel() {
     	  eyeActive.setActionCommand("1");
     	}else {
     	  eyeActive.setActionCommand("0");
-    		}
+    	}
     		
     	  eyeActiveValue = Double.parseDouble(eyeActive.getActionCommand());
     		
@@ -122,7 +122,6 @@ public FacialPanel() {
     
     eyecomboBox.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-
     	String Item = eyecomboBox.getSelectedItem().toString();
     	eyeActiveValue =  Double.parseDouble(eyeActive.getActionCommand());
 		//System.out.println(eyeActiveValue);						
@@ -146,7 +145,6 @@ public FacialPanel() {
       }
    });
     
-    
     eyeActive.setBounds(140, 105, 80, 20);
 
     chckbxNewCheckBox = new JCheckBox("Auto Reset");
@@ -164,9 +162,6 @@ public FacialPanel() {
     add(eyeActive);
   }
   
-  
-  
-
 public JComboBox<String> getUpperfaceComboBox() {
 	return upperfaceComboBox;
 }
