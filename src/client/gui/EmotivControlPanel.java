@@ -2,7 +2,11 @@ package client.gui;
 
 import java.awt.Dimension;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
@@ -13,6 +17,8 @@ import client.sys.ClientSubject;
 import client.sys.ClientThread;
 import data.EmotivData;
 import interfaces.ClientObserver;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class EmotivControlPanel extends JFrame implements ClientObserver {
   private static final long serialVersionUID = 8528760467775723790L;
@@ -46,6 +52,61 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
   private EmotivControlPanel() {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setBounds(100, 100, 982, 919);
+    
+    //here
+    JMenuBar menuBar = new JMenuBar();
+	setJMenuBar(menuBar);
+	
+	JMenu menu = new JMenu("MENU");
+	menu.setIcon(new ImageIcon("img/icons8-menu-10.png"));
+	menuBar.add(menu);
+	
+	JMenu applicationsOption = new JMenu("APPLICATION");
+	menu.add(applicationsOption);
+	
+	JMenuItem composerOption = new JMenuItem("EMOTIV Xavier Composer");
+	applicationsOption.add(composerOption);
+	
+	JMenuItem screenshotOption = new JMenuItem("Save Current Screnshot");
+	applicationsOption.add(screenshotOption);
+	
+	JMenu connectOption = new JMenu("CONNECT");
+	menu.add(connectOption);
+	
+	JMenuItem connectComposer = new JMenuItem("Connect Composer");
+	connectComposer.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			ConnectToServerFrame connectFrame = new ConnectToServerFrame();
+			connectFrame.setVisible(true);
+		}
+	});
+	connectOption.add(connectComposer);
+	
+	JMenuItem reconnectComposer = new JMenuItem("Reconnect Composer");
+	connectOption.add(reconnectComposer);
+	
+	JMenu detectionsOption = new JMenu("DETECTIONS");
+	menu.add(detectionsOption);
+	
+	JMenuItem facialExpressions = new JMenuItem("Facial Expressions");
+	detectionsOption.add(facialExpressions);
+	
+	JMenuItem performanceMetrices = new JMenuItem("Performance Metrics");
+	detectionsOption.add(performanceMetrices);
+	
+	JMenu helpOption = new JMenu("HELP");
+	menu.add(helpOption);
+	
+	JMenuItem emotivOnGithub = new JMenuItem("Emotiv On Github");
+	helpOption.add(emotivOnGithub);
+	
+	JMenuItem aboutOption = new JMenuItem("About Xavier Control Panel");
+	helpOption.add(aboutOption);
+    //here
+
+    
+    //ClientHamburgerMenu menu = new ClientHamburgerMenu();
+    //setJMenuBar(menu);
     contentPane = new JPanel();
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     setContentPane(contentPane);
@@ -63,6 +124,8 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
     facialExpressionPanel.add(graphPanel);
     
     facePanel = new FacePanel();
+    facePanel.setLocation(0, 200);
+    facePanel.setSize(450, 384);
     facialExpressionPanel.add(facePanel);
 
     displayGraph = new DisplayGraph();
@@ -74,15 +137,11 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 
     graphPanel.add(displayGraph.chartPanel);
     graphPanel.setLayout(null);
-
-    // remove later
-    ConnectToServer();
-  }
-
-  private void ConnectToServer() {
+    
     ClientSubject.getInstance().addObserver(this);
-    new Thread(new ClientThread(uri)).start();
   }
+
+  
 
   @Override
   public void notifyObserver(EmotivData data) {

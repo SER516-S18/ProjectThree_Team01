@@ -26,6 +26,8 @@ public class ClientThread implements Runnable {
           Constants.PROTOCOL + uri + ':' + Constants.PORT + Constants.LINK + Constants.ENDPOINT));
     } catch (DeploymentException | URISyntaxException e) {
       throw new RuntimeException(e);
+    } catch (Exception e) {
+    	throw e;
     }
   }
 }
