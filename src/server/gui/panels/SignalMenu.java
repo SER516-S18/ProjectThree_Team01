@@ -14,9 +14,9 @@ import server.gui.EmotivComposer;
 import server.gui.actions.EmoMouse;
 
 /**
- * This class's purpose is to display the drop down menu items for the signals to either
- * denote good signal or weak signal and represented respectively by a wireless icon
- * showing signal strength
+ * This class's purpose is to display the drop down menu items for the signals to either denote
+ * good signal or weak signal and represented respectively by a wireless icon showing signal
+ * strength
  * 
  * @author Vihar Bhatt
  * @author Cephas Armstrong-Mensah
@@ -64,14 +64,12 @@ public class SignalMenu extends JDialog {
 
     goodIcon = new JLabel(new ImageIcon(loader.getResource("strong.png")));
     goodIcon.setBounds(1, 1, 48, 48);
-    goodIcon.addMouseListener(new EmoMouse(this, "strong"));
 
     goodSignalLabel = new JLabel("Good Signal");
     goodSignalLabel.setBounds(50, 0, 150, 50);
     goodSignalLabel.setHorizontalAlignment(SwingConstants.CENTER);
     goodSignalLabel.setFont(new Font("Dialog", Font.BOLD, 16));
     goodSignalLabel.setAlignmentY(0.0f);
-    goodSignalLabel.addMouseListener(new EmoMouse(this, "strong"));
 
     goodSignalPanel.add(goodIcon);
     goodSignalPanel.add(goodSignalLabel);
@@ -83,14 +81,12 @@ public class SignalMenu extends JDialog {
 
     weakIcon = new JLabel(new ImageIcon(loader.getResource("weak.png")));
     weakIcon.setBounds(1, 1, 48, 48);
-    weakIcon.addMouseListener(new EmoMouse(this, "weak"));
 
     weakSignalLabel = new JLabel("Weak Signal");
     weakSignalLabel.setBounds(50, 0, 150, 50);
     weakSignalLabel.setAlignmentY(Component.TOP_ALIGNMENT);
     weakSignalLabel.setFont(new Font("Dialog", Font.BOLD, 16));
     weakSignalLabel.setHorizontalAlignment(SwingConstants.CENTER);
-    weakSignalLabel.addMouseListener(new EmoMouse(this, "weak"));
 
     weakSignalPanel.add(weakIcon);
     weakSignalPanel.add(weakSignalLabel);
@@ -105,8 +101,8 @@ public class SignalMenu extends JDialog {
     dispose();
   }
 
-  public void triggerActionEvent(String switcher) {
-    if (switcher.equals("strong")) {
+  public void triggerActionEvent(int yPosition) {
+    if (yPosition < 51) {
       MenuBarPanel.setIconImage("strong.png");
     } else {
       MenuBarPanel.setIconImage("weak.png");

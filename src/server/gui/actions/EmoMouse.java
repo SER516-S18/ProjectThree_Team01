@@ -41,17 +41,17 @@ public class EmoMouse implements MouseListener {
     }
 
     System.out.println("Get source instance: " + arg0.getSource());
+    System.out.println("Component: " + arg0.getComponent());
     if (actionClass instanceof UpDownButton) {
       if (label.getText().trim() == "v")
         ((UpDownButton) actionClass).decrementOutputText();
       else
         ((UpDownButton) actionClass).incrementOutputText();
     } else if (actionClass instanceof HamburgerMenu) {
-      System.out.println("Hamburger instance");
-      ((HamburgerMenu) actionClass).triggerActionEvent(label);
+      ((HamburgerMenu) actionClass).triggerActionEvent(arg0.getY());
     } else if (actionClass instanceof SignalMenu) {
       System.out.println("SignalMenu instance");
-      ((SignalMenu) actionClass).triggerActionEvent(switcher);
+      ((SignalMenu) actionClass).triggerActionEvent(arg0.getY());
     } else if (actionClass instanceof MenuBarPanel) {
       System.out.println("MenuBarPanel instance");
       String icon = label.getIcon().toString();

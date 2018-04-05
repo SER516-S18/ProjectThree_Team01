@@ -14,8 +14,8 @@ import server.gui.actions.EmoMouse;
 import util.Constants;
 
 /**
- * This class's purpose is to display the drop down menu items for the hamburger icon
- * section. The menu items included are About and Quit.
+ * This class's purpose is to display the drop down menu items for the hamburger icon section.
+ * The menu items included are About and Quit.
  * 
  * @author Vihar Bhatt
  * @author Cephas Armstrong-Mensah
@@ -67,7 +67,7 @@ public class HamburgerMenu extends JDialog {
     aboutLabel.setAlignmentY(Component.TOP_ALIGNMENT);
     aboutLabel.setFont(new Font("Dialog", Font.BOLD, 16));
     aboutLabel.setHorizontalAlignment(SwingConstants.CENTER);
-    aboutLabel.addMouseListener(new EmoMouse(this));
+    // aboutLabel.addMouseListener(new EmoMouse(this));
     aboutPanel.add(aboutLabel);
 
     quitLabel = new JLabel("Quit");
@@ -75,7 +75,7 @@ public class HamburgerMenu extends JDialog {
     quitLabel.setAlignmentY(Component.TOP_ALIGNMENT);
     quitLabel.setFont(new Font("Dialog", Font.BOLD, 16));
     quitLabel.setHorizontalAlignment(SwingConstants.CENTER);
-    quitLabel.addMouseListener(new EmoMouse(this));
+    // quitLabel.addMouseListener(new EmoMouse(this));
     quitPanel.add(quitLabel);
 
     contentPane.add(aboutPanel);
@@ -87,12 +87,12 @@ public class HamburgerMenu extends JDialog {
     dispose();
   }
 
-  public void triggerActionEvent(JLabel source) {
-    if (source.getText().equalsIgnoreCase("quit")) {
+  public void triggerActionEvent(int yPosition) {
+    if (yPosition > 51) {
       parent.closeThread();
     } else {
       System.out.println("About Action Happened");
-      dispose();
     }
+    dispose();
   }
 }
