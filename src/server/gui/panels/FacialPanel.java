@@ -11,6 +11,15 @@ import javax.swing.SwingConstants;
 import server.gui.actions.EmoAction;
 import util.UpDownButton;
 
+/**
+ * The purpose of this class is to control the facial section controls and actions for the
+ * server's lower panel
+ * 
+ * @author Zelin Bao
+ * @version 1.0
+ * @since 02APR2018
+ *
+ */
 public class FacialPanel extends JPanel {
 
   private static final long serialVersionUID = 3981755002828308262L;

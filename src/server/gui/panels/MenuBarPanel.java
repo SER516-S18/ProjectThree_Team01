@@ -10,11 +10,13 @@ import server.gui.actions.EmoMouse;
 import util.Constants;
 
 /**
- * This class's purpose is to show a menu area, instead of using JMenuBar I
- * chose to go this route for a better look and feel over the traditional Menu
- * bar.
+ * This class's purpose is to show a menu area, instead of using JMenuBar I chose to go
+ * this route for a better look and feel over the traditional Menu bar.
  * 
+ * @author Vihar Bhatt
  * @author Cephas Armstrong-Mensah
+ * @version 1.0
+ * @since 02APR2018
  *
  */
 public class MenuBarPanel extends JPanel {
@@ -52,7 +54,7 @@ public class MenuBarPanel extends JPanel {
     signalPanel.setLayout(null);
     signalPanel.setBounds(400, 0, 50, 50);
 
-    signalLabel = new JLabel(new ImageIcon(loader.getResource("weak.png")));
+    signalLabel = new JLabel(new ImageIcon(loader.getResource("strong.png")));
     signalLabel.addMouseListener(new EmoMouse(this));
     signalLabel.setBounds(1, 1, 48, 48);
     signalPanel.add(signalLabel);

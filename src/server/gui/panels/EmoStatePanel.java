@@ -14,7 +14,10 @@ import util.UpDownButton;
 /**
  * This class's purpose is the upper section of the lower detection tab area
  * 
+ * @author Vihar Bhatt
  * @author Cephas Armstrong-Mensah
+ * @version 1.0
+ * @since 02APR2018
  *
  */
 public class EmoStatePanel extends JPanel {

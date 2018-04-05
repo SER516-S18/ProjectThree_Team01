@@ -23,9 +23,7 @@ import javax.swing.event.ChangeListener;
  */
 
 public class ClientFacialExpression extends JFrame {
-    JFrame f = new JFrame();
-
-    private JPanel contentPane;
+        private JPanel contentPane;
     private final JPanel panel = new JPanel();
 
 

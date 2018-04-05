@@ -10,7 +10,10 @@ import util.ConsolePanel;
 /**
  * This class's purpose is to display the logging area for the server
  * 
+ * @author Vihar Bhatt
  * @author Cephas Armstrong-Mensah
+ * @version 1.0
+ * @since 02APR2018
  *
  */
 public class EmoLogPanel extends JPanel {

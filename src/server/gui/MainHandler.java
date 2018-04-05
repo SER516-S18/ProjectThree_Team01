@@ -11,10 +11,12 @@ import server.gui.panels.HamburgerMenu;
 import server.gui.panels.MenuBarPanel;
 
 /**
- * The purpose of this class is to provide the GUI handler for the server and serves as the
- * main interaction between the user, server and client.
+ * The purpose of this class is to provide the GUI handler for the server and serves as
+ * the main interaction between the user, server and client.
  * 
  * @author Cephas Armstrong-Mensah
+ * @version 1.0
+ * @since 03APR2018
  *
  */
 public class MainHandler {

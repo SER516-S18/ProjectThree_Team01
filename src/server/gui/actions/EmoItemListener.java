@@ -12,7 +12,8 @@ import server.gui.panels.InteractivePanel;
  * the server
  * 
  * @author Cephas Armstrong-Mensah
- *
+ * @version 1.0
+ * @since 04APR2018
  */
 public class EmoItemListener implements ItemListener {
 

@@ -18,7 +18,10 @@ import server.gui.actions.EmoMouse;
  * denote good signal or weak signal and represented respectively by a wireless icon
  * showing signal strength
  * 
+ * @author Vihar Bhatt
  * @author Cephas Armstrong-Mensah
+ * @version 1.0
+ * @since 02APR2018
  *
  */
 public class SignalMenu extends JDialog {
@@ -41,12 +44,12 @@ public class SignalMenu extends JDialog {
   public SignalMenu(EmotivComposer parent) {
     super(parent);
     this.parent = parent;
-    setLocationRelativeTo(parent);
     setUndecorated(true);
+    setSize(200, 101);
+    setLocationRelativeTo(parent);
 
     contentPane = new JPanel();
     contentPane.setBackground(Color.BLACK);
-    contentPane.setBounds(0, 0, 200, 101);
     contentPane.setLayout(null);
     setContentPane(contentPane);
 

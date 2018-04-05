@@ -13,10 +13,12 @@ import javax.swing.border.EtchedBorder;
 import server.gui.actions.EmoMouse;
 
 /**
- * This class is used as a general utility for a field needing an increment and
- * decrement with a text box
+ * This class is used as a general utility for a field needing an increment and decrement
+ * with a text box
  * 
  * @author Cephas Armstrong-Mensah
+ * @version 1.0
+ * @since 29MAR2018
  *
  */
 

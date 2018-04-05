@@ -16,7 +16,10 @@ import util.UpDownButton;
 /**
  * This class's purpose is to display the interactive tab section items
  * 
+ * @author Vihar Bhatt
  * @author Cephas Armstrong-Mensah
+ * @version 1.0
+ * @since 02APR2018
  *
  */
 public class InteractivePanel extends JPanel {

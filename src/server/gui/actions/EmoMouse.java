@@ -15,6 +15,8 @@ import util.UpDownButton;
  * This class is responsible for handling Mouse Events triggered from the server
  * 
  * @author Cephas Armstrong-Mensah
+ * @version 1.0
+ * @since 04APR2018
  *
  */
 public class EmoMouse implements MouseListener {

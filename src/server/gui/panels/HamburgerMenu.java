@@ -17,7 +17,10 @@ import util.Constants;
  * This class's purpose is to display the drop down menu items for the hamburger icon
  * section. The menu items included are About and Quit.
  * 
+ * @author Vihar Bhatt
  * @author Cephas Armstrong-Mensah
+ * @version 1.0
+ * @since 02APR2018
  *
  */
 public class HamburgerMenu extends JDialog {
@@ -40,10 +43,9 @@ public class HamburgerMenu extends JDialog {
     setUndecorated(true);
 
     contentPane = new JPanel();
-    contentPane.setBackground(Color.BLACK);
-    contentPane.setBounds(0, 0, 200, 101);
     contentPane.setLayout(null);
     setContentPane(contentPane);
+    contentPane.setBackground(Color.BLACK);
 
     initialize();
   }
