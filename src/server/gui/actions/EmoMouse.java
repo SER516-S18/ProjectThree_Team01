@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 
 import server.gui.panels.HamburgerMenu;
 import server.gui.panels.MenuBarPanel;
-import server.gui.panels.SignalMenuPanel;
+import server.gui.panels.SignalMenu;
 import util.UpDownButton;
 
 /**
@@ -31,13 +31,14 @@ public class EmoMouse implements MouseListener {
       label = (JLabel) arg0.getSource();
     }
 
-    System.out.println("JLabel details: " + label);
+    System.out.println("Get source instance: " + arg0.getSource());
     if (actionClass instanceof UpDownButton) {
       if (label.getText().trim() == "v")
         ((UpDownButton) actionClass).decrementOutputText();
       else
         ((UpDownButton) actionClass).incrementOutputText();
     } else if (actionClass instanceof MenuBarPanel) {
+      System.out.println("MenuBarPanel instance");
       String icon = label.getIcon().toString();
       if (icon.contains("menu.png")) {
         ((MenuBarPanel) actionClass).showExitMenu();
@@ -45,10 +46,11 @@ public class EmoMouse implements MouseListener {
         ((MenuBarPanel) actionClass).showSignalMenu();
       }
     } else if (actionClass instanceof HamburgerMenu) {
+      System.out.println("Hamburger instance");
       ((HamburgerMenu) actionClass).triggerActionEvent(label);
-    } else if (actionClass instanceof SignalMenuPanel) {
-      ((SignalMenuPanel) actionClass).triggerActionEvent(label);
-      System.out.println("Signal menu item clicked: " + arg0.getSource());
+    } else if (actionClass instanceof SignalMenu) {
+      System.out.println("SignalMenu instance");
+      ((SignalMenu) actionClass).triggerActionEvent(arg0.getComponent());
     }
   }
 
@@ -79,8 +81,8 @@ public class EmoMouse implements MouseListener {
       ((MenuBarPanel) actionClass).showHideBorder(label, false);
     } else if (actionClass instanceof HamburgerMenu) {
       ((HamburgerMenu) actionClass).setVisibleFalse(arg0.getComponent());
-    } else if (actionClass instanceof SignalMenuPanel) {
-      ((SignalMenuPanel) actionClass).setVisibleFalse();
+    } else if (actionClass instanceof SignalMenu) {
+      ((SignalMenu) actionClass).setVisibleFalse(arg0.getComponent());
     }
   }
 

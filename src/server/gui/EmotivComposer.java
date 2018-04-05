@@ -18,15 +18,15 @@ import server.gui.panels.FacialPanel;
 import server.gui.panels.HamburgerMenu;
 import server.gui.panels.InteractivePanel;
 import server.gui.panels.MenuBarPanel;
-import server.gui.panels.SignalMenuPanel;
+import server.gui.panels.SignalMenu;
 import server.sys.ServerThread;
 import server.sys.ServerWebSocket;
 import server.sys.WorkerThread;
 import util.Constants;
 
 /**
- * The purpose of this class is to provide the GUI handler for the server and serves as the
- * main interaction between the user, server and client.
+ * The purpose of this class is to provide the GUI handler for the server and serves as
+ * the main interaction between the user, server and client.
  * 
  * @author Cephas Armstrong-Mensah
  *
@@ -48,13 +48,13 @@ public class EmotivComposer extends JFrame {
   private JPanel qualityPanel;
   private JPanel detectionPanel;
 
-  private static InteractivePanel ip;
+  private static InteractivePanel interactivePanel;
   private static EmoStatePanel emoStatePanel;
   private static FacialPanel emoFacialPanel;
   private static MenuBarPanel menuBarPanel;
   private static EmoLogPanel emoLogPanel;
   private static HamburgerMenu exitMenu;
-  private static SignalMenuPanel signalMenu;
+  private static SignalMenu signalMenu;
   private static JPanel startPanel;
 
   public static boolean isAutoResetChecked = false;
@@ -81,7 +81,6 @@ public class EmotivComposer extends JFrame {
   }
 
   private void initialize() {
-    signalMenu = new SignalMenuPanel();
     menuBarPanel = new MenuBarPanel();
     startPanel = new JPanel();
 
@@ -97,9 +96,6 @@ public class EmotivComposer extends JFrame {
     emoFacialPanel = new FacialPanel();
     emoStatePanel = new EmoStatePanel();
     emoLogPanel = new EmoLogPanel();
-
-    signalMenu.setBounds(250, 50, 200, 101);
-    signalMenu.setVisible(false);
 
     menuBarPanel.setSize(450, 50);
     menuBarPanel.setSize(450, 50);
@@ -117,14 +113,14 @@ public class EmotivComposer extends JFrame {
     interactive = new JPanel();
     tabbedPane.addTab("INTERACTIVE", null, interactive, null);
 
-    ip = new InteractivePanel();
-    ip.setSize(444, 90);
-    ip.setAlignmentX(Component.LEFT_ALIGNMENT);
-    ip.setAlignmentY(Component.TOP_ALIGNMENT);
-    ip.setSize(449, 90);
-    ip.setBounds(0, 0, 444, 90);
+    interactivePanel = new InteractivePanel();
+    interactivePanel.setSize(444, 90);
+    interactivePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+    interactivePanel.setAlignmentY(Component.TOP_ALIGNMENT);
+    interactivePanel.setSize(449, 90);
+    interactivePanel.setBounds(0, 0, 444, 90);
 
-    interactive.add(ip);
+    interactive.add(interactivePanel);
     interactive.setLayout(null);
 
     lowerPanel = new JPanel();
@@ -162,8 +158,6 @@ public class EmotivComposer extends JFrame {
     tabbedPane.setSelectedIndex(1);
     lowerTabbedPane.setSelectedIndex(1);
 
-    // contentPane.add(exitMenu);
-    contentPane.add(signalMenu);
     contentPane.add(lowerPanel);
     contentPane.add(startPanel);
     contentPane.add(menuBarPanel);
@@ -174,7 +168,7 @@ public class EmotivComposer extends JFrame {
   /**
    * This starts the tyrus server using the websocket class ServerWebSocket
    */
-  private void startServer() {
+  private boolean startServer() {
     Server server = new Server(Constants.URI, Constants.PORT, Constants.LINK, ServerWebSocket.class);
     try {
       server.start();
@@ -184,6 +178,7 @@ public class EmotivComposer extends JFrame {
     } catch (DeploymentException e) {
       throw new RuntimeException(e);
     }
+    return isStarted;
   }
 
   public static void handleStartStopSend(String strText) {
@@ -191,15 +186,15 @@ public class EmotivComposer extends JFrame {
       worker = new WorkerThread(emoStatePanel.getTimeTrackerLabel(), emoLogPanel.getConsolePanel());
 
     worker.setButtonStatus(strText);
-    worker.setInterval(Double.parseDouble(ip.getOutputText()));
+    worker.setInterval(Double.parseDouble(interactivePanel.getOutputText()));
 
     System.out.println("Getting here");
 
     if (isAutoResetChecked) {
       if (strText.equalsIgnoreCase("Start")) {
-        ip.setInteractiveFields("Stop", false);
+        interactivePanel.setInteractiveFields("Stop", false);
       } else {
-        ip.setInteractiveFields("Start", true);
+        interactivePanel.setInteractiveFields("Start", true);
       }
     }
 
@@ -222,12 +217,13 @@ public class EmotivComposer extends JFrame {
     exitMenu.setSize(200, 101);
     exitMenu.setLocation(instance.getX() + 5, instance.getY() + 75);
     exitMenu.setVisible(true);
-    // exitMenu.setVisible(!exitMenu.isVisible());
-    // instance.repaint();
   }
 
   public static void showSignalItems() {
-    signalMenu.setVisible(!signalMenu.isVisible());
+    signalMenu = new SignalMenu(instance);
+    signalMenu.setSize(200, 101);
+    signalMenu.setLocation(instance.getX() + 250, instance.getY() + 75);
+    signalMenu.setVisible(true);
   }
 
   public static void hideMenuItems() {

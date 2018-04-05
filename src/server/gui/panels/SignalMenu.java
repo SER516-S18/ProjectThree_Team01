@@ -5,14 +5,16 @@ import java.awt.Component;
 import java.awt.Font;
 
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
 import server.gui.EmotivComposer;
+import server.gui.actions.EmoMouse;
 
-public class SignalMenuPanel extends JPanel {
+public class SignalMenu extends JDialog {
 
   private static final long serialVersionUID = 744880228052339810L;
 
@@ -25,11 +27,22 @@ public class SignalMenuPanel extends JPanel {
   private JLabel goodIcon;
   private JLabel goodSignalLabel;
 
-  private ClassLoader loader = getClass().getClassLoader();;
+  private JPanel contentPane;
+  private EmotivComposer parent;
 
-  public SignalMenuPanel() {
-    setBounds(0, 0, 200, 101);
-    setLayout(null);
+  private ClassLoader loader = getClass().getClassLoader();
+
+  public SignalMenu(EmotivComposer parent) {
+    super(parent);
+    this.parent = parent;
+    setLocationRelativeTo(parent);
+    setUndecorated(true);
+
+    contentPane = new JPanel();
+    contentPane.setBounds(0, 0, 200, 101);
+    contentPane.setLayout(null);
+    setContentPane(contentPane);
+
     initialize();
   }
 
@@ -74,21 +87,28 @@ public class SignalMenuPanel extends JPanel {
     weakSignalPanel.add(weakIcon);
     weakSignalPanel.add(weakSignalLabel);
 
-    add(goodSignalPanel);
-    add(separator);
-    add(weakSignalPanel);
+    contentPane.add(goodSignalPanel);
+    contentPane.add(separator);
+    contentPane.add(weakSignalPanel);
+
+    addMouseListener(new EmoMouse(this));
   }
 
-  public void setVisibleFalse() {
-    EmotivComposer.hideMenuItems();
+  public void setVisibleFalse(Component signal) {
+    System.out.println("Component: " + signal.getClass());
+    /*
+     * if (!(signal instanceof JPanel) && !(signal instanceof JLabel) && !(signal instanceof
+     * JSeparator)) { EmotivComposer.hideSignalItems(); } else {
+     * System.out.println("Something else"); }
+     */
   }
 
-  public void triggerActionEvent(JLabel source) {
+  public void triggerActionEvent(Component source) {
     System.out.println("Source: " + source);
-    if (source.getText().contains("strong") || source.getText().toLowerCase().contains("Good")) {
-      System.out.println("Strong Signal");
-    } else {
-      System.out.println("Weak Signal");
-    }
+    /*
+     * if (source.getText().contains("strong") ||
+     * source.getText().toLowerCase().contains("Good")) { System.out.println("Strong Signal");
+     * } else { System.out.println("Weak Signal"); }
+     */
   }
 }
