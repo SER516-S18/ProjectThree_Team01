@@ -50,7 +50,7 @@ public class EmoMouse implements MouseListener {
       ((HamburgerMenu) actionClass).triggerActionEvent(label);
     } else if (actionClass instanceof SignalMenu) {
       System.out.println("SignalMenu instance");
-      ((SignalMenu) actionClass).triggerActionEvent(arg0.getComponent());
+      ((SignalMenu) actionClass).triggerActionEvent(label);
     }
   }
 

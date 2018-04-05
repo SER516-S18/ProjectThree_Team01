@@ -12,13 +12,13 @@ import util.Constants;
 public class MenuBarPanel extends JPanel {
 
   private static final long serialVersionUID = 744880228052339810L;
-  private JPanel dropDownPanel;
-  private JPanel signalPanel;
-  private JPanel middlePanel;
-  private JLabel menuLabel;
-  private JLabel signalLabel;
+  private static JPanel dropDownPanel;
+  private static JPanel signalPanel;
+  private static JPanel middlePanel;
+  private static JLabel menuLabel;
+  private static JLabel signalLabel;
 
-  ClassLoader loader = getClass().getClassLoader();
+  private static ClassLoader loader = MenuBarPanel.class.getClassLoader();
 
   public MenuBarPanel() {
     setBounds(0, 0, 450, 50);
@@ -68,5 +68,10 @@ public class MenuBarPanel extends JPanel {
 
   public void showSignalMenu() {
     EmotivComposer.showSignalItems();
+  }
+
+  public static void setIconImage(String filename) {
+    System.out.println("Icon image: " + filename);
+    signalLabel = new JLabel(new ImageIcon(loader.getResource(filename)));
   }
 }

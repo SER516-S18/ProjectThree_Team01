@@ -27,38 +27,23 @@ public class EmotivRandomizer {
     while (objs.hasNext()) {
       strKey = objs.next();
       switch (strKey.toLowerCase()) {
-      case "lookingright":
-        data.setLookingRight(generator.nextDouble());
-        break;
       case "clench":
         data.setClench(generator.nextDouble());
         break;
       case "eyebrowraise":
         data.setEyebrowRaise(generator.nextDouble());
         break;
-      case "lookingleft":
-        data.setLookingLeft(generator.nextDouble());
+      case "smerkright":
+        data.setSmerkRight(generator.nextDouble());
         break;
-      case "lookingdown":
-        data.setLookingDown(generator.nextDouble());
-        break;
-      case "lookingup":
-        data.setLookingUp(generator.nextDouble());
-        break;
-      case "rightwink":
-        data.setRightWink(generator.nextDouble());
-        break;
-      case "blink":
-        data.setBlink(generator.nextDouble());
+      case "smerkleft":
+        data.setSmerkLeft(generator.nextDouble());
         break;
       case "eyebrowfurrow":
         data.setEyebrowFurrow(generator.nextDouble());
         break;
-      case "eyesopen":
-        data.setEyesOpen(generator.nextDouble());
-        break;
-      case "leftwink":
-        data.setLeftWink(generator.nextDouble());
+      case "laugh":
+        data.setLaugh(generator.nextDouble());
         break;
       case "smile":
         data.setSmile(generator.nextDouble());

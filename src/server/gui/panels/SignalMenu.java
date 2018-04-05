@@ -53,14 +53,15 @@ public class SignalMenu extends JDialog {
     goodSignalPanel.setLayout(null);
 
     goodIcon = new JLabel(new ImageIcon(loader.getResource("strong.png")));
-    goodIcon.setIcon(new ImageIcon(loader.getResource("strong.png")));
     goodIcon.setBounds(1, 1, 48, 48);
+    goodIcon.addMouseListener(new EmoMouse(this));
 
     goodSignalLabel = new JLabel("Good Signal");
     goodSignalLabel.setBounds(50, 0, 150, 50);
     goodSignalLabel.setHorizontalAlignment(SwingConstants.CENTER);
     goodSignalLabel.setFont(new Font("Dialog", Font.BOLD, 16));
     goodSignalLabel.setAlignmentY(0.0f);
+    goodSignalLabel.addMouseListener(new EmoMouse(this));
 
     goodSignalPanel.add(goodIcon);
     goodSignalPanel.add(goodSignalLabel);
@@ -77,12 +78,14 @@ public class SignalMenu extends JDialog {
 
     weakIcon = new JLabel(new ImageIcon(loader.getResource("weak.png")));
     weakIcon.setBounds(1, 1, 48, 48);
+    weakIcon.addMouseListener(new EmoMouse(this));
 
     weakSignalLabel = new JLabel("Weak Signal");
     weakSignalLabel.setBounds(50, 0, 150, 50);
     weakSignalLabel.setAlignmentY(Component.TOP_ALIGNMENT);
     weakSignalLabel.setFont(new Font("Dialog", Font.BOLD, 16));
     weakSignalLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    weakSignalLabel.addMouseListener(new EmoMouse(this));
 
     weakSignalPanel.add(weakIcon);
     weakSignalPanel.add(weakSignalLabel);
@@ -96,19 +99,26 @@ public class SignalMenu extends JDialog {
 
   public void setVisibleFalse(Component signal) {
     System.out.println("Component: " + signal.getClass());
-    /*
-     * if (!(signal instanceof JPanel) && !(signal instanceof JLabel) && !(signal instanceof
-     * JSeparator)) { EmotivComposer.hideSignalItems(); } else {
-     * System.out.println("Something else"); }
-     */
+
+    if (!(signal instanceof SignalMenu) || !(signal instanceof MenuBarPanel))
+      dispose();
   }
 
   public void triggerActionEvent(Component source) {
-    System.out.println("Source: " + source);
-    /*
-     * if (source.getText().contains("strong") ||
-     * source.getText().toLowerCase().contains("Good")) { System.out.println("Strong Signal");
-     * } else { System.out.println("Weak Signal"); }
-     */
+    String strItem = null;
+    JLabel item = (JLabel) source;
+    strItem = item.getText();
+    if (strItem == null) {
+      strItem = item.getIcon().toString();
+    }
+    System.out.println("Source: " + strItem);
+
+    if (strItem.contains("strong") || strItem.contains("Good")) {
+      MenuBarPanel.setIconImage("strong.png");
+    } else {
+      MenuBarPanel.setIconImage("weak.png");
+    }
+
+    dispose();
   }
 }

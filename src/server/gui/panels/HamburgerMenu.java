@@ -31,6 +31,7 @@ public class HamburgerMenu extends JDialog {
     super(parent);
     this.parent = parent;
     setLocationRelativeTo(parent);
+    setSize(200, 101);
     setUndecorated(true);
 
     contentPane = new JPanel();
@@ -77,12 +78,10 @@ public class HamburgerMenu extends JDialog {
     contentPane.add(aboutPanel);
     contentPane.add(separator);
     contentPane.add(quitPanel);
-
-    addMouseListener(new EmoMouse(this));
   }
 
   public void setVisibleFalse(Component exited) {
-    System.out.println("Component: " + exited.getClass());
+    System.out.println("Component: " + exited);
     if (!(exited instanceof JPanel) && !(exited instanceof JLabel) && !(exited instanceof JSeparator)) {
       EmotivComposer.hideMenuItems();
     } else {
