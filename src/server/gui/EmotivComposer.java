@@ -12,7 +12,7 @@ import javax.websocket.DeploymentException;
 import org.glassfish.tyrus.server.Server;
 
 import server.gui.actions.WindowEvents;
-import server.gui.panels.EmoLogPanel;
+import server.gui.panels.LogPanel;
 import server.gui.panels.EmoStatePanel;
 import server.gui.panels.FacialPanel;
 import server.gui.panels.HamburgerMenu;
@@ -25,8 +25,8 @@ import server.sys.WorkerThread;
 import util.Constants;
 
 /**
- * The purpose of this class is to provide the GUI handler for the server and serves as
- * the main interaction between the user, server and client.
+ * The purpose of this class is to provide the GUI handler for the server and serves as the
+ * main interaction between the user, server and client.
  * 
  * @author Cephas Armstrong-Mensah
  * @version 1.0
@@ -54,7 +54,7 @@ public class EmotivComposer extends JFrame {
   private static EmoStatePanel emoStatePanel;
   private static FacialPanel emoFacialPanel;
   private static MenuBarPanel menuBarPanel;
-  private static EmoLogPanel emoLogPanel;
+  private static LogPanel emoLogPanel;
   private static HamburgerMenu exitMenu;
   private static SignalMenu signalMenu;
   private static JPanel startPanel;
@@ -97,7 +97,7 @@ public class EmotivComposer extends JFrame {
     emostate = new JPanel();
     emoFacialPanel = new FacialPanel();
     emoStatePanel = new EmoStatePanel();
-    emoLogPanel = new EmoLogPanel();
+    emoLogPanel = new LogPanel();
 
     menuBarPanel.setSize(450, 50);
     menuBarPanel.setSize(450, 50);
@@ -217,7 +217,7 @@ public class EmotivComposer extends JFrame {
   public static void showMenuItems() {
     exitMenu = new HamburgerMenu(instance);
     exitMenu.setSize(200, 101);
-    exitMenu.setLocation(instance.getX() + 5, instance.getY() + 75);
+    exitMenu.setLocation(instance.getX() + 5, instance.getY() + 70);
     exitMenu.setVisible(true);
   }
 

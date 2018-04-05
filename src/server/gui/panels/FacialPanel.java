@@ -9,7 +9,6 @@ import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
 import server.gui.actions.ActionEvents;
-import util.UpDownButton;
 
 /**
  * The purpose of this class is to control the facial section controls and actions for the
@@ -26,10 +25,10 @@ public class FacialPanel extends JPanel {
 
   private JLabel upperfaceLabel;
   private JComboBox<String> upperfaceComboBox;
-  private UpDownButton upperfaceupdownButton;
+  private ComboControl upperfaceupdownButton;
   private JLabel lowerfaceLabel;
   private JComboBox<String> lowerfaceComboBox;
-  private UpDownButton lowerfaceupdownButton;
+  private ComboControl lowerfaceupdownButton;
   private JLabel eyeLabel;
   private JComboBox<String> eyecomboBox;
   private JRadioButton eyeActive;
@@ -62,11 +61,11 @@ public class FacialPanel extends JPanel {
    * Initialize the contents of the frame.
    */
   private void initialize() {
-    upperfaceupdownButton = new UpDownButton(70, 0.1, false);
+    upperfaceupdownButton = new ComboControl(70, 0.1, false);
     upperfaceupdownButton.setBounds(135, 30, 70, 30);
     upperfaceupdownButton.setVisible(true);
 
-    lowerfaceupdownButton = new UpDownButton(70, 0.1, false);
+    lowerfaceupdownButton = new ComboControl(70, 0.1, false);
     lowerfaceupdownButton.setBounds(365, 30, 70, 30);
     lowerfaceupdownButton.setVisible(true);
 

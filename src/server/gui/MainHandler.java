@@ -4,7 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
-import server.gui.panels.EmoLogPanel;
+import server.gui.panels.LogPanel;
 import server.gui.panels.EmoStatePanel;
 import server.gui.panels.FacialPanel;
 import server.gui.panels.HamburgerMenu;
@@ -46,6 +46,6 @@ public class MainHandler {
     JPanel emostate = new JPanel();
     FacialPanel emoFacialPanel = new FacialPanel();
     EmoStatePanel emoStatePanel = new EmoStatePanel();
-    EmoLogPanel emoLogPanel = new EmoLogPanel();
+    LogPanel emoLogPanel = new LogPanel();
   }
 }

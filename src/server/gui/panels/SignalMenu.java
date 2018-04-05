@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 
 import server.gui.EmotivComposer;
 import server.gui.actions.MouseEvents;
+import util.Constants;
 
 /**
  * This class's purpose is to display the drop down menu items for the signals to either denote
@@ -58,7 +59,7 @@ public class SignalMenu extends JDialog {
 
   private void initialize() {
     goodSignalPanel = new JPanel();
-    goodSignalPanel.setBackground(Color.WHITE);
+    goodSignalPanel.setBackground(Constants.WHITE);
     goodSignalPanel.setBounds(0, 0, 200, 50);
     goodSignalPanel.setLayout(null);
 
@@ -75,7 +76,7 @@ public class SignalMenu extends JDialog {
     goodSignalPanel.add(goodSignalLabel);
 
     weakSignalPanel = new JPanel();
-    weakSignalPanel.setBackground(Color.WHITE);
+    weakSignalPanel.setBackground(Constants.WHITE);
     weakSignalPanel.setBounds(0, 51, 200, 50);
     weakSignalPanel.setLayout(null);
 

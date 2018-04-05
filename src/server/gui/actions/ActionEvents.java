@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
-import server.gui.panels.EmoLogPanel;
+import server.gui.panels.LogPanel;
 import server.gui.panels.FacialPanel;
 import server.gui.panels.InteractivePanel;
 
@@ -49,8 +49,8 @@ public class ActionEvents implements ActionListener {
         ((FacialPanel) actionClass).eyeAction();
       }
 
-    } else if (actionClass instanceof EmoLogPanel) {
-      ((EmoLogPanel) actionClass).clearConsolePanel();
+    } else if (actionClass instanceof LogPanel) {
+      ((LogPanel) actionClass).clearConsolePanel();
     }
   }
 

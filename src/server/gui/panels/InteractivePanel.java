@@ -11,7 +11,6 @@ import javax.swing.SwingConstants;
 import server.gui.EmotivComposer;
 import server.gui.actions.ActionEvents;
 import server.gui.actions.ItemEvents;
-import util.UpDownButton;
 
 /**
  * This class's purpose is to display the interactive tab section items
@@ -33,7 +32,7 @@ public class InteractivePanel extends JPanel {
   private JButton sendButton;
   private JCheckBox autoResetCheckBox;
   private JComboBox<String> playerComboBox;
-  private UpDownButton emoStateInterval;
+  private ComboControl emoStateInterval;
 
   public InteractivePanel() {
     setBounds(0, 0, 450, 90);
@@ -69,7 +68,7 @@ public class InteractivePanel extends JPanel {
     playerComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "0", "1" }));
     playerComboBox.setBounds(65, 10, 80, 30);
 
-    emoStateInterval = new UpDownButton(110, 0.5, true);
+    emoStateInterval = new ComboControl(110, 0.5, true);
     emoStateInterval.setLocation(250, 10);
     emoStateInterval.setOutputText("0.25");
 

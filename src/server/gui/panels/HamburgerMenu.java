@@ -91,7 +91,7 @@ public class HamburgerMenu extends JDialog {
     if (yPosition > 51) {
       parent.closeThread();
     } else {
-      System.out.println("About Action Happened");
+      new AboutPanel(EmotivComposer.getInstance());
     }
     dispose();
   }

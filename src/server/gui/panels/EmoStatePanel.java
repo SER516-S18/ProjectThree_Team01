@@ -9,7 +9,6 @@ import javax.swing.border.LineBorder;
 
 import util.ConsolePanel;
 import util.Constants;
-import util.UpDownButton;
 
 /**
  * This class's purpose is the upper section of the lower detection tab area
@@ -30,9 +29,9 @@ public class EmoStatePanel extends JPanel {
   private JComboBox<String> neutralComboBox;
   private JComboBox<String> skillComboBox;
   private ConsolePanel consolePanel;
-  private UpDownButton neutral;
-  private UpDownButton skill;
-  private UpDownButton overallSkill;
+  private ComboControl neutral;
+  private ComboControl skill;
+  private ComboControl overallSkill;
   private JLabel overallSkillLabel;
   private JLabel lblNewLabel;
 
@@ -67,13 +66,13 @@ public class EmoStatePanel extends JPanel {
     consolePanel = new ConsolePanel();
     consolePanel.setBounds(5, 30, 430, 125);
 
-    neutral = new UpDownButton(70, 0.1, false);
+    neutral = new ComboControl(70, 0.1, false);
     neutral.setLocation(140, 105);
 
-    skill = new UpDownButton(70, 0.1, false);
+    skill = new ComboControl(70, 0.1, false);
     skill.setLocation(140, 137);
 
-    overallSkill = new UpDownButton(70, 0.1, false);
+    overallSkill = new ComboControl(70, 0.1, false);
     overallSkill.setLocation(370, 105);
 
     overallSkillLabel = new JLabel("Overall Skill");

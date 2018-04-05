@@ -6,10 +6,11 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 
+import server.gui.panels.AboutPanel;
+import server.gui.panels.ComboControl;
 import server.gui.panels.HamburgerMenu;
 import server.gui.panels.MenuBarPanel;
 import server.gui.panels.SignalMenu;
-import util.UpDownButton;
 
 /**
  * This class is responsible for handling Mouse Events triggered from the server
@@ -40,11 +41,11 @@ public class MouseEvents implements MouseListener {
       label = (JLabel) arg0.getSource();
     }
 
-    if (actionClass instanceof UpDownButton) {
+    if (actionClass instanceof ComboControl) {
       if (label.getText().trim() == "v")
-        ((UpDownButton) actionClass).decrementOutputText();
+        ((ComboControl) actionClass).decrementOutputText();
       else
-        ((UpDownButton) actionClass).incrementOutputText();
+        ((ComboControl) actionClass).incrementOutputText();
     } else if (actionClass instanceof HamburgerMenu) {
       ((HamburgerMenu) actionClass).triggerActionEvent(arg0.getY());
     } else if (actionClass instanceof SignalMenu) {
@@ -66,8 +67,8 @@ public class MouseEvents implements MouseListener {
       label = (JLabel) arg0.getSource();
     }
 
-    if (actionClass instanceof UpDownButton) {
-      ((UpDownButton) actionClass).showHideBorder(label, true);
+    if (actionClass instanceof ComboControl) {
+      ((ComboControl) actionClass).showHideBorder(label, true);
     } else if (actionClass instanceof MenuBarPanel) {
       ((MenuBarPanel) actionClass).showHideBorder(label, true);
     }
@@ -80,14 +81,16 @@ public class MouseEvents implements MouseListener {
       label = (JLabel) arg0.getSource();
     }
 
-    if (actionClass instanceof UpDownButton) {
-      ((UpDownButton) actionClass).showHideBorder(label, false);
+    if (actionClass instanceof ComboControl) {
+      ((ComboControl) actionClass).showHideBorder(label, false);
     } else if (actionClass instanceof HamburgerMenu) {
       ((HamburgerMenu) actionClass).setVisibleFalse(arg0.getComponent());
     } else if (actionClass instanceof SignalMenu && switcher == "signal") {
       ((SignalMenu) actionClass).setVisibleFalse(arg0.getComponent());
     } else if (actionClass instanceof MenuBarPanel && switcher == "hamburger") {
       ((MenuBarPanel) actionClass).showHideBorder(label, false);
+    } else if (actionClass instanceof AboutPanel && switcher == "about") {
+      ((AboutPanel) actionClass).disposeScrollPane();
     }
   }
 

@@ -16,7 +16,7 @@ import util.ConsolePanel;
  * @since 02APR2018
  *
  */
-public class EmoLogPanel extends JPanel {
+public class LogPanel extends JPanel {
 
   private static final long serialVersionUID = 270965232038903697L;
   private static JPanel emoLogPanel;
@@ -24,7 +24,7 @@ public class EmoLogPanel extends JPanel {
   private static ConsolePanel consolePanel;
   private static JButton clearLogButton;
 
-  public EmoLogPanel() {
+  public LogPanel() {
     setBounds(0, 0, 443, 190);
     setLayout(null);
     initialize();

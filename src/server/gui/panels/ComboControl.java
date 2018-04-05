@@ -1,4 +1,4 @@
-package util;
+package server.gui.panels;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,8 +13,8 @@ import javax.swing.border.EtchedBorder;
 import server.gui.actions.MouseEvents;
 
 /**
- * This class is used as a general utility for a field needing an increment and decrement
- * with a text box
+ * This class is used as a general utility for a field needing an increment and decrement with
+ * a text box
  * 
  * @author Cephas Armstrong-Mensah
  * @version 1.0
@@ -22,7 +22,7 @@ import server.gui.actions.MouseEvents;
  *
  */
 
-public class UpDownButton extends JPanel {
+public class ComboControl extends JPanel {
   private static final long serialVersionUID = -7926485727775080081L;
 
   private JTextField outputTextBox;
@@ -39,7 +39,7 @@ public class UpDownButton extends JPanel {
    * @param step - the next step size when button is clicked
    * @param isFrequency - determine if this field is for frequency
    */
-  public UpDownButton(int newWidth, double step, boolean isFrequency) {
+  public ComboControl(int newWidth, double step, boolean isFrequency) {
     this.step = step;
     this.isFrequency = isFrequency;
     this.newWidth = newWidth;
