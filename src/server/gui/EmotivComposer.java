@@ -11,7 +11,7 @@ import javax.websocket.DeploymentException;
 
 import org.glassfish.tyrus.server.Server;
 
-import server.gui.actions.EmoWindow;
+import server.gui.actions.WindowEvents;
 import server.gui.panels.EmoLogPanel;
 import server.gui.panels.EmoStatePanel;
 import server.gui.panels.FacialPanel;
@@ -69,7 +69,7 @@ public class EmotivComposer extends JFrame {
   };
 
   private EmotivComposer() {
-    addWindowListener(new EmoWindow(this));
+    addWindowListener(new WindowEvents(this));
     setTitle("Emotiv Composer Project 3");
     setBounds(100, 100, 450, 800);
 

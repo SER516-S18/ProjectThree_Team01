@@ -4,7 +4,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import server.gui.actions.EmoAction;
+import server.gui.actions.ActionEvents;
 import util.ConsolePanel;
 
 /**
@@ -36,7 +36,7 @@ public class EmoLogPanel extends JPanel {
     consolePanel = new ConsolePanel();
     consolePanel.setBounds(5, 30, 434, 130);
     clearLogButton = new JButton("Clear Log");
-    clearLogButton.addActionListener(new EmoAction(this));
+    clearLogButton.addActionListener(new ActionEvents(this));
     clearLogButton.setBounds(5, 165, 110, 30);
 
     add(labelLog);

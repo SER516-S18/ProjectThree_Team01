@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import server.gui.EmotivComposer;
-import server.gui.actions.EmoMouse;
+import server.gui.actions.MouseEvents;
 import util.Constants;
 
 /**
@@ -80,7 +80,7 @@ public class HamburgerMenu extends JDialog {
 
     contentPane.add(aboutPanel);
     contentPane.add(quitPanel);
-    addMouseListener(new EmoMouse(this, "hamburger"));
+    addMouseListener(new MouseEvents(this, "hamburger"));
   }
 
   public void setVisibleFalse(Component exited) {

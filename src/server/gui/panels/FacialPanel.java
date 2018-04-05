@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
-import server.gui.actions.EmoAction;
+import server.gui.actions.ActionEvents;
 import util.UpDownButton;
 
 /**
@@ -72,7 +72,7 @@ public class FacialPanel extends JPanel {
 
     upperfaceComboBox = new JComboBox<String>();
 
-    upperfaceComboBox.addActionListener(new EmoAction(this, "upperfaceComboBox"));
+    upperfaceComboBox.addActionListener(new ActionEvents(this, "upperfaceComboBox"));
     upperfaceComboBox.setBounds(10, 30, 125, 30);
     upperfaceComboBox
         .setModel(new DefaultComboBoxModel<String>(new String[] { "Raise Brow", "Furrow Brow" }));
@@ -83,7 +83,7 @@ public class FacialPanel extends JPanel {
      * lowerfaceComboBox action
      */
 
-    lowerfaceComboBox.addActionListener(new EmoAction(this, "lowerfaceComboBox"));
+    lowerfaceComboBox.addActionListener(new ActionEvents(this, "lowerfaceComboBox"));
 
     lowerfaceComboBox.setBounds(240, 30, 125, 30);
     lowerfaceComboBox.setModel(new DefaultComboBoxModel<String>(
@@ -109,8 +109,8 @@ public class FacialPanel extends JPanel {
     eyeActive = new JRadioButton("Active");
     eyeActive.setActionCommand("0");
 
-    eyeActive.addActionListener(new EmoAction(this, "eyeActive"));
-    eyecomboBox.addActionListener(new EmoAction(this, "eyeComboBox"));
+    eyeActive.addActionListener(new ActionEvents(this, "eyeActive"));
+    eyecomboBox.addActionListener(new ActionEvents(this, "eyeComboBox"));
     eyeActive.setBounds(140, 105, 80, 20);
 
     chckbxNewCheckBox = new JCheckBox("Auto Reset");

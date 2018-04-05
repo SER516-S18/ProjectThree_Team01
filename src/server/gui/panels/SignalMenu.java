@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import server.gui.EmotivComposer;
-import server.gui.actions.EmoMouse;
+import server.gui.actions.MouseEvents;
 
 /**
  * This class's purpose is to display the drop down menu items for the signals to either denote
@@ -94,7 +94,7 @@ public class SignalMenu extends JDialog {
     contentPane.add(goodSignalPanel);
     contentPane.add(weakSignalPanel);
 
-    addMouseListener(new EmoMouse(this, "signal"));
+    addMouseListener(new MouseEvents(this, "signal"));
   }
 
   public void setVisibleFalse(Component signal) {

@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 
-import server.gui.actions.EmoMouse;
+import server.gui.actions.MouseEvents;
 
 /**
  * This class is used as a general utility for a field needing an increment and decrement
@@ -62,14 +62,14 @@ public class UpDownButton extends JPanel {
     incrementButton.setVerticalAlignment(SwingConstants.BOTTOM);
     incrementButton.setHorizontalTextPosition(SwingConstants.CENTER);
     incrementButton.setHorizontalAlignment(SwingConstants.CENTER);
-    incrementButton.addMouseListener(new EmoMouse(this));
+    incrementButton.addMouseListener(new MouseEvents(this));
 
     decrementButton = new JLabel("v");
     decrementButton.setBounds(0, 15, 26, 15);
     decrementButton.setVerticalAlignment(SwingConstants.TOP);
     decrementButton.setHorizontalTextPosition(SwingConstants.CENTER);
     decrementButton.setHorizontalAlignment(SwingConstants.CENTER);
-    decrementButton.addMouseListener(new EmoMouse(this));
+    decrementButton.addMouseListener(new MouseEvents(this));
 
     panel.add(decrementButton);
     panel.add(incrementButton);

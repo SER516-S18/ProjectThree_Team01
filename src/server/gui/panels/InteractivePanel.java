@@ -9,8 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import server.gui.EmotivComposer;
-import server.gui.actions.EmoAction;
-import server.gui.actions.EmoItemListener;
+import server.gui.actions.ActionEvents;
+import server.gui.actions.ItemEvents;
 import util.UpDownButton;
 
 /**
@@ -58,12 +58,12 @@ public class InteractivePanel extends JPanel {
 
     sendButton = new JButton("Send");
     sendButton.setBounds(330, 55, 100, 30);
-    sendButton.addActionListener(new EmoAction(this));
+    sendButton.addActionListener(new ActionEvents(this));
 
     autoResetCheckBox = new JCheckBox("Auto Reset");
     autoResetCheckBox.setVerticalAlignment(SwingConstants.TOP);
     autoResetCheckBox.setBounds(170, 55, 115, 30);
-    autoResetCheckBox.addItemListener(new EmoItemListener(this));
+    autoResetCheckBox.addItemListener(new ItemEvents(this));
 
     playerComboBox = new JComboBox<String>();
     playerComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "0", "1" }));
