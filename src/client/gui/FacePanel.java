@@ -23,7 +23,6 @@ import data.EmotivData;
 public class FacePanel extends JPanel{
 	
 	private JLabel JLabelUpperFace;
-	private JLabel JLabelEyes;
 	private JLabel JLabelLowerFace;
 	
 	public FacePanel() {
@@ -33,44 +32,45 @@ public class FacePanel extends JPanel{
 	    initialize();
 	  }
 	
+	/**
+	 * This method is used to set the labels for UpperFace and LowerFace
+	 *
+	 */
 	private void initialize() {
 		
 		JLabelUpperFace = new JLabel();
 		JLabelUpperFace.setBackground(Color.BLUE);
 		JLabelUpperFace.setHorizontalAlignment(SwingConstants.CENTER);
-		JLabelUpperFace.setBounds(6, 46, 217, 51);
-		
-		JLabelEyes = new JLabel();
-		JLabelEyes.setHorizontalAlignment(SwingConstants.CENTER);
-		JLabelEyes.setBounds(6, 97, 217, 51);
+		JLabelUpperFace.setBounds(0, 0, 450, 192);
 		
 		JLabelLowerFace = new JLabel();
 		JLabelLowerFace.setHorizontalAlignment(SwingConstants.CENTER);
-		JLabelLowerFace.setBounds(6, 184, 217, 51);
+		JLabelLowerFace.setBounds(0, 192, 450, 192);
     
 	    add(JLabelUpperFace);
-	    add(JLabelEyes);
 	    add(JLabelLowerFace);
 	    
 	    setDefaultImage();
 	  }
 	
+	/**
+	 * This method is used to set the default Images
+	 *
+	 */
 	private void setDefaultImage() {
 		JLabelUpperFace.setIcon(Faces.defaultUpperFace());
-		JLabelEyes.setIcon(Faces.defaultEyes());
 		JLabelLowerFace.setIcon(Faces.defaultLoweFace());
 	}
 	
 	public void updateFace(EmotivData emotiveData) {
 		
-		ImageIcon brows = Faces.upperFace(emotiveData.getEyebrowFurrow(), emotiveData.getEyebrowRaise());
-		ImageIcon eyes = Faces.eyes(emotiveData.getBlink(), emotiveData.getRightWink(), 
-				emotiveData.getLeftWink(), emotiveData.getLookingLeft(), emotiveData.getLookingRight());
-//		ImageIcon mouth = faces.lowerFace(emotiveData.getSmile(), emotiveData.getClench(),
+		ImageIcon upperFaceImage = Faces.upperFace(emotiveData.getBlink(), emotiveData.getRightWink(), 
+				emotiveData.getLeftWink(), emotiveData.getLookingLeft(), emotiveData.getLookingRight(),
+				emotiveData.getEyebrowFurrow(), emotiveData.getEyebrowRaise());
+//		ImageIcon lowerFaceImage = Faces.lowerFace(emotiveData.getSmile(), emotiveData.getClench(),
 //				emotiveData.getLeftSmirk(), emotiveData.getRightSmirk(), emotiveData.getLaugh());
 		
-		JLabelUpperFace.setIcon(brows);
-		JLabelEyes.setIcon(eyes);
-		//JLabelLowerFace.setIcon(mouth);
+		JLabelUpperFace.setIcon(upperFaceImage);
+		//JLabelLowerFace.setIcon(lowerFaceImage);
 	}
 }

@@ -13,55 +13,79 @@ import javax.swing.ImageIcon;
  */
 public class Faces {
 	
+	/**
+	 * Default upperFace image
+	 * @return ImageIcon.
+	 */
 	public static ImageIcon defaultUpperFace() {
-		return new ImageIcon("img/brow_normal.png");
+		return new ImageIcon("img/upperFace_normal.png");
 	}
 	
-	public static ImageIcon defaultEyes() {
-		return new ImageIcon("img/eyes_normal.png");
-	}
-	
+	/**
+	 * Default lowerFace image
+	 * @return ImageIcon.
+	 */
 	public static ImageIcon defaultLoweFace() {
-		return new ImageIcon("img/mouth_normal.png");
+		return new ImageIcon("img/lowerFace_normal.png");
 	}
 	
-	public static ImageIcon upperFace(double furrow, double raise) {
-		if(furrow > .1) {
-			return new ImageIcon("img/brow_angry.png");
-		}else if(raise > .1){
-			return new ImageIcon("img/brow_raise.png");
+	/**
+	 * Logic for changing the upperFace Image based on the inputs
+	 * @param blink.
+	 * @param rightWink.
+	 * @param leftWink.
+	 * @param lookLeft.
+	 * @param lookRight.
+	 * @param furrow.
+	 * @param raise.
+	 * @return ImageIcon.
+	 */
+	public static ImageIcon upperFace(double blink, double rightWink, double leftWink, 
+			double lookLeft, double lookRight, double furrow, double raise) {
+		
+		if(blink==1) {
+			return new ImageIcon("img/blink.png");
+		}else if(rightWink==1) {
+			return new ImageIcon("img/wink_right.png");
+		}else if(leftWink==1) {
+			return new ImageIcon("img/wing_left.png");
+		}else if(lookLeft==1) {
+			return new ImageIcon("img/look_left.png");
+		}else if(lookRight==1) {
+			return new ImageIcon("img/look_right.png");
+		}else if(furrow > .5) {
+			return new ImageIcon("img/furrow.png");
+		}else if(raise > .5) {
+			return new ImageIcon("img/raise.png");
 		}
 		return defaultUpperFace();
 	}
 	
-	public static ImageIcon eyes(double blink, double rightWink, double leftWink, double lookLeft, double lookRight) {
-		if(blink==1) {
-			return new ImageIcon("img/eyes_blink.png");
-		}else if(rightWink==1) {
-			return new ImageIcon("img/eyes_wink_right.png");
-		}else if(leftWink==1) {
-			return new ImageIcon("img/eyes_wing_left.png");
-		}else if(lookLeft==1) {
-			return new ImageIcon("img/eyes_left.png");
-		}else if(lookRight==1) {
-			return new ImageIcon("img/eyes_right.png");
-		}
-		return defaultEyes();
-	}
-	
-	public static ImageIcon lowerFace(double smile, double clench, double leftSmirk, double rightSmirk, double laugh) {
+	/**
+	 * Logic for changing the lowerFace Image based on the inputs
+	 * @param smile.
+	 * @param clench.
+	 * @param leftSmirk.
+	 * @param rightSmirk.
+	 * @param laugh.
+	 * @return ImageIcon
+	 * 
+	 */
+	public static ImageIcon lowerFace(double smile, double clench, double leftSmirk, 
+			double rightSmirk, double laugh) {
 		if(smile > .5) {
-			return new ImageIcon("img/mouth_smile.png");
+			return new ImageIcon("img/smile.png");
 		}else if(clench > .5) {
-			return new ImageIcon("img/mouth_clengh.png");
-		}else if(leftSmirk > .1) {
-			return new ImageIcon("img/mouth_smirk_left.png");
-		}else if(rightSmirk > .1) {
-			return new ImageIcon("img/mouth_smirk_right.png");
-		}else if(laugh > .1) {
-			return new ImageIcon("img/mouth_laugh.png");
+			return new ImageIcon("img/clench.png");
+		}else if(leftSmirk > .5) {
+			return new ImageIcon("img/smirk_left.png");
+		}else if(rightSmirk > .5) {
+			return new ImageIcon("img/smirk_right.png");
+		}else if(laugh > .5) {
+			return new ImageIcon("img/laugh.png");
 		}
 		return defaultLoweFace();
 	}
+
 
 }

@@ -63,6 +63,8 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
     facialExpressionPanel.add(graphPanel);
     
     facePanel = new FacePanel();
+    facePanel.setLocation(0, 200);
+    facePanel.setSize(450, 384);
     facialExpressionPanel.add(facePanel);
 
     displayGraph = new DisplayGraph();
