@@ -13,6 +13,12 @@ import server.gui.actions.EmoAction;
 import server.gui.actions.EmoItemListener;
 import util.UpDownButton;
 
+/**
+ * This class's purpose is to display the interactive tab section items
+ * 
+ * @author Cephas Armstrong-Mensah
+ *
+ */
 public class InteractivePanel extends JPanel {
 
   private static final long serialVersionUID = 8249772239761365173L;

@@ -8,19 +8,25 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
 import server.gui.EmotivComposer;
 import server.gui.actions.EmoMouse;
 
+/**
+ * This class's purpose is to display the drop down menu items for the signals
+ * to either denote good signal or weak signal and represented respectively by a
+ * wireless icon showing signal strength
+ * 
+ * @author Cephas Armstrong-Mensah
+ *
+ */
 public class SignalMenu extends JDialog {
 
   private static final long serialVersionUID = 744880228052339810L;
 
   private JPanel goodSignalPanel;
   private JPanel weakSignalPanel;
-  private JSeparator separator;
 
   private JLabel weakIcon;
   private JLabel weakSignalLabel;
@@ -39,6 +45,7 @@ public class SignalMenu extends JDialog {
     setUndecorated(true);
 
     contentPane = new JPanel();
+    contentPane.setBackground(Color.BLACK);
     contentPane.setBounds(0, 0, 200, 101);
     contentPane.setLayout(null);
     setContentPane(contentPane);
@@ -66,11 +73,6 @@ public class SignalMenu extends JDialog {
     goodSignalPanel.add(goodIcon);
     goodSignalPanel.add(goodSignalLabel);
 
-    separator = new JSeparator();
-    separator.setAlignmentY(Component.TOP_ALIGNMENT);
-    separator.setAlignmentX(Component.LEFT_ALIGNMENT);
-    separator.setBounds(0, 50, 200, 1);
-
     weakSignalPanel = new JPanel();
     weakSignalPanel.setBackground(Color.WHITE);
     weakSignalPanel.setBounds(0, 51, 200, 50);
@@ -91,16 +93,17 @@ public class SignalMenu extends JDialog {
     weakSignalPanel.add(weakSignalLabel);
 
     contentPane.add(goodSignalPanel);
-    contentPane.add(separator);
     contentPane.add(weakSignalPanel);
 
     addMouseListener(new EmoMouse(this));
   }
 
   public void setVisibleFalse(Component signal) {
-    System.out.println("Component: " + signal.getClass());
+    System.out.println("Class: " + signal.getClass());
+    System.out.println("Parent: " + signal.getParent());
+    System.out.println("Component: " + signal.getClass().getName());
 
-    if (!(signal instanceof SignalMenu) || !(signal instanceof MenuBarPanel))
+    if (!(signal.getParent() instanceof SignalMenu))
       dispose();
   }
 

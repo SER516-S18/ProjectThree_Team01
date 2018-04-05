@@ -11,6 +11,12 @@ import util.ConsolePanel;
 import util.Constants;
 import util.UpDownButton;
 
+/**
+ * This class's purpose is the upper section of the lower detection tab area
+ * 
+ * @author Cephas Armstrong-Mensah
+ *
+ */
 public class EmoStatePanel extends JPanel {
 
   private static final long serialVersionUID = -283118474254668985L;

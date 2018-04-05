@@ -9,6 +9,14 @@ import server.gui.EmotivComposer;
 import server.gui.actions.EmoMouse;
 import util.Constants;
 
+/**
+ * This class's purpose is to show a menu area, instead of using JMenuBar I
+ * chose to go this route for a better look and feel over the traditional Menu
+ * bar.
+ * 
+ * @author Cephas Armstrong-Mensah
+ *
+ */
 public class MenuBarPanel extends JPanel {
 
   private static final long serialVersionUID = 744880228052339810L;
@@ -44,7 +52,7 @@ public class MenuBarPanel extends JPanel {
     signalPanel.setLayout(null);
     signalPanel.setBounds(400, 0, 50, 50);
 
-    signalLabel = new JLabel(new ImageIcon(loader.getResource("strong.png")));
+    signalLabel = new JLabel(new ImageIcon(loader.getResource("weak.png")));
     signalLabel.addMouseListener(new EmoMouse(this));
     signalLabel.setBounds(1, 1, 48, 48);
     signalPanel.add(signalLabel);
@@ -63,15 +71,31 @@ public class MenuBarPanel extends JPanel {
   }
 
   public void showExitMenu() {
-    EmotivComposer.showMenuItems();
+    HamburgerMenu itemClicked = EmotivComposer.getExitMenu();
+    SignalMenu temp = EmotivComposer.getSignalMenu();
+    if (temp != null)
+      temp.dispose();
+    if (itemClicked != null && itemClicked.isVisible()) {
+      itemClicked.dispose();
+    } else {
+      EmotivComposer.showMenuItems();
+    }
   }
 
   public void showSignalMenu() {
-    EmotivComposer.showSignalItems();
+    SignalMenu itemClicked = EmotivComposer.getSignalMenu();
+    HamburgerMenu temp = EmotivComposer.getExitMenu();
+    if (temp != null)
+      temp.dispose();
+    if (itemClicked != null && itemClicked.isVisible()) {
+      itemClicked.dispose();
+    } else {
+      EmotivComposer.showSignalItems();
+    }
   }
 
   public static void setIconImage(String filename) {
     System.out.println("Icon image: " + filename);
-    signalLabel = new JLabel(new ImageIcon(loader.getResource(filename)));
+    signalLabel.setIcon(new ImageIcon(loader.getResource(filename)));
   }
 }

@@ -37,6 +37,12 @@ public class EmoMouse implements MouseListener {
         ((UpDownButton) actionClass).decrementOutputText();
       else
         ((UpDownButton) actionClass).incrementOutputText();
+    } else if (actionClass instanceof HamburgerMenu) {
+      System.out.println("Hamburger instance");
+      ((HamburgerMenu) actionClass).triggerActionEvent(label);
+    } else if (actionClass instanceof SignalMenu) {
+      System.out.println("SignalMenu instance");
+      ((SignalMenu) actionClass).triggerActionEvent(label);
     } else if (actionClass instanceof MenuBarPanel) {
       System.out.println("MenuBarPanel instance");
       String icon = label.getIcon().toString();
@@ -45,12 +51,6 @@ public class EmoMouse implements MouseListener {
       } else if (icon.contains("strong.png") || icon.contains("weak.png")) {
         ((MenuBarPanel) actionClass).showSignalMenu();
       }
-    } else if (actionClass instanceof HamburgerMenu) {
-      System.out.println("Hamburger instance");
-      ((HamburgerMenu) actionClass).triggerActionEvent(label);
-    } else if (actionClass instanceof SignalMenu) {
-      System.out.println("SignalMenu instance");
-      ((SignalMenu) actionClass).triggerActionEvent(label);
     }
   }
 
@@ -77,12 +77,12 @@ public class EmoMouse implements MouseListener {
 
     if (actionClass instanceof UpDownButton) {
       ((UpDownButton) actionClass).showHideBorder(label, false);
-    } else if (actionClass instanceof MenuBarPanel) {
-      ((MenuBarPanel) actionClass).showHideBorder(label, false);
     } else if (actionClass instanceof HamburgerMenu) {
       ((HamburgerMenu) actionClass).setVisibleFalse(arg0.getComponent());
     } else if (actionClass instanceof SignalMenu) {
       ((SignalMenu) actionClass).setVisibleFalse(arg0.getComponent());
+    } else if (actionClass instanceof MenuBarPanel) {
+      ((MenuBarPanel) actionClass).showHideBorder(label, false);
     }
   }
 

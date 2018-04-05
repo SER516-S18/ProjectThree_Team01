@@ -7,8 +7,15 @@ import javax.swing.JPanel;
 import server.gui.actions.EmoAction;
 import util.ConsolePanel;
 
+/**
+ * This class's purpose is to display the logging area for the server
+ * 
+ * @author Cephas Armstrong-Mensah
+ *
+ */
 public class EmoLogPanel extends JPanel {
 
+  private static final long serialVersionUID = 270965232038903697L;
   private static JPanel emoLogPanel;
   private static JLabel labelLog;
   private static ConsolePanel consolePanel;

@@ -219,18 +219,18 @@ public class EmotivComposer extends JFrame {
     exitMenu.setVisible(true);
   }
 
+  public static HamburgerMenu getExitMenu() {
+    return exitMenu;
+  }
+
+  public static SignalMenu getSignalMenu() {
+    return signalMenu;
+  }
+
   public static void showSignalItems() {
     signalMenu = new SignalMenu(instance);
     signalMenu.setSize(200, 101);
     signalMenu.setLocation(instance.getX() + 250, instance.getY() + 75);
     signalMenu.setVisible(true);
-  }
-
-  public static void hideMenuItems() {
-    exitMenu.setVisible(false);
-  }
-
-  public static void hideSignalItems() {
-    signalMenu.setVisible(false);
   }
 }
