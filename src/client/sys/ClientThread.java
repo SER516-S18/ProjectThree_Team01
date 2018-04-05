@@ -9,6 +9,12 @@ import org.glassfish.tyrus.client.ClientManager;
 
 import util.Constants;
 
+/**
+ * 
+ * @author Shilpa Bhat
+ * 
+ *
+ */
 public class ClientThread implements Runnable {
 
   public static volatile boolean isClosing = false;
