@@ -35,22 +35,25 @@ public class FacialPanel extends JPanel {
   private JRadioButton eyeActive;
   private JCheckBox chckbxNewCheckBox;
 
-  private double lookingRight;
+
   private double eyebrowRaise;
   private double eyebrowFurrow;
-  private double lookingLeft;
-  private double lookingDown;
-  private double lookingUp;
-  private double rightWink;
-  private double leftWink;
-  private double blink;
-  private double eyesOpen;
+ 
+  private double smerkRight;
+  private double smerkLeft;
   private double smile;
   private double clench;
   private double laugh;
-
+  
+  private int lookingLeft;
+  private int lookingRight;
+  private int rightWink;
+  private int leftWink;
+  private int blink;
+ 
+ 
   private int eyeclickCount = 0;
-  private Double eyeActiveValue;
+  private int eyeActiveValue;
 
   public FacialPanel() {
     setBounds(0, 0, 440, 150);
@@ -155,10 +158,10 @@ public class FacialPanel extends JPanel {
       clench = lowerfaceValue;
       // System.out.println(lowerfaceValue +","+ Item); //test
     } else if (Item.equals("Smirk Left")) {
-      lookingUp = lowerfaceValue;
+      smerkLeft = lowerfaceValue;
       // System.out.println(lowerfaceValue +","+ Item); //test
     } else if (Item.equals("Smirk Right")) {
-      lookingDown = lowerfaceValue;
+      smerkRight = lowerfaceValue;
       // System.out.println(lowerfaceValue +","+ Item); //test
     } else if (Item.equals("Laugh")) {
       laugh = lowerfaceValue;
@@ -169,7 +172,7 @@ public class FacialPanel extends JPanel {
 
   public void eyecomboBoxAction() {
     String Item = eyecomboBox.getSelectedItem().toString();
-    eyeActiveValue = Double.parseDouble(eyeActive.getActionCommand());
+    eyeActiveValue = Integer.parseInt(eyeActive.getActionCommand());
     // System.out.println(eyeActiveValue);
     if (Item.equals("Blink")) {
       blink = eyeActiveValue;
@@ -196,7 +199,7 @@ public class FacialPanel extends JPanel {
     } else {
       eyeActive.setActionCommand("0");
     }
-    eyeActiveValue = Double.parseDouble(eyeActive.getActionCommand());
+    eyeActiveValue = Integer.parseInt(eyeActive.getActionCommand());
     eyeclickCount++;
     // System.out.println("eye sectioon:"+ eyeActiveValue); //test
   }
