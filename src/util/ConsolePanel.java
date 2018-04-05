@@ -23,7 +23,6 @@ public class ConsolePanel extends JPanel {
 
   private static final long serialVersionUID = -4828155067278962729L;
   private static JScrollPane consoleScrollPane;
-  private JLabel consoleHeaderLabel;
   private static JLabel consoleMessageLabel;
   private static String completeMessage = "<html>";
   private static String messageDisplay;
@@ -43,9 +42,6 @@ public class ConsolePanel extends JPanel {
     consoleScrollPane = new JScrollPane();
     consoleScrollPane.setHorizontalScrollBarPolicy(horizontalScrollValue);
     consoleScrollPane.setVerticalScrollBarPolicy(verticalScrollValue);
-
-    consoleHeaderLabel = new JLabel("Console :");
-    consoleScrollPane.setColumnHeaderView(consoleHeaderLabel);
 
     consoleMessageLabel = new JLabel("");
     consoleMessageLabel.setVerticalAlignment(labelVerticalAlignment);
