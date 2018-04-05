@@ -19,8 +19,15 @@ import util.UpDownButton;
  */
 public class EmoMouse implements MouseListener {
   Component actionClass;
+  String switcher;
 
   public EmoMouse(Component actionClass) {
+    this.switcher = "";
+    this.actionClass = actionClass;
+  }
+
+  public EmoMouse(Component actionClass, String switcher) {
+    this.switcher = switcher;
     this.actionClass = actionClass;
   }
 
@@ -42,7 +49,7 @@ public class EmoMouse implements MouseListener {
       ((HamburgerMenu) actionClass).triggerActionEvent(label);
     } else if (actionClass instanceof SignalMenu) {
       System.out.println("SignalMenu instance");
-      ((SignalMenu) actionClass).triggerActionEvent(label);
+      ((SignalMenu) actionClass).triggerActionEvent(switcher);
     } else if (actionClass instanceof MenuBarPanel) {
       System.out.println("MenuBarPanel instance");
       String icon = label.getIcon().toString();
@@ -79,9 +86,9 @@ public class EmoMouse implements MouseListener {
       ((UpDownButton) actionClass).showHideBorder(label, false);
     } else if (actionClass instanceof HamburgerMenu) {
       ((HamburgerMenu) actionClass).setVisibleFalse(arg0.getComponent());
-    } else if (actionClass instanceof SignalMenu) {
+    } else if (actionClass instanceof SignalMenu && switcher == "signal") {
       ((SignalMenu) actionClass).setVisibleFalse(arg0.getComponent());
-    } else if (actionClass instanceof MenuBarPanel) {
+    } else if (actionClass instanceof MenuBarPanel && switcher == "hamburger") {
       ((MenuBarPanel) actionClass).showHideBorder(label, false);
     }
   }

@@ -14,8 +14,8 @@ import server.gui.actions.EmoMouse;
 import util.Constants;
 
 /**
- * This class's purpose is to display the drop down menu items for the hamburger
- * icon section. The menu items included are About and Quit.
+ * This class's purpose is to display the drop down menu items for the hamburger icon
+ * section. The menu items included are About and Quit.
  * 
  * @author Cephas Armstrong-Mensah
  *
@@ -78,15 +78,11 @@ public class HamburgerMenu extends JDialog {
 
     contentPane.add(aboutPanel);
     contentPane.add(quitPanel);
+    addMouseListener(new EmoMouse(this, "hamburger"));
   }
 
   public void setVisibleFalse(Component exited) {
-    System.out.println("Class: " + exited.getClass());
-    System.out.println("Parent: " + exited.getParent());
-    System.out.println("Component: " + exited.getClass().getName());
-
-    if (!(exited.getParent() instanceof HamburgerMenu))
-      dispose();
+    dispose();
   }
 
   public void triggerActionEvent(JLabel source) {
