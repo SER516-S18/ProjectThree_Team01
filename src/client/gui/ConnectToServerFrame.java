@@ -16,6 +16,13 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * 
+ * @author Shilpa Bhat
+ * 
+ *         The frame to provide ipadress and the port number to connect to the
+ *         server.
+ */
 public class ConnectToServerFrame extends JFrame {
 
 	private JPanel contentPane;
@@ -23,7 +30,8 @@ public class ConnectToServerFrame extends JFrame {
 	private JTextField portTextField;
 
 	/**
-	 * Create the frame.
+	 * Default ipaddress : 127.0.0.1
+	 * Default port number : 10001
 	 */
 	public ConnectToServerFrame() {
 		setResizable(false);
@@ -33,37 +41,37 @@ public class ConnectToServerFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel hostAddresslabel = new JLabel("HOST ADDRESS");
 		hostAddresslabel.setBounds(35, 16, 123, 39);
 		contentPane.add(hostAddresslabel);
-		
+
 		JLabel portLabel = new JLabel("PORT");
 		portLabel.setBounds(35, 86, 69, 20);
 		contentPane.add(portLabel);
-		
+
 		ipAddressTextField = new JTextField();
 		ipAddressTextField.setText("127.0.0.1");
 		ipAddressTextField.setColumns(10);
 		ipAddressTextField.setBounds(185, 22, 146, 26);
 		contentPane.add(ipAddressTextField);
-		
+
 		portTextField = new JTextField();
 		portTextField.setText("10001");
 		portTextField.setColumns(10);
 		portTextField.setBounds(185, 83, 146, 26);
 		contentPane.add(portTextField);
-		
+
 		JButton okButton = new JButton("OK");
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			    ConnectToServer();
-			    setVisible(false);
+				ConnectToServer();
+				setVisible(false);
 			}
 		});
 		okButton.setBounds(35, 138, 115, 29);
 		contentPane.add(okButton);
-		
+
 		JButton cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -73,8 +81,11 @@ public class ConnectToServerFrame extends JFrame {
 		cancelButton.setBounds(216, 138, 115, 29);
 		contentPane.add(cancelButton);
 	}
-	
+
+	/**
+	 * ClientThread tries to connect to the server at ipaddress given
+	 */
 	private void ConnectToServer() {
-	    new Thread(new ClientThread(ipAddressTextField.getText())).start();
-	  }
+		new Thread(new ClientThread(ipAddressTextField.getText())).start();
+	}
 }
