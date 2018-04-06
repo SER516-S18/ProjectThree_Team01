@@ -1,6 +1,7 @@
 package server.gui.panels;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -33,7 +34,7 @@ public class FacialPanel extends JPanel {
   private JComboBox<String> eyecomboBox;
   private JRadioButton eyeActive;
   private JCheckBox chckbxNewCheckBox;
-
+  private JButton eyeActiveButton;
 
   private double eyebrowRaise;
   private double eyebrowFurrow;
@@ -109,10 +110,7 @@ public class FacialPanel extends JPanel {
         new String[] { "Blink", "Wink Left", "Wink Right", "Look Left", "Look Right" }));
 
     eyeActive = new JRadioButton("Active");
-    //eyeActive.setActionCommand("0");
-   // eyeActiveValue = Integer.parseInt(eyeActive.getActionCommand());
-    
-    
+
     eyeActive.addActionListener(new ActionEvents(this, "eyeActive"));
     eyecomboBox.addActionListener(new ActionEvents(this, "eyeComboBox"));
     eyeActive.setBounds(140, 105, 80, 20);
@@ -132,6 +130,22 @@ public class FacialPanel extends JPanel {
     add(eyeActive);
   }
   
+  
+  public void replaceRadioButton() {
+	remove(eyeActive);
+	eyeActiveButton = new JButton("Activate");
+	eyeActiveButton.setBounds(140, 105, 80, 20);
+	eyeActiveButton.setVisible(true);
+	add(eyeActiveButton);
+	repaint();
+  }
+  
+  public void replacebackRadio() {
+	remove(eyeActiveButton);
+	add(eyeActive);
+	repaint();
+  }
+  
   public JRadioButton getEyeActive() {
 	  return eyeActive;
   }
@@ -145,7 +159,6 @@ public class FacialPanel extends JPanel {
   }
 
   public boolean ischckbxNewCheckBoxSelected() {
-	  
 	return chckbxNewCheckBox.isSelected();
 	  
   }

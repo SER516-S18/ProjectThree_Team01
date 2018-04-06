@@ -106,10 +106,18 @@ public class InteractivePanel extends JPanel {
     if (autoResetCheckBox.isSelected()) {
       sendButton.setText("Start");
       EmotivComposer.isAutoResetChecked = true;
-      
+      //
+     // EmotivComposer.getemoFacialPanel().replaceRadioButton();
     } else {
       sendButton.setText("Send");
       EmotivComposer.isAutoResetChecked = false;
+    }
+    
+    // replace a eye button with radiobutton
+    if (autoResetCheckBox.isSelected()) {
+      EmotivComposer.getemoFacialPanel().replaceRadioButton();
+    }else {
+      EmotivComposer.getemoFacialPanel().replacebackRadio();
     }
   }
 }
