@@ -2,11 +2,7 @@ package client.gui;
 
 import java.awt.Dimension;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
@@ -14,11 +10,8 @@ import javax.swing.border.EmptyBorder;
 import org.jfree.chart.ChartPanel;
 
 import client.sys.ClientSubject;
-import client.sys.ClientThread;
 import data.EmotivData;
 import interfaces.ClientObserver;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class EmotivControlPanel extends JFrame implements ClientObserver {
   private static final long serialVersionUID = 8528760467775723790L;
@@ -69,7 +62,7 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
     graphPanel.setBounds(456, 0, 500, 841);
     // graphPanel.setBackground(Color.GRAY);
     facialExpressionPanel.add(graphPanel);
-    
+
     facePanel = new FacePanel();
     facePanel.setLocation(0, 200);
     facePanel.setSize(450, 384);
@@ -79,24 +72,23 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
     displayGraph.chartPanel = new ChartPanel(displayGraph.graph);
 
     displayGraph.chartPanel.setLocation(12, 26);
-    displayGraph.chartPanel.setSize(new Dimension(500, 800));
+    displayGraph.chartPanel.setSize(new Dimension(500, 500));
     facialExpressionPanel.setLayout(null);
 
     graphPanel.add(displayGraph.chartPanel);
     graphPanel.setLayout(null);
-    
-    ClientSubject.getInstance().addObserver(this);
-  }
 
-  
+    ClientSubject.getInstance().addObserver(this);
+
+  }
 
   @Override
   public void notifyObserver(EmotivData data) {
     // call graph and emotional expression methods
-    // System.out.println(data.getBlink());
+    System.out.println(data.getBlink());
     displayGraph.updateGraph(data);
-    if(facePanel!=null) {
-    	facePanel.updateFace(data);
+    if (facePanel != null) {
+      facePanel.updateFace(data);
     }
   }
 }

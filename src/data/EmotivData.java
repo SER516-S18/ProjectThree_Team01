@@ -99,6 +99,8 @@ public class EmotivData {
     expressive.put("Blink", this.blink);
     expressive.put("Smile", this.smile);
     expressive.put("Clench", this.clench);
+    expressive.put("Laugh", this.getLaugh());
+    expressive.put("Timer", this.getTimer());
     return expressive;
   }
 
@@ -148,7 +150,7 @@ public class EmotivData {
     return lookingLeft;
   }
 
-  public double geLaugh() {
+  public double getLaugh() {
     return laugh;
   }
 
