@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.websocket.Session;
 
 import data.EmotivData;
+import server.gui.EmotivComposer;
 import util.ConsolePanel;
 
 /**
@@ -87,8 +88,11 @@ public class WorkerThread implements Runnable {
     List<Session> clients = ServerWebSocket.getClients();
     try {
       temp = clients.get(0);
+      data.setTimer(Double.parseDouble(EmotivComposer.getTimerText()));
       ServerWebSocket.sendMessage(temp, data.toString());
       updateConsolePanel(String.format("Sent data to client: %s", temp.getId()));
+
+      System.out.println(String.format("Sent data to client: %s", data));
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();

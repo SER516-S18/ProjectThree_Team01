@@ -12,11 +12,11 @@ import javax.websocket.DeploymentException;
 import org.glassfish.tyrus.server.Server;
 
 import server.gui.actions.WindowEvents;
-import server.gui.panels.LogPanel;
 import server.gui.panels.EmoStatePanel;
 import server.gui.panels.FacialPanel;
 import server.gui.panels.HamburgerMenu;
 import server.gui.panels.InteractivePanel;
+import server.gui.panels.LogPanel;
 import server.gui.panels.MenuBarPanel;
 import server.gui.panels.SignalMenu;
 import server.sys.ServerThread;
@@ -25,8 +25,8 @@ import server.sys.WorkerThread;
 import util.Constants;
 
 /**
- * The purpose of this class is to provide the GUI handler for the server and serves as the
- * main interaction between the user, server and client.
+ * The purpose of this class is to provide the GUI handler for the server and
+ * serves as the main interaction between the user, server and client.
  * 
  * @author Cephas Armstrong-Mensah
  * @version 1.0
@@ -62,9 +62,9 @@ public class EmotivComposer extends JFrame {
   public static boolean isAutoResetChecked = false;
 
   public static FacialPanel getemoFacialPanel() {
-	  return emoFacialPanel;
+    return emoFacialPanel;
   }
-  
+
   public static EmotivComposer getInstance() {
     if (instance == null) {
       instance = new EmotivComposer();
@@ -72,7 +72,6 @@ public class EmotivComposer extends JFrame {
     return instance;
   };
 
-  
   private EmotivComposer() {
     addWindowListener(new WindowEvents(this));
     setTitle("Emotiv Composer Project 3");
@@ -239,5 +238,9 @@ public class EmotivComposer extends JFrame {
     signalMenu.setSize(200, 101);
     signalMenu.setLocation(instance.getX() + 250, instance.getY() + 75);
     signalMenu.setVisible(true);
+  }
+
+  public static String getTimerText() {
+    return emoStatePanel.getTimeTrackerLabel().getText().trim();
   }
 }
