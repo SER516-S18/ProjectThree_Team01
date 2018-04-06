@@ -92,12 +92,21 @@ public class InteractivePanel extends JPanel {
 
   public void triggerStartStopSend() {
     EmotivComposer.handleStartStopSend(sendButton.getText());
+    
+    
+    // for eye section auto reset button
+    if(EmotivComposer.getemoFacialPanel().ischckbxNewCheckBoxSelected()) {
+    EmotivComposer.getemoFacialPanel().getEyeActive().doClick();
+    EmotivComposer.getemoFacialPanel().seteyeActiveValue(0);
+    }
+    
   }
 
   public void itemStateAction() {
     if (autoResetCheckBox.isSelected()) {
       sendButton.setText("Start");
       EmotivComposer.isAutoResetChecked = true;
+      
     } else {
       sendButton.setText("Send");
       EmotivComposer.isAutoResetChecked = false;

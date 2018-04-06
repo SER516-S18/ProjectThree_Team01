@@ -61,6 +61,10 @@ public class EmotivComposer extends JFrame {
 
   public static boolean isAutoResetChecked = false;
 
+  public static FacialPanel getemoFacialPanel() {
+	  return emoFacialPanel;
+  }
+  
   public static EmotivComposer getInstance() {
     if (instance == null) {
       instance = new EmotivComposer();
@@ -68,6 +72,7 @@ public class EmotivComposer extends JFrame {
     return instance;
   };
 
+  
   private EmotivComposer() {
     addWindowListener(new WindowEvents(this));
     setTitle("Emotiv Composer Project 3");

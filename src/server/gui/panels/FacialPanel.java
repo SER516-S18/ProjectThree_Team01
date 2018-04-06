@@ -132,18 +132,25 @@ public class FacialPanel extends JPanel {
     add(eyeActive);
   }
   
-  
-  public void eyeAutoReset() {
-	if(chckbxNewCheckBox.isSelected()) {
-		
-	}
+  public JRadioButton getEyeActive() {
+	  return eyeActive;
   }
-  
+
   public JCheckBox getEyeAutoCheckBox() {
 	  return chckbxNewCheckBox;
   }
   
+  public void seteyeActiveValue(int number) {
+	  eyeActiveValue = number;
+  }
 
+  public boolean ischckbxNewCheckBoxSelected() {
+	  
+	return chckbxNewCheckBox.isSelected();
+	  
+  }
+  
+  
   public void upperfaceAction() {
     String Item = upperfaceComboBox.getSelectedItem().toString();
     String upperbuttonValue = upperfaceupdownButton.getOutputText();
