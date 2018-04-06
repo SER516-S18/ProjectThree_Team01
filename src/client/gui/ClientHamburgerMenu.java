@@ -1,5 +1,4 @@
 package client.gui;
-
 import java.awt.MenuBar;
 
 import javax.swing.ImageIcon;
@@ -50,10 +49,22 @@ public class ClientHamburgerMenu extends JMenuBar {
 	
 	JMenuItem facialExpressions = new JMenuItem("Facial Expressions");
 	detectionsOption.add(facialExpressions);
+	facialExpressions.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			client.gui.EmotivControlPanel obj = EmotivControlPanel.getInstance();
+			obj.showFacialGraph();
+		}
+	});
 	
 	JMenuItem performanceMetrices = new JMenuItem("Performance Metrics");
 	detectionsOption.add(performanceMetrices);
-	
+	performanceMetrices.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			client.gui.EmotivControlPanel obj = EmotivControlPanel.getInstance();
+			obj.showPerformanceMetric();
+		}
+	});
+		
 	JMenu helpOption = new JMenu("HELP");
 	menu.add(helpOption);
 	

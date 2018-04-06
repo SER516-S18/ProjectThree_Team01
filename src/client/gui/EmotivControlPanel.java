@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import org.jfree.chart.ChartPanel;
 
+import client.gui.panels.PerformanceMetricPanel;
 import client.sys.ClientSubject;
 import data.EmotivData;
 import interfaces.ClientObserver;
@@ -22,6 +23,11 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
   private DisplayGraph displayGraph;
   public static EmotivControlPanel clientInstance = null;
   private FacePanel facePanel = null;
+  private PerformanceMetricPanel performanceMetric;
+
+  private JTabbedPane tabbedPane;
+  private JPanel graphPanel;
+  private ClientHamburgerMenu menu;
 
   /**
    * Launch the application.
@@ -45,22 +51,22 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
   private EmotivControlPanel() {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setBounds(100, 100, 982, 919);
-    ClientHamburgerMenu menu = new ClientHamburgerMenu();
+    menu = new ClientHamburgerMenu();
     setJMenuBar(menu);
     contentPane = new JPanel();
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     setContentPane(contentPane);
+    
     contentPane.setLayout(null);
     facialExpressionPanel = new JPanel();
-    JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+    tabbedPane = new JTabbedPane(JTabbedPane.TOP);
     tabbedPane.setBounds(5, 13, 959, 992);
-    contentPane.add(tabbedPane);
     tabbedPane.setName("Facial Expressions");
     tabbedPane.addTab("Facial Expressions", facialExpressionPanel);
     facialExpressionPanel.setLayout(null);
-    JPanel graphPanel = new JPanel();
+    graphPanel = new JPanel();
     graphPanel.setBounds(456, 0, 500, 841);
-    // graphPanel.setBackground(Color.GRAY);
+    //graphPanel.setBackground(Color.GRAY);
     facialExpressionPanel.add(graphPanel);
 
     facePanel = new FacePanel();
@@ -77,11 +83,29 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 
     graphPanel.add(displayGraph.chartPanel);
     graphPanel.setLayout(null);
-
+    
     ClientSubject.getInstance().addObserver(this);
+    
+    performanceMetric = new PerformanceMetricPanel();
+    performanceMetric.setBounds(0, 0, 959, 992);
 
+    contentPane.add(tabbedPane);
+    contentPane.add(performanceMetric);
+    performanceMetric.setVisible(false);
+    
   }
-
+  
+  public void showPerformanceMetric() {
+	  tabbedPane.setVisible(false);
+	  performanceMetric.setVisible(true);
+	  this.repaint();
+  }
+  
+  public void showFacialGraph() {
+	  tabbedPane.setVisible(true);
+	  performanceMetric.setVisible(false);
+	  this.repaint();
+  }
   @Override
   public void notifyObserver(EmotivData data) {
     // call graph and emotional expression methods
