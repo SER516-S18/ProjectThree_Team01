@@ -50,8 +50,7 @@ public class FacialPanel extends JPanel {
   private int leftWink;
   private int blink;
  
- 
-  private int eyeclickCount = 0;
+
   private int eyeActiveValue;
 
   public FacialPanel() {
@@ -64,6 +63,7 @@ public class FacialPanel extends JPanel {
    * Initialize the contents of the frame.
    */
   private void initialize() {
+	eyeActiveValue = 0;
     upperfaceupdownButton = new ComboControl(70, 0.1, false);
     upperfaceupdownButton.setBounds(135, 30, 70, 30);
     upperfaceupdownButton.setVisible(true);
@@ -109,15 +109,17 @@ public class FacialPanel extends JPanel {
         new String[] { "Blink", "Wink Left", "Wink Right", "Look Left", "Look Right" }));
 
     eyeActive = new JRadioButton("Active");
-    eyeActive.setActionCommand("0");
-
+    //eyeActive.setActionCommand("0");
+   // eyeActiveValue = Integer.parseInt(eyeActive.getActionCommand());
+    
+    
     eyeActive.addActionListener(new ActionEvents(this, "eyeActive"));
     eyecomboBox.addActionListener(new ActionEvents(this, "eyeComboBox"));
     eyeActive.setBounds(140, 105, 80, 20);
 
     chckbxNewCheckBox = new JCheckBox("Auto Reset");
     chckbxNewCheckBox.setBounds(270, 105, 115, 20);
-
+    
     add(upperfaceupdownButton);
     add(upperfaceLabel);
     add(lowerfaceLabel);
@@ -129,6 +131,18 @@ public class FacialPanel extends JPanel {
     add(chckbxNewCheckBox);
     add(eyeActive);
   }
+  
+  
+  public void eyeAutoReset() {
+	if(chckbxNewCheckBox.isSelected()) {
+		
+	}
+  }
+  
+  public JCheckBox getEyeAutoCheckBox() {
+	  return chckbxNewCheckBox;
+  }
+  
 
   public void upperfaceAction() {
     String Item = upperfaceComboBox.getSelectedItem().toString();
@@ -171,8 +185,8 @@ public class FacialPanel extends JPanel {
 
   public void eyecomboBoxAction() {
     String Item = eyecomboBox.getSelectedItem().toString();
-    eyeActiveValue = Integer.parseInt(eyeActive.getActionCommand());
-    // System.out.println(eyeActiveValue);
+    //eyeActiveValue = Integer.parseInt(eyeActive.getActionCommand());
+       System.out.println(eyeActiveValue);
     if (Item.equals("Blink")) {
       blink = eyeActiveValue;
       // System.out.println(blink +","+ Item); //test
@@ -191,10 +205,11 @@ public class FacialPanel extends JPanel {
     } else {
     }
   }
-
+/*
   public void eyeAction() {
     if (eyeclickCount % 2 == 0) {
       eyeActive.setActionCommand("1");
+      
     } else {
       eyeActive.setActionCommand("0");
     }
@@ -202,4 +217,18 @@ public class FacialPanel extends JPanel {
     eyeclickCount++;
     // System.out.println("eye sectioon:"+ eyeActiveValue); //test
   }
+  */
+
+ 
+  
+  public void eyeAction() {
+	  if(eyeActive.isSelected()) {
+		  
+		  eyeActiveValue = 1;
+		 
+	  }else {
+		  eyeActiveValue = 0;
+	  }
+  }
+  
 }
