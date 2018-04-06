@@ -39,12 +39,12 @@ public class DisplayGraph extends JPanel {
     channelNames[1] = new String("Eyebrow Raise");
     channelNames[2] = new String("Looking Left");
     channelNames[3] = new String("Eyebrow Furrow");
-    channelNames[4] = new String("Looking Down");
-    channelNames[5] = new String("Looking Up");
+    channelNames[4] = new String("Looking Right");
+    channelNames[5] = new String("Smirk Right");
     channelNames[6] = new String("Right Wink");
     channelNames[7] = new String("Left Wink");
     channelNames[8] = new String("Blink");
-    channelNames[9] = new String("EyesOpen");
+    channelNames[9] = new String("Smirk Left");
     channelNames[10] = new String("Smile");
     channelNames[11] = new String("Clench");
 

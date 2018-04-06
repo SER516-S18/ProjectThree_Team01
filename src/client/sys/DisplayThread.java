@@ -32,12 +32,12 @@ public class DisplayThread implements Runnable {
       values[1] = 2 + data.getEyebrowRaise();
       values[2] = 3 + data.getLookingLeft();
       values[3] = 4 + data.getEyebrowFurrow();
-      values[4] = 5 + data.getLookingDown();
-      values[5] = 6 + data.getLookingUp();
+      values[4] = 5 + data.getLookingRight();
+      values[5] = 6 + data.getSmerkRight();
       values[6] = 7 + data.getRightWink();
       values[7] = 8 + data.getLeftWink();
       values[8] = 9 + data.getBlink();
-      values[9] = 10 + data.getEyesOpen();
+      values[9] = 10 + data.getSmerkLeft();
       values[10] = 11 + data.getSmile();
       values[11] = 12 + data.getClench();
 
