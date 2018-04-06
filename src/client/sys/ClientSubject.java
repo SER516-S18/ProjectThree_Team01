@@ -23,6 +23,7 @@ public class ClientSubject implements ClientObservable {
   
   //update the observer list about the incoming data.
   public void updateObservers(EmotivData data) {
+    System.out.println("Are we here then: " + data.getExcitementLongTerm());
     emotivData = data;
     notifyObserver(observerList);
   }
