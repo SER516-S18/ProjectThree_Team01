@@ -1,6 +1,7 @@
 package client.gui.panels;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -12,6 +13,12 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
+
+import org.jfree.chart.ChartPanel;
+
+import client.gui.DisplayGraph;
+import client.gui.PerformanceGraph;
+
 import javax.swing.border.BevelBorder;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
@@ -25,6 +32,7 @@ public class PerformanceMetricPanel extends JPanel {
 	private JPanel graphPanel;
 	private JLabel lblNewLabel;
 	private JPanel metrixPanel;
+	private PerformanceGraph performanceGraph;
 
 	/**
 	 * Create the frame.
@@ -38,6 +46,16 @@ public class PerformanceMetricPanel extends JPanel {
 		graphPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		graphPanel.setBounds(10, 5, 690, 992);
 		graphPanel.setLayout(null);
+		
+		
+		
+		performanceGraph = new PerformanceGraph();
+		ChartPanel chartPanel=performanceGraph.getChartPanel();
+		chartPanel= new ChartPanel(performanceGraph.getGraph());
+
+		chartPanel.setLocation(12, 26);
+		chartPanel.setSize(new Dimension(500, 500));
+	    graphPanel.add(chartPanel);
 		
 		lblNewLabel = new JLabel("Graph");
 		lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
