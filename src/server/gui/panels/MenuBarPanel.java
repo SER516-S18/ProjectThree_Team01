@@ -10,8 +10,9 @@ import server.gui.actions.MouseEvents;
 import util.Constants;
 
 /**
- * This class's purpose is to show a menu area, instead of using JMenuBar I chose to go
- * this route for a better look and feel over the traditional Menu bar.
+ * This class's purpose is to show a menu area, instead of using JMenuBar I
+ * chose to go this route for a better look and feel over the traditional Menu
+ * bar.
  * 
  * @author Vihar Bhatt
  * @author Cephas Armstrong-Mensah

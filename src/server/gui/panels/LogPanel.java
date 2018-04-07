@@ -25,7 +25,7 @@ public class LogPanel extends JPanel {
   private static JButton clearLogButton;
 
   public LogPanel() {
-    setBounds(0, 0, 443, 190);
+    setBounds(0, 0, 265, 200);
     setLayout(null);
     initialize();
   }
@@ -34,10 +34,10 @@ public class LogPanel extends JPanel {
     labelLog = new JLabel("EMOENGINE LOG");
     labelLog.setBounds(5, 0, 120, 30);
     consolePanel = new ConsolePanel();
-    consolePanel.setBounds(5, 30, 434, 130);
+    consolePanel.setBounds(5, 30, 255, 115);
     clearLogButton = new JButton("Clear Log");
     clearLogButton.addActionListener(new ActionEvents(this));
-    clearLogButton.setBounds(5, 165, 110, 30);
+    clearLogButton.setBounds(5, 150, 110, 30);
 
     add(labelLog);
     add(consolePanel);

@@ -19,6 +19,7 @@ import server.gui.panels.InteractivePanel;
 import server.gui.panels.LogPanel;
 import server.gui.panels.MenuBarPanel;
 import server.gui.panels.SignalMenu;
+import server.gui.panels.TrainingResults;
 import server.sys.ServerThread;
 import server.sys.ServerWebSocket;
 import server.sys.WorkerThread;
@@ -55,6 +56,7 @@ public class EmotivComposer extends JFrame {
   private static FacialPanel emoFacialPanel;
   private static MenuBarPanel menuBarPanel;
   private static LogPanel emoLogPanel;
+  private static TrainingResults trainingResults;
   private static HamburgerMenu exitMenu;
   private static SignalMenu signalMenu;
   private static JPanel startPanel;
@@ -87,26 +89,58 @@ public class EmotivComposer extends JFrame {
   }
 
   private void initialize() {
+
+    lowerTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+    lowerTabbedPane.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
+    lowerTabbedPane.setBounds(0, 0, 443, 555);
+    emoFacialPanel = new FacialPanel();
+    emoStatePanel = new EmoStatePanel();
+    trainingResults = new TrainingResults();
+    emoLogPanel = new LogPanel();
+
+    lowerPanel = new JPanel();
+    lowerPanel.setBounds(2, 205, 443, 560);
+    lowerPanel.setLayout(null);
+
+    lowerPanel.add(lowerTabbedPane);
+
+    qualityPanel = new JPanel();
+    qualityPanel.setLayout(null);
+
+    detectionPanel = new JPanel();
+    detectionPanel.setLayout(null);
+
+    emoStatePanel.setSize(440, 175);
+
+    emoFacialPanel.setSize(443, 150);
+    emoFacialPanel.setSize(448, 150);
+    emoFacialPanel.setBounds(0, 175, 440, 150);
+
+    emoLogPanel.setBounds(170, 325, 265, 195);
+    trainingResults.setBounds(0, 325, 170, 195);
+
+    detectionPanel.add(emoFacialPanel);
+    detectionPanel.add(emoStatePanel);
+    detectionPanel.add(trainingResults);
+    detectionPanel.add(emoLogPanel);
+
+    lowerTabbedPane.addTab("Contact Quality", null, qualityPanel, null);
+    lowerTabbedPane.addTab("Detection", null, detectionPanel, null);
+
+    setResizable(false);
     menuBarPanel = new MenuBarPanel();
+
+    menuBarPanel.setSize(450, 50);
+    menuBarPanel.setSize(450, 50);
+    menuBarPanel.setBounds(0, 0, 450, 50);
+    menuBarPanel.setLayout(null);
     startPanel = new JPanel();
 
     tabbedPane = new JTabbedPane(JTabbedPane.TOP);
     tabbedPane.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
     tabbedPane.setBounds(0, 0, 450, 120);
 
-    lowerTabbedPane = new JTabbedPane(JTabbedPane.TOP);
-    lowerTabbedPane.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
-    lowerTabbedPane.setBounds(0, 0, 443, 555);
-
     emostate = new JPanel();
-    emoFacialPanel = new FacialPanel();
-    emoStatePanel = new EmoStatePanel();
-    emoLogPanel = new LogPanel();
-
-    menuBarPanel.setSize(450, 50);
-    menuBarPanel.setSize(450, 50);
-    menuBarPanel.setBounds(0, 0, 450, 50);
-    menuBarPanel.setLayout(null);
 
     startPanel.setBounds(2, 50, 443, 120);
     startPanel.setLayout(null);
@@ -128,45 +162,12 @@ public class EmotivComposer extends JFrame {
 
     interactive.add(interactivePanel);
     interactive.setLayout(null);
-
-    lowerPanel = new JPanel();
-    lowerPanel.setBounds(2, 205, 443, 560);
-    lowerPanel.setLayout(null);
-
-    lowerPanel.add(lowerTabbedPane);
-
-    qualityPanel = new JPanel();
-    qualityPanel.setLayout(null);
-
-    detectionPanel = new JPanel();
-    detectionPanel.setLayout(null);
-
-    emoStatePanel.setSize(440, 175);
-
-    emoFacialPanel.setSize(443, 150);
-    emoFacialPanel.setSize(448, 150);
-    emoFacialPanel.setBounds(0, 175, 440, 150);
-
-    emoLogPanel.setSize(443, 200);
-    emoLogPanel.setSize(440, 210);
-    emoLogPanel.setSize(443, 210);
-    emoLogPanel.setSize(443, 210);
-    emoLogPanel.setBounds(0, 325, 443, 200);
-
-    detectionPanel.add(emoFacialPanel);
-    detectionPanel.add(emoStatePanel);
-    detectionPanel.add(emoLogPanel);
-
-    lowerTabbedPane.addTab("Contact Quality", null, qualityPanel, null);
-    lowerTabbedPane.addTab("Detection", null, detectionPanel, null);
-
-    setResizable(false);
     tabbedPane.setSelectedIndex(1);
     lowerTabbedPane.setSelectedIndex(1);
 
     contentPane.add(lowerPanel);
-    contentPane.add(startPanel);
     contentPane.add(menuBarPanel);
+    contentPane.add(startPanel);
 
     startServer();
   }
