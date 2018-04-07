@@ -86,6 +86,6 @@ public class ConnectToServerFrame extends JFrame {
 	 * ClientThread tries to connect to the server at ipaddress given
 	 */
 	private void ConnectToServer() {
-		new Thread(new ClientThread(ipAddressTextField.getText())).start();
+		new Thread(new ClientThread(ipAddressTextField.getText(),Integer.parseInt(portTextField.getText()))).start();
 	}
 }
