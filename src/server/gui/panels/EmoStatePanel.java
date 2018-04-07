@@ -7,6 +7,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+import data.EmotivData;
+import server.sys.EmotivRandomizer;
+import server.sys.observer.EmotivObserver;
 import util.ConsolePanel;
 import util.Constants;
 
@@ -19,7 +22,7 @@ import util.Constants;
  * @since 02APR2018
  *
  */
-public class EmoStatePanel extends JPanel {
+public class EmoStatePanel extends JPanel implements EmotivObserver {
 
   private static final long serialVersionUID = -283118474254668985L;
   private JLabel lblTime;
@@ -35,9 +38,14 @@ public class EmoStatePanel extends JPanel {
   private JLabel overallSkillLabel;
   private JLabel emoStateLabel;
 
-  public EmoStatePanel() {
+  private EmotivRandomizer er;
+
+  public EmoStatePanel(EmotivRandomizer er) {
     setBounds(0, 0, 440, 175);
     setLayout(null);
+    this.er = er;
+    er.addToObserver(this);
+
     initialize();
   }
 
@@ -95,11 +103,13 @@ public class EmoStatePanel extends JPanel {
     add(emoStateLabel);
   }
 
-  public JLabel getTimeTrackerLabel() {
-    return this.timeTrackerLabel;
+  private void setTimeTrackerLabelText(String str) {
+    this.timeTrackerLabel.setText(str);
   }
 
-  public void setTimeTrackerLabelText(String str) {
-    this.timeTrackerLabel.setText(str);
+  @Override
+  public void updateAll(EmotivData data, double interval, String sendButtonText) {
+    System.out.println("We got updated");
+    setTimeTrackerLabelText(String.format("%.2f", data.getTimer()));
   }
 }

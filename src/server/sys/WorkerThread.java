@@ -4,13 +4,11 @@ import java.io.IOException;
 import java.time.LocalTime;
 import java.util.List;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.websocket.Session;
 
 import data.EmotivData;
-import server.gui.EmotivComposer;
-import util.ConsolePanel;
+import server.gui.panels.LogPanel;
+import server.sys.observer.EmotivObserver;
 
 /**
  * The purpose of this class is to implement a working thread to handle the
@@ -19,30 +17,29 @@ import util.ConsolePanel;
  * @author Cephas Armstrong-Mensah
  *
  */
-public class WorkerThread implements Runnable {
+public class WorkerThread implements Runnable, EmotivObserver {
   private static int INTERVAL = 1000;
-  private static double timer = 0.0;
 
   private ButtonStatus state;
   private EmotivRandomizer er;
   private EmotivData data;
-  private JLabel timeTracker;
-  private ConsolePanel consolePanel;
-  private Session session;
 
   private enum ButtonStatus {
     SEND, STARTED, STOPPED;
   }
 
-  public WorkerThread(JLabel timeTracker, JPanel console) {
-    data = new EmotivData();
-    er = new EmotivRandomizer();
+  public WorkerThread(EmotivRandomizer er) {
+    this.er = er;
+    er.addToObserver(this);
     state = ButtonStatus.STOPPED;
-    this.timeTracker = timeTracker;
-    this.consolePanel = (ConsolePanel) console;
   }
 
-  public void setButtonStatus(String val) {
+  private void setButtonStatus(String val) {
+    System.out.println("Changing state: " + val);
+    if (val.equals("Start") && state == ButtonStatus.STARTED) {
+      return;
+    }
+
     if (val.equalsIgnoreCase("send")) {
       state = ButtonStatus.SEND;
     } else if (val.equalsIgnoreCase("start")) {
@@ -52,24 +49,22 @@ public class WorkerThread implements Runnable {
     }
   }
 
-  public void setInterval(double val) {
+  private void setInterval(double val) {
     INTERVAL = (int) (val * 1000);
   }
 
   @Override
   public void run() {
+
     switch (state) {
     case SEND:
       fetchRandomData();
-      timer += (INTERVAL * 1.0 / 1000);
       state = ButtonStatus.STOPPED;
-      timeTracker.setText(String.format("%.2f", timer));
       break;
     case STARTED:
       while (state != ButtonStatus.STOPPED) {
+        System.out.println("Making a dent");
         fetchRandomData();
-        timer += (INTERVAL * 1.0 / 1000);
-        timeTracker.setText(String.format("%.2f", timer));
         try {
           Thread.sleep(INTERVAL);
         } catch (InterruptedException e) {
@@ -80,15 +75,16 @@ public class WorkerThread implements Runnable {
     default:
       break;
     }
+
   }
 
   private void fetchRandomData() {
-    data = er.getRandomData();
+    er.getRandomData();
     Session temp = null;
     List<Session> clients = ServerWebSocket.getClients();
+
     try {
       temp = clients.get(0);
-      data.setTimer(Double.parseDouble(EmotivComposer.getTimerText()));
       ServerWebSocket.sendMessage(temp, data.toString());
       updateConsolePanel(String.format("Sent data to client: %s", temp.getId()));
 
@@ -109,6 +105,13 @@ public class WorkerThread implements Runnable {
    * @param message
    */
   private void updateConsolePanel(String message) {
-    consolePanel.updateText(message + "&emsp;&emsp&lt;" + LocalTime.now() + "&gt;");
+    LogPanel.getConsolePanel().updateText(message + "&emsp;&emsp&lt;" + LocalTime.now() + "&gt;");
+  }
+
+  @Override
+  public void updateAll(EmotivData data, double interval, String sendButtonText) {
+    setInterval(interval);
+    setButtonStatus(sendButtonText);
+    this.data = data;
   }
 }

@@ -13,6 +13,7 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import data.EmotivData;
+import server.gui.panels.LogPanel;
 import util.Constants;
 
 /**
@@ -36,6 +37,7 @@ public class ServerWebSocket {
     if (!clients.contains(session)) {
       clients.add(session);
       System.out.println(String.format("Welcome client: %s", session.getId()));
+      LogPanel.getConsolePanel().updateText(String.format("Welcome client: %s", session.getId()));
     }
   }
 
@@ -48,6 +50,7 @@ public class ServerWebSocket {
   public void onClose(Session session) throws IOException {
     clients.remove(session);
     System.out.println(String.format("%s: disconnected", session.getId()));
+    LogPanel.getConsolePanel().updateText(String.format("Session %s disconnected...", session.getId()));
   }
 
   @OnError

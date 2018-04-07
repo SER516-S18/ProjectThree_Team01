@@ -1,18 +1,11 @@
 package server.gui;
 
-import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
-import server.gui.panels.LogPanel;
-import server.gui.panels.EmoStatePanel;
-import server.gui.panels.FacialPanel;
-import server.gui.panels.HamburgerMenu;
-import server.gui.panels.MenuBarPanel;
-
 /**
- * The purpose of this class is to provide the GUI handler for the server and serves as
- * the main interaction between the user, server and client.
+ * The purpose of this class is to provide the GUI handler for the server and
+ * serves as the main interaction between the user, server and client.
  * 
  * @author Cephas Armstrong-Mensah
  * @version 1.0
@@ -34,18 +27,16 @@ public class MainHandler {
     } catch (Exception e) {
       frame = EmotivComposer.getInstance();
     }
-    frame.setVisible(true);
     // createGUIComponents();
   }
 
-  private static void createGUIComponents() {
-    // TODO Auto-generated method stub
-    HamburgerMenu exitMenu = new HamburgerMenu(frame);
-    MenuBarPanel menuBarPanel = new MenuBarPanel();
-    JPanel startPanel = new JPanel();
-    JPanel emostate = new JPanel();
-    FacialPanel emoFacialPanel = new FacialPanel();
-    EmoStatePanel emoStatePanel = new EmoStatePanel();
-    LogPanel emoLogPanel = new LogPanel();
-  }
+  /*
+   * private static void createGUIComponents() { // TODO Auto-generated method
+   * stub HamburgerMenu exitMenu = new HamburgerMenu(frame); MenuBarPanel
+   * menuBarPanel = new MenuBarPanel(); JPanel startPanel = new JPanel(); JPanel
+   * emostate = new JPanel(); FacialPanel emoFacialPanel = new FacialPanel();
+   * EmoStatePanel emoStatePanel = new EmoStatePanel(); InteractivePanel
+   * interactivePanel = new InteractivPanel(); LogPanel emoLogPanel = new
+   * LogPanel(); }
+   */
 }

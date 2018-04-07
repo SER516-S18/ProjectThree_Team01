@@ -5,12 +5,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
-import server.gui.panels.LogPanel;
 import server.gui.panels.FacialPanel;
 import server.gui.panels.InteractivePanel;
+import server.gui.panels.LogPanel;
 
 /**
- * This class is responsible for handling Action Events triggered from the server
+ * This class is responsible for handling Action Events triggered from the
+ * server
  * 
  * @author Cephas Armstrong-Mensah
  * @version 1.0
@@ -53,6 +54,4 @@ public class ActionEvents implements ActionListener {
       ((LogPanel) actionClass).clearConsolePanel();
     }
   }
-
-  
 }

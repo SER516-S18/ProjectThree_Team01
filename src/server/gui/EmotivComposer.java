@@ -20,9 +20,9 @@ import server.gui.panels.LogPanel;
 import server.gui.panels.MenuBarPanel;
 import server.gui.panels.SignalMenu;
 import server.gui.panels.TrainingResults;
+import server.sys.EmotivRandomizer;
 import server.sys.ServerThread;
 import server.sys.ServerWebSocket;
-import server.sys.WorkerThread;
 import util.Constants;
 
 /**
@@ -38,8 +38,6 @@ public class EmotivComposer extends JFrame {
 
   private static final long serialVersionUID = 6196061116172281774L;
   private static EmotivComposer instance = null;
-  private static WorkerThread worker;
-  private static Thread workerThread;
   protected static boolean isStarted = false;
 
   private JTabbedPane tabbedPane;
@@ -61,7 +59,7 @@ public class EmotivComposer extends JFrame {
   private static SignalMenu signalMenu;
   private static JPanel startPanel;
 
-  public static boolean isAutoResetChecked = false;
+  private EmotivRandomizer er;
 
   public static FacialPanel getemoFacialPanel() {
     return emoFacialPanel;
@@ -70,6 +68,7 @@ public class EmotivComposer extends JFrame {
   public static EmotivComposer getInstance() {
     if (instance == null) {
       instance = new EmotivComposer();
+      instance.setVisible(true);
     }
     return instance;
   };
@@ -85,16 +84,17 @@ public class EmotivComposer extends JFrame {
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     contentPane.setLayout(null);
     setContentPane(contentPane);
+
+    er = new EmotivRandomizer();
     initialize();
   }
 
   private void initialize() {
-
     lowerTabbedPane = new JTabbedPane(JTabbedPane.TOP);
     lowerTabbedPane.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
     lowerTabbedPane.setBounds(0, 0, 443, 555);
     emoFacialPanel = new FacialPanel();
-    emoStatePanel = new EmoStatePanel();
+    emoStatePanel = new EmoStatePanel(er);
     trainingResults = new TrainingResults();
     emoLogPanel = new LogPanel();
 
@@ -153,7 +153,7 @@ public class EmotivComposer extends JFrame {
     interactive = new JPanel();
     tabbedPane.addTab("INTERACTIVE", null, interactive, null);
 
-    interactivePanel = new InteractivePanel();
+    interactivePanel = new InteractivePanel(er);
     interactivePanel.setSize(444, 90);
     interactivePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
     interactivePanel.setAlignmentY(Component.TOP_ALIGNMENT);
@@ -188,31 +188,6 @@ public class EmotivComposer extends JFrame {
     return isStarted;
   }
 
-  public static void handleStartStopSend(String strText) {
-    if (worker == null)
-      worker = new WorkerThread(emoStatePanel.getTimeTrackerLabel(), emoLogPanel.getConsolePanel());
-
-    worker.setButtonStatus(strText);
-    worker.setInterval(Double.parseDouble(interactivePanel.getOutputText()));
-
-    System.out.println("Getting here");
-
-    if (isAutoResetChecked) {
-      if (strText.equalsIgnoreCase("Start")) {
-        interactivePanel.setInteractiveFields("Stop", false);
-      } else {
-        interactivePanel.setInteractiveFields("Start", true);
-      }
-    }
-
-    workerThread = new Thread(worker);
-    workerThread.start();
-  }
-
-  public void setTimeTracker(String str) {
-    emoStatePanel.setTimeTrackerLabelText(str);
-  }
-
   public synchronized void closeThread() {
     notify();
     System.out.println("Server is closing...");
@@ -239,9 +214,5 @@ public class EmotivComposer extends JFrame {
     signalMenu.setSize(200, 101);
     signalMenu.setLocation(instance.getX() + 250, instance.getY() + 75);
     signalMenu.setVisible(true);
-  }
-
-  public static String getTimerText() {
-    return emoStatePanel.getTimeTrackerLabel().getText().trim();
   }
 }

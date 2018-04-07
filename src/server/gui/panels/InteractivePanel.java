@@ -8,9 +8,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import data.EmotivData;
 import server.gui.EmotivComposer;
 import server.gui.actions.ActionEvents;
 import server.gui.actions.ItemEvents;
+import server.sys.EmotivRandomizer;
+import server.sys.WorkerThread;
+import server.sys.observer.EmotivObserver;
 
 /**
  * This class's purpose is to display the interactive tab section items
@@ -21,7 +25,7 @@ import server.gui.actions.ItemEvents;
  * @since 02APR2018
  *
  */
-public class InteractivePanel extends JPanel {
+public class InteractivePanel extends JPanel implements EmotivObserver {
 
   private static final long serialVersionUID = 8249772239761365173L;
 
@@ -34,9 +38,19 @@ public class InteractivePanel extends JPanel {
   private JComboBox<String> playerComboBox;
   private ComboControl emoStateInterval;
 
-  public InteractivePanel() {
+  private EmotivRandomizer er;
+
+  private static boolean isAutoResetChecked;
+  private static WorkerThread worker;
+  private static Thread workerThread;
+
+  public InteractivePanel(EmotivRandomizer er) {
     setBounds(0, 0, 450, 90);
     setLayout(null);
+    this.er = er;
+    this.er.addToObserver(this);
+    isAutoResetChecked = false;
+
     initialize();
   }
 
@@ -81,43 +95,58 @@ public class InteractivePanel extends JPanel {
     add(emoStateInterval);
   }
 
-  public String getOutputText() {
-    return this.emoStateInterval.getOutputText();
-  }
-
-  public void setInteractiveFields(String text, boolean isAutoReset) {
+  private void setInteractiveFields(String text, boolean isAutoReset) {
     autoResetCheckBox.setEnabled(isAutoReset);
     sendButton.setText(text);
   }
 
   public void triggerStartStopSend() {
-    EmotivComposer.handleStartStopSend(sendButton.getText());
-    
-    
+    if (worker == null)
+      worker = new WorkerThread(er);
+
+    workerThread = new Thread(worker);
+    workerThread.start();
+
+    er.sendButtonText(sendButton.getText(), emoStateInterval.getOutputText());
+
     // for eye section auto reset button
-    if(EmotivComposer.getemoFacialPanel().ischckbxNewCheckBoxSelected()) {
-    EmotivComposer.getemoFacialPanel().getEyeActive().doClick();
-    EmotivComposer.getemoFacialPanel().seteyeActiveValue(0);
+    if (EmotivComposer.getemoFacialPanel().ischckbxNewCheckBoxSelected()) {
+      EmotivComposer.getemoFacialPanel().getEyeActive().doClick();
+      EmotivComposer.getemoFacialPanel().seteyeActiveValue(0);
     }
-    
+  }
+
+  private void setSendButtonText(String strText) {
+    if (isAutoResetChecked) {
+      if (strText.equalsIgnoreCase("Start")) {
+        setInteractiveFields("Stop", false);
+      } else {
+        setInteractiveFields("Start", true);
+      }
+    }
   }
 
   public void itemStateAction() {
     if (autoResetCheckBox.isSelected()) {
+      isAutoResetChecked = true;
       sendButton.setText("Start");
-      EmotivComposer.isAutoResetChecked = true;
       //
-     // EmotivComposer.getemoFacialPanel().replaceRadioButton();
+      // EmotivComposer.getemoFacialPanel().replaceRadioButton();
     } else {
+      isAutoResetChecked = false;
       sendButton.setText("Send");
-      EmotivComposer.isAutoResetChecked = false;
     }
-    
+
     // replace a eye button with radiobutton
     if (autoResetCheckBox.isSelected()) {
       EmotivComposer.getemoFacialPanel().replaceRadioButton();
-    }else {
+    } else {
       EmotivComposer.getemoFacialPanel().replacebackRadio();
     }
+  }
+
+  @Override
+  public void updateAll(EmotivData data, double interval, String sendButtonText) {
+    this.setSendButtonText(sendButtonText);
   }
 }

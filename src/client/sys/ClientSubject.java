@@ -68,7 +68,7 @@ public class ClientSubject implements ClientObservable {
   @Override
   public void notifyObserver(ArrayList<ClientObserver> observers) {
     for (ClientObserver obs : observers) {
-      obs.notifyObserver(emotivData);
+      obs.updateObserver(emotivData);
     }
   }
 }
