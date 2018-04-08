@@ -28,10 +28,46 @@ public class EmotivRandomizer implements EmotivSubject {
   }
 
   public void getRandomData() {
+    randomizeExpressive();
     randomizeAffective();
     notifyObservers();
   }
 
+  // This will be removed later, leaving it here for testing purposes
+  private void randomizeExpressive() {
+    objs = data.getExpressive().keys();
+    String strKey;
+    while (objs.hasNext()) {
+      strKey = objs.next();
+      switch (strKey.toLowerCase()) {
+      case "clench":
+        data.setClench(generator.nextDouble());
+        break;
+      case "eyebrowraise":
+        data.setEyebrowRaise(generator.nextDouble());
+        break;
+      case "smirkright":
+        data.setSmirkRight(generator.nextDouble());
+        break;
+      case "smirkleft":
+        data.setSmirkLeft(generator.nextDouble());
+        break;
+      case "eyebrowfurrow":
+        data.setEyebrowFurrow(generator.nextDouble());
+        break;
+      case "laugh":
+        data.setLaugh(generator.nextDouble());
+        break;
+      case "smile":
+        data.setSmile(generator.nextDouble());
+        break;
+      default:
+        break;
+      }
+    }
+  }
+
+  // This will be removed later, leaving it here for testing purposes
   private void randomizeAffective() {
     objs = data.getAffective().keys();
     String strKey;
