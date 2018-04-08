@@ -67,10 +67,10 @@ public class FacePanel extends JPanel{
 		ImageIcon upperFaceImage = Faces.upperFace(emotiveData.getBlink(), emotiveData.getRightWink(), 
 				emotiveData.getLeftWink(), emotiveData.getLookingLeft(), emotiveData.getLookingRight(),
 				emotiveData.getEyebrowFurrow(), emotiveData.getEyebrowRaise());
-//		ImageIcon lowerFaceImage = Faces.lowerFace(emotiveData.getSmile(), emotiveData.getClench(),
-//				emotiveData.getLeftSmirk(), emotiveData.getRightSmirk(), emotiveData.getLaugh());
+		ImageIcon lowerFaceImage = Faces.lowerFace(emotiveData.getSmile(), emotiveData.getClench(),
+				emotiveData.getSmerkLeft(), emotiveData.getSmerkRight(), emotiveData.getLaugh());
 		
 		JLabelUpperFace.setIcon(upperFaceImage);
-		//JLabelLowerFace.setIcon(lowerFaceImage);
+		JLabelLowerFace.setIcon(lowerFaceImage);
 	}
 }

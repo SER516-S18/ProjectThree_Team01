@@ -19,9 +19,11 @@ public class ClientThread implements Runnable {
 
   public static volatile boolean isClosing = false;
   private String uri;
+  private int port;
 
-  public ClientThread(String uri) {
+  public ClientThread(String uri, int port) {
     this.uri = uri;
+    this.port = port;
   }
 
   @Override
@@ -29,7 +31,7 @@ public class ClientThread implements Runnable {
     ClientManager client = ClientManager.createClient();
     try {
       client.connectToServer(ClientWebSocket.class, new URI(
-          Constants.PROTOCOL + uri + ':' + Constants.PORT + Constants.LINK + Constants.ENDPOINT));
+          Constants.PROTOCOL + uri + ':' + port + Constants.LINK + Constants.ENDPOINT));
     } catch (DeploymentException | URISyntaxException e) {
       throw new RuntimeException(e);
     } catch (Exception e) {

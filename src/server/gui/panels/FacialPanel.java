@@ -63,6 +63,18 @@ public class FacialPanel extends JPanel {
    * Initialize the contents of the frame.
    */
   private void initialize() {
+    eyebrowRaise = 0;
+    eyebrowFurrow = 0;
+    smerkRight = 0;
+    smerkLeft = 0;
+    smile = 0;
+    clench = 0;
+    laugh = 0;
+    lookingLeft = 0;
+    lookingRight = 0;
+    rightWink = 0;
+    leftWink = 0;
+    blink = 0;
     eyeActiveValue = 0;
     upperfaceupdownButton = new ComboControl(70, 0.1, false);
     upperfaceupdownButton.setBounds(135, 30, 70, 30);
@@ -221,6 +233,7 @@ public class FacialPanel extends JPanel {
     } else {
     }
   }
+
   /*
    * public void eyeAction() { if (eyeclickCount % 2 == 0) {
    * eyeActive.setActionCommand("1");
@@ -229,15 +242,11 @@ public class FacialPanel extends JPanel {
    * Integer.parseInt(eyeActive.getActionCommand()); eyeclickCount++; //
    * System.out.println("eye sectioon:"+ eyeActiveValue); //test }
    */
-
   public void eyeAction() {
     if (eyeActive.isSelected()) {
-
       eyeActiveValue = 1;
-
     } else {
       eyeActiveValue = 0;
     }
   }
-
 }
