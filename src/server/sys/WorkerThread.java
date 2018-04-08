@@ -69,6 +69,8 @@ public class WorkerThread implements Runnable, EmotivObserver {
           fetchRandomData();
         } else {
           INTERVAL = 5000;
+
+          LogPanel.getConsolePanel().updateText("Execution suspended, fix error to resume");
         }
 
         try {

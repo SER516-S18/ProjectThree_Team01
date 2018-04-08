@@ -114,10 +114,17 @@ public class ComboControl extends JPanel implements EmotivObserver {
       double x = Double.parseDouble(outputTextBox.getText());
       double value = 0.0;
 
-      if (isFrequency && x > 0.0) {
-        value = x + step;
-      } else if (!isFrequency && x + step > 1.0) {
-        value = 1.0;
+      if (isFrequency) {
+        value = 0.01;
+        if (x >= 0.01) {
+          value = x + step;
+        }
+      } else if (!isFrequency) {
+        if (x + step > 1.0) {
+          value = 1.0;
+        } else if (x + step > 0.0) {
+          value = x + step;
+        }
       } else {
         throw new IOException();
       }
@@ -136,8 +143,10 @@ public class ComboControl extends JPanel implements EmotivObserver {
       double x = Double.parseDouble(outputTextBox.getText());
 
       double value = 0.00;
-      if (!isFrequency && x - step > 0.0) {
-        value = x - step;
+      if (!isFrequency) {
+        if (x - step >= 0.0) {
+          value = x - step;
+        }
       } else if (isFrequency) {
         value = 0.01;
         if (x - step > 0.01) {
@@ -159,7 +168,7 @@ public class ComboControl extends JPanel implements EmotivObserver {
     try {
       double value = Double.parseDouble(outputTextBox.getText());
 
-      if (isFrequency && value > 0.0) {
+      if (isFrequency && value >= 0.0) {
         formatDoubleFirst(value);
       } else if (!isFrequency && (value >= 0.0 && value <= 1.0)) {
         formatDoubleFirst(value);
