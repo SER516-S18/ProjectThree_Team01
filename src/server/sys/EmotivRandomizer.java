@@ -30,6 +30,7 @@ public class EmotivRandomizer implements EmotivSubject {
   public void getRandomData() {
     randomizeExpressive();
     randomizeAffective();
+    randomizePerformanceMetrics();
     notifyObservers();
   }
 
@@ -88,6 +89,37 @@ public class EmotivRandomizer implements EmotivSubject {
         break;
       case "excitementlongterm":
         data.setExcitementLongTerm(generator.nextDouble());
+        break;
+      default:
+        break;
+      }
+    }
+  }
+
+  // This will be removed later, leaving it here for testing purposes
+  private void randomizePerformanceMetrics() {
+    objs = data.getPerformance().keys();
+    String strKey;
+    while (objs.hasNext()) {
+      strKey = objs.next();
+      switch (strKey.toLowerCase()) {
+      case "interest":
+        data.setInterest(generator.nextDouble());
+        break;
+      case "engagement":
+        data.setEngagement(generator.nextDouble());
+        break;
+      case "stress":
+        data.setStress(generator.nextDouble());
+        break;
+      case "relaxation":
+        data.setRelaxation(generator.nextDouble());
+        break;
+      case "excitement":
+        data.setExcitement(generator.nextDouble());
+        break;
+      case "focus":
+        data.setFocus(generator.nextDouble());
         break;
       default:
         break;

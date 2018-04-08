@@ -40,9 +40,18 @@ public class EmotivData {
   private double frustration;
   private double excitementLongTerm;
 
+  // Performance JSON Object properties
+  private double interest;
+  private double engagement;
+  private double stress;
+  private double relaxation;
+  private double excitement;
+  private double focus;
+
   public EmotivData() {
     this.expressive = new JSONObject();
     this.affective = new JSONObject();
+    this.performance = new JSONObject();
 
     this.eyebrowRaise = 0.0;
     this.eyebrowFurrow = 0.0;
@@ -65,23 +74,33 @@ public class EmotivData {
     this.excitementLongTerm = 0.0;
     this.excitementShortTerm = 0.0;
     this.engagementBoredom = 0.0;
+
+    this.interest = 0.0;
+    this.engagement = 0.0;
+    this.stress = 0.0;
+    this.relaxation = 0.0;
+    this.excitement = 0.0;
+    this.focus = 0.0;
   }
 
   public EmotivData(JSONObject jsonObject) {
     this.expressive = jsonObject.getJSONObject("Expressive");
     this.affective = jsonObject.getJSONObject("Affective");
+    this.performance = jsonObject.getJSONObject("Performance");
 
     parseExpressive(this.expressive);
     parseAffective(this.affective);
+    parsePerformance(this.performance);
   }
 
   public EmotivData(String strData) {
     this.toJson(strData);
   }
 
-  public EmotivData(JSONObject expressive, JSONObject affective) {
+  public EmotivData(JSONObject expressive, JSONObject affective, JSONObject performance) {
     this.expressive = expressive;
     this.affective = affective;
+    this.performance = performance;
 
     parseExpressive(this.expressive);
     parseAffective(this.affective);
@@ -115,10 +134,22 @@ public class EmotivData {
     return affective;
   }
 
+  public JSONObject getPerformance() {
+    JSONObject performance = new JSONObject();
+    performance.put("Interest", this.interest);
+    performance.put("Engagement", this.engagement);
+    performance.put("Stress", this.stress);
+    performance.put("Relaxation", this.relaxation);
+    performance.put("Excitement", this.excitement);
+    performance.put("Focus", this.focus);
+    return performance;
+  }
+
   public JSONObject toJson() {
     JSONObject jsonObject = new JSONObject();
     jsonObject.put("Expressive", this.getExpressive());
     jsonObject.put("Affective", this.getAffective());
+    jsonObject.put("Performance", this.getPerformance());
     return jsonObject;
   }
 
@@ -126,9 +157,11 @@ public class EmotivData {
     JSONObject json = new JSONObject(jsonString);
     this.expressive = json.getJSONObject("Expressive");
     this.affective = json.getJSONObject("Affective");
+    this.performance = json.getJSONObject("Performance");
 
     this.parseExpressive(this.expressive);
     this.parseAffective(this.affective);
+    this.parsePerformance(this.performance);
   }
 
   public int getLookingRight() {
@@ -203,6 +236,30 @@ public class EmotivData {
     return excitementLongTerm;
   }
 
+  public double getInterest() {
+    return interest;
+  }
+
+  public double getEngagement() {
+    return engagement;
+  }
+
+  public double getStress() {
+    return stress;
+  }
+
+  public double getRelaxation() {
+    return relaxation;
+  }
+
+  public double getExcitement() {
+    return excitement;
+  }
+
+  public double getFocus() {
+    return focus;
+  }
+
   public void setExpressive(JSONObject expressive) {
     this.expressive = expressive;
     this.parseExpressive(this.expressive);
@@ -211,6 +268,11 @@ public class EmotivData {
   public void setAffective(JSONObject affective) {
     this.affective = affective;
     this.parseAffective(this.affective);
+  }
+
+  public void setPerformance(JSONObject performance) {
+    this.performance = performance;
+    this.parsePerformance(this.performance);
   }
 
   public void setTimer(double timer) {
@@ -285,12 +347,38 @@ public class EmotivData {
     this.excitementLongTerm = excitementLongTerm;
   }
 
+  public void setInterest(double interest) {
+    this.interest = interest;
+  }
+
+  public void setEngagement(double excitementLongTerm) {
+    this.engagement = excitementLongTerm;
+  }
+
+  public void setStress(double stress) {
+    this.stress = stress;
+  }
+
+  public void setRelaxation(double relaxation) {
+    this.relaxation = relaxation;
+  }
+
+  public void setExcitement(double excitement) {
+    this.excitement = excitement;
+  }
+
+  public void setFocus(double focus) {
+    this.focus = focus;
+  }
+
   public void setJSONObject(JSONObject jsonObject) {
     this.expressive = jsonObject.getJSONObject("Expressive");
     this.affective = jsonObject.getJSONObject("Affective");
+    this.performance = jsonObject.getJSONObject("Performance");
 
     parseExpressive(this.expressive);
     parseAffective(this.affective);
+    parseAffective(this.performance);
   }
 
   public void resetExpressiveEyeData() {
@@ -307,6 +395,15 @@ public class EmotivData {
     this.laugh = 0.0;
     this.smirkRight = 0.0;
     this.smirkLeft = 0.0;
+  }
+
+  public void resetPerformanceMetrics() {
+    this.interest = 0.0;
+    this.engagement = 0.0;
+    this.stress = 0.0;
+    this.relaxation = 0.0;
+    this.excitement = 0.0;
+    this.focus = 0.0;
   }
 
   public void resetExpressiveUpperData() {
@@ -338,6 +435,15 @@ public class EmotivData {
     this.excitementLongTerm = affective.getDouble("ExcitementLongTerm");
     this.excitementShortTerm = affective.getDouble("ExcitementShortTerm");
     this.engagementBoredom = affective.getDouble("EngagementBoredom");
+  }
+
+  private void parsePerformance(JSONObject performance) {
+    this.interest = performance.getDouble("Interest");
+    this.engagement = performance.getDouble("Engagement");
+    this.stress = performance.getDouble("Stress");
+    this.relaxation = performance.getDouble("Relaxation");
+    this.excitement = performance.getDouble("Excitement");
+    this.focus = performance.getDouble("Focus");
   }
 
   public String toString() {
