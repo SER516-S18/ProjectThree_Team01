@@ -1,19 +1,18 @@
 package client.gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import client.sys.ClientSubject;
 import client.sys.ClientThread;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 
 /**
@@ -28,10 +27,10 @@ public class ConnectToServerFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField ipAddressTextField;
 	private JTextField portTextField;
+	int portNumber;
 
 	/**
-	 * Default ipaddress : 127.0.0.1
-	 * Default port number : 10001
+	 * Default ipaddress : 127.0.0.1 Default port number : 10001
 	 */
 	public ConnectToServerFrame() {
 		setResizable(false);
@@ -64,9 +63,11 @@ public class ConnectToServerFrame extends JFrame {
 
 		JButton okButton = new JButton("OK");
 		okButton.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
-				ConnectToServer();
-				setVisible(false);
+				if (connectToServer()) {
+					setVisible(false);
+				}
 			}
 		});
 		okButton.setBounds(35, 138, 115, 29);
@@ -85,7 +86,39 @@ public class ConnectToServerFrame extends JFrame {
 	/**
 	 * ClientThread tries to connect to the server at ipaddress given
 	 */
-	private void ConnectToServer() {
-		new Thread(new ClientThread(ipAddressTextField.getText(),Integer.parseInt(portTextField.getText()))).start();
+	private boolean connectToServer() {
+		if (checkValidPortNumber() && checkValidIpAddress()) {
+			new Thread(new ClientThread(ipAddressTextField.getText(), portNumber)).start();
+			return true;
+		}
+		return false;
+	}
+
+	private Boolean checkValidPortNumber() {
+		String portErrorMessage = "Please enter a port number between 1024 and 65535!";
+		try {
+			portNumber = Integer.parseInt(portTextField.getText());
+			if (portNumber < 1024 || portNumber > 65535) {
+				JOptionPane.showMessageDialog(new JFrame(), portErrorMessage);
+				portTextField.setText("");
+				return false;
+			} else {
+				return true;
+			}
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(new JFrame(), portErrorMessage);
+			return false;
+		}
+	}
+
+	private boolean checkValidIpAddress() {
+		Pattern p = Pattern.compile(
+				"^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$");
+		Matcher m = p.matcher(ipAddressTextField.getText());
+		if (!m.find()) {
+			JOptionPane.showMessageDialog(new JFrame(), "Please enter ipAddress in proper format");
+			return false;
+		}
+		return true;
 	}
 }
