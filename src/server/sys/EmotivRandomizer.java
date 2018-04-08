@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import data.EmotivData;
+import server.gui.EmotivComposer;
 import server.sys.observer.EmotivObserver;
 import server.sys.observer.EmotivSubject;
 import server.sys.observer.PassedData;
@@ -31,39 +32,38 @@ public class EmotivRandomizer implements EmotivSubject {
     randomizeExpressive();
     notifyObservers();
   }
-
   private void randomizeExpressive() {
-    objs = data.getExpressive().keys();
-    String strKey;
-    while (objs.hasNext()) {
-      strKey = objs.next();
-      switch (strKey.toLowerCase()) {
-      case "clench":
-        data.setClench(generator.nextDouble());
-        break;
-      case "eyebrowraise":
-        data.setEyebrowRaise(generator.nextDouble());
-        break;
-      case "smerkright":
-        data.setSmerkRight(generator.nextDouble());
-        break;
-      case "smerkleft":
-        data.setSmerkLeft(generator.nextDouble());
-        break;
-      case "eyebrowfurrow":
-        data.setEyebrowFurrow(generator.nextDouble());
-        break;
-      case "laugh":
-        data.setLaugh(generator.nextDouble());
-        break;
-      case "smile":
-        data.setSmile(generator.nextDouble());
-        break;
-      default:
-        break;
-      }
-    }
-  }
+	    objs = data.getExpressive().keys();
+	    String strKey;
+	    while (objs.hasNext()) {
+	      strKey = objs.next();
+	      switch (strKey.toLowerCase()) {
+	      case "clench":
+	        data.setClench(EmotivComposer.getemoFacialPanel().getClench());
+	        break;
+	      case "eyebrowraise":
+	        data.setEyebrowRaise(EmotivComposer.getemoFacialPanel().getEyebrowRaise());
+	        break;
+	      case "smerkright":
+	        data.setSmerkRight(EmotivComposer.getemoFacialPanel().getSmerkRight());
+	        break;
+	      case "smerkleft":
+	        data.setSmerkLeft(EmotivComposer.getemoFacialPanel().getSmerkLeft());
+	        break;
+	      case "eyebrowfurrow":
+	        data.setEyebrowFurrow(EmotivComposer.getemoFacialPanel().getEyebrowFurrow());
+	        break;
+	      case "laugh":
+	        data.setLaugh(EmotivComposer.getemoFacialPanel().getLaugh());
+	        break;
+	      case "smile":
+	        data.setSmile(EmotivComposer.getemoFacialPanel().getSmile());
+	        break;
+	      default:
+	        break;
+	      }
+	    }
+	  }
 
   private void randomizeAffective() {
     objs = data.getAffective().keys();

@@ -234,14 +234,7 @@ public class FacialPanel extends JPanel {
     }
   }
 
-  /*
-   * public void eyeAction() { if (eyeclickCount % 2 == 0) {
-   * eyeActive.setActionCommand("1");
-   * 
-   * } else { eyeActive.setActionCommand("0"); } eyeActiveValue =
-   * Integer.parseInt(eyeActive.getActionCommand()); eyeclickCount++; //
-   * System.out.println("eye sectioon:"+ eyeActiveValue); //test }
-   */
+  
   public void eyeAction() {
     if (eyeActive.isSelected()) {
       eyeActiveValue = 1;
@@ -249,4 +242,55 @@ public class FacialPanel extends JPanel {
       eyeActiveValue = 0;
     }
   }
+
+public double getEyebrowRaise() {
+	return eyebrowRaise;
+}
+
+public double getEyebrowFurrow() {
+	return eyebrowFurrow;
+}
+
+public double getSmerkRight() {
+	return smerkRight;
+}
+
+public double getSmerkLeft() {
+	return smerkLeft;
+}
+
+public double getSmile() {
+	return smile;
+}
+
+public double getClench() {
+	return clench;
+}
+
+public double getLaugh() {
+	return laugh;
+}
+
+public int getLookingLeft() {
+	return lookingLeft;
+}
+
+public int getLookingRight() {
+	return lookingRight;
+}
+
+public int getRightWink() {
+	return rightWink;
+}
+
+public int getLeftWink() {
+	return leftWink;
+}
+
+public int getBlink() {
+	return blink;
+}
+  
+  
+  
 }
