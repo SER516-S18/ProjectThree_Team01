@@ -21,7 +21,7 @@ public class ClientWebSocket {
   @OnMessage
   public void onMessage(String message, Session session) {
     emotivData.toJson(message);
-    System.out.println("Client instance: " + ClientSubject.getInstance());
+    //System.out.println("Client instance: " + ClientSubject.getInstance());
     ClientSubject.getInstance().updateObservers(emotivData);
   }
 

@@ -13,6 +13,8 @@ import client.gui.panels.PerformanceMetricPanel;
 import client.sys.ClientSubject;
 import data.EmotivData;
 import interfaces.ClientObserver;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class EmotivControlPanel extends JFrame implements ClientObserver {
   private static final long serialVersionUID = 8528760467775723790L;
@@ -28,7 +30,8 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
   private JTabbedPane tabbedPane;
   private JPanel graphPanel;
   private ClientHamburgerMenu menu;
-
+  
+  private volatile boolean isClosing =false;
   /**
    * Launch the application.
    */
@@ -49,7 +52,13 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
    * Create the frame.
    */
   private EmotivControlPanel() {
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  	addWindowListener(new WindowAdapter() {
+  		@Override
+  		public void windowClosing(WindowEvent e) {
+  			isClosing = true;
+  		}
+  	});
+    //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setBounds(100, 100, 982, 919);
     menu = new ClientHamburgerMenu();
     setJMenuBar(menu);
@@ -106,7 +115,10 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
     performanceMetric.setVisible(false);
     this.repaint();
   }
-
+  
+  public boolean getIsClosing() {
+	  return isClosing;
+  }
   @Override
   public void updateObserver(EmotivData data) {
     // call graph and emotional expression methods
