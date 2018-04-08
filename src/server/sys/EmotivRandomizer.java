@@ -138,7 +138,7 @@ public class EmotivRandomizer implements EmotivSubject {
   public void notifyObservers() {
     passedData = new PassedData(data, sendButtonText, interval);
     for (EmotivObserver observer : observers) {
-      observer.updateAll(passedData);
+      observer.update(passedData);
     }
   }
 }

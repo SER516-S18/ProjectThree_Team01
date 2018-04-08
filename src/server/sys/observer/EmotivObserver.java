@@ -8,5 +8,5 @@ package server.sys.observer;
  * @since 07APR2018
  */
 public interface EmotivObserver {
-  public void updateAll(PassedData passedData);
+  public void update(PassedData passedData);
 }

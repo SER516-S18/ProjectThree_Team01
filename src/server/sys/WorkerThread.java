@@ -24,6 +24,7 @@ public class WorkerThread implements Runnable, EmotivObserver {
   private ButtonStatus state;
   private EmotivRandomizer er;
   private EmotivData data;
+  private String buttonText;
 
   private enum ButtonStatus {
     SEND, STARTED, STOPPED;
@@ -37,7 +38,9 @@ public class WorkerThread implements Runnable, EmotivObserver {
 
   private void setButtonStatus(String val) {
     System.out.println("Changing state: " + val);
+    this.buttonText = val;
 
+    // if (val == buttonText && buttonText.equalsIgnoreCase("send")) {
     if (val.equalsIgnoreCase("send")) {
       state = ButtonStatus.SEND;
     } else if (val.equalsIgnoreCase("start")) {
@@ -45,6 +48,7 @@ public class WorkerThread implements Runnable, EmotivObserver {
     } else if (val.equalsIgnoreCase("stop")) {
       state = ButtonStatus.STOPPED;
     }
+    // }
   }
 
   private void setInterval(double val) {
@@ -62,13 +66,13 @@ public class WorkerThread implements Runnable, EmotivObserver {
       break;
     case STARTED:
       while (state != ButtonStatus.STOPPED) {
-        System.out.println("Making a dent: " + INTERVAL);
         fetchRandomData();
         try {
           Thread.sleep(INTERVAL);
         } catch (InterruptedException e) {
           e.printStackTrace();
         }
+        // er.sendButtonText(sendButtonText, interval);
       }
       break;
     default:
@@ -108,7 +112,7 @@ public class WorkerThread implements Runnable, EmotivObserver {
   }
 
   @Override
-  public void updateAll(PassedData passedData) {
+  public void update(PassedData passedData) {
     setInterval(passedData.interval);
     this.data = passedData.data;
     setButtonStatus(passedData.buttonText);

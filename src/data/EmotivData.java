@@ -14,6 +14,7 @@ import org.json.JSONObject;
 public class EmotivData {
   private JSONObject expressive;
   private JSONObject affective;
+  private JSONObject performance;
 
   // Expressive JSON Object properties
   private double eyebrowRaise;

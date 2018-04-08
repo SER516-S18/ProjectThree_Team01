@@ -9,7 +9,6 @@ import data.EmotivData;
  * @version 1.0
  * @since 07APR2018
  */
-
 public class PassedData {
   public EmotivData data;
   public String buttonText;

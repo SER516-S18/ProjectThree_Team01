@@ -142,7 +142,7 @@ public class InteractivePanel extends JPanel implements EmotivObserver {
   }
 
   @Override
-  public void updateAll(PassedData passedData) {
+  public void update(PassedData passedData) {
     this.setSendButtonText(passedData.buttonText);
   }
 }

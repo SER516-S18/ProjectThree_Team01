@@ -108,8 +108,7 @@ public class EmoStatePanel extends JPanel implements EmotivObserver {
   }
 
   @Override
-  public void updateAll(PassedData passedData) {
-    System.out.println("We got updated");
+  public void update(PassedData passedData) {
     setTimeTrackerLabelText(String.format("%.2f", passedData.data.getTimer()));
   }
 }
