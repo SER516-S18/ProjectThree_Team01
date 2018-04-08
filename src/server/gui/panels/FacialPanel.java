@@ -10,7 +10,8 @@ import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
 import server.gui.actions.ActionEvents;
-
+import server.sys.*;
+import server.gui.*;
 /**
  * The purpose of this class is to control the facial section controls and
  * actions for the server's lower panel
@@ -214,6 +215,7 @@ public class FacialPanel extends JPanel {
   public void eyecomboBoxAction() {
     String Item = eyecomboBox.getSelectedItem().toString();
     // eyeActiveValue = Integer.parseInt(eyeActive.getActionCommand());
+    /*
     System.out.println(eyeActiveValue);
     if (Item.equals("Blink")) {
       blink = eyeActiveValue;
@@ -231,17 +233,13 @@ public class FacialPanel extends JPanel {
       lookingRight = eyeActiveValue;
       // System.out.println(lookingRight +","+ Item); //test
     } else {
-    }
+    }*/
+    EmotivComposer.getEmotivRandomizer().updateEyeAction(Item,eyeActiveValue);
+    
+    
   }
-
-  /*
-   * public void eyeAction() { if (eyeclickCount % 2 == 0) {
-   * eyeActive.setActionCommand("1");
-   * 
-   * } else { eyeActive.setActionCommand("0"); } eyeActiveValue =
-   * Integer.parseInt(eyeActive.getActionCommand()); eyeclickCount++; //
-   * System.out.println("eye sectioon:"+ eyeActiveValue); //test }
-   */
+  
+  
   public void eyeAction() {
     if (eyeActive.isSelected()) {
       eyeActiveValue = 1;
@@ -249,4 +247,55 @@ public class FacialPanel extends JPanel {
       eyeActiveValue = 0;
     }
   }
+
+public double getEyebrowRaise() {
+	return eyebrowRaise;
+}
+
+public double getEyebrowFurrow() {
+	return eyebrowFurrow;
+}
+
+public double getSmerkRight() {
+	return smerkRight;
+}
+
+public double getSmerkLeft() {
+	return smerkLeft;
+}
+
+public double getSmile() {
+	return smile;
+}
+
+public double getClench() {
+	return clench;
+}
+
+public double getLaugh() {
+	return laugh;
+}
+
+public int getLookingLeft() {
+	return lookingLeft;
+}
+
+public int getLookingRight() {
+	return lookingRight;
+}
+
+public int getRightWink() {
+	return rightWink;
+}
+
+public int getLeftWink() {
+	return leftWink;
+}
+
+public int getBlink() {
+	return blink;
+}
+  
+  
+  
 }

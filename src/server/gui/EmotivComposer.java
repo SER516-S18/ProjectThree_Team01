@@ -59,7 +59,11 @@ public class EmotivComposer extends JFrame {
   private static SignalMenu signalMenu;
   private static JPanel startPanel;
 
-  private EmotivRandomizer er;
+  private static EmotivRandomizer er;
+
+  public static EmotivRandomizer getEmotivRandomizer() {
+	return er;
+  }
 
   public static FacialPanel getemoFacialPanel() {
     return emoFacialPanel;
