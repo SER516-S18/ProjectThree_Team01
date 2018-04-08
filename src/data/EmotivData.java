@@ -24,8 +24,8 @@ public class EmotivData {
   private double smile;
   private double clench;
   private double laugh;
-  private double smerkRight;
-  private double smerkLeft;
+  private double smirkRight;
+  private double smirkLeft;
 
   private int lookingRight;
   private int lookingLeft;
@@ -48,8 +48,8 @@ public class EmotivData {
     this.eyebrowFurrow = 0.0;
     this.timer = 0.0;
 
-    this.smerkRight = 0.0;
-    this.smerkLeft = 0.0;
+    this.smirkRight = 0.0;
+    this.smirkLeft = 0.0;
     this.smile = 0.0;
     this.clench = 0.0;
     this.laugh = 0.0;
@@ -93,15 +93,15 @@ public class EmotivData {
     expressive.put("EyebrowRaise", this.eyebrowRaise);
     expressive.put("EyebrowFurrow", this.eyebrowFurrow);
     expressive.put("LookingLeft", this.lookingLeft);
-    expressive.put("LookingDown", this.smerkRight);
-    expressive.put("LookingUp", this.smerkLeft);
+    expressive.put("SmirkRight", this.smirkRight);
+    expressive.put("SmirkLeft", this.smirkLeft);
     expressive.put("RightWink", this.rightWink);
     expressive.put("LeftWink", this.leftWink);
     expressive.put("Blink", this.blink);
     expressive.put("Smile", this.smile);
     expressive.put("Clench", this.clench);
-    expressive.put("Laugh", this.getLaugh());
-    expressive.put("Timer", this.getTimer());
+    expressive.put("Laugh", this.laugh);
+    expressive.put("Timer", this.timer);
     return expressive;
   }
 
@@ -167,12 +167,12 @@ public class EmotivData {
     return eyebrowFurrow;
   }
 
-  public double getSmerkLeft() {
-    return smerkLeft;
+  public double getSmirkLeft() {
+    return smirkLeft;
   }
 
-  public double getSmerkRight() {
-    return smerkRight;
+  public double getSmirkRight() {
+    return smirkRight;
   }
 
   public double getSmile() {
@@ -225,12 +225,12 @@ public class EmotivData {
     this.eyebrowFurrow = eyebrowFurrow;
   }
 
-  public void setSmerkLeft(double smerkLeft) {
-    this.smerkLeft = smerkLeft;
+  public void setSmirkLeft(double smirkLeft) {
+    this.smirkLeft = smirkLeft;
   }
 
-  public void setSmerkRight(double smerkRight) {
-    this.smerkRight = smerkRight;
+  public void setSmirkRight(double SmirkRight) {
+    this.smirkRight = SmirkRight;
   }
 
   public void setLaugh(double laugh) {
@@ -293,7 +293,7 @@ public class EmotivData {
     parseAffective(this.affective);
   }
 
-  public void resetExpressiveData() {
+  public void resetExpressiveEyeData() {
     this.lookingRight = 0;
     this.lookingLeft = 0;
     this.rightWink = 0;
@@ -301,13 +301,26 @@ public class EmotivData {
     this.blink = 0;
   }
 
+  public void resetExpressiveLowerData() {
+    this.smile = 0.0;
+    this.clench = 0.0;
+    this.laugh = 0.0;
+    this.smirkRight = 0.0;
+    this.smirkLeft = 0.0;
+  }
+
+  public void resetExpressiveUpperData() {
+    this.eyebrowFurrow = 0.0;
+    this.eyebrowRaise = 0.0;
+  }
+
   private void parseExpressive(JSONObject expressive) {
     this.eyebrowRaise = expressive.getDouble("EyebrowRaise");
     this.eyebrowFurrow = expressive.getDouble("EyebrowFurrow");
     this.timer = expressive.getDouble("Timer");
 
-    this.smerkRight = expressive.getDouble("LookingDown");
-    this.smerkLeft = expressive.getDouble("LookingUp");
+    this.smirkRight = expressive.getDouble("SmirkRight");
+    this.smirkLeft = expressive.getDouble("SmirkLeft");
     this.smile = expressive.getDouble("Smile");
     this.clench = expressive.getDouble("Clench");
     this.laugh = expressive.getDouble("Laugh");

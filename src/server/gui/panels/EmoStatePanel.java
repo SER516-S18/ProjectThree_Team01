@@ -74,13 +74,13 @@ public class EmoStatePanel extends JPanel implements EmotivObserver {
     consolePanel = new ConsolePanel();
     consolePanel.setBounds(5, 30, 430, 125);
 
-    neutral = new ComboControl(70, 0.1, false);
+    neutral = new ComboControl(er, 70, 0.1, false);
     neutral.setLocation(140, 105);
 
-    skill = new ComboControl(70, 0.1, false);
+    skill = new ComboControl(er, 70, 0.1, false);
     skill.setLocation(140, 137);
 
-    overallSkill = new ComboControl(70, 0.1, false);
+    overallSkill = new ComboControl(er, 70, 0.1, false);
     overallSkill.setLocation(370, 105);
 
     overallSkillLabel = new JLabel("Overall Skill");

@@ -82,7 +82,7 @@ public class InteractivePanel extends JPanel implements EmotivObserver {
     playerComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "0", "1" }));
     playerComboBox.setBounds(65, 10, 80, 30);
 
-    emoStateInterval = new ComboControl(110, 0.5, true);
+    emoStateInterval = new ComboControl(er, 110, 0.5, true);
     emoStateInterval.setLocation(250, 10);
     emoStateInterval.setOutputText("0.25");
 
@@ -119,6 +119,8 @@ public class InteractivePanel extends JPanel implements EmotivObserver {
   private void setSendButtonText(String strText) {
     if (isAutoResetChecked) {
       if (strText.equalsIgnoreCase("Start")) {
+        setInteractiveFields("Stop", false);
+      } else if (strText.equalsIgnoreCase("Suspend")) {
         setInteractiveFields("Stop", false);
       } else {
         setInteractiveFields("Start", true);

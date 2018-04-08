@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Random;
 
 import data.EmotivData;
-import server.gui.EmotivComposer;
 import server.sys.observer.EmotivObserver;
 import server.sys.observer.EmotivSubject;
 import server.sys.observer.PassedData;
@@ -25,45 +24,13 @@ public class EmotivRandomizer implements EmotivSubject {
     data = new EmotivData();
     interval = 0.0;
     generator = new Random();
+    sendButtonText = "Send";
   }
 
   public void getRandomData() {
     randomizeAffective();
-    randomizeExpressive();
     notifyObservers();
   }
-  private void randomizeExpressive() {
-	    objs = data.getExpressive().keys();
-	    String strKey;
-	    while (objs.hasNext()) {
-	      strKey = objs.next();
-	      switch (strKey.toLowerCase()) {
-	      case "clench":
-	        data.setClench(EmotivComposer.getemoFacialPanel().getClench());
-	        break;
-	      case "eyebrowraise":
-	        data.setEyebrowRaise(EmotivComposer.getemoFacialPanel().getEyebrowRaise());
-	        break;
-	      case "smerkright":
-	        data.setSmerkRight(EmotivComposer.getemoFacialPanel().getSmerkRight());
-	        break;
-	      case "smerkleft":
-	        data.setSmerkLeft(EmotivComposer.getemoFacialPanel().getSmerkLeft());
-	        break;
-	      case "eyebrowfurrow":
-	        data.setEyebrowFurrow(EmotivComposer.getemoFacialPanel().getEyebrowFurrow());
-	        break;
-	      case "laugh":
-	        data.setLaugh(EmotivComposer.getemoFacialPanel().getLaugh());
-	        break;
-	      case "smile":
-	        data.setSmile(EmotivComposer.getemoFacialPanel().getSmile());
-	        break;
-	      default:
-	        break;
-	      }
-	    }
-	  }
 
   private void randomizeAffective() {
     objs = data.getAffective().keys();
@@ -97,6 +64,10 @@ public class EmotivRandomizer implements EmotivSubject {
     notifyObservers();
   }
 
+  public EmotivData getEmotivData() {
+    return this.data;
+  }
+
   public void sendButtonText(String sendButtonText, String interval) {
     System.out.println("Interval: " + interval);
     this.interval = Double.parseDouble(interval);
@@ -106,23 +77,8 @@ public class EmotivRandomizer implements EmotivSubject {
     notifyObservers();
   }
 
-  public void updateEyeAction(String key, int value) {
-    this.data.resetExpressiveData();
-
-    if (key.equals("Blink")) {
-      data.setBlink(value);
-    } else if (key.equals("LookingLeft")) {
-      data.setLookingLeft(value);
-    } else if (key.equals("LookingRight")) {
-      data.setLookingRight(value);
-    } else if (key.equals("LeftWink")) {
-      data.setLeftWink(value);
-    } else if (key.equals("RightWink")) {
-      data.setRightWink(0);
-    }
-    notifyObservers();
-    
-    System.out.println("get new eye value: " + value);
+  public String getSendButtonText() {
+    return this.sendButtonText;
   }
 
   @Override

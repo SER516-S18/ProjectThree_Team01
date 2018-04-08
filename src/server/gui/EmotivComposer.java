@@ -62,7 +62,7 @@ public class EmotivComposer extends JFrame {
   private static EmotivRandomizer er;
 
   public static EmotivRandomizer getEmotivRandomizer() {
-	return er;
+    return er;
   }
 
   public static FacialPanel getemoFacialPanel() {
@@ -82,14 +82,14 @@ public class EmotivComposer extends JFrame {
     setTitle("Emotiv Composer Project 3");
     setBounds(100, 100, 450, 800);
 
+    er = new EmotivRandomizer();
+
     contentPane = new JPanel();
     contentPane.setBounds(0, 0, 450, 800);
     contentPane.setBackground(Constants.PEACH);
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     contentPane.setLayout(null);
     setContentPane(contentPane);
-
-    er = new EmotivRandomizer();
     initialize();
   }
 
@@ -97,7 +97,7 @@ public class EmotivComposer extends JFrame {
     lowerTabbedPane = new JTabbedPane(JTabbedPane.TOP);
     lowerTabbedPane.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
     lowerTabbedPane.setBounds(0, 0, 443, 555);
-    emoFacialPanel = new FacialPanel();
+    emoFacialPanel = new FacialPanel(er);
     emoStatePanel = new EmoStatePanel(er);
     trainingResults = new TrainingResults();
     emoLogPanel = new LogPanel();

@@ -21,13 +21,13 @@ import server.sys.observer.PassedData;
 public class WorkerThread implements Runnable, EmotivObserver {
   private static int INTERVAL = 1000;
 
-  private ButtonStatus state;
+  private volatile ButtonStatus state;
   private EmotivRandomizer er;
   private EmotivData data;
   private String buttonText;
 
   private enum ButtonStatus {
-    SEND, STARTED, STOPPED;
+    SEND, STARTED, STOPPED, SUSPEND;
   }
 
   public WorkerThread(EmotivRandomizer er) {
@@ -37,22 +37,20 @@ public class WorkerThread implements Runnable, EmotivObserver {
   }
 
   private void setButtonStatus(String val) {
-    System.out.println("Changing state: " + val);
     this.buttonText = val;
 
-    // if (val == buttonText && buttonText.equalsIgnoreCase("send")) {
     if (val.equalsIgnoreCase("send")) {
       state = ButtonStatus.SEND;
     } else if (val.equalsIgnoreCase("start")) {
       state = ButtonStatus.STARTED;
     } else if (val.equalsIgnoreCase("stop")) {
       state = ButtonStatus.STOPPED;
+    } else if (val.equalsIgnoreCase("suspend")) {
+      state = ButtonStatus.SUSPEND;
     }
-    // }
   }
 
   private void setInterval(double val) {
-    System.out.println("Interval value: " + val);
     INTERVAL = (int) (val * 1000);
   }
 
@@ -66,13 +64,19 @@ public class WorkerThread implements Runnable, EmotivObserver {
       break;
     case STARTED:
       while (state != ButtonStatus.STOPPED) {
-        fetchRandomData();
+        if (state != ButtonStatus.SUSPEND) {
+          er.sendButtonText(er.getSendButtonText(), "" + (INTERVAL / 1000.0));
+          fetchRandomData();
+        } else {
+          INTERVAL = 5000;
+        }
+
         try {
           Thread.sleep(INTERVAL);
         } catch (InterruptedException e) {
           e.printStackTrace();
         }
-        // er.sendButtonText(sendButtonText, interval);
+
       }
       break;
     default:

@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
+import server.gui.panels.ComboControl;
 import server.gui.panels.FacialPanel;
 import server.gui.panels.InteractivePanel;
 import server.gui.panels.LogPanel;
@@ -32,7 +33,9 @@ public class ActionEvents implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent arg0) {
-    if (actionClass instanceof InteractivePanel) {
+    if (actionClass instanceof ComboControl) {
+      ((ComboControl) actionClass).validateOutputText();
+    } else if (actionClass instanceof InteractivePanel) {
       ((InteractivePanel) actionClass).triggerStartStopSend();
 
     } else if (actionClass instanceof FacialPanel) {

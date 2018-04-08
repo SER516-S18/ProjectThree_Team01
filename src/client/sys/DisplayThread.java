@@ -33,8 +33,8 @@ public class DisplayThread implements Runnable {
       values[2] = 3 + data.getSmile();
       values[3] = 4 + data.getClench();
       values[4] = 5 + data.getLaugh();
-      values[5] = 6 + data.getSmerkRight();
-      values[6] = 7 + data.getSmerkLeft();
+      values[5] = 6 + data.getSmirkRight();
+      values[6] = 7 + data.getSmirkLeft();
       values[7] = 8 + data.getLookingRight();
       values[8] = 9 + data.getLookingLeft();
       values[9] = 10 + data.getRightWink();

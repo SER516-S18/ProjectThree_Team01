@@ -9,9 +9,12 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
+import data.EmotivData;
 import server.gui.actions.ActionEvents;
-import server.sys.*;
-import server.gui.*;
+import server.sys.EmotivRandomizer;
+import server.sys.observer.EmotivObserver;
+import server.sys.observer.PassedData;
+
 /**
  * The purpose of this class is to control the facial section controls and
  * actions for the server's lower panel
@@ -21,7 +24,7 @@ import server.gui.*;
  * @since 02APR2018
  *
  */
-public class FacialPanel extends JPanel {
+public class FacialPanel extends JPanel implements EmotivObserver {
 
   private static final long serialVersionUID = 3981755002828308262L;
 
@@ -37,26 +40,14 @@ public class FacialPanel extends JPanel {
   private JCheckBox chckbxNewCheckBox;
   private JButton eyeActiveButton;
 
-  private double eyebrowRaise;
-  private double eyebrowFurrow;
-
-  private double smerkRight;
-  private double smerkLeft;
-  private double smile;
-  private double clench;
-  private double laugh;
-
-  private int lookingLeft;
-  private int lookingRight;
-  private int rightWink;
-  private int leftWink;
-  private int blink;
-
   private int eyeActiveValue;
+  private EmotivRandomizer er;
 
-  public FacialPanel() {
+  public FacialPanel(EmotivRandomizer er) {
     setBounds(0, 0, 440, 150);
+    this.er = er;
     initialize();
+
     setLayout(null);
   }
 
@@ -64,42 +55,22 @@ public class FacialPanel extends JPanel {
    * Initialize the contents of the frame.
    */
   private void initialize() {
-    eyebrowRaise = 0;
-    eyebrowFurrow = 0;
-    smerkRight = 0;
-    smerkLeft = 0;
-    smile = 0;
-    clench = 0;
-    laugh = 0;
-    lookingLeft = 0;
-    lookingRight = 0;
-    rightWink = 0;
-    leftWink = 0;
-    blink = 0;
-    eyeActiveValue = 0;
-    upperfaceupdownButton = new ComboControl(70, 0.1, false);
+    upperfaceupdownButton = new ComboControl(er, 70, 0.1, false);
     upperfaceupdownButton.setBounds(135, 30, 70, 30);
     upperfaceupdownButton.setVisible(true);
 
-    lowerfaceupdownButton = new ComboControl(70, 0.1, false);
+    lowerfaceupdownButton = new ComboControl(er, 70, 0.1, false);
     lowerfaceupdownButton.setBounds(365, 30, 70, 30);
     lowerfaceupdownButton.setVisible(true);
 
     upperfaceComboBox = new JComboBox<String>();
-
     upperfaceComboBox.addActionListener(new ActionEvents(this, "upperfaceComboBox"));
     upperfaceComboBox.setBounds(10, 30, 125, 30);
     upperfaceComboBox
         .setModel(new DefaultComboBoxModel<String>(new String[] { "Raise Brow", "Furrow Brow" }));
 
     lowerfaceComboBox = new JComboBox<String>();
-
-    /**
-     * lowerfaceComboBox action
-     */
-
     lowerfaceComboBox.addActionListener(new ActionEvents(this, "lowerfaceComboBox"));
-
     lowerfaceComboBox.setBounds(240, 30, 125, 30);
     lowerfaceComboBox.setModel(new DefaultComboBoxModel<String>(
         new String[] { "Smile", "Clench", "Smirk Left", "Smirk Right", "Laugh" }));
@@ -140,6 +111,12 @@ public class FacialPanel extends JPanel {
     add(lowerfaceupdownButton);
     add(chckbxNewCheckBox);
     add(eyeActive);
+
+    updateEyeAction(eyecomboBox.getSelectedItem().toString(), 1);
+    updateLowerFaceAction(upperfaceComboBox.getSelectedItem().toString(),
+        Double.parseDouble(upperfaceupdownButton.getOutputText()));
+    updateUpperFaceAction(lowerfaceComboBox.getSelectedItem().toString(),
+        Double.parseDouble(lowerfaceupdownButton.getOutputText()));
   }
 
   public void replaceRadioButton(boolean isButton) {
@@ -170,76 +147,27 @@ public class FacialPanel extends JPanel {
 
   public boolean ischckbxNewCheckBoxSelected() {
     return chckbxNewCheckBox.isSelected();
-
   }
 
   public void upperfaceAction() {
-    String Item = upperfaceComboBox.getSelectedItem().toString();
+    String item = upperfaceComboBox.getSelectedItem().toString();
     String upperbuttonValue = upperfaceupdownButton.getOutputText();
     double upperfaceValue = Double.parseDouble(upperbuttonValue);
-    if (Item.equals("Raise Brow")) {
-      eyebrowRaise = upperfaceValue;
-      // System.out.println(eyebrowRaise +","+ Item); //test
-    }
-
-    if (Item.equals("Furrow Brow")) {
-      eyebrowFurrow = upperfaceValue;
-      // System.out.println(eyebrowFurrow +","+ Item); //test
-    }
-
+    updateUpperFaceAction(item, upperfaceValue);
   }
 
   public void lowerfaceAction() {
-    String Item = lowerfaceComboBox.getSelectedItem().toString();
+    String item = lowerfaceComboBox.getSelectedItem().toString();
     String lowerbuttonValue = lowerfaceupdownButton.getOutputText();
     double lowerfaceValue = Double.parseDouble(lowerbuttonValue);
-    if (Item.equals("Smile")) {
-      smile = lowerfaceValue;
-      // System.out.println(lowerfaceValue +","+ Item); //test
-    } else if (Item.equals("Clench")) {
-      clench = lowerfaceValue;
-      // System.out.println(lowerfaceValue +","+ Item); //test
-    } else if (Item.equals("Smirk Left")) {
-      smerkLeft = lowerfaceValue;
-      // System.out.println(lowerfaceValue +","+ Item); //test
-    } else if (Item.equals("Smirk Right")) {
-      smerkRight = lowerfaceValue;
-      // System.out.println(lowerfaceValue +","+ Item); //test
-    } else if (Item.equals("Laugh")) {
-      laugh = lowerfaceValue;
-      // System.out.println(lowerfaceValue +","+ Item); //test
-    } else {
-    }
+    updateLowerFaceAction(item, lowerfaceValue);
   }
 
   public void eyecomboBoxAction() {
-    String Item = eyecomboBox.getSelectedItem().toString();
-    // eyeActiveValue = Integer.parseInt(eyeActive.getActionCommand());
-    /*
-    System.out.println(eyeActiveValue);
-    if (Item.equals("Blink")) {
-      blink = eyeActiveValue;
-      // System.out.println(blink +","+ Item); //test
-    } else if (Item.equals("Wink Left")) {
-      leftWink = eyeActiveValue;
-      // System.out.println(leftWink +","+ Item); //test
-    } else if (Item.equals("Wink Right")) {
-      rightWink = eyeActiveValue;
-      // System.out.println(rightWink +","+ Item); //test
-    } else if (Item.equals("Look Left")) {
-      lookingLeft = eyeActiveValue;
-      // System.out.println(lookingLeft + "," + Item); // test
-    } else if (Item.equals("Look Right")) {
-      lookingRight = eyeActiveValue;
-      // System.out.println(lookingRight +","+ Item); //test
-    } else {
-    }*/
-    EmotivComposer.getEmotivRandomizer().updateEyeAction(Item,eyeActiveValue);
-    
-    
+    String item = eyecomboBox.getSelectedItem().toString();
+    updateEyeAction(item, eyeActiveValue);
   }
-  
-  
+
   public void eyeAction() {
     if (eyeActive.isSelected()) {
       eyeActiveValue = 1;
@@ -248,54 +176,69 @@ public class FacialPanel extends JPanel {
     }
   }
 
-public double getEyebrowRaise() {
-	return eyebrowRaise;
-}
+  public void updateLowerFaceAction(String key, double value) {
+    EmotivData data = er.getEmotivData();
+    data.resetExpressiveLowerData();
 
-public double getEyebrowFurrow() {
-	return eyebrowFurrow;
-}
+    System.out.println("Lowerface: " + key + " - " + value);
 
-public double getSmerkRight() {
-	return smerkRight;
-}
+    if (key.equals("Smirk Right")) {
+      data.setSmirkRight(value);
+    } else if (key.equals("Smirk Left")) {
+      data.setSmirkLeft(value);
+    } else if (key.equals("Smile")) {
+      data.setSmile(value);
+    } else if (key.equals("Clench")) {
+      data.setClench(value);
+    } else if (key.equals("Laugh")) {
+      data.setLaugh(value);
+    } else {
+      System.out.println("Not FOUND: " + key + " - " + value);
+    }
 
-public double getSmerkLeft() {
-	return smerkLeft;
-}
+    er.notifyObservers();
+  }
 
-public double getSmile() {
-	return smile;
-}
+  public void updateUpperFaceAction(String key, double value) {
+    EmotivData data = er.getEmotivData();
+    data.resetExpressiveUpperData();
+    System.out.println("Upperface: " + key + " - " + value);
 
-public double getClench() {
-	return clench;
-}
+    if (key.equals("Furrow Brow")) {
+      data.setEyebrowFurrow(value);
+    } else if (key.equals("Raise Brow")) {
+      data.setEyebrowRaise(value);
+    } else {
+      System.out.println("Not FOUND: " + key + " - " + value);
+    }
 
-public double getLaugh() {
-	return laugh;
-}
+    er.notifyObservers();
+  }
 
-public int getLookingLeft() {
-	return lookingLeft;
-}
+  public void updateEyeAction(String key, int value) {
+    EmotivData data = er.getEmotivData();
+    data.resetExpressiveEyeData();
 
-public int getLookingRight() {
-	return lookingRight;
-}
+    System.out.println("Eye Action: " + key + " - " + value);
 
-public int getRightWink() {
-	return rightWink;
-}
+    if (key.equals("Blink")) {
+      data.setBlink(value);
+    } else if (key.equals("Look Left")) {
+      data.setLookingLeft(value);
+    } else if (key.equals("Look Right")) {
+      data.setLookingRight(value);
+    } else if (key.equals("Wink Right")) {
+      data.setLeftWink(value);
+    } else if (key.equals("Wink Left")) {
+      data.setRightWink(0);
+    } else {
+      System.out.println("Not FOUND: " + key + " - " + value);
+    }
 
-public int getLeftWink() {
-	return leftWink;
-}
+    er.notifyObservers();
+  }
 
-public int getBlink() {
-	return blink;
-}
-  
-  
-  
+  @Override
+  public void update(PassedData passedData) {
+  }
 }
