@@ -1,8 +1,12 @@
 package server.sys.observer;
 
-import data.EmotivData;
-
+/**
+ * This interface is used for the Observer Pattern implemented in the back end
+ * 
+ * @author Cephas Armstrong-Mensah
+ * @version 1.0
+ * @since 07APR2018
+ */
 public interface EmotivObserver {
-  public void updateAll(EmotivData data, double interval, String sendButtonText);
-
+  public void updateAll(PassedData passedData);
 }

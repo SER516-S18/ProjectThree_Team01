@@ -12,8 +12,8 @@ import javax.swing.SwingConstants;
 import server.gui.actions.ActionEvents;
 
 /**
- * The purpose of this class is to control the facial section controls and actions for the
- * server's lower panel
+ * The purpose of this class is to control the facial section controls and
+ * actions for the server's lower panel
  * 
  * @author Zelin Bao
  * @version 1.0
@@ -38,19 +38,18 @@ public class FacialPanel extends JPanel {
 
   private double eyebrowRaise;
   private double eyebrowFurrow;
- 
+
   private double smerkRight;
   private double smerkLeft;
   private double smile;
   private double clench;
   private double laugh;
-  
+
   private int lookingLeft;
   private int lookingRight;
   private int rightWink;
   private int leftWink;
   private int blink;
- 
 
   private int eyeActiveValue;
 
@@ -64,7 +63,7 @@ public class FacialPanel extends JPanel {
    * Initialize the contents of the frame.
    */
   private void initialize() {
-	eyeActiveValue = 0;
+    eyeActiveValue = 0;
     upperfaceupdownButton = new ComboControl(70, 0.1, false);
     upperfaceupdownButton.setBounds(135, 30, 70, 30);
     upperfaceupdownButton.setVisible(true);
@@ -117,7 +116,7 @@ public class FacialPanel extends JPanel {
 
     chckbxNewCheckBox = new JCheckBox("Auto Reset");
     chckbxNewCheckBox.setBounds(270, 105, 115, 20);
-    
+
     add(upperfaceupdownButton);
     add(upperfaceLabel);
     add(lowerfaceLabel);
@@ -129,41 +128,38 @@ public class FacialPanel extends JPanel {
     add(chckbxNewCheckBox);
     add(eyeActive);
   }
-  
-  
-  public void replaceRadioButton() {
-	remove(eyeActive);
-	eyeActiveButton = new JButton("Activate");
-	eyeActiveButton.setBounds(140, 105, 80, 20);
-	eyeActiveButton.setVisible(true);
-	add(eyeActiveButton);
-	repaint();
+
+  public void replaceRadioButton(boolean isButton) {
+    if (isButton) {
+      remove(eyeActive);
+      eyeActiveButton = new JButton("Activate");
+      eyeActiveButton.setBounds(140, 100, 80, 30);
+      eyeActiveButton.setVisible(true);
+      add(eyeActiveButton);
+    } else {
+      remove(eyeActiveButton);
+      add(eyeActive);
+    }
+    repaint();
   }
-  
-  public void replacebackRadio() {
-	remove(eyeActiveButton);
-	add(eyeActive);
-	repaint();
-  }
-  
+
   public JRadioButton getEyeActive() {
-	  return eyeActive;
+    return eyeActive;
   }
 
   public JCheckBox getEyeAutoCheckBox() {
-	  return chckbxNewCheckBox;
+    return chckbxNewCheckBox;
   }
-  
+
   public void seteyeActiveValue(int number) {
-	  eyeActiveValue = number;
+    eyeActiveValue = number;
   }
 
   public boolean ischckbxNewCheckBoxSelected() {
-	return chckbxNewCheckBox.isSelected();
-	  
+    return chckbxNewCheckBox.isSelected();
+
   }
-  
-  
+
   public void upperfaceAction() {
     String Item = upperfaceComboBox.getSelectedItem().toString();
     String upperbuttonValue = upperfaceupdownButton.getOutputText();
@@ -205,8 +201,8 @@ public class FacialPanel extends JPanel {
 
   public void eyecomboBoxAction() {
     String Item = eyecomboBox.getSelectedItem().toString();
-    //eyeActiveValue = Integer.parseInt(eyeActive.getActionCommand());
-       System.out.println(eyeActiveValue);
+    // eyeActiveValue = Integer.parseInt(eyeActive.getActionCommand());
+    System.out.println(eyeActiveValue);
     if (Item.equals("Blink")) {
       blink = eyeActiveValue;
       // System.out.println(blink +","+ Item); //test
@@ -225,30 +221,23 @@ public class FacialPanel extends JPanel {
     } else {
     }
   }
-/*
-  public void eyeAction() {
-    if (eyeclickCount % 2 == 0) {
-      eyeActive.setActionCommand("1");
-      
-    } else {
-      eyeActive.setActionCommand("0");
-    }
-    eyeActiveValue = Integer.parseInt(eyeActive.getActionCommand());
-    eyeclickCount++;
-    // System.out.println("eye sectioon:"+ eyeActiveValue); //test
-  }
-  */
+  /*
+   * public void eyeAction() { if (eyeclickCount % 2 == 0) {
+   * eyeActive.setActionCommand("1");
+   * 
+   * } else { eyeActive.setActionCommand("0"); } eyeActiveValue =
+   * Integer.parseInt(eyeActive.getActionCommand()); eyeclickCount++; //
+   * System.out.println("eye sectioon:"+ eyeActiveValue); //test }
+   */
 
- 
-  
   public void eyeAction() {
-	  if(eyeActive.isSelected()) {
-		  
-		  eyeActiveValue = 1;
-		 
-	  }else {
-		  eyeActiveValue = 0;
-	  }
+    if (eyeActive.isSelected()) {
+
+      eyeActiveValue = 1;
+
+    } else {
+      eyeActiveValue = 0;
+    }
   }
-  
+
 }

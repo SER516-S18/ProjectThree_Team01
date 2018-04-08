@@ -7,9 +7,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-import data.EmotivData;
 import server.sys.EmotivRandomizer;
 import server.sys.observer.EmotivObserver;
+import server.sys.observer.PassedData;
 import util.ConsolePanel;
 import util.Constants;
 
@@ -108,8 +108,8 @@ public class EmoStatePanel extends JPanel implements EmotivObserver {
   }
 
   @Override
-  public void updateAll(EmotivData data, double interval, String sendButtonText) {
+  public void updateAll(PassedData passedData) {
     System.out.println("We got updated");
-    setTimeTrackerLabelText(String.format("%.2f", data.getTimer()));
+    setTimeTrackerLabelText(String.format("%.2f", passedData.data.getTimer()));
   }
 }

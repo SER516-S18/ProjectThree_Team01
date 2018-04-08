@@ -8,13 +8,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import data.EmotivData;
 import server.gui.EmotivComposer;
 import server.gui.actions.ActionEvents;
 import server.gui.actions.ItemEvents;
 import server.sys.EmotivRandomizer;
 import server.sys.WorkerThread;
 import server.sys.observer.EmotivObserver;
+import server.sys.observer.PassedData;
 
 /**
  * This class's purpose is to display the interactive tab section items
@@ -42,7 +42,7 @@ public class InteractivePanel extends JPanel implements EmotivObserver {
 
   private static boolean isAutoResetChecked;
   private static WorkerThread worker;
-  private static Thread workerThread;
+  public static Thread workerThread;
 
   public InteractivePanel(EmotivRandomizer er) {
     setBounds(0, 0, 450, 90);
@@ -104,10 +104,10 @@ public class InteractivePanel extends JPanel implements EmotivObserver {
     if (worker == null)
       worker = new WorkerThread(er);
 
+    er.sendButtonText(sendButton.getText(), emoStateInterval.getOutputText());
+
     workerThread = new Thread(worker);
     workerThread.start();
-
-    er.sendButtonText(sendButton.getText(), emoStateInterval.getOutputText());
 
     // for eye section auto reset button
     if (EmotivComposer.getemoFacialPanel().ischckbxNewCheckBoxSelected()) {
@@ -138,15 +138,11 @@ public class InteractivePanel extends JPanel implements EmotivObserver {
     }
 
     // replace a eye button with radiobutton
-    if (autoResetCheckBox.isSelected()) {
-      EmotivComposer.getemoFacialPanel().replaceRadioButton();
-    } else {
-      EmotivComposer.getemoFacialPanel().replacebackRadio();
-    }
+    EmotivComposer.getemoFacialPanel().replaceRadioButton(autoResetCheckBox.isSelected());
   }
 
   @Override
-  public void updateAll(EmotivData data, double interval, String sendButtonText) {
-    this.setSendButtonText(sendButtonText);
+  public void updateAll(PassedData passedData) {
+    this.setSendButtonText(passedData.buttonText);
   }
 }

@@ -56,7 +56,7 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
     contentPane = new JPanel();
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     setContentPane(contentPane);
-    
+
     contentPane.setLayout(null);
     facialExpressionPanel = new JPanel();
     tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -66,7 +66,7 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
     facialExpressionPanel.setLayout(null);
     graphPanel = new JPanel();
     graphPanel.setBounds(456, 0, 500, 841);
-    //graphPanel.setBackground(Color.GRAY);
+    // graphPanel.setBackground(Color.GRAY);
     facialExpressionPanel.add(graphPanel);
 
     facePanel = new FacePanel();
@@ -83,29 +83,30 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 
     graphPanel.add(displayGraph.chartPanel);
     graphPanel.setLayout(null);
-    
+
     ClientSubject.getInstance().addObserver(this);
-    
+
     performanceMetric = new PerformanceMetricPanel();
     performanceMetric.setBounds(0, 0, 959, 992);
 
     contentPane.add(tabbedPane);
     contentPane.add(performanceMetric);
     performanceMetric.setVisible(false);
-    
+
   }
-  
+
   public void showPerformanceMetric() {
-	  tabbedPane.setVisible(false);
-	  performanceMetric.setVisible(true);
-	  this.repaint();
+    tabbedPane.setVisible(false);
+    performanceMetric.setVisible(true);
+    this.repaint();
   }
-  
+
   public void showFacialGraph() {
-	  tabbedPane.setVisible(true);
-	  performanceMetric.setVisible(false);
-	  this.repaint();
+    tabbedPane.setVisible(true);
+    performanceMetric.setVisible(false);
+    this.repaint();
   }
+
   @Override
   public void updateObserver(EmotivData data) {
     // call graph and emotional expression methods

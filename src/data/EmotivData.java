@@ -292,6 +292,14 @@ public class EmotivData {
     parseAffective(this.affective);
   }
 
+  public void resetExpressiveData() {
+    this.lookingRight = 0;
+    this.lookingLeft = 0;
+    this.rightWink = 0;
+    this.leftWink = 0;
+    this.blink = 0;
+  }
+
   private void parseExpressive(JSONObject expressive) {
     this.eyebrowRaise = expressive.getDouble("EyebrowRaise");
     this.eyebrowFurrow = expressive.getDouble("EyebrowFurrow");

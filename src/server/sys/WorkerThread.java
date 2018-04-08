@@ -9,6 +9,7 @@ import javax.websocket.Session;
 import data.EmotivData;
 import server.gui.panels.LogPanel;
 import server.sys.observer.EmotivObserver;
+import server.sys.observer.PassedData;
 
 /**
  * The purpose of this class is to implement a working thread to handle the
@@ -36,9 +37,6 @@ public class WorkerThread implements Runnable, EmotivObserver {
 
   private void setButtonStatus(String val) {
     System.out.println("Changing state: " + val);
-    if (val.equals("Start") && state == ButtonStatus.STARTED) {
-      return;
-    }
 
     if (val.equalsIgnoreCase("send")) {
       state = ButtonStatus.SEND;
@@ -50,6 +48,7 @@ public class WorkerThread implements Runnable, EmotivObserver {
   }
 
   private void setInterval(double val) {
+    System.out.println("Interval value: " + val);
     INTERVAL = (int) (val * 1000);
   }
 
@@ -63,7 +62,7 @@ public class WorkerThread implements Runnable, EmotivObserver {
       break;
     case STARTED:
       while (state != ButtonStatus.STOPPED) {
-        System.out.println("Making a dent");
+        System.out.println("Making a dent: " + INTERVAL);
         fetchRandomData();
         try {
           Thread.sleep(INTERVAL);
@@ -109,9 +108,9 @@ public class WorkerThread implements Runnable, EmotivObserver {
   }
 
   @Override
-  public void updateAll(EmotivData data, double interval, String sendButtonText) {
-    setInterval(interval);
-    setButtonStatus(sendButtonText);
-    this.data = data;
+  public void updateAll(PassedData passedData) {
+    setInterval(passedData.interval);
+    this.data = passedData.data;
+    setButtonStatus(passedData.buttonText);
   }
 }

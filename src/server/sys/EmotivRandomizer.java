@@ -8,15 +8,17 @@ import java.util.Random;
 import data.EmotivData;
 import server.sys.observer.EmotivObserver;
 import server.sys.observer.EmotivSubject;
+import server.sys.observer.PassedData;
 
 public class EmotivRandomizer implements EmotivSubject {
-  private static EmotivData data;
+  private EmotivData data;
   private Iterator<String> objs;
   private Random generator;
-  private static double interval;
+  private double interval;
 
   private List<EmotivObserver> observers = new ArrayList<EmotivObserver>();
   private String sendButtonText;
+  private PassedData passedData;
 
   public EmotivRandomizer() {
     data = new EmotivData();
@@ -96,18 +98,30 @@ public class EmotivRandomizer implements EmotivSubject {
   }
 
   public void sendButtonText(String sendButtonText, String interval) {
-    double val = data.getTimer() + Double.parseDouble(interval);
-    this.data.setTimer(val);
+    System.out.println("Interval: " + interval);
+    this.interval = Double.parseDouble(interval);
+    this.data.setTimer(data.getTimer() + this.interval);
     this.sendButtonText = sendButtonText;
 
     notifyObservers();
   }
 
-  @Override
-  public void notifyObservers() {
-    for (EmotivObserver observer : observers) {
-      observer.updateAll(data, interval, sendButtonText);
+  public void updateEyeAction(String key, int value) {
+    this.data.resetExpressiveData();
+
+    if (key.equals("Blink")) {
+      data.setBlink(value);
+    } else if (key.equals("LookingLeft")) {
+      data.setLookingLeft(value);
+    } else if (key.equals("LookingRight")) {
+      data.setLookingRight(value);
+    } else if (key.equals("LeftWink")) {
+      data.setLeftWink(value);
+    } else if (key.equals("RightWink")) {
+      data.setRightWink(0);
     }
+
+    notifyObservers();
   }
 
   @Override
@@ -118,5 +132,13 @@ public class EmotivRandomizer implements EmotivSubject {
   @Override
   public void removeFromObserver(EmotivObserver o) {
     observers.remove(o);
+  }
+
+  @Override
+  public void notifyObservers() {
+    passedData = new PassedData(data, sendButtonText, interval);
+    for (EmotivObserver observer : observers) {
+      observer.updateAll(passedData);
+    }
   }
 }
