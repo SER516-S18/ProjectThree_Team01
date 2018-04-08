@@ -120,8 +120,9 @@ public class EmotivRandomizer implements EmotivSubject {
     } else if (key.equals("RightWink")) {
       data.setRightWink(0);
     }
-
     notifyObservers();
+    
+    System.out.println("get new eye value: " + value);
   }
 
   @Override

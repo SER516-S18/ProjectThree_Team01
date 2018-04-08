@@ -10,7 +10,8 @@ import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
 import server.gui.actions.ActionEvents;
-
+import server.sys.*;
+import server.gui.*;
 /**
  * The purpose of this class is to control the facial section controls and
  * actions for the server's lower panel
@@ -214,6 +215,7 @@ public class FacialPanel extends JPanel {
   public void eyecomboBoxAction() {
     String Item = eyecomboBox.getSelectedItem().toString();
     // eyeActiveValue = Integer.parseInt(eyeActive.getActionCommand());
+    /*
     System.out.println(eyeActiveValue);
     if (Item.equals("Blink")) {
       blink = eyeActiveValue;
@@ -231,9 +233,12 @@ public class FacialPanel extends JPanel {
       lookingRight = eyeActiveValue;
       // System.out.println(lookingRight +","+ Item); //test
     } else {
-    }
+    }*/
+    EmotivComposer.getEmotivRandomizer().updateEyeAction(Item,eyeActiveValue);
+    
+    
   }
-
+  
   
   public void eyeAction() {
     if (eyeActive.isSelected()) {
