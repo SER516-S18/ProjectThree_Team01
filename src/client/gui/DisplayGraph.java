@@ -17,6 +17,10 @@ import data.EmotivData;
 /**
  * This class represents the graph panel It contains the graph, dataset and
  * other chart related parameters
+ *
+ * @author Group 1 #001 - #013
+ * @version 1.0
+ * @since 2018-04-04
  * 
  */
 public class DisplayGraph extends JPanel {
