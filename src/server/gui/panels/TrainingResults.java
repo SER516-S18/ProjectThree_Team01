@@ -39,10 +39,10 @@ public class TrainingResults extends JPanel {
     mentalCommandsLabel.setBounds(10, 50, 150, 25);
 
     mentalCommandsComboBox = new JComboBox<String>();
-    mentalCommandsComboBox.setModel(new DefaultComboBoxModel<String>());
+    mentalCommandsComboBox.setModel(new DefaultComboBoxModel<String>(comboData));
     mentalCommandsComboBox.setBounds(10, 75, 120, 30);
 
-    perfomanceMetricsComboBox = new JComboBox<String>(comboData);
+    perfomanceMetricsComboBox = new JComboBox<String>();
     perfomanceMetricsComboBox.setModel(new DefaultComboBoxModel<String>(comboData));
     perfomanceMetricsComboBox.setBounds(10, 150, 120, 30);
 
