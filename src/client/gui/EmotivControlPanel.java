@@ -18,6 +18,15 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JLabel;
 
+/*
+ * This is the class that contains the main and launches the entire application
+ *
+ * @author Group 1 #001 - #013
+ * @version 1.0
+ * @since 2018-04-04
+ *
+ */
+
 public class EmotivControlPanel extends JFrame implements ClientObserver {
 	private static final long serialVersionUID = 8528760467775723790L;
 

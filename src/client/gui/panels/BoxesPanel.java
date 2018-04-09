@@ -11,52 +11,72 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+/*
+ * This class is used to create a panel for the Color chooser section in the Performance Metrics frame
+ * 
+ * @author Group 1 #001 - #013
+ * @version 1.0
+ * @since 03APR2018
+ *
+ */
+
 public class BoxesPanel extends JPanel {
   PerformanceMetricPanel parent;
   int actionListenerFlag = 0;
 
-  public BoxesPanel(PerformanceMetricPanel parent, String boxName) {
+ /* 
+  * Constructor for BoxPanel class
+  */
+ public BoxesPanel(PerformanceMetricPanel parent, String boxName) {
     setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
     this.parent = parent;
     setLayout(new BorderLayout(0, 0));
     initializer(boxName);
   }
 
+  /* 
+  * Constructor for BoxPanel class
+  */
   public void initializer(String boxName) {
     String initial = boxName.substring(0, 2);
     setSize(90, 90);
-    JLabel lblNewLabel_1 = new JLabel(initial);
-    lblNewLabel_1.setVerticalAlignment(SwingConstants.TOP);
-    lblNewLabel_1.setFont(new Font("Century", Font.BOLD, 30));
-    lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+    JLabel lblShortName = new JLabel(initial);
+    lblShortName.setVerticalAlignment(SwingConstants.TOP);
+    lblShortName.setFont(new Font("Century", Font.BOLD, 30));
+    lblShortName.setHorizontalAlignment(SwingConstants.CENTER);
 
-    JLabel lblInterest = new JLabel(boxName);
-    lblInterest.setVerticalAlignment(SwingConstants.TOP);
-    lblInterest.setFont(new Font("Century", Font.PLAIN, 14));
-    lblInterest.setHorizontalAlignment(SwingConstants.CENTER);
+    JLabel lblFullName = new JLabel(boxName);
+    lblFullName.setVerticalAlignment(SwingConstants.TOP);
+    lblFullName.setFont(new Font("Century", Font.PLAIN, 14));
+    lblFullName.setHorizontalAlignment(SwingConstants.CENTER);
 
-    JLabel lblNewLabel_2 = new JLabel("V    ");
-    lblNewLabel_2.addMouseListener(new MouseAdapter() {
+    JLabel lblDropDown = new JLabel("V    ");
+    lblDropDown.addMouseListener(new MouseAdapter() {
       @Override
       public void mouseClicked(MouseEvent e) {
         createColorChooser();
       }
     });
-    lblNewLabel_2.setSize(20, 20);
-    lblNewLabel_2.setFont(new Font("Lucida Sans Unicode", Font.BOLD, 10));
-    lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
+    lblDropDown.setSize(20, 20);
+    lblDropDown.setFont(new Font("Lucida Sans Unicode", Font.BOLD, 10));
+    lblDropDown.setHorizontalAlignment(SwingConstants.RIGHT);
 
-    add(lblNewLabel_2, BorderLayout.NORTH);
-    add(lblNewLabel_1, BorderLayout.CENTER);
-    add(lblInterest, BorderLayout.SOUTH);
+    add(lblDropDown, BorderLayout.NORTH);
+    add(lblShortName, BorderLayout.CENTER);
+    add(lblFullName, BorderLayout.SOUTH);
   }
-
+  
+  /*
+   * Method to set the background of the panel
+   */
   public void setBoxColor(Color color) {
     setBackground(color);
   }
 
+  /*
+   * Method to create a ColorChooserPanel class object with relative positioning 
+   */
   private void createColorChooser() {
-    System.out.println("Creating Chooser");
     ColorChooserPanel cc = new ColorChooserPanel(this);
     cc.setLocationRelativeTo(this);
     cc.setVisible(true);

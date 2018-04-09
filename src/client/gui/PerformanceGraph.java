@@ -15,7 +15,12 @@ import data.EmotivData;
  * This class represents the graph panel It contains the graph, dataset and
  * other chart related parameters
  * 
+ * @author Group 1 #001 - #013
+ * @version 1.0
+ * @since 2018-04-04
+ *
  */
+
 public class PerformanceGraph extends JPanel {
 
   private static final long serialVersionUID = 7028325762888041341L;
@@ -28,17 +33,10 @@ public class PerformanceGraph extends JPanel {
 	return graph;
 }
   
-
-
-
-
-
-
   public ChartPanel getChartPanel() {
 		// TODO Auto-generated method stub
 		return chartPanel;
 	}
-
 
   public PerformanceGraph() {
     super();
@@ -80,6 +78,5 @@ public class PerformanceGraph extends JPanel {
   public void updateGraph(EmotivData data) {
 
     }
-
 
   }
