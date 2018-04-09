@@ -29,7 +29,7 @@ public class ColorChooserPanel extends JDialog {
   List<JPanel> palettes = new ArrayList<JPanel>();
   List<Color> colorArray = new ArrayList<Color>();
   JPanel colorPanel;
-
+  
   /*
    * Constructor for the class
    */
