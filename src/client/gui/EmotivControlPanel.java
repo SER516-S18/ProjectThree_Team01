@@ -20,7 +20,7 @@ import javax.swing.JLabel;
 
 /*
  * This is the class that contains the main and launches the entire application
- *
+ * 
  * @author Group 1 #001 - #013
  * @version 1.0
  * @since 2018-04-04
@@ -53,7 +53,11 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 		frame.setVisible(true);
 		// frame.setSize(1000,1000);
 	}
-
+	
+	/**
+	 * To implement Singleton Instance of EmotivControlPanel
+	 * @return singleton Instance of the class
+	 */
 	public static EmotivControlPanel getInstance() {
 		if (clientInstance == null) {
 			clientInstance = new EmotivControlPanel();
@@ -118,23 +122,41 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 		performanceMetric.setVisible(false);
 
 	}
-
+	
+	/**
+	 * Panel to Show the performance metric graph
+	 */
 	public void showPerformanceMetric() {
 		tabbedPane.setVisible(false);
 		performanceMetric.setVisible(true);
 		this.repaint();
 	}
-
+	
+	/**
+	 * To display the graph that plots the values
+	 * and display facial expressions.
+	 */
 	public void showFacialGraph() {
 		tabbedPane.setVisible(true);
 		performanceMetric.setVisible(false);
 		this.repaint();
 	}
-
+	
+	/**
+	 * Notifies when the client application is 
+	 * closing
+	 * @return true when client is closing
+	 * and false otherwise
+	 */
 	public boolean getIsClosing() {
 		return isClosing;
 	}
 
+	/**
+	 * Update the subscribed observers (display graph,
+	 * face panel and performanceMetric panel and pass
+	 * the data received)
+	 */
 	@Override
 	public void updateObserver(EmotivData data) {
 		System.out.println(data.getBlink());
@@ -144,7 +166,12 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 			facePanel.updateFace(data);
 		}
 	}
-
+	
+	/**
+	 * @param connected - Updates the icon 
+	 * for signal label when client connects to the 
+	 * server
+	 */
 	public void updateSignalLabel(boolean connected) {
 		if (connected) {
 			signalLabel.setIcon(new ImageIcon(loader.getResource("strong.png")));
