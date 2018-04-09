@@ -26,20 +26,21 @@ import data.EmotivData;
 public class DisplayGraph extends JPanel {
 
   private static final long serialVersionUID = 7028325762888041341L;
-  JFreeChart graph;
-  TimeSeriesCollection dataset;
-  TimeSeries graphSeries[];
+  private JFreeChart graph;
+  private TimeSeriesCollection dataset;
+  private TimeSeries graphSeries[];
   ChartPanel chartPanel;
-  String channelNames[];
+  private String channelNames[];
+  private static DisplayThread displayThread;
 
-  static DisplayThread c;
-
+  /*Initializing the channels for the plot of facial expressions.
+   * 
+   */
   public DisplayGraph() {
     super();
     graphSeries = new TimeSeries[12];
     dataset = new TimeSeriesCollection();
     channelNames = new String[12];
-
     channelNames[0] = new String("Eyebrow Raise");
     channelNames[1] = new String("Eyebrow Furrow");
     channelNames[2] = new String("Smile");
@@ -52,18 +53,23 @@ public class DisplayGraph extends JPanel {
     channelNames[9] = new String("Right Wink");
     channelNames[10] = new String("Left Wink");
     channelNames[11] = new String("Blink");
-
     for (int i = 0; i < 12; i++) {
       graphSeries[i] = new TimeSeries(channelNames[i]);
-      // (Deprecated) new TimeSeries(channelNames[i], Millisecond.class);
       dataset.addSeries(graphSeries[i]);
     }
     graph = createChart(dataset);
   }
+/*This function returns the graph 
+ * 
+ */
+  public JFreeChart getGraph() {
+	return graph;
+}
 
-  /**
+
+/**
    * This function creates the chart with necessary parameters.
-   */
+*/
   private JFreeChart createChart(final XYDataset dataset) {
     final JFreeChart result = ChartFactory.createTimeSeriesChart("Plot", "Time", "Value", dataset, true,
         true, false);
@@ -78,9 +84,9 @@ public class DisplayGraph extends JPanel {
    * This method starts the thread each time a value is received
    */
   public void updateGraph(EmotivData data) {
-    if (c == null) {
-      c = new DisplayThread(data, graphSeries, dataset);
-      new Thread(c).start();
+    if (displayThread == null) {
+      displayThread = new DisplayThread(data, graphSeries, dataset);
+      new Thread(displayThread).start();
     }
   }
 }

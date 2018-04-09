@@ -1,5 +1,6 @@
 package client.gui;
-
+import java.awt.Color;
+import client.sys.*;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -15,68 +16,80 @@ import data.EmotivData;
  * This class represents the graph panel It contains the graph, dataset and
  * other chart related parameters
  * 
- * @author Group 1 #001 - #013
- * @version 1.0
- * @since 2018-04-04
- *
  */
-
 public class PerformanceGraph extends JPanel {
 
   private static final long serialVersionUID = 7028325762888041341L;
-  JFreeChart graph;
-  TimeSeriesCollection dataset;
-  TimeSeries graphSeries[];
-  public ChartPanel chartPanel;
-  String channelNames[];
+  private JFreeChart graph;
+  private TimeSeriesCollection dataset;
+  private TimeSeries graphSeries[];
+  private ChartPanel chartPanel;
+  private String channelNames[];
+  private static PerformanceThread performanceThread;
+  
+  /*
+   * This function returns the performance graph
+   */
   public JFreeChart getGraph() {
 	return graph;
 }
-  
+  /*
+   * This function returns the chart panel
+   */
   public ChartPanel getChartPanel() {
 		// TODO Auto-generated method stub
 		return chartPanel;
 	}
 
+/*
+ * Intializing the performance graph parameters
+ */
   public PerformanceGraph() {
     super();
     graphSeries = new TimeSeries[6];
     dataset = new TimeSeriesCollection();
     channelNames = new String[6];
 
-    channelNames[0] = new String("");
-    channelNames[1] = new String("");
-    channelNames[2] = new String("");
-    channelNames[3] = new String("");
-    channelNames[4] = new String("");
-    channelNames[5] = new String("");
+    channelNames[0] = new String("Interest");
+    channelNames[1] = new String("Excitement");
+    channelNames[2] = new String("Engagement");
+    channelNames[3] = new String("Stress");
+    channelNames[4] = new String("Relaxation");
+    channelNames[5] = new String("Focus");
 
     for (int i = 0; i < 6; i++) {
       graphSeries[i] = new TimeSeries(channelNames[i]);
-      // (Deprecated) new TimeSeries(channelNames[i], Millisecond.class);
       dataset.addSeries(graphSeries[i]);
     }
-    graph = createChart(dataset);
+       graph = createChart(dataset);
   }
 
   /**
    * This function creates the chart with necessary parameters.
    */
   private JFreeChart createChart(final XYDataset dataset) {
-    final JFreeChart result = ChartFactory.createTimeSeriesChart("Performance Plot", "Time", "Value", dataset, true,
+    graph = ChartFactory.createTimeSeriesChart("Performance Plot", "Time", "Value", dataset, true,
         true, false);
-    final XYPlot plot = result.getXYPlot();
+    final XYPlot plot = graph.getXYPlot();
     ValueAxis axis = plot.getDomainAxis();
     axis.setAutoRange(true);
     axis = plot.getRangeAxis();
-    return result;
+    plot.getRenderer().setSeriesPaint(0, Color.RED);
+ 
+
+    return graph;
   }
 
   /**
    * This method starts the thread each time a value is received
    */
   public void updateGraph(EmotivData data) {
+	    if (performanceThread == null) {
+	        performanceThread = new PerformanceThread(data, graphSeries, dataset);
+	        new Thread(performanceThread).start();
+	      }
 
     }
+
 
   }

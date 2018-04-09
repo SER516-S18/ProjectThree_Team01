@@ -29,7 +29,6 @@ import javax.swing.JLabel;
 
 public class EmotivControlPanel extends JFrame implements ClientObserver {
 	private static final long serialVersionUID = 8528760467775723790L;
-
 	private JPanel contentPane;
 	private JPanel facialExpressionPanel;
 	private String uri = "localhost";
@@ -89,7 +88,6 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 		facialExpressionPanel.setLayout(null);
 		graphPanel = new JPanel();
 		graphPanel.setBounds(456, 0, 500, 841);
-		// graphPanel.setBackground(Color.GRAY);
 		facialExpressionPanel.add(graphPanel);
 
 		facePanel = new FacePanel();
@@ -98,8 +96,7 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 		facialExpressionPanel.add(facePanel);
 
 		displayGraph = new DisplayGraph();
-		displayGraph.chartPanel = new ChartPanel(displayGraph.graph);
-
+		displayGraph.chartPanel = new ChartPanel(displayGraph.getGraph());
 		displayGraph.chartPanel.setLocation(12, 26);
 		displayGraph.chartPanel.setSize(new Dimension(500, 500));
 		facialExpressionPanel.setLayout(null);
@@ -140,9 +137,9 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 
 	@Override
 	public void updateObserver(EmotivData data) {
-		// call graph and emotional expression methods
 		System.out.println(data.getBlink());
 		displayGraph.updateGraph(data);
+		performanceMetric.performanceGraph.updateGraph(data);
 		if (facePanel != null) {
 			facePanel.updateFace(data);
 		}

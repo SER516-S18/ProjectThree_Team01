@@ -29,7 +29,7 @@ public class PerformanceMetricPanel extends JPanel {
   private JPanel graphPanel;
   private JLabel lblHeaderName;
   private JPanel metrixPanel;
-  private PerformanceGraph performanceGraph;
+  public PerformanceGraph performanceGraph;
 
   /**
    * Constructor that creates the Performance metrics panel
@@ -52,6 +52,7 @@ public class PerformanceMetricPanel extends JPanel {
     chartPanelObject.setLocation(12, 26);
     chartPanelObject.setSize(new Dimension(500, 500));
     graphPanel.add(chartPanelObject);
+    
 
     lblHeaderName = new JLabel("Graph");
     lblHeaderName.setHorizontalTextPosition(SwingConstants.CENTER);
