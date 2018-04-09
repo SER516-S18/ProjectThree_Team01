@@ -36,7 +36,7 @@ public class ClientHamburgerMenu extends JMenuBar {
 	applicationsOption.add(composerOption);
 	composerOption.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
-			server.gui.MainHandler serverObject = new server.gui.MainHandler();
+			server.gui.MainHandler.main(null);
 		}
 	});
 	
