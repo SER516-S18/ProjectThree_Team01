@@ -87,18 +87,18 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 		tabbedPane.addTab("Facial Expressions", facialExpressionPanel);
 		facialExpressionPanel.setLayout(null);
 		graphPanel = new JPanel();
-		graphPanel.setBounds(456, 0, 500, 841);
+		graphPanel.setBounds(462, 0, 480, 790);
 		facialExpressionPanel.add(graphPanel);
 
 		facePanel = new FacePanel();
-		facePanel.setLocation(0, 200);
-		facePanel.setSize(450, 384);
+		facePanel.setLocation(12, 0);
+		facePanel.setSize(438, 790);
 		facialExpressionPanel.add(facePanel);
 
 		displayGraph = new DisplayGraph();
 		displayGraph.chartPanel = new ChartPanel(displayGraph.getGraph());
 		displayGraph.chartPanel.setLocation(12, 26);
-		displayGraph.chartPanel.setSize(new Dimension(500, 500));
+		displayGraph.chartPanel.setSize(new Dimension(400, 400));
 		facialExpressionPanel.setLayout(null);
 
 		graphPanel.add(displayGraph.chartPanel);
@@ -107,7 +107,7 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 		ClientSubject.getInstance().addObserver(this);
 
 		performanceMetric = new PerformanceMetricPanel();
-		performanceMetric.setBounds(0, 0, 959, 992);
+		performanceMetric.setBounds(-12, 0, 971, 992);
 
 		signalLabel = new JLabel(new ImageIcon(loader.getResource("weak.png")));
 		signalLabel.setBounds(910, 0, 48, 48);
