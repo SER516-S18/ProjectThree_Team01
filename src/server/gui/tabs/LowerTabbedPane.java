@@ -10,6 +10,15 @@ import server.gui.panels.LogPanel;
 import server.gui.panels.TrainingResults;
 import server.sys.EmotivRandomizer;
 
+/**
+ * This purpose of this class is to abstract the Tab implementation and its component
+ * 
+ * @author Cephas Armstrong-Mensah
+ * @author Group 1 #001 - #013
+ * @version 1.0
+ * @since 09APR2018
+ *
+ */
 public class LowerTabbedPane extends JTabbedPane {
 
   private static final long serialVersionUID = 5206845224218178653L;

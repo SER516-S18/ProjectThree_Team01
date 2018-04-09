@@ -9,6 +9,15 @@ import javax.swing.border.EtchedBorder;
 import server.gui.panels.InteractivePanel;
 import server.sys.EmotivRandomizer;
 
+/**
+ * This purpose of this class is to abstract the Tab implementation and its component
+ * 
+ * @author Cephas Armstrong-Mensah
+ * @author Group 1 #001 - #013
+ * @version 1.0
+ * @since 09APR2018
+ *
+ */
 public class UpperTabbedPane extends JTabbedPane {
 
   private static final long serialVersionUID = -3848367030632409535L;
