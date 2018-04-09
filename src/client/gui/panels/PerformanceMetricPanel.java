@@ -24,20 +24,29 @@ import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/*
+ * This class is used to create the Performance Metrics section of the main frame in the application
+ * 
+ * @author Group 1 #001 - #013
+ * @version 1.0
+ * @since 03APR2018
+ *
+ */
+
 public class PerformanceMetricPanel extends JPanel {
 
-	// private JPanel contentPane;
 	private ColorChooserPanel colorChooser;
 	private BoxesPanel boxesPanel;
 	private JPanel graphPanel;
-	private JLabel lblNewLabel;
+	private JLabel lblHeaderName;
 	private JPanel metrixPanel;
 	private PerformanceGraph performanceGraph;
 
 	/**
-	 * Create the frame.
+	 * Constructor that  creates the Performance metrics panel 
 	 */
 	public PerformanceMetricPanel() {
+		
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setBounds(0, 0, 959, 992);
 		setLayout(null);
@@ -47,22 +56,20 @@ public class PerformanceMetricPanel extends JPanel {
 		graphPanel.setBounds(10, 5, 690, 992);
 		graphPanel.setLayout(null);
 		
-		
-		
 		performanceGraph = new PerformanceGraph();
-		ChartPanel chartPanel=performanceGraph.getChartPanel();
-		chartPanel= new ChartPanel(performanceGraph.getGraph());
+		ChartPanel chartPanelObject =performanceGraph.getChartPanel();
+		chartPanelObject= new ChartPanel(performanceGraph.getGraph());
 
-		chartPanel.setLocation(12, 26);
-		chartPanel.setSize(new Dimension(500, 500));
-	    graphPanel.add(chartPanel);
+		chartPanelObject.setLocation(12, 26);
+		chartPanelObject.setSize(new Dimension(500, 500));
+	    graphPanel.add(chartPanelObject);
 		
-		lblNewLabel = new JLabel("Graph");
-		lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(0, 6, 690, 18);
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-		graphPanel.add(lblNewLabel);
+	    lblHeaderName = new JLabel("Graph");
+	    lblHeaderName.setHorizontalTextPosition(SwingConstants.CENTER);
+	    lblHeaderName.setHorizontalAlignment(SwingConstants.CENTER);
+	    lblHeaderName.setBounds(0, 6, 690, 18);
+	    lblHeaderName.setFont(new Font("Arial", Font.PLAIN, 15));
+		graphPanel.add(lblHeaderName);
 		add(graphPanel);
 		
 		metrixPanel = new JPanel();
@@ -76,35 +83,45 @@ public class PerformanceMetricPanel extends JPanel {
 		lblParameters.setBounds(0, 0, 250, 18);
 		lblParameters.setFont(new Font("Arial", Font.PLAIN, 15));
 		metrixPanel.add(lblParameters);
-		
-		BoxesPanel panel = new BoxesPanel(this, "Interest");
-		panel.setBounds(24, 79, 90, 90);
-		metrixPanel.add(panel);
-		
-		BoxesPanel panel_1 = new BoxesPanel(this, "Excitement");
-		panel_1.setBounds(141, 79, 90, 90);
-		metrixPanel.add(panel_1);
-		
+
 		JLabel lblDisplayLength = new JLabel("  Display Length:");
 		lblDisplayLength.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblDisplayLength.setBounds(0, 525, 120, 32);
 		metrixPanel.add(lblDisplayLength);
 		
-		BoxesPanel boxesPanel_1 = new BoxesPanel((PerformanceMetricPanel) null, "Interest");
-		boxesPanel_1.setBounds(24, 223, 90, 90);
-		metrixPanel.add(boxesPanel_1);
+		JLabel lblTime = new JLabel(" 2 ");
+		lblTime.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblTime.setBounds(125, 525, 120, 32);
+		metrixPanel.add(lblTime);
 		
-		BoxesPanel boxesPanel_2 = new BoxesPanel((PerformanceMetricPanel) null, "Interest");
-		boxesPanel_2.setBounds(141, 223, 90, 90);
-		metrixPanel.add(boxesPanel_2);
+		JLabel lblTimeMeasure = new JLabel(" seconds");
+		lblTimeMeasure.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblTimeMeasure.setBounds(150, 525, 120, 32);
+		metrixPanel.add(lblTimeMeasure);
 		
-		BoxesPanel boxesPanel_3 = new BoxesPanel((PerformanceMetricPanel) null, "Interest");
-		boxesPanel_3.setBounds(24, 367, 90, 90);
-		metrixPanel.add(boxesPanel_3);
+		BoxesPanel interestPanel = new BoxesPanel(this, "Interest");
+		interestPanel.setBounds(24, 79, 90, 90);
+		metrixPanel.add(interestPanel);
 		
-		BoxesPanel boxesPanel_4 = new BoxesPanel((PerformanceMetricPanel) null, "Interest");
-		boxesPanel_4.setBounds(690, 367, 90, 90);
-		metrixPanel.add(boxesPanel_4);
+		BoxesPanel excitementPanel = new BoxesPanel(this, "Excitement");
+		excitementPanel.setBounds(141, 79, 90, 90);
+		metrixPanel.add(excitementPanel);
+		
+		BoxesPanel engagementPanel = new BoxesPanel((PerformanceMetricPanel) null, "Engagement");
+		engagementPanel.setBounds(24, 223, 90, 90);
+		metrixPanel.add(engagementPanel);
+		
+		BoxesPanel stressPanel = new BoxesPanel((PerformanceMetricPanel) null, "Stress");
+		stressPanel.setBounds(141, 223, 90, 90);
+		metrixPanel.add(stressPanel);
+		
+		BoxesPanel relaxationPanel = new BoxesPanel((PerformanceMetricPanel) null, "Relaxation");
+		relaxationPanel.setBounds(24, 367, 90, 90);
+		metrixPanel.add(relaxationPanel);
+		
+		BoxesPanel focusPanel = new BoxesPanel((PerformanceMetricPanel) null, "Focus");
+		focusPanel.setBounds(141, 367, 90, 90);
+		metrixPanel.add(focusPanel);
 		
 		add(metrixPanel);
 	}
