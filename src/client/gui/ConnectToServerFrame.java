@@ -34,7 +34,7 @@ public class ConnectToServerFrame extends JFrame {
 	 */
 	public ConnectToServerFrame() {
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
 		setBounds(100, 100, 404, 229);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -67,6 +67,7 @@ public class ConnectToServerFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (connectToServer()) {
 					setVisible(false);
+					EmotivControlPanel.getInstance().updateSignalLabel(true);
 				}
 			}
 		});
