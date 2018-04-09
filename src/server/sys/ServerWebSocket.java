@@ -46,7 +46,6 @@ public class ServerWebSocket {
 
   @OnMessage
   public void onMesage(String emotivDataString, Session session) throws IOException {
-    emotivData.toJson(emotivDataString);
   }
 
   @OnClose

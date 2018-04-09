@@ -7,6 +7,7 @@ import org.glassfish.tyrus.server.Server;
  * state is changed, until then it only stays idle
  * 
  * @author Cephas Armstrong-Mensah
+ * @author Group 1 #001 - #013
  * @version 1.0
  * @since 28MAR2018
  * 
@@ -28,6 +29,5 @@ public class ServerThread implements Runnable {
         e.printStackTrace();
       }
     }
-
   }
 }

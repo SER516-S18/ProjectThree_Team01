@@ -64,8 +64,8 @@ public class WorkerThread implements Runnable, EmotivObserver {
     case STARTED:
       while (state != ButtonStatus.STOPPED) {
         if (state != ButtonStatus.SUSPEND) {
-          er.sendButtonText(er.getSendButtonText(), "" + (interval / 1000.0));
           fetchRandomData();
+          er.sendButtonText(er.getSendButtonText(), "" + (interval / 1000.0));
         } else {
           interval = 5000;
           updateConsolePanel("Execution suspended, fix error to resume");
