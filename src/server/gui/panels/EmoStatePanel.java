@@ -2,6 +2,7 @@ package server.gui.panels;
 
 import java.awt.Color;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -67,9 +68,15 @@ public class EmoStatePanel extends JPanel implements EmotivObserver {
     mentalCommandsLabel.setBounds(20, 75, 150, 25);
 
     neutralComboBox = new JComboBox<String>();
+    neutralComboBox.setModel(new DefaultComboBoxModel<String>(mentalCommands()));
+    neutralComboBox.setEditable(false);
+    neutralComboBox.setEnabled(false);
     neutralComboBox.setBounds(20, 105, 120, 30);
 
     skillComboBox = new JComboBox<String>();
+    skillComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Push skill" }));
+    skillComboBox.setEditable(false);
+    skillComboBox.setEnabled(false);
     skillComboBox.setBounds(20, 137, 120, 30);
 
     consolePanel = new ConsolePanel();
@@ -102,6 +109,26 @@ public class EmoStatePanel extends JPanel implements EmotivObserver {
     add(skill);
     add(overallSkill);
     add(emoStateLabel);
+  }
+
+  private String[] mentalCommands() {
+    String[] mentalCommandList = new String[14];
+    int x = 0;
+    mentalCommandList[x++] = "Neutral";
+    mentalCommandList[x++] = "Push";
+    mentalCommandList[x++] = "Pull";
+    mentalCommandList[x++] = "Lift";
+    mentalCommandList[x++] = "Drop";
+    mentalCommandList[x++] = "Left";
+    mentalCommandList[x++] = "Right";
+    mentalCommandList[x++] = "Rotate Left";
+    mentalCommandList[x++] = "Rotate Right";
+    mentalCommandList[x++] = "Rotate Clockwise";
+    mentalCommandList[x++] = "Rotate Counterclockwise";
+    mentalCommandList[x++] = "Rotate Forward";
+    mentalCommandList[x++] = "Rotate Reverse";
+    mentalCommandList[x] = "Dissapear";
+    return mentalCommandList;
   }
 
   private void setTimeTrackerLabelText(String str) {

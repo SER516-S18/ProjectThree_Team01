@@ -11,8 +11,7 @@ import server.gui.panels.InteractivePanel;
 import server.gui.panels.LogPanel;
 
 /**
- * This class is responsible for handling Action Events triggered from the
- * server
+ * This class is responsible for handling Action Events triggered from the server
  * 
  * @author Cephas Armstrong-Mensah
  * @author Group 1 #001 - #013
@@ -39,22 +38,16 @@ public class ActionEvents implements ActionListener {
       ((ComboControl) actionClass).validateOutputText();
     } else if (actionClass instanceof InteractivePanel) {
       ((InteractivePanel) actionClass).triggerStartStopSend();
-
     } else if (actionClass instanceof FacialPanel) {
       if (item == "upperfaceComboBox") {
         ((FacialPanel) actionClass).upperfaceAction();
-      }
-
-      else if (item == "lowerfaceComboBox") {
+      } else if (item == "lowerfaceComboBox") {
         ((FacialPanel) actionClass).lowerfaceAction();
-
       } else if (item == "eyeComboBox") {
         ((FacialPanel) actionClass).eyecomboBoxAction();
-
       } else if (item == "eyeActive") {
         ((FacialPanel) actionClass).eyeAction();
       }
-
     } else if (actionClass instanceof LogPanel) {
       ((LogPanel) actionClass).clearConsolePanel();
     }

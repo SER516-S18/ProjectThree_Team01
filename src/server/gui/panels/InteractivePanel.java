@@ -8,7 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import server.gui.EmotivComposer;
 import server.gui.actions.ActionEvents;
 import server.gui.actions.ItemEvents;
 import server.sys.EmotivRandomizer;
@@ -106,15 +105,8 @@ public class InteractivePanel extends JPanel implements EmotivObserver {
       worker = new WorkerThread(er);
 
     er.sendButtonText(sendButton.getText(), emoStateInterval.getOutputText());
-
     workerThread = new Thread(worker);
     workerThread.start();
-
-    // for eye section auto reset button
-    if (EmotivComposer.getemoFacialPanel().ischckbxNewCheckBoxSelected()) {
-      EmotivComposer.getemoFacialPanel().getEyeActive().doClick();
-      EmotivComposer.getemoFacialPanel().seteyeActiveValue(0);
-    }
   }
 
   private void setSendButtonText(String strText) {
@@ -133,19 +125,16 @@ public class InteractivePanel extends JPanel implements EmotivObserver {
     if (autoResetCheckBox.isSelected()) {
       isAutoResetChecked = true;
       sendButton.setText("Start");
-      //
-      // EmotivComposer.getemoFacialPanel().replaceRadioButton();
     } else {
       isAutoResetChecked = false;
       sendButton.setText("Send");
     }
 
-    // replace a eye button with radiobutton
-    EmotivComposer.getemoFacialPanel().replaceRadioButton(autoResetCheckBox.isSelected());
+    er.setInteractiveReset(isAutoResetChecked);
   }
 
   @Override
   public void update(PassedData passedData) {
-    this.setSendButtonText(passedData.buttonText);
+    setSendButtonText(passedData.buttonText);
   }
 }

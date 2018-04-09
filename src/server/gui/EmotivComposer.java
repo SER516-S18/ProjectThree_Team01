@@ -1,33 +1,26 @@
 package server.gui;
 
-import java.awt.Component;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.EtchedBorder;
 import javax.websocket.DeploymentException;
 
 import org.glassfish.tyrus.server.Server;
 
 import server.gui.actions.WindowEvents;
-import server.gui.panels.EmoStatePanel;
-import server.gui.panels.FacialPanel;
 import server.gui.panels.HamburgerMenu;
-import server.gui.panels.InteractivePanel;
-import server.gui.panels.LogPanel;
 import server.gui.panels.MenuBarPanel;
 import server.gui.panels.SignalMenu;
-import server.gui.panels.TrainingResults;
+import server.gui.tabs.LowerTabbedPane;
+import server.gui.tabs.UpperTabbedPane;
 import server.sys.EmotivRandomizer;
 import server.sys.ServerThread;
 import server.sys.ServerWebSocket;
 import util.Constants;
 
 /**
- * The purpose of this class is to provide the GUI handler for the server and
- * serves as the main interaction between the user, server and client.
+ * The purpose of this class is to provide the GUI handler for the server and serves as the
+ * main interaction between the user, server and client.
  * 
  * @author Cephas Armstrong-Mensah
  * @author Group 1 #001 - #013
@@ -41,34 +34,14 @@ public class EmotivComposer extends JFrame {
   private static EmotivComposer instance = null;
   protected static boolean isStarted = false;
 
-  private JTabbedPane tabbedPane;
-  private JTabbedPane lowerTabbedPane;
+  private UpperTabbedPane upperTabbedPane;
+  private LowerTabbedPane lowerTabbedPane;
   private JPanel contentPane;
-  private JPanel interactive;
-  private JPanel emostate;
-  private JPanel lowerPanel;
-  private JPanel qualityPanel;
-  private JPanel detectionPanel;
 
-  private static InteractivePanel interactivePanel;
-  private static EmoStatePanel emoStatePanel;
-  private static FacialPanel emoFacialPanel;
   private static MenuBarPanel menuBarPanel;
-  private static LogPanel emoLogPanel;
-  private static TrainingResults trainingResults;
   private static HamburgerMenu exitMenu;
   private static SignalMenu signalMenu;
-  private static JPanel startPanel;
-
   private static EmotivRandomizer er;
-
-  public static EmotivRandomizer getEmotivRandomizer() {
-    return er;
-  }
-
-  public static FacialPanel getemoFacialPanel() {
-    return emoFacialPanel;
-  }
 
   public static EmotivComposer getInstance() {
     if (instance == null) {
@@ -82,97 +55,36 @@ public class EmotivComposer extends JFrame {
     addWindowListener(new WindowEvents(this));
     setTitle("Emotiv Composer Project 3");
     setBounds(100, 100, 450, 800);
-
-    er = new EmotivRandomizer();
+    setResizable(false);
 
     contentPane = new JPanel();
     contentPane.setBounds(0, 0, 450, 800);
     contentPane.setBackground(Constants.PEACH);
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     contentPane.setLayout(null);
+
     setContentPane(contentPane);
+    er = new EmotivRandomizer();
+
     initialize();
   }
 
   private void initialize() {
-    lowerTabbedPane = new JTabbedPane(JTabbedPane.TOP);
-    lowerTabbedPane.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
-    lowerTabbedPane.setBounds(0, 0, 443, 555);
-    emoFacialPanel = new FacialPanel(er);
-    emoStatePanel = new EmoStatePanel(er);
-    trainingResults = new TrainingResults();
-    emoLogPanel = new LogPanel();
-
-    lowerPanel = new JPanel();
-    lowerPanel.setBounds(2, 205, 443, 560);
-    lowerPanel.setLayout(null);
-
-    lowerPanel.add(lowerTabbedPane);
-
-    qualityPanel = new JPanel();
-    qualityPanel.setLayout(null);
-
-    detectionPanel = new JPanel();
-    detectionPanel.setLayout(null);
-
-    emoStatePanel.setSize(440, 175);
-
-    emoFacialPanel.setSize(443, 150);
-    emoFacialPanel.setSize(448, 150);
-    emoFacialPanel.setBounds(0, 175, 440, 150);
-
-    emoLogPanel.setBounds(170, 325, 265, 195);
-    trainingResults.setBounds(0, 325, 170, 195);
-
-    detectionPanel.add(emoFacialPanel);
-    detectionPanel.add(emoStatePanel);
-    detectionPanel.add(trainingResults);
-    detectionPanel.add(emoLogPanel);
-
-    lowerTabbedPane.addTab("Contact Quality", null, qualityPanel, null);
-    lowerTabbedPane.addTab("Detection", null, detectionPanel, null);
-
-    setResizable(false);
     menuBarPanel = new MenuBarPanel();
-
     menuBarPanel.setSize(450, 50);
     menuBarPanel.setSize(450, 50);
     menuBarPanel.setBounds(0, 0, 450, 50);
     menuBarPanel.setLayout(null);
-    startPanel = new JPanel();
 
-    tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-    tabbedPane.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
-    tabbedPane.setBounds(0, 0, 450, 120);
+    upperTabbedPane = new UpperTabbedPane(er);
+    upperTabbedPane.setBounds(2, 50, 443, 120);
 
-    emostate = new JPanel();
+    lowerTabbedPane = new LowerTabbedPane(er);
+    lowerTabbedPane.setBounds(2, 205, 443, 560);
 
-    startPanel.setBounds(2, 50, 443, 120);
-    startPanel.setLayout(null);
-
-    startPanel.add(tabbedPane);
-
-    tabbedPane.addTab("EMOSCRIPT", null, emostate, null);
-    emostate.setLayout(null);
-
-    interactive = new JPanel();
-    tabbedPane.addTab("INTERACTIVE", null, interactive, null);
-
-    interactivePanel = new InteractivePanel(er);
-    interactivePanel.setSize(444, 90);
-    interactivePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-    interactivePanel.setAlignmentY(Component.TOP_ALIGNMENT);
-    interactivePanel.setSize(449, 90);
-    interactivePanel.setBounds(0, 0, 444, 90);
-
-    interactive.add(interactivePanel);
-    interactive.setLayout(null);
-    tabbedPane.setSelectedIndex(1);
-    lowerTabbedPane.setSelectedIndex(1);
-
-    contentPane.add(lowerPanel);
     contentPane.add(menuBarPanel);
-    contentPane.add(startPanel);
+    contentPane.add(upperTabbedPane);
+    contentPane.add(lowerTabbedPane);
 
     startServer();
   }

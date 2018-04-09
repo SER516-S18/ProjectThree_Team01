@@ -11,8 +11,8 @@ import server.sys.observer.EmotivSubject;
 import server.sys.observer.PassedData;
 
 /**
- * The purpose of this class is serve as the Subject for the Observer Pattern
- * and is responsible for the data manipulations prior to sending to the client
+ * The purpose of this class is serve as the Subject for the Observer Pattern and is
+ * responsible for the data manipulations prior to sending to the client
  * 
  * @author Cephas Armstrong-Mensah
  * @author Group 1 #001 - #013
@@ -24,17 +24,21 @@ public class EmotivRandomizer implements EmotivSubject {
   private EmotivData data;
   private Iterator<String> objs;
   private Random generator;
-  private double interval;
 
   private List<EmotivObserver> observers = new ArrayList<EmotivObserver>();
+
   private String sendButtonText;
-  private PassedData passedData;
+  private double interval;
+  private boolean interactiveResetButton;
+  private boolean isSent;
 
   public EmotivRandomizer() {
     data = new EmotivData();
     interval = 0.0;
     generator = new Random();
     sendButtonText = "Send";
+    interactiveResetButton = false;
+    isSent = false;
   }
 
   public void getRandomData() {
@@ -159,6 +163,18 @@ public class EmotivRandomizer implements EmotivSubject {
     return this.sendButtonText;
   }
 
+  public void setInteractiveReset(boolean isAutoResetChecked) {
+    this.interactiveResetButton = isAutoResetChecked;
+
+    notifyObservers();
+  }
+
+  public void setIsSent(boolean isSent) {
+    this.isSent = isSent;
+
+    notifyObservers();
+  }
+
   @Override
   public void addToObserver(EmotivObserver o) {
     observers.add(o);
@@ -171,9 +187,11 @@ public class EmotivRandomizer implements EmotivSubject {
 
   @Override
   public void notifyObservers() {
-    passedData = new PassedData(data, sendButtonText, interval);
+    PassedData passedData = new PassedData(data, sendButtonText, interval, interactiveResetButton,
+        isSent);
     for (EmotivObserver observer : observers) {
       observer.update(passedData);
     }
+    isSent = false;
   }
 }
