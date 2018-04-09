@@ -16,6 +16,8 @@ import server.sys.observer.PassedData;
  * server interaction by sending random data to the client on the other end.
  * 
  * @author Cephas Armstrong-Mensah
+ * @author Group 1 #001 - #013
+ * @since 28MAR2018
  *
  */
 public class WorkerThread implements Runnable, EmotivObserver {

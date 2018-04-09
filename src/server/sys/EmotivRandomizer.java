@@ -10,6 +10,16 @@ import server.sys.observer.EmotivObserver;
 import server.sys.observer.EmotivSubject;
 import server.sys.observer.PassedData;
 
+/**
+ * The purpose of this class is serve as the Subject for the Observer Pattern
+ * and is responsible for the data manipulations prior to sending to the client
+ * 
+ * @author Cephas Armstrong-Mensah
+ * @author Group 1 #001 - #013
+ * @version 1.0
+ * @since 02APR2018
+ * 
+ */
 public class EmotivRandomizer implements EmotivSubject {
   private EmotivData data;
   private Iterator<String> objs;

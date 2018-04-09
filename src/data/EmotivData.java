@@ -9,6 +9,7 @@ import org.json.JSONObject;
  * will both utilize this to provide a data model for the project.
  * 
  * @author Cephas Armstrong-Mensah
+ * @author Group 1 #001 - #013
  *
  */
 public class EmotivData {
@@ -378,7 +379,7 @@ public class EmotivData {
 
     parseExpressive(this.expressive);
     parseAffective(this.affective);
-    parseAffective(this.performance);
+    parsePerformance(this.performance);
   }
 
   public void resetExpressiveEyeData() {
