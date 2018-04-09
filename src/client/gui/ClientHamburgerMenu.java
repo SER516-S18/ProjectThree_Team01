@@ -25,6 +25,11 @@ public class ClientHamburgerMenu extends JMenuBar {
 	
 	JMenuItem composerOption = new JMenuItem("EMOTIV Xavier Composer");
 	applicationsOption.add(composerOption);
+	composerOption.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			server.gui.MainHandler serverObject = new server.gui.MainHandler();
+		}
+	});
 	
 	JMenuItem screenshotOption = new JMenuItem("Save Current Screnshot");
 	applicationsOption.add(screenshotOption);
