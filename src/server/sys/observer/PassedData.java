@@ -6,6 +6,7 @@ import data.EmotivData;
  * This class contains data being passed through the observer
  * 
  * @author Cephas Armstrong-Mensah
+ * @author Group 1 #001 - #013
  * @version 1.0
  * @since 07APR2018
  * 

@@ -29,7 +29,6 @@ import util.Constants;
  * @since 29MAR2018
  *
  */
-
 public class ComboControl extends JPanel implements EmotivObserver {
   private static final long serialVersionUID = -7926485727775080081L;
 
