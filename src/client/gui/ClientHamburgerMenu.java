@@ -11,6 +11,15 @@ import javax.swing.JPanel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * This class creates a hamburger menu for the client application 
+ *
+ * @author Group 1 #001 - #013
+ * @version 1.0
+ * @since 2018-04-04
+ *
+ */
+
 public class ClientHamburgerMenu extends JMenuBar {
 	
 	public ClientHamburgerMenu() {
