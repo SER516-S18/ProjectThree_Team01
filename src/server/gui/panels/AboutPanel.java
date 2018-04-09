@@ -11,16 +11,25 @@ import javax.swing.SwingConstants;
 import server.gui.EmotivComposer;
 import server.gui.actions.MouseEvents;
 
+/**
+ * This class's purpose is to display an about box when the menu item is
+ * selected
+ * 
+ * @author Cephas Armstrong-Mensah
+ * @author Group 1 #001 - #013
+ * @version 1.0
+ * @since 05APR2018
+ *
+ */
 public class AboutPanel extends JDialog {
-  private ClassLoader loader = getClass().getClassLoader();
-  private EmotivComposer parent;
+  private static final long serialVersionUID = -8957547638077368275L;
+
   private JPanel contentPane;
   private JScrollPane scrollPane;
   private JLabel aboutPanel;
 
   public AboutPanel(EmotivComposer parent) {
     super(parent);
-    this.parent = parent;
     setUndecorated(true);
     setSize(350, 450);
     setLocationRelativeTo(parent);

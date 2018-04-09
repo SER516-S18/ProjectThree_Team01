@@ -10,10 +10,10 @@ import util.ConsolePanel;
 /**
  * This class's purpose is the upper section of the lower detection tab area
  * 
- * @author Vihar Bhatt
  * @author Cephas Armstrong-Mensah
+ * @author Group 1 #001 - #013
  * @version 1.0
- * @since 02APR2018
+ * @since 07APR2018
  *
  */
 public class TrainingResults extends JPanel {
@@ -33,18 +33,17 @@ public class TrainingResults extends JPanel {
   }
 
   private void initialize() {
+    String comboData[] = new String[] { "OK", "Not Enough Data" };
 
     mentalCommandsLabel = new JLabel("Mental Commands");
     mentalCommandsLabel.setBounds(10, 50, 150, 25);
 
     mentalCommandsComboBox = new JComboBox<String>();
-    mentalCommandsComboBox
-        .setModel(new DefaultComboBoxModel<String>(new String[] { "OK", "Not Enough Data" }));
+    mentalCommandsComboBox.setModel(new DefaultComboBoxModel<String>());
     mentalCommandsComboBox.setBounds(10, 75, 120, 30);
 
-    perfomanceMetricsComboBox = new JComboBox<String>();
-    perfomanceMetricsComboBox
-        .setModel(new DefaultComboBoxModel<String>(new String[] { "OK", "Not Enough Data" }));
+    perfomanceMetricsComboBox = new JComboBox<String>(comboData);
+    perfomanceMetricsComboBox.setModel(new DefaultComboBoxModel<String>(comboData));
     perfomanceMetricsComboBox.setBounds(10, 150, 120, 30);
 
     consolePanel = new ConsolePanel();

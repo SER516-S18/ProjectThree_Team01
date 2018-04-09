@@ -8,9 +8,11 @@ import javax.swing.JFrame;
 import server.gui.EmotivComposer;
 
 /**
- * This class is responsible for handling Window Events triggered from the server
+ * This class is responsible for handling Window Events triggered from the
+ * server
  * 
  * @author Cephas Armstrong-Mensah
+ * @author Group 1 #001 - #013
  * @version 1.0
  * @since 04APR2018
  *

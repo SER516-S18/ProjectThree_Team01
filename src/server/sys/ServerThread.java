@@ -3,11 +3,13 @@ package server.sys;
 import org.glassfish.tyrus.server.Server;
 
 /**
- * This thread's sole purpose is to close the server gracefully once isClosing
+ * This thread's sole purpose is to close the server gracefully once @IsClosing
  * state is changed, until then it only stays idle
  * 
- * @author carmstr7
- *
+ * @author Cephas Armstrong-Mensah
+ * @version 1.0
+ * @since 28MAR2018
+ * 
  */
 public class ServerThread implements Runnable {
   private Server server;

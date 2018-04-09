@@ -15,6 +15,7 @@ import server.gui.panels.LogPanel;
  * server
  * 
  * @author Cephas Armstrong-Mensah
+ * @author Group 1 #001 - #013
  * @version 1.0
  * @since 03APR2018
  */
