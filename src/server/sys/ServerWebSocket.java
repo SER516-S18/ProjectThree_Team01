@@ -58,6 +58,8 @@ public class ServerWebSocket {
 
   @OnError
   public void onError(Session session, Throwable t) {
+    LogPanel.getConsolePanel()
+        .updateText(String.format("Error occurred (%s): \n%s", session.getId(), t.getMessage()));
   }
 
   public static void sendMessage(Session session, String message) throws IOException {

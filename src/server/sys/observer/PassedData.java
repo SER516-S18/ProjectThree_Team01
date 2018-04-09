@@ -8,6 +8,7 @@ import data.EmotivData;
  * @author Cephas Armstrong-Mensah
  * @version 1.0
  * @since 07APR2018
+ * 
  */
 public class PassedData {
   public EmotivData data;

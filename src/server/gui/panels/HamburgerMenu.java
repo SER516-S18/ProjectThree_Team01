@@ -14,8 +14,8 @@ import server.gui.actions.MouseEvents;
 import util.Constants;
 
 /**
- * This class's purpose is to display the drop down menu items for the hamburger icon section.
- * The menu items included are About and Quit.
+ * This class's purpose is to display the drop down menu items for the hamburger
+ * icon section. The menu items included are About and Quit.
  * 
  * @author Vihar Bhatt
  * @author Cephas Armstrong-Mensah

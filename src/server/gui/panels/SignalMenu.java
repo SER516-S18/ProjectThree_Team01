@@ -15,9 +15,9 @@ import server.gui.actions.MouseEvents;
 import util.Constants;
 
 /**
- * This class's purpose is to display the drop down menu items for the signals to either denote
- * good signal or weak signal and represented respectively by a wireless icon showing signal
- * strength
+ * This class's purpose is to display the drop down menu items for the signals
+ * to either denote good signal or weak signal and represented respectively by a
+ * wireless icon showing signal strength
  * 
  * @author Vihar Bhatt
  * @author Cephas Armstrong-Mensah
@@ -38,13 +38,11 @@ public class SignalMenu extends JDialog {
   private JLabel goodSignalLabel;
 
   private JPanel contentPane;
-  private EmotivComposer parent;
 
   private ClassLoader loader = getClass().getClassLoader();
 
   public SignalMenu(EmotivComposer parent) {
     super(parent);
-    this.parent = parent;
     setUndecorated(true);
     setSize(200, 101);
     setLocationRelativeTo(parent);
