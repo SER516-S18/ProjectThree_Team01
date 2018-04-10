@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import client.sys.ClientThread;
+import client.gui.actions.ClientActionEvents;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -63,24 +64,12 @@ public class ConnectToServerFrame extends JFrame {
 		contentPane.add(portTextField);
 
 		JButton okButton = new JButton("OK");
-		okButton.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				if (connectToServer()) {
-					setVisible(false);
-					EmotivControlPanel.getInstance().updateSignalLabel(true);
-				}
-			}
-		});
+		okButton.addActionListener(new ClientActionEvents(this, "OK"));
 		okButton.setBounds(35, 138, 115, 29);
 		contentPane.add(okButton);
 
 		JButton cancelButton = new JButton("Cancel");
-		cancelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-			}
-		});
+		cancelButton.addActionListener(new ClientActionEvents(this, "Cancel"));
 		cancelButton.setBounds(216, 138, 115, 29);
 		contentPane.add(cancelButton);
 	}
@@ -88,7 +77,7 @@ public class ConnectToServerFrame extends JFrame {
 	/**
 	 * ClientThread tries to connect to the server at ipaddress given
 	 */
-	private boolean connectToServer() {
+	public boolean connectToServer() {
 		if (checkValidPortNumber() && checkValidIpAddress()) {
 			new Thread(new ClientThread(ipAddressTextField.getText(), portNumber)).start();
 			return true;

@@ -7,6 +7,8 @@ import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import client.gui.actions.*;
+
 /**
  * This class creates a hamburger menu for the client application 
  *
@@ -28,11 +30,7 @@ public class ClientHamburgerMenu extends JMenuBar {
 	
 	JMenuItem composerOption = new JMenuItem("EMOTIV Xavier Composer");
 	applicationsOption.add(composerOption);
-	composerOption.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-			server.gui.MainHandler.main(null);
-		}
-	});
+	composerOption.addActionListener(new ClientActionEvents(this, "EMOTIV Xavier Composer"));
 	
 	JMenuItem screenshotOption = new JMenuItem("Save Current Screnshot");
 	applicationsOption.add(screenshotOption);
@@ -41,12 +39,7 @@ public class ClientHamburgerMenu extends JMenuBar {
 	menu.add(connectOption);
 	
 	JMenuItem connectComposer = new JMenuItem("Connect Composer");
-	connectComposer.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-			ConnectToServerFrame connectFrame = new ConnectToServerFrame();
-			connectFrame.setVisible(true);
-		}
-	});
+	connectComposer.addActionListener(new ClientActionEvents(this, "Connect Composer"));
 	connectOption.add(connectComposer);
 	
 	JMenuItem reconnectComposer = new JMenuItem("Reconnect Composer");
@@ -57,21 +50,11 @@ public class ClientHamburgerMenu extends JMenuBar {
 	
 	JMenuItem facialExpressions = new JMenuItem("Facial Expressions");
 	detectionsOption.add(facialExpressions);
-	facialExpressions.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-			client.gui.EmotivControlPanel obj = EmotivControlPanel.getInstance();
-			obj.showFacialGraph();
-		}
-	});
+	facialExpressions.addActionListener(new ClientActionEvents(this, "Facial Expressions"));
 	
 	JMenuItem performanceMetrices = new JMenuItem("Performance Metrics");
 	detectionsOption.add(performanceMetrices);
-	performanceMetrices.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-			client.gui.EmotivControlPanel obj = EmotivControlPanel.getInstance();
-			obj.showPerformanceMetric();
-		}
-	});
+	performanceMetrices.addActionListener(new ClientActionEvents(this, "Performance Metrics"));
 		
 	JMenu helpOption = new JMenu("HELP");
 	menu.add(helpOption);

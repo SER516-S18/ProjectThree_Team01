@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import client.gui.actions.*;
+
 /*
  * This class is used to create a panel for the Color chooser section in the Performance Metrics frame
  * 
@@ -54,12 +56,7 @@ public class BoxesPanel extends JPanel {
     lblFullName.setHorizontalAlignment(SwingConstants.CENTER);
 
     JLabel lblDropDown = new JLabel("V    ");
-    lblDropDown.addMouseListener(new MouseAdapter() {
-      @Override
-      public void mouseClicked(MouseEvent e) {
-        createColorChooser();
-      }
-    });
+    lblDropDown.addMouseListener(new ClientMouseEvents(this, "V"));
     lblDropDown.setSize(20, 20);
     lblDropDown.setFont(new Font("Lucida Sans Unicode", Font.BOLD, 10));
     lblDropDown.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -79,7 +76,7 @@ public class BoxesPanel extends JPanel {
   /*
    * Method to create a ColorChooserPanel class object with relative positioning 
    */
-  private void createColorChooser() {
+  public void createColorChooser() {
     ColorChooserPanel cc = new ColorChooserPanel(this);
     cc.setLocationRelativeTo(this);
     cc.setVisible(true);

@@ -17,6 +17,8 @@ import javax.swing.border.LineBorder;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.XYPlot;
 
+import client.gui.actions.*;
+
 /*
  * This class is used to create a color choice palette as a drop down panel
  * 
@@ -27,11 +29,11 @@ import org.jfree.chart.plot.XYPlot;
  */
 
 public class ColorChooserPanel extends JDialog {
-  JPanel contentPane;
-  BoxesPanel box;
-  List<JPanel> palettes = new ArrayList<JPanel>();
-  List<Color> colorArray = new ArrayList<Color>();
-  JPanel colorPanel;
+  private JPanel contentPane;
+  public BoxesPanel box;
+  private List<JPanel> palettes = new ArrayList<JPanel>();
+  public List<Color> colorArray = new ArrayList<Color>();
+  private JPanel colorPanel;
   
   /*
    * Constructor for the class
@@ -106,16 +108,7 @@ public class ColorChooserPanel extends JDialog {
     for (int i = 0; i < 18; i++) {
       colorPanel = new JPanel();
       colorPanel.setBackground(colorArray.get(i));
-      colorPanel.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-	          box.setBoxColor(((JPanel) e.getSource()).getBackground());
-	          XYPlot plot= box.parent.performanceGraph.getGraph().getXYPlot();
-	          plot.getRenderer().setSeriesPaint(box.boxNumber, ((JPanel) e.getSource()).getBackground());
-	          setVisible(false);
-	          dispose();
-          }
-       });
+      colorPanel.addMouseListener(new ClientMouseEvents(this, "Color Panel"));
 
       if (i > 0 && i % 6 == 0) {
         y += 8 + 10;
@@ -135,14 +128,7 @@ public class ColorChooserPanel extends JDialog {
     lblClose.setHorizontalTextPosition(SwingConstants.CENTER);
     lblClose.setVerticalAlignment(SwingConstants.CENTER);
     lblClose.setBounds(0, 0, 16, 16);
-    lblClose.addMouseListener(new MouseAdapter() {
-      @Override
-      public void mouseClicked(MouseEvent e) {
-        box.setBoxColor(colorArray.get(colorArray.size() - 1));
-        setVisible(false);
-        dispose();
-      }
-    });
+    lblClose.addMouseListener(new ClientMouseEvents(this, "Close"));
     palettes.get(palettes.size() - 1).add(lblClose, BorderLayout.CENTER);
     setVisible(true);
   }

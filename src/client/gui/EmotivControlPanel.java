@@ -9,11 +9,13 @@ import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
 
 import org.jfree.chart.ChartPanel;
+import client.gui.actions.ClientWindowEvents;
 
 import client.gui.panels.PerformanceMetricPanel;
 import client.sys.ClientSubject;
 import data.EmotivData;
 import interfaces.ClientObserver;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JLabel;
@@ -68,13 +70,8 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 	 * Create the frame.
 	 */
 	private EmotivControlPanel() {
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				isClosing = true;
-				System.exit(0);
-			}
-		});
+		
+		addWindowListener(new ClientWindowEvents(this));
 		setBounds(100, 100, 982, 919);
 		menu = new ClientHamburgerMenu();
 		setJMenuBar(menu);
