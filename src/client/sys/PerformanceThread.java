@@ -34,10 +34,10 @@ public class PerformanceThread implements Runnable {
       values = new double[6];
       JSONObject performanceData =data.getPerformance();
       values[0] = 1 + performanceData.getDouble("Interest");
-      values[1] = 2 + performanceData.getDouble("Engagement");
-      values[2] = 3 + performanceData.getDouble("Stress");
-      values[3] = 4 + performanceData.getDouble("Relaxation");
-      values[4] = 5 +performanceData.getDouble("Excitement");
+      values[1] = 2 + performanceData.getDouble("Excitement");
+      values[2] = 3 + performanceData.getDouble("Engagement");
+      values[3] = 4 + performanceData.getDouble("Stress");
+      values[4] = 5 +performanceData.getDouble("Relaxation");
       values[5] = 6+ performanceData.getDouble("Focus"); 
       for (int i = 0; i < 6; i++) {
         System.out.println(values[i]);
