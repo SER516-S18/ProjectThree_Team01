@@ -57,9 +57,9 @@ public class ClientHamburgerMenu extends JMenuBar {
 	JMenuItem emotivOnGithub = new JMenuItem("Emotiv On Github");
 	helpOption.add(emotivOnGithub);
 	emotivOnGithub.addActionListener(new ClientActionEvents(this, "Git"));
-
 	
 	JMenuItem aboutOption = new JMenuItem("About Xavier Control Panel");
 	helpOption.add(aboutOption);
-}
+	
+	}
 }

@@ -18,6 +18,7 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.XYPlot;
 
 import client.gui.actions.*;
+import util.Constants;
 
 /*
  * This class is used to create a color choice palette as a drop down panel
@@ -64,24 +65,24 @@ public class ColorChooserPanel extends JDialog {
   private void setColors() {
 	  
     setUndecorated(true);
-    colorArray.add(new Color(255, 0, 0));
-    colorArray.add(new Color(244, 164, 96));
-    colorArray.add(new Color(255, 69, 0));
-    colorArray.add(Color.YELLOW);
-    colorArray.add(Color.CYAN);
-    colorArray.add(Color.BLUE);
-    colorArray.add(new Color(135, 206, 250));
-    colorArray.add(new Color(0, 191, 255));
-    colorArray.add(new Color(0, 0, 128));
-    colorArray.add(new Color(204, 204, 255));
-    colorArray.add(new Color(255, 20, 147));
-    colorArray.add(new Color(165, 42, 42));
-    colorArray.add(new Color(154, 205, 50));
-    colorArray.add(new Color(34, 139, 34));
-    colorArray.add(new Color(210, 180, 140));
-    colorArray.add(new Color(255, 255, 240));
-    colorArray.add(new Color(255, 228, 225));
-    colorArray.add(new Color(169, 169, 169));
+    colorArray.add(Constants.GREEN);
+    colorArray.add(Constants.RED);
+    colorArray.add(Constants.PINK);
+    colorArray.add(Constants.LIGHTBLUE);
+    colorArray.add(Constants.PEACH);
+    colorArray.add(Constants.YELLOW);
+    colorArray.add(Constants.CYAN);
+    colorArray.add(Constants.BLUE);
+    colorArray.add(Constants.LIGHTPINK);
+    colorArray.add(Constants.MAGENTA);
+    colorArray.add(Constants.ORANGE);
+    colorArray.add(Constants.BROWN);
+    colorArray.add(Constants.MAROON);
+    colorArray.add(Constants.LIGHTGREEN);
+    colorArray.add(Constants.WHITE);
+    colorArray.add(Constants.BLACK);
+    colorArray.add(Constants.VIOLET);
+    colorArray.add(Constants.CREAM);
     
   }
 
