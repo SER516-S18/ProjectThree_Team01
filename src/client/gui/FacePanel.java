@@ -26,6 +26,9 @@ public class FacePanel extends JPanel {
   private JLabel JLabelUpperFace;
   private JLabel JLabelLowerFace;
 
+  /*
+   * Constructor for the class
+   */
   public FacePanel() {
     setBounds(0, 0, 450, 300);
     setBackground(Color.white);
@@ -62,6 +65,9 @@ public class FacePanel extends JPanel {
     JLabelLowerFace.setIcon(Faces.defaultLoweFace());
   }
 
+  /*
+   * Method to update the face images
+   */
   public void updateFace(EmotivData emotiveData) {
 
     ImageIcon upperFaceImage = Faces.upperFace(emotiveData.getBlink(), emotiveData.getRightWink(),

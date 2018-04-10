@@ -38,6 +38,9 @@ public class ClientMouseEvents implements MouseListener {
 	    this.actionClass = actionClass;
 	  }
 
+	  /*
+	   * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+	   */
 	  @Override
 	  public void mouseClicked(MouseEvent arg0) {
 		  
@@ -59,27 +62,38 @@ public class ClientMouseEvents implements MouseListener {
 	      }
 	  }
 	  
+	  /*
+	   * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
+	   */
 	  @Override
 	  public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	  }
 	  
+	  /*
+	   * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
+	   */
 	  @Override
 	  public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 	  }
 	  
+	  /*
+	   * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
+	   */
 	  @Override
 	  public void mousePressed(MouseEvent arg0) {
 	    // TODO Auto-generated method stub
 
 	  }
 
+	  /*
+	   * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
+	   */
 	  @Override
 	  public void mouseReleased(MouseEvent arg0) {
 	    // TODO Auto-generated method stub
 
-	  }	  
-	  
+	  }	    
 }

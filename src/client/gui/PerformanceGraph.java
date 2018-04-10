@@ -37,13 +37,12 @@ public class PerformanceGraph extends JPanel {
    * This function returns the chart panel
    */
   public ChartPanel getChartPanel() {
-		// TODO Auto-generated method stub
 		return chartPanel;
 	}
 
-/*
- * Intializing the performance graph parameters
- */
+  /*
+  * Intializing the performance graph parameters
+  */
   public PerformanceGraph() {
     super();
     graphSeries = new TimeSeries[6];
@@ -88,8 +87,5 @@ public class PerformanceGraph extends JPanel {
 	        performanceThread = new PerformanceThread(data, graphSeries, dataset);
 	        new Thread(performanceThread).start();
 	      }
-
     }
-
-
   }
