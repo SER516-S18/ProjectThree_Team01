@@ -13,7 +13,7 @@ import server.gui.panels.MenuBarPanel;
 import server.gui.panels.SignalMenu;
 import server.gui.tabs.LowerTabbedPane;
 import server.gui.tabs.UpperTabbedPane;
-import server.sys.EmotivRandomizer;
+import server.sys.SubjectImplementation;
 import server.sys.ServerThread;
 import server.sys.ServerWebSocket;
 import util.Constants;
@@ -41,7 +41,7 @@ public class EmotivComposer extends JFrame {
   private static MenuBarPanel menuBarPanel;
   private static HamburgerMenu exitMenu;
   private static SignalMenu signalMenu;
-  private static EmotivRandomizer er;
+  private static SubjectImplementation er;
 
   public static EmotivComposer getInstance() {
     if (instance == null) {
@@ -64,7 +64,7 @@ public class EmotivComposer extends JFrame {
     contentPane.setLayout(null);
 
     setContentPane(contentPane);
-    er = new EmotivRandomizer();
+    er = new SubjectImplementation();
 
     initialize();
   }

@@ -24,14 +24,16 @@ public class WorkerThread implements Runnable, EmotivObserver {
   private static volatile int interval = 1000;
 
   private volatile ButtonStatus state;
-  private EmotivRandomizer er;
+  private SubjectImplementation er;
   private EmotivData data;
+
+  private String buttonText;
 
   private enum ButtonStatus {
     SEND, STARTED, STOPPED, SUSPEND;
   }
 
-  public WorkerThread(EmotivRandomizer er) {
+  public WorkerThread(SubjectImplementation er) {
     this.er = er;
     er.addToObserver(this);
     state = ButtonStatus.STOPPED;
@@ -57,15 +59,15 @@ public class WorkerThread implements Runnable, EmotivObserver {
   public void run() {
     switch (state) {
     case SEND:
-      fetchRandomData();
+      prepareDataToSend();
       state = ButtonStatus.STOPPED;
       er.setIsSent(true);
       break;
     case STARTED:
       while (state != ButtonStatus.STOPPED) {
         if (state != ButtonStatus.SUSPEND) {
-          fetchRandomData();
-          er.sendButtonText(er.getSendButtonText(), "" + (interval / 1000.0));
+          prepareDataToSend();
+          er.sendButtonText(buttonText, "" + (interval / 1000.0));
           er.setIsSent(true);
         } else {
           interval = 5000;
@@ -82,19 +84,15 @@ public class WorkerThread implements Runnable, EmotivObserver {
     default:
       break;
     }
-
   }
 
-  private void fetchRandomData() {
-    // er.getRandomData();
+  private void prepareDataToSend() {
     Session temp = null;
     List<Session> clients = ServerWebSocket.getClients();
 
     try {
       temp = clients.get(0);
       ServerWebSocket.sendMessage(temp, data.toString());
-
-      System.out.println(String.format("Sent data to client: %s", data));
       updateConsolePanel(String.format("Sent data to client: %s", temp.getId()));
     } catch (IOException e) {
       updateConsolePanel("Server or Client unable to exchange details...");
@@ -113,6 +111,7 @@ public class WorkerThread implements Runnable, EmotivObserver {
   public void update(PassedData passedData) {
     setInterval(passedData.interval);
     data = passedData.data;
+    buttonText = passedData.buttonText;
     setButtonStatus(passedData.buttonText);
   }
 }

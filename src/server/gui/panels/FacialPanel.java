@@ -12,7 +12,7 @@ import javax.swing.SwingConstants;
 import data.EmotivData;
 import server.gui.actions.ActionEvents;
 import server.gui.actions.ItemEvents;
-import server.sys.EmotivRandomizer;
+import server.sys.SubjectImplementation;
 import server.sys.observer.EmotivObserver;
 import server.sys.observer.PassedData;
 
@@ -45,9 +45,9 @@ public class FacialPanel extends JPanel implements EmotivObserver {
   private boolean isClicked;
 
   private int eyeActiveValue;
-  private EmotivRandomizer er;
+  private SubjectImplementation er;
 
-  public FacialPanel(EmotivRandomizer er) {
+  public FacialPanel(SubjectImplementation er) {
     setBounds(0, 0, 440, 150);
     this.er = er;
     this.er.addToObserver(this);
@@ -61,11 +61,11 @@ public class FacialPanel extends JPanel implements EmotivObserver {
    * Initialize the contents of the frame.
    */
   private void initialize() {
-    upperfaceupdownButton = new ComboControl(er, 70, 0.1, false);
+    upperfaceupdownButton = new ComboControl(er, 70, 0.1, false, "Upper Face");
     upperfaceupdownButton.setBounds(135, 30, 70, 30);
     upperfaceupdownButton.setVisible(true);
 
-    lowerfaceupdownButton = new ComboControl(er, 70, 0.1, false);
+    lowerfaceupdownButton = new ComboControl(er, 70, 0.1, false, "Lower Face");
     lowerfaceupdownButton.setBounds(365, 30, 70, 30);
     lowerfaceupdownButton.setVisible(true);
 
@@ -134,7 +134,6 @@ public class FacialPanel extends JPanel implements EmotivObserver {
       eyeActive.setVisible(true);
       eyeActiveButton.setVisible(false);
     }
-    repaint();
   }
 
   private void updateLowerFaceAction(String key, double value) {
@@ -157,7 +156,7 @@ public class FacialPanel extends JPanel implements EmotivObserver {
       System.out.println("Not FOUND: " + key + " - " + value);
     }
 
-    er.notifyObservers();
+    er.updateFacialPanel(false);
   }
 
   private void updateUpperFaceAction(String key, double value) {
@@ -173,16 +172,12 @@ public class FacialPanel extends JPanel implements EmotivObserver {
       System.out.println("Not FOUND: " + key + " - " + value);
     }
 
-    er.notifyObservers();
+    er.updateFacialPanel(false);
   }
 
   private void updateEyeAction(String key, int value) {
     EmotivData data = er.getEmotivData();
-    // System.out.println(data.getExpressive().toString());
     data.resetExpressiveEyeData();
-
-    // if (!oldSelected.equalsIgnoreCase(key)) {
-    System.out.println("Moving forward: ");
 
     if (value == 1) {
       if (key.equals("Blink")) {
@@ -199,10 +194,6 @@ public class FacialPanel extends JPanel implements EmotivObserver {
         System.out.println("Not FOUND: " + key + " - " + value);
       }
     }
-    // }
-    System.out.println(data.getExpressive());
-
-    // oldSelected = key;
     er.notifyObservers();
   }
 
@@ -252,6 +243,10 @@ public class FacialPanel extends JPanel implements EmotivObserver {
   @Override
   public void update(PassedData passedData) {
     replaceRadioButton(passedData.interactiveAutoReset);
+    if (passedData.facial) {
+      lowerfaceAction();
+      upperfaceAction();
+    }
 
     if (passedData.isSent) {
       System.out.println("Is sent set: " + passedData.isSent);

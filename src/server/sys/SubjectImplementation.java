@@ -20,7 +20,7 @@ import server.sys.observer.PassedData;
  * @since 02APR2018
  * 
  */
-public class EmotivRandomizer implements EmotivSubject {
+public class SubjectImplementation implements EmotivSubject {
   private EmotivData data;
   private Iterator<String> objs;
   private Random generator;
@@ -31,8 +31,9 @@ public class EmotivRandomizer implements EmotivSubject {
   private double interval;
   private boolean interactiveResetButton;
   private boolean isSent;
+  private boolean facial;
 
-  public EmotivRandomizer() {
+  public SubjectImplementation() {
     data = new EmotivData();
     interval = 0.0;
     generator = new Random();
@@ -42,72 +43,8 @@ public class EmotivRandomizer implements EmotivSubject {
   }
 
   private void getRandomData() {
-    randomizeExpressive();
-    randomizeAffective();
     randomizePerformanceMetrics();
     notifyObservers();
-  }
-
-  // This will be removed later, leaving it here for testing purposes
-  private void randomizeExpressive() {
-    objs = data.getExpressive().keys();
-    String strKey;
-    while (objs.hasNext()) {
-      strKey = objs.next();
-      switch (strKey.toLowerCase()) {
-      case "clench":
-        data.setClench(generator.nextDouble());
-        break;
-      case "eyebrowraise":
-        data.setEyebrowRaise(generator.nextDouble());
-        break;
-      case "smirkright":
-        data.setSmirkRight(generator.nextDouble());
-        break;
-      case "smirkleft":
-        data.setSmirkLeft(generator.nextDouble());
-        break;
-      case "eyebrowfurrow":
-        data.setEyebrowFurrow(generator.nextDouble());
-        break;
-      case "laugh":
-        data.setLaugh(generator.nextDouble());
-        break;
-      case "smile":
-        data.setSmile(generator.nextDouble());
-        break;
-      default:
-        break;
-      }
-    }
-  }
-
-  // This will be removed later, leaving it here for testing purposes
-  private void randomizeAffective() {
-    objs = data.getAffective().keys();
-    String strKey;
-    while (objs.hasNext()) {
-      strKey = objs.next();
-      switch (strKey.toLowerCase()) {
-      case "engagementboredom":
-        data.setEngagementBoredom(generator.nextDouble());
-        break;
-      case "excitementshortterm":
-        data.setExcitementShortTerm(generator.nextDouble());
-        break;
-      case "mediation":
-        data.setMediation(generator.nextDouble());
-        break;
-      case "frustriation":
-        data.setFrustration(generator.nextDouble());
-        break;
-      case "excitementlongterm":
-        data.setExcitementLongTerm(generator.nextDouble());
-        break;
-      default:
-        break;
-      }
-    }
   }
 
   // This will be removed later, leaving it here for testing purposes
@@ -159,10 +96,6 @@ public class EmotivRandomizer implements EmotivSubject {
     notifyObservers();
   }
 
-  public String getSendButtonText() {
-    return this.sendButtonText;
-  }
-
   public void setInteractiveReset(boolean isAutoResetChecked) {
     this.interactiveResetButton = isAutoResetChecked;
 
@@ -188,10 +121,16 @@ public class EmotivRandomizer implements EmotivSubject {
   @Override
   public void notifyObservers() {
     PassedData passedData = new PassedData(data, sendButtonText, interval, interactiveResetButton,
-        isSent);
+        isSent, facial);
     for (EmotivObserver observer : observers) {
       observer.update(passedData);
     }
     isSent = false;
+  }
+
+  public void updateFacialPanel(boolean facial) {
+    this.facial = facial;
+
+    notifyObservers();
   }
 }

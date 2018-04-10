@@ -17,13 +17,15 @@ public class PassedData {
   public double interval;
   public boolean interactiveAutoReset;
   public boolean isSent;
+  public boolean facial;
 
   public PassedData(EmotivData data, String buttonText, double interval, boolean interactiveAutoReset,
-      boolean isSent) {
+      boolean isSent, boolean facial) {
     this.data = data;
     this.buttonText = buttonText;
     this.interval = interval;
     this.interactiveAutoReset = interactiveAutoReset;
     this.isSent = isSent;
+    this.facial = facial;
   }
 }

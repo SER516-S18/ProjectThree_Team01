@@ -4,8 +4,8 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 /**
- * The purpose of this class is to provide the GUI handler for the server and
- * serves as the main interaction between the user, server and client.
+ * The purpose of this class is to provide the GUI handler for the server and serves as
+ * the main interaction between the user, server and client.
  * 
  * @author Cephas Armstrong-Mensah
  * @author Group 1 #001 - #013
@@ -16,7 +16,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
 public class MainHandler {
   private static EmotivComposer frame;
 
-  /* 
+  /*
    * Creates the server frame
    */
   public static void main(String[] args) {
@@ -32,14 +32,4 @@ public class MainHandler {
       frame = EmotivComposer.getInstance();
     }
   }
-
-  /*
-   * private static void createGUIComponents() { // TODO Auto-generated method
-   * stub HamburgerMenu exitMenu = new HamburgerMenu(frame); MenuBarPanel
-   * menuBarPanel = new MenuBarPanel(); JPanel startPanel = new JPanel(); JPanel
-   * emostate = new JPanel(); FacialPanel emoFacialPanel = new FacialPanel();
-   * EmoStatePanel emoStatePanel = new EmoStatePanel(); InteractivePanel
-   * interactivePanel = new InteractivPanel(); LogPanel emoLogPanel = new
-   * LogPanel(); }
-   */
 }

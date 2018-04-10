@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-import server.sys.EmotivRandomizer;
+import server.sys.SubjectImplementation;
 import server.sys.observer.EmotivObserver;
 import server.sys.observer.PassedData;
 import util.ConsolePanel;
@@ -40,9 +40,9 @@ public class EmoStatePanel extends JPanel implements EmotivObserver {
   private JLabel overallSkillLabel;
   private JLabel emoStateLabel;
 
-  private EmotivRandomizer er;
+  private SubjectImplementation er;
 
-  public EmoStatePanel(EmotivRandomizer er) {
+  public EmoStatePanel(SubjectImplementation er) {
     setBounds(0, 0, 440, 175);
     setLayout(null);
     this.er = er;
@@ -82,14 +82,17 @@ public class EmoStatePanel extends JPanel implements EmotivObserver {
     consolePanel = new ConsolePanel();
     consolePanel.setBounds(5, 30, 430, 125);
 
-    neutral = new ComboControl(er, 70, 0.1, false);
+    neutral = new ComboControl(er, 70, 0.1, false, "Neutral");
     neutral.setLocation(140, 105);
+    neutral.setEnabled(false);
 
-    skill = new ComboControl(er, 70, 0.1, false);
+    skill = new ComboControl(er, 70, 0.1, false, "Skill");
     skill.setLocation(140, 137);
+    skill.setEnabled(false);
 
-    overallSkill = new ComboControl(er, 70, 0.1, false);
+    overallSkill = new ComboControl(er, 70, 0.1, false, "Overall Skill");
     overallSkill.setLocation(370, 105);
+    overallSkill.setEnabled(false);
 
     overallSkillLabel = new JLabel("Overall Skill");
     overallSkillLabel.setBorder(new LineBorder(Constants.DARKGRAY));

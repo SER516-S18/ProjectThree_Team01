@@ -14,7 +14,7 @@ import javax.swing.border.LineBorder;
 
 import server.gui.actions.ActionEvents;
 import server.gui.actions.MouseEvents;
-import server.sys.EmotivRandomizer;
+import server.sys.SubjectImplementation;
 import server.sys.observer.EmotivObserver;
 import server.sys.observer.PassedData;
 import util.Constants;
@@ -40,14 +40,20 @@ public class ComboControl extends JPanel implements EmotivObserver {
   private double step;
   private boolean isFrequency;
 
-  private EmotivRandomizer er;
+  private SubjectImplementation er;
+
+  private String id;
+
+  private String buttonText;
 
   /**
    * @param newWidth - the width for the entire panel
    * @param step - the next step size when button is clicked
    * @param isFrequency - determine if this field is for frequency
    */
-  public ComboControl(EmotivRandomizer er, int newWidth, double step, boolean isFrequency) {
+  public ComboControl(SubjectImplementation er, int newWidth, double step, boolean isFrequency,
+      String id) {
+    this.id = id;
     this.er = er;
     this.step = step;
     this.isFrequency = isFrequency;
@@ -55,7 +61,11 @@ public class ComboControl extends JPanel implements EmotivObserver {
     setLayout(null);
     this.setMinimumSize(new Dimension(70, 30));
     setBounds(0, 0, newWidth < 70 ? 70 : newWidth, 30);
+    buttonText = "Send";
+    initialize(newWidth);
+  }
 
+  private void initialize(int newWidth) {
     outputTextBox = new JTextField("0.0");
     outputTextBox.setBounds(0, 0, newWidth - 30, 30);
     outputTextBox.addActionListener(new ActionEvents(this));
@@ -69,20 +79,27 @@ public class ComboControl extends JPanel implements EmotivObserver {
     incrementButton.setVerticalAlignment(SwingConstants.BOTTOM);
     incrementButton.setHorizontalTextPosition(SwingConstants.CENTER);
     incrementButton.setHorizontalAlignment(SwingConstants.CENTER);
-    incrementButton.addMouseListener(new MouseEvents(this));
 
     decrementButton = new JLabel("v");
     decrementButton.setBounds(0, 15, 26, 15);
     decrementButton.setVerticalAlignment(SwingConstants.TOP);
     decrementButton.setHorizontalTextPosition(SwingConstants.CENTER);
     decrementButton.setHorizontalAlignment(SwingConstants.CENTER);
-    decrementButton.addMouseListener(new MouseEvents(this));
 
     panel.add(decrementButton);
     panel.add(incrementButton);
 
     add(panel);
     add(outputTextBox);
+
+    if (this.id.equals("Neutral") || this.id.equals("Overall Skill") || this.id.equals("Skill")) {
+      incrementButton.setEnabled(false);
+      decrementButton.setEnabled(false);
+      outputTextBox.setEnabled(false);
+    } else {
+      decrementButton.addMouseListener(new MouseEvents(this, this.id));
+      incrementButton.addMouseListener(new MouseEvents(this, this.id));
+    }
   }
 
   private void formatDoubleFirst(double value) {
@@ -91,7 +108,6 @@ public class ComboControl extends JPanel implements EmotivObserver {
     this.outputTextBox.setForeground(Color.BLACK);
     outputTextBox.setBorder(null);
 
-    String buttonText = er.getSendButtonText();
     if (buttonText.equalsIgnoreCase("Send") || buttonText.equalsIgnoreCase("Suspend")) {
       buttonText = "Start";
     }
@@ -107,7 +123,7 @@ public class ComboControl extends JPanel implements EmotivObserver {
     return outputTextBox.getText();
   }
 
-  public void incrementOutputText() {
+  public void incrementOutputText(String switcher) {
     try {
       double x = Double.parseDouble(outputTextBox.getText());
       double value = 0.0;
@@ -128,6 +144,9 @@ public class ComboControl extends JPanel implements EmotivObserver {
       }
 
       formatDoubleFirst(value);
+      if (switcher.equals("Upper Face") || switcher.equals("Lower Face")) {
+        er.updateFacialPanel(true);
+      }
     } catch (NumberFormatException | IOException exception) {
       outputTextBox.setForeground(Color.RED);
       outputTextBox.selectAll();
@@ -136,7 +155,7 @@ public class ComboControl extends JPanel implements EmotivObserver {
     }
   }
 
-  public void decrementOutputText() {
+  public void decrementOutputText(String switcher) {
     try {
       double x = Double.parseDouble(outputTextBox.getText());
 
@@ -154,6 +173,9 @@ public class ComboControl extends JPanel implements EmotivObserver {
         throw new IOException();
       }
       formatDoubleFirst(value);
+      if (switcher.equals("Upper Face") || switcher.equals("Lower Face")) {
+        er.updateFacialPanel(true);
+      }
     } catch (NumberFormatException | IOException exception) {
       outputTextBox.setForeground(Constants.RED);
       outputTextBox.selectAll();
@@ -191,5 +213,6 @@ public class ComboControl extends JPanel implements EmotivObserver {
 
   @Override
   public void update(PassedData passedData) {
+    buttonText = passedData.buttonText;
   }
 }

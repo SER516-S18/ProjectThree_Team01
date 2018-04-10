@@ -8,7 +8,7 @@ import server.gui.panels.EmoStatePanel;
 import server.gui.panels.FacialPanel;
 import server.gui.panels.LogPanel;
 import server.gui.panels.TrainingResults;
-import server.sys.EmotivRandomizer;
+import server.sys.SubjectImplementation;
 
 /**
  * This purpose of this class is to abstract the Tab implementation and its component
@@ -23,7 +23,7 @@ public class LowerTabbedPane extends JTabbedPane {
 
   private static final long serialVersionUID = 5206845224218178653L;
 
-  private EmotivRandomizer er;
+  private SubjectImplementation er;
   private JPanel detectionPanel;
   private EmoStatePanel emoStatePanel;
   private FacialPanel emoFacialPanel;
@@ -31,7 +31,7 @@ public class LowerTabbedPane extends JTabbedPane {
   private LogPanel emoLogPanel;
   private JPanel qualityPanel;
 
-  public LowerTabbedPane(EmotivRandomizer er) {
+  public LowerTabbedPane(SubjectImplementation er) {
     setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
     setBounds(0, 0, 443, 555);
 

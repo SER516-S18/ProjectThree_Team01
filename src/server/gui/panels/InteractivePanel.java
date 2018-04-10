@@ -10,7 +10,7 @@ import javax.swing.SwingConstants;
 
 import server.gui.actions.ActionEvents;
 import server.gui.actions.ItemEvents;
-import server.sys.EmotivRandomizer;
+import server.sys.SubjectImplementation;
 import server.sys.WorkerThread;
 import server.sys.observer.EmotivObserver;
 import server.sys.observer.PassedData;
@@ -38,13 +38,13 @@ public class InteractivePanel extends JPanel implements EmotivObserver {
   private JComboBox<String> playerComboBox;
   private ComboControl emoStateInterval;
 
-  private EmotivRandomizer er;
+  private SubjectImplementation er;
 
   private static boolean isAutoResetChecked;
   private static WorkerThread worker;
   public static Thread workerThread;
 
-  public InteractivePanel(EmotivRandomizer er) {
+  public InteractivePanel(SubjectImplementation er) {
     setBounds(0, 0, 450, 90);
     setLayout(null);
     this.er = er;
@@ -82,9 +82,9 @@ public class InteractivePanel extends JPanel implements EmotivObserver {
     playerComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "0", "1" }));
     playerComboBox.setBounds(65, 10, 80, 30);
 
-    emoStateInterval = new ComboControl(er, 110, 0.5, true);
+    emoStateInterval = new ComboControl(er, 110, 0.5, true, "Frequency");
     emoStateInterval.setLocation(250, 10);
-    emoStateInterval.setOutputText("3.00"); // Change back 0.25
+    emoStateInterval.setOutputText("0.25");
 
     add(secLabel);
     add(playerLabel);

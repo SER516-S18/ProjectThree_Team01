@@ -7,7 +7,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.border.EtchedBorder;
 
 import server.gui.panels.InteractivePanel;
-import server.sys.EmotivRandomizer;
+import server.sys.SubjectImplementation;
 
 /**
  * This purpose of this class is to abstract the Tab implementation and its component
@@ -22,10 +22,10 @@ public class UpperTabbedPane extends JTabbedPane {
 
   private static final long serialVersionUID = -3848367030632409535L;
   private InteractivePanel interactivePanel;
-  private EmotivRandomizer er;
+  private SubjectImplementation er;
   private JPanel emostate;
 
-  public UpperTabbedPane(EmotivRandomizer er) {
+  public UpperTabbedPane(SubjectImplementation er) {
     setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
     setBounds(0, 0, 450, 120);
     this.er = er;
