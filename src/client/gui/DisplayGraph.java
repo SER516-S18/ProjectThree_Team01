@@ -86,7 +86,13 @@ public class DisplayGraph extends JPanel {
   public void updateGraph(EmotivData data) {
     if (displayThread == null) {
       displayThread = new DisplayThread(data, graphSeries, dataset);
-      new Thread(displayThread).start();
     }
+    new Thread(displayThread).start();
+
   }
+public ChartPanel getChartPanel() {
+	// TODO Auto-generated method stub
+	
+	return chartPanel;
+}
 }

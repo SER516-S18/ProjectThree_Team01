@@ -16,7 +16,9 @@ import javax.swing.UIManager.LookAndFeelInfo;
 public class MainHandler {
   private static EmotivComposer frame;
 
-  /* Constructor for opening the server window */
+  /* 
+   * Creates the server frame
+   */
   public static void main(String[] args) {
     try {
       for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {

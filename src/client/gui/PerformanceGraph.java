@@ -85,7 +85,8 @@ public class PerformanceGraph extends JPanel {
   public void updateGraph(EmotivData data) {
 	    if (performanceThread == null) {
 	        performanceThread = new PerformanceThread(data, graphSeries, dataset);
-	        new Thread(performanceThread).start();
 	      }
+        new Thread(performanceThread).start();
+
     }
   }

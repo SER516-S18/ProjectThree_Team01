@@ -32,7 +32,7 @@ public class DisplayThread implements Runnable {
   public void run() {
     double values[];
     values = new double[12];
-    while (true) {
+    
       values[0] = 1 + data.getEyebrowRaise();
       values[1] = 2 + data.getEyebrowFurrow();
       values[2] = 3 + data.getSmile();
@@ -52,7 +52,7 @@ public class DisplayThread implements Runnable {
         dataset.getSeries(i).addOrUpdate(new Millisecond(), values[i]);
       }
    
-    }
+    
   }
 
 }

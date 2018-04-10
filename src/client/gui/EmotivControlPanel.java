@@ -1,6 +1,8 @@
 package client.gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -44,6 +46,7 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 
 	private volatile boolean isClosing = false;
 	private JLabel signalLabel;
+	private JLabel timerLabel, timerValue;
 	private ClassLoader loader = getClass().getClassLoader();
 
 	/**
@@ -72,7 +75,7 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 	private EmotivControlPanel() {
 		
 		addWindowListener(new ClientWindowEvents(this));
-		setBounds(100, 100, 982, 919);
+		setBounds(100, 100, 982, 650);
 		menu = new ClientHamburgerMenu();
 		setJMenuBar(menu);
 		contentPane = new JPanel();
@@ -93,15 +96,22 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 		facePanel = new FacePanel();
 		facePanel.setLocation(12, 0);
 		facePanel.setSize(438, 790);
+		facePanel.setBackground(Color.lightGray);
 		facialExpressionPanel.add(facePanel);
 
 		displayGraph = new DisplayGraph();
-		displayGraph.chartPanel = new ChartPanel(displayGraph.getGraph());
-		displayGraph.chartPanel.setLocation(12, 26);
-		displayGraph.chartPanel.setSize(new Dimension(400, 400));
+		
 		facialExpressionPanel.setLayout(null);
 
-		graphPanel.add(displayGraph.chartPanel);
+		ChartPanel chartPanelObject = displayGraph.getChartPanel();
+	    chartPanelObject = new ChartPanel(displayGraph.getGraph());
+		chartPanelObject.setSize(new Dimension(480, 500));
+		chartPanelObject.setOpaque(true);
+		chartPanelObject.setBackground(Color.lightGray);
+		displayGraph.getGraph().getPlot().setBackgroundPaint(Color.gray);
+		displayGraph.getGraph().setBackgroundPaint(Color.lightGray);
+		graphPanel.setBackground(Color.lightGray);
+		graphPanel.add(chartPanelObject);
 		graphPanel.setLayout(null);
 
 		ClientSubject.getInstance().addObserver(this);
@@ -112,6 +122,20 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 		signalLabel = new JLabel(new ImageIcon(loader.getResource("weak.png")));
 		signalLabel.setBounds(910, 0, 48, 48);
 		contentPane.add(signalLabel);
+		
+		timerLabel = new JLabel();
+		ImageIcon timerIcon = new ImageIcon("img/icons8-timer-19.png");
+		timerLabel.setIcon(timerIcon);
+		timerLabel.setBounds(830, 0, 50, 50);
+		contentPane.add(timerLabel);
+		
+		timerValue = new JLabel();
+		timerValue.setFont(new Font("Lucida Grande", Font.BOLD, 17));
+		timerValue.setText("0");
+		timerValue.setBounds(860, 0, 50, 50);
+		timerValue.setForeground(Color.LIGHT_GRAY);
+		contentPane.add(timerValue);
+		timerValue.setVisible(false);
 
 		contentPane.add(tabbedPane);
 		contentPane.add(performanceMetric);
@@ -161,6 +185,7 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 		if (facePanel != null) {
 			facePanel.updateFace(data);
 		}
+		updateTimerValue(data);
 	}
 	
 	/**
@@ -171,8 +196,19 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 	public void updateSignalLabel(boolean connected) {
 		if (connected) {
 			signalLabel.setIcon(new ImageIcon(loader.getResource("strong.png")));
+			timerValue.setVisible(true);
 		} else {
 			signalLabel.setIcon(new ImageIcon(loader.getResource("weak.png")));
 		}
 	}
+	
+	/**
+	 * @param data - gets the data from server
+	 * for the interval values on the Client panel
+	 */
+	private void updateTimerValue(EmotivData data) {
+		timerValue.setText(Double.toString(data.getTimer()));
+		repaint();
+	}
+	
 }

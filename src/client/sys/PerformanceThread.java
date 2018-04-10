@@ -29,7 +29,7 @@ public class PerformanceThread implements Runnable {
  */
   @Override
   public void run() {
-    while (true) {
+   
       double values[];
       values = new double[6];
       JSONObject performanceData =data.getPerformance();
@@ -45,7 +45,7 @@ public class PerformanceThread implements Runnable {
         dataset.getSeries(i).addOrUpdate(new Millisecond(), values[i]);
       }
      
-    }
+    
   }
 
 

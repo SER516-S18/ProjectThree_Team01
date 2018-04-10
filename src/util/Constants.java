@@ -28,5 +28,17 @@ public class Constants {
   public static final Color WHITE = new Color(255, 255, 255);
   public static final Color PEACH = new Color(255, 250, 240);
   public static final Color DARKGRAY = Color.DARK_GRAY;
+  public static final Color YELLOW = Color.YELLOW;
+  public static final Color CYAN = Color.CYAN;
+  public static final Color BLUE = Color.BLUE;
+  public static final Color LIGHTPINK = new Color(255, 228, 225);
+  public static final Color MAGENTA= Color.MAGENTA;
+  public static final Color ORANGE= Color.ORANGE;
+  public static final Color BROWN = new Color(34, 139, 34);
+  public static final Color MAROON = new Color(255, 20, 147);
+  public static final Color LIGHTGREEN = new Color(165, 42, 42);
+  public static final Color VIOLET = new Color(0, 0, 128);
+  public static final Color CREAM = new Color(255, 255, 240);
+  
 
 }

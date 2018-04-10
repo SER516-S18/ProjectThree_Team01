@@ -23,9 +23,9 @@ import client.gui.actions.*;
  */
 
 public class BoxesPanel extends JPanel {
-  PerformanceMetricPanel parent;
-  int actionListenerFlag = 0;
-  int boxNumber;
+  public PerformanceMetricPanel parent;
+  private int actionListenerFlag = 0;
+  public int boxNumber;
 
  /* 
   * Constructor for BoxPanel class
@@ -38,6 +38,7 @@ public class BoxesPanel extends JPanel {
     this.boxNumber= boxNumber;
     
   }
+ 
 
   /* 
   * Constructor for BoxPanel class
