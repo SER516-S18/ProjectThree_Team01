@@ -75,7 +75,7 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 	private EmotivControlPanel() {
 		
 		addWindowListener(new ClientWindowEvents(this));
-		setBounds(100, 100, 982, 919);
+		setBounds(100, 100, 982, 650);
 		menu = new ClientHamburgerMenu();
 		setJMenuBar(menu);
 		contentPane = new JPanel();
@@ -96,15 +96,22 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 		facePanel = new FacePanel();
 		facePanel.setLocation(12, 0);
 		facePanel.setSize(438, 790);
+		facePanel.setBackground(Color.lightGray);
 		facialExpressionPanel.add(facePanel);
 
 		displayGraph = new DisplayGraph();
-		displayGraph.chartPanel = new ChartPanel(displayGraph.getGraph());
-		displayGraph.chartPanel.setLocation(12, 26);
-		displayGraph.chartPanel.setSize(new Dimension(400, 400));
+		
 		facialExpressionPanel.setLayout(null);
 
-		graphPanel.add(displayGraph.chartPanel);
+		ChartPanel chartPanelObject = displayGraph.getChartPanel();
+	    chartPanelObject = new ChartPanel(displayGraph.getGraph());
+		chartPanelObject.setSize(new Dimension(480, 500));
+		chartPanelObject.setOpaque(true);
+		chartPanelObject.setBackground(Color.lightGray);
+		displayGraph.getGraph().getPlot().setBackgroundPaint(Color.gray);
+		displayGraph.getGraph().setBackgroundPaint(Color.lightGray);
+		graphPanel.setBackground(Color.lightGray);
+		graphPanel.add(chartPanelObject);
 		graphPanel.setLayout(null);
 
 		ClientSubject.getInstance().addObserver(this);

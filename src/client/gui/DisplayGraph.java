@@ -90,4 +90,9 @@ public class DisplayGraph extends JPanel {
     new Thread(displayThread).start();
 
   }
+public ChartPanel getChartPanel() {
+	// TODO Auto-generated method stub
+	
+	return chartPanel;
+}
 }
