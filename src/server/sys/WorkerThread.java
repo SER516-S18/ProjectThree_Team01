@@ -12,8 +12,8 @@ import server.sys.observer.EmotivObserver;
 import server.sys.observer.PassedData;
 
 /**
- * The purpose of this class is to implement a working thread to handle the server interaction
- * by sending random data to the client on the other end.
+ * The purpose of this class is to implement a working thread to handle the server
+ * interaction by sending random data to the client on the other end.
  * 
  * @author Cephas Armstrong-Mensah
  * @author Group 1 #001 - #013
@@ -55,7 +55,6 @@ public class WorkerThread implements Runnable, EmotivObserver {
 
   @Override
   public void run() {
-
     switch (state) {
     case SEND:
       fetchRandomData();
@@ -67,6 +66,7 @@ public class WorkerThread implements Runnable, EmotivObserver {
         if (state != ButtonStatus.SUSPEND) {
           fetchRandomData();
           er.sendButtonText(er.getSendButtonText(), "" + (interval / 1000.0));
+          er.setIsSent(true);
         } else {
           interval = 5000;
           updateConsolePanel("Execution suspended, fix error to resume");
@@ -86,7 +86,7 @@ public class WorkerThread implements Runnable, EmotivObserver {
   }
 
   private void fetchRandomData() {
-    er.getRandomData();
+    // er.getRandomData();
     Session temp = null;
     List<Session> clients = ServerWebSocket.getClients();
 

@@ -39,6 +39,7 @@ public class ActionEvents implements ActionListener {
     } else if (actionClass instanceof InteractivePanel) {
       ((InteractivePanel) actionClass).triggerStartStopSend();
     } else if (actionClass instanceof FacialPanel) {
+      System.out.println("Something called us");
       if (item == "upperfaceComboBox") {
         ((FacialPanel) actionClass).upperfaceAction();
       } else if (item == "lowerfaceComboBox") {
@@ -47,6 +48,8 @@ public class ActionEvents implements ActionListener {
         ((FacialPanel) actionClass).eyecomboBoxAction();
       } else if (item == "eyeActive") {
         ((FacialPanel) actionClass).eyeAction();
+      } else if (item == "eyeButton") {
+        ((FacialPanel) actionClass).activateButtonAction();
       }
     } else if (actionClass instanceof LogPanel) {
       ((LogPanel) actionClass).clearConsolePanel();

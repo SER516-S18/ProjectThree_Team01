@@ -8,8 +8,7 @@ import javax.swing.JPanel;
 import server.gui.panels.InteractivePanel;
 
 /**
- * This class is responsible for handling Item Listener Events triggered from
- * the server
+ * This class is responsible for handling Item Listener Events triggered from the server
  * 
  * @author Cephas Armstrong-Mensah
  * @author Group 1 #001 - #013
@@ -27,7 +26,10 @@ public class ItemEvents implements ItemListener {
 
   @Override
   public void itemStateChanged(ItemEvent e) {
+    System.out.println("Ever made it here");
+
     if (actionItem instanceof InteractivePanel) {
+      System.out.println("We are on to something");
       ((InteractivePanel) actionItem).itemStateAction();
     }
   }

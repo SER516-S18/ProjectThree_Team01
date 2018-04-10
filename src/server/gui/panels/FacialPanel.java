@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 
 import data.EmotivData;
 import server.gui.actions.ActionEvents;
+import server.gui.actions.ItemEvents;
 import server.sys.EmotivRandomizer;
 import server.sys.observer.EmotivObserver;
 import server.sys.observer.PassedData;
@@ -38,8 +39,10 @@ public class FacialPanel extends JPanel implements EmotivObserver {
   private ComboControl upperfaceupdownButton;
   private ComboControl lowerfaceupdownButton;
   private JRadioButton eyeActive;
-  private JCheckBox autoResetCheckBox;
+  private JCheckBox resetCheckBox;
   private JButton eyeActiveButton;
+
+  private boolean isClicked;
 
   private int eyeActiveValue;
   private EmotivRandomizer er;
@@ -48,6 +51,7 @@ public class FacialPanel extends JPanel implements EmotivObserver {
     setBounds(0, 0, 440, 150);
     this.er = er;
     this.er.addToObserver(this);
+    isClicked = false;
 
     setLayout(null);
     initialize();
@@ -103,11 +107,11 @@ public class FacialPanel extends JPanel implements EmotivObserver {
     eyeActiveButton = new JButton("Activate");
     eyeActiveButton.setBounds(140, 100, 80, 30);
     eyeActiveButton.setVisible(false);
-    // We need to add a listener to this eyeActiveButton
+    eyeActiveButton.addActionListener(new ActionEvents(this, "eyeButton"));
 
-    autoResetCheckBox = new JCheckBox("Auto Reset");
-    autoResetCheckBox.setBounds(270, 105, 115, 20);
-    // We need to add a listener to this as well
+    resetCheckBox = new JCheckBox("Auto Reset");
+    resetCheckBox.setBounds(270, 105, 115, 20);
+    resetCheckBox.addItemListener(new ItemEvents(this));
 
     add(upperfaceupdownButton);
     add(upperfaceLabel);
@@ -117,15 +121,9 @@ public class FacialPanel extends JPanel implements EmotivObserver {
     add(eyecomboBox);
     add(lowerfaceComboBox);
     add(lowerfaceupdownButton);
-    add(autoResetCheckBox);
+    add(resetCheckBox);
     add(eyeActive);
     add(eyeActiveButton);
-
-    updateEyeAction(eyecomboBox.getSelectedItem().toString(), 1);
-    updateLowerFaceAction(upperfaceComboBox.getSelectedItem().toString(),
-        Double.parseDouble(upperfaceupdownButton.getOutputText()));
-    updateUpperFaceAction(lowerfaceComboBox.getSelectedItem().toString(),
-        Double.parseDouble(lowerfaceupdownButton.getOutputText()));
   }
 
   private void replaceRadioButton(boolean isButton) {
@@ -180,24 +178,31 @@ public class FacialPanel extends JPanel implements EmotivObserver {
 
   private void updateEyeAction(String key, int value) {
     EmotivData data = er.getEmotivData();
+    // System.out.println(data.getExpressive().toString());
     data.resetExpressiveEyeData();
 
-    System.out.println("Eye Action: " + key + " - " + value);
+    // if (!oldSelected.equalsIgnoreCase(key)) {
+    System.out.println("Moving forward: ");
 
-    if (key.equals("Blink")) {
-      data.setBlink(value);
-    } else if (key.equals("Look Left")) {
-      data.setLookingLeft(value);
-    } else if (key.equals("Look Right")) {
-      data.setLookingRight(value);
-    } else if (key.equals("Wink Right")) {
-      data.setLeftWink(value);
-    } else if (key.equals("Wink Left")) {
-      data.setRightWink(0);
-    } else {
-      System.out.println("Not FOUND: " + key + " - " + value);
+    if (value == 1) {
+      if (key.equals("Blink")) {
+        data.setBlink(value);
+      } else if (key.equals("Look Left")) {
+        data.setLookingLeft(value);
+      } else if (key.equals("Look Right")) {
+        data.setLookingRight(value);
+      } else if (key.equals("Wink Right")) {
+        data.setRightWink(value);
+      } else if (key.equals("Wink Left")) {
+        data.setLeftWink(value);
+      } else {
+        System.out.println("Not FOUND: " + key + " - " + value);
+      }
     }
+    // }
+    System.out.println(data.getExpressive());
 
+    // oldSelected = key;
     er.notifyObservers();
   }
 
@@ -226,16 +231,37 @@ public class FacialPanel extends JPanel implements EmotivObserver {
     } else {
       eyeActiveValue = 0;
     }
+
+    System.out.println("Eye action: " + eyeActiveValue);
+
+    updateEyeAction(eyecomboBox.getSelectedItem().toString(), eyeActiveValue);
+  }
+
+  public void activateButtonAction() {
+    System.out.println("Eye active value: " + eyeActiveValue);
+    if (eyeActiveValue == 0) {
+      eyeActiveValue = 1;
+    } else {
+      eyeActiveValue = 0;
+    }
+
+    isClicked = !isClicked;
+    updateEyeAction(eyecomboBox.getSelectedItem().toString(), eyeActiveValue);
   }
 
   @Override
   public void update(PassedData passedData) {
     replaceRadioButton(passedData.interactiveAutoReset);
+
     if (passedData.isSent) {
-      eyeActiveValue = 0;
-      if (eyeActive.isSelected()) {
-        eyeActive.doClick();
-        repaint();
+      System.out.println("Is sent set: " + passedData.isSent);
+      if (resetCheckBox.isSelected()) {
+        System.out.println("Reset");
+        if (eyeActive.isSelected()) {
+          eyeActive.doClick();
+        } else if (isClicked) {
+          activateButtonAction();
+        }
       }
     }
   }

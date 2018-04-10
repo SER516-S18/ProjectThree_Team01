@@ -84,7 +84,7 @@ public class InteractivePanel extends JPanel implements EmotivObserver {
 
     emoStateInterval = new ComboControl(er, 110, 0.5, true);
     emoStateInterval.setLocation(250, 10);
-    emoStateInterval.setOutputText("0.25");
+    emoStateInterval.setOutputText("3.00"); // Change back 0.25
 
     add(secLabel);
     add(playerLabel);

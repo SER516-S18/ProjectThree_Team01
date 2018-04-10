@@ -20,8 +20,8 @@ import server.sys.observer.PassedData;
 import util.Constants;
 
 /**
- * This class is used as a general utility for a field needing an increment and
- * decrement with a text box
+ * This class is used as a general utility for a field needing an increment and decrement
+ * with a text box
  * 
  * @author Cephas Armstrong-Mensah
  * @author Group 1 #001 - #013
@@ -39,7 +39,6 @@ public class ComboControl extends JPanel implements EmotivObserver {
 
   private double step;
   private boolean isFrequency;
-  private int newWidth;
 
   private EmotivRandomizer er;
 
@@ -52,7 +51,6 @@ public class ComboControl extends JPanel implements EmotivObserver {
     this.er = er;
     this.step = step;
     this.isFrequency = isFrequency;
-    this.newWidth = newWidth;
 
     setLayout(null);
     this.setMinimumSize(new Dimension(70, 30));

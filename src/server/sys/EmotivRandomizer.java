@@ -41,7 +41,7 @@ public class EmotivRandomizer implements EmotivSubject {
     isSent = false;
   }
 
-  public void getRandomData() {
+  private void getRandomData() {
     randomizeExpressive();
     randomizeAffective();
     randomizePerformanceMetrics();

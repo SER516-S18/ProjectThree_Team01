@@ -3,10 +3,10 @@ package data;
 import org.json.JSONObject;
 
 /**
- * This class represents the model we will be using to handle our Objects. It
- * has getters and setters for each object individually as well as getters,
- * setters and toString() for any of the sub objects. The client and the server
- * will both utilize this to provide a data model for the project.
+ * This class represents the model we will be using to handle our Objects. It has getters
+ * and setters for each object individually as well as getters, setters and toString() for
+ * any of the sub objects. The client and the server will both utilize this to provide a
+ * data model for the project.
  * 
  * @author Cephas Armstrong-Mensah
  * @author Group 1 #001 - #013
@@ -449,6 +449,7 @@ public class EmotivData {
     this.focus = performance.getDouble("Focus");
   }
 
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append(toJson());
