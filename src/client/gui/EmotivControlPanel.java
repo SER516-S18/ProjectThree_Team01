@@ -47,14 +47,6 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
   private ClassLoader loader = getClass().getClassLoader();
 
   /**
-   * Launch the application.
-   */
-  public static void main(String[] args) {
-    EmotivControlPanel frame = EmotivControlPanel.getInstance();
-    frame.setVisible(true);
-  }
-
-  /**
    * To implement Singleton Instance of EmotivControlPanel
    * 
    * @return singleton Instance of the class
