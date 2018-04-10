@@ -13,14 +13,14 @@ import server.gui.panels.MenuBarPanel;
 import server.gui.panels.SignalMenu;
 import server.gui.tabs.LowerTabbedPane;
 import server.gui.tabs.UpperTabbedPane;
-import server.sys.SubjectImplementation;
 import server.sys.ServerThread;
 import server.sys.ServerWebSocket;
+import server.sys.SubjectImplementation;
 import util.Constants;
 
 /**
- * The purpose of this class is to provide the GUI handler for the server and serves as the
- * main interaction between the user, server and client.
+ * The purpose of this class is to provide the GUI handler for the server and serves as
+ * the main interaction between the user, server and client.
  * 
  * @author Cephas Armstrong-Mensah
  * @author Group 1 #001 - #013
