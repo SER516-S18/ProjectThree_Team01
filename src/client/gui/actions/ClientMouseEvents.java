@@ -6,6 +6,8 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.jfree.chart.plot.XYPlot;
+
 import client.gui.panels.*;
 
 /**
@@ -51,9 +53,12 @@ public class ClientMouseEvents implements MouseListener {
 		  if(actionClass instanceof ColorChooserPanel){
 			  if(switcher == "Color Panel") {
 				  ((ColorChooserPanel) actionClass).box.setBoxColor(((JPanel) arg0.getSource()).getBackground());
-				  ((ColorChooserPanel) actionClass).setVisible(false);
+				  XYPlot plot= ((ColorChooserPanel) actionClass).box.parent.performanceGraph.getGraph().getXYPlot();
+	              plot.getRenderer().setSeriesPaint(((ColorChooserPanel) actionClass).box.boxNumber, ((JPanel) arg0.getSource()).getBackground());
+	              ((ColorChooserPanel) actionClass).setVisible(false);
 				  ((ColorChooserPanel) actionClass).dispose();
-		      }
+			  
+			  }
 			  else if(switcher == "Close") {
 				  ((ColorChooserPanel) actionClass).box.setBoxColor( ((ColorChooserPanel) actionClass).colorArray.get( ((ColorChooserPanel) actionClass).colorArray.size() - 1));
 				  ((ColorChooserPanel) actionClass).setVisible(false);
