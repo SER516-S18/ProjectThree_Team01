@@ -154,7 +154,10 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
   public boolean getIsClosing() {
     return isClosing;
   }
-
+  
+  public void setIsClosing(boolean val) {
+	  isClosing = val;
+  }
   /**
    * Update the subscribed observers (display graph, face panel and performanceMetric panel
    * and pass the data received)

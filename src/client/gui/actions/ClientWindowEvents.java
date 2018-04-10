@@ -49,6 +49,7 @@ public class ClientWindowEvents implements WindowListener {
   @Override
   public void windowClosing(WindowEvent arg0) {
     if (window instanceof EmotivControlPanel) {
+    	EmotivControlPanel.getInstance().setIsClosing(true);
 		System.exit(0);
     }
   }
