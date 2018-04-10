@@ -32,7 +32,6 @@ public class ClientSubject implements ClientObservable {
   }
   
   /**
-   * 
    * @return the singleton instance of the class
    */
   public static ClientSubject getInstance() {

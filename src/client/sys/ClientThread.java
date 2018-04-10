@@ -14,8 +14,12 @@ import util.Constants;
 /**
  * 
  * @author Shilpa Bhat
- * 
+ * @version 1.0
+ * @since 2018-04-02
  *
+ * Thread that connects to the server,
+ * waits till the client closes,
+ * closes the session when the client closes.
  */
 public class ClientThread implements Runnable {
 
@@ -30,7 +34,11 @@ public class ClientThread implements Runnable {
     this.port = port;
     emoInstance = EmotivControlPanel.getInstance();
   }
-
+  
+  /**
+   * Connect to server using the uri and port entered 
+   * by the user.
+   */
   @Override
   public void run() {
     ClientManager client = ClientManager.createClient();

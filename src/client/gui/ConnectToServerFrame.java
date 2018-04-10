@@ -18,9 +18,10 @@ import java.awt.event.ActionEvent;
 /**
  * 
  * @author Shilpa Bhat
- * 
- *         The frame to provide ipadress and the port number to connect to the
- *         server.
+ * @version 1.0
+ * @since 2018-04-03
+ * The frame to provide ipadress and the port number to connect to the
+ * server.
  */
 public class ConnectToServerFrame extends JFrame {
 
@@ -95,6 +96,10 @@ public class ConnectToServerFrame extends JFrame {
 		return false;
 	}
 
+	/**
+	 * Checks if the port number is in the range 1024 - 65535
+	 * @return True if port number entered is valid
+	 */
 	private Boolean checkValidPortNumber() {
 		String portErrorMessage = "Please enter a port number between 1024 and 65535!";
 		try {
@@ -111,7 +116,11 @@ public class ConnectToServerFrame extends JFrame {
 			return false;
 		}
 	}
-
+	
+	/**
+	 * Checks if the ipaddress is in the correct format
+	 * @return True if it is in the correct format , false otherwise.
+	 */
 	private boolean checkValidIpAddress() {
 		Pattern p = Pattern.compile(
 				"^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$");

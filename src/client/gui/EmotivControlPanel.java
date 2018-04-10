@@ -31,7 +31,6 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 	private static final long serialVersionUID = 8528760467775723790L;
 	private JPanel contentPane;
 	private JPanel facialExpressionPanel;
-	private String uri = "localhost";
 	private DisplayGraph displayGraph;
 	public static EmotivControlPanel clientInstance = null;
 	private FacePanel facePanel = null;

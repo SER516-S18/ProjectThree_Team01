@@ -1,13 +1,9 @@
 package client.gui;
-import java.awt.MenuBar;
 
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -23,11 +19,9 @@ import java.awt.event.ActionEvent;
 public class ClientHamburgerMenu extends JMenuBar {
 	
 	public ClientHamburgerMenu() {
-	//JMenuBar menuBar = new JMenuBar();
 	
 	JMenu menu = new JMenu("MENU");
 	menu.setIcon(new ImageIcon("img/icons8-menu-10.png"));
-	//menuBar.add(menu);
 	add(menu);
 	JMenu applicationsOption = new JMenu("APPLICATION");
 	menu.add(applicationsOption);
