@@ -154,7 +154,6 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 	 */
 	@Override
 	public void updateObserver(EmotivData data) {
-		System.out.println(data.getBlink());
 		displayGraph.updateGraph(data);
 		performanceMetric.performanceGraph.updateGraph(data);
 		if (facePanel != null) {
