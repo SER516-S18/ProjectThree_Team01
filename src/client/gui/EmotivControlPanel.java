@@ -1,6 +1,8 @@
 package client.gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -44,6 +46,7 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 
 	private volatile boolean isClosing = false;
 	private JLabel signalLabel;
+	private JLabel timerLabel, timerValue;
 	private ClassLoader loader = getClass().getClassLoader();
 
 	/**
@@ -52,6 +55,7 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 	public static void main(String[] args) {
 		EmotivControlPanel frame = EmotivControlPanel.getInstance();
 		frame.setVisible(true);
+		// frame.setSize(1000,1000);
 	}
 	
 	/**
@@ -111,6 +115,20 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 		signalLabel = new JLabel(new ImageIcon(loader.getResource("weak.png")));
 		signalLabel.setBounds(910, 0, 48, 48);
 		contentPane.add(signalLabel);
+		
+		timerLabel = new JLabel();
+		ImageIcon timerIcon = new ImageIcon("img/icons8-timer-19.png");
+		timerLabel.setIcon(timerIcon);
+		timerLabel.setBounds(830, 0, 50, 50);
+		contentPane.add(timerLabel);
+		
+		timerValue = new JLabel();
+		timerValue.setFont(new Font("Lucida Grande", Font.BOLD, 17));
+		timerValue.setText("0");
+		timerValue.setBounds(860, 0, 50, 50);
+		timerValue.setForeground(Color.LIGHT_GRAY);
+		contentPane.add(timerValue);
+		timerValue.setVisible(false);
 
 		contentPane.add(tabbedPane);
 		contentPane.add(performanceMetric);
@@ -154,11 +172,13 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 	 */
 	@Override
 	public void updateObserver(EmotivData data) {
+		System.out.println(data.getBlink());
 		displayGraph.updateGraph(data);
 		performanceMetric.performanceGraph.updateGraph(data);
 		if (facePanel != null) {
 			facePanel.updateFace(data);
 		}
+		updateTimerValue(data);
 	}
 	
 	/**
@@ -169,8 +189,19 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 	public void updateSignalLabel(boolean connected) {
 		if (connected) {
 			signalLabel.setIcon(new ImageIcon(loader.getResource("strong.png")));
+			timerValue.setVisible(true);
 		} else {
 			signalLabel.setIcon(new ImageIcon(loader.getResource("weak.png")));
 		}
 	}
+	
+	/**
+	 * @param data - gets the data from server
+	 * for the interval values on the Client panel
+	 */
+	private void updateTimerValue(EmotivData data) {
+		timerValue.setText(Double.toString(data.getTimer()));
+		repaint();
+	}
+	
 }
