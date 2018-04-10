@@ -4,8 +4,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import java.awt.Desktop;
+import java.net.URI;
 
 import client.gui.actions.*;
 
@@ -61,6 +62,8 @@ public class ClientHamburgerMenu extends JMenuBar {
 	
 	JMenuItem emotivOnGithub = new JMenuItem("Emotiv On Github");
 	helpOption.add(emotivOnGithub);
+	emotivOnGithub.addActionListener(new ClientActionEvents(this, "Git"));
+
 	
 	JMenuItem aboutOption = new JMenuItem("About Xavier Control Panel");
 	helpOption.add(aboutOption);

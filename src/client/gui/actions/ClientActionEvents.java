@@ -3,10 +3,13 @@ package client.gui.actions;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import client.gui.ClientHamburgerMenu;
 import client.gui.EmotivControlPanel;
-import server.gui.panels.ComboControl;
 import client.gui.ConnectToServerFrame;
 
 /**
@@ -61,6 +64,18 @@ public class ClientActionEvents implements ActionListener {
 			else if (item == "Connect Composer"){
 				ConnectToServerFrame connectFrame = new ConnectToServerFrame();
 				connectFrame.setVisible(true);
+			}
+			else if (item == "Git")
+			{
+				if (Desktop.isDesktopSupported()) {
+					String url = "https://github.com/SER516/ProjectThree_Team01";
+					Desktop desktop = Desktop.getDesktop();
+					try {
+		                desktop.browse(new URI(url));
+		            } catch (IOException | URISyntaxException e) {
+		                e.printStackTrace();
+		            }
+				}
 			}
 		}
 		
