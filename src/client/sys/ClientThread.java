@@ -3,6 +3,8 @@ package client.sys;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.websocket.DeploymentException;
 import javax.websocket.Session;
 
@@ -50,6 +52,7 @@ public class ClientThread implements Runnable {
       }
       session.close();
     } catch (DeploymentException | URISyntaxException e) {
+    	JOptionPane.showMessageDialog(new JFrame(), "Could not connect to the Composer!");
       throw new RuntimeException(e);
     } catch (Exception e) {
     	e.printStackTrace();

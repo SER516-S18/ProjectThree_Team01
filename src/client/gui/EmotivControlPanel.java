@@ -47,14 +47,6 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
   private ClassLoader loader = getClass().getClassLoader();
 
   /**
-   * Launch the application.
-   */
-  public static void main(String[] args) {
-    EmotivControlPanel frame = EmotivControlPanel.getInstance();
-    frame.setVisible(true);
-  }
-
-  /**
    * To implement Singleton Instance of EmotivControlPanel
    * 
    * @return singleton Instance of the class
@@ -162,7 +154,10 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
   public boolean getIsClosing() {
     return isClosing;
   }
-
+  
+  public void setIsClosing(boolean val) {
+	  isClosing = val;
+  }
   /**
    * Update the subscribed observers (display graph, face panel and performanceMetric panel
    * and pass the data received)

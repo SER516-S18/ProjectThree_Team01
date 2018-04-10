@@ -22,7 +22,7 @@ import client.gui.actions.*;
  *
  */
 
-public class BoxesPanel extends JPanel {
+public class EmoStatePanel extends JPanel {
   public PerformanceMetricPanel parent;
   private int actionListenerFlag = 0;
   public int boxNumber;
@@ -30,7 +30,7 @@ public class BoxesPanel extends JPanel {
  /* 
   * Constructor for BoxPanel class
   */
- public BoxesPanel(PerformanceMetricPanel parent, String boxName,int boxNumber) {
+ public EmoStatePanel(PerformanceMetricPanel parent, String boxName,int boxNumber) {
     setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
     this.parent = parent;
     setLayout(new BorderLayout(0, 0));
@@ -38,7 +38,6 @@ public class BoxesPanel extends JPanel {
     this.boxNumber= boxNumber;
     
   }
- 
 
   /* 
   * Constructor for BoxPanel class

@@ -31,7 +31,7 @@ import util.Constants;
 
 public class ColorChooserPanel extends JDialog {
   private JPanel contentPane;
-  public BoxesPanel box;
+  public EmoStatePanel box;
   private List<JPanel> palettes = new ArrayList<JPanel>();
   public List<Color> colorArray = new ArrayList<Color>();
   private JPanel colorPanel;
@@ -39,7 +39,7 @@ public class ColorChooserPanel extends JDialog {
   /*
    * Constructor for the class
    */
-  public ColorChooserPanel(BoxesPanel box) {
+  public ColorChooserPanel(EmoStatePanel box) {
 	    this.box = box;
 	    contentPane = new JPanel();
 	    setSize(195, 100);
