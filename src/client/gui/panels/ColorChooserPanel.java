@@ -14,6 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.XYPlot;
+
 /*
  * This class is used to create a color choice palette as a drop down panel
  * 
@@ -107,6 +110,8 @@ public class ColorChooserPanel extends JDialog {
         @Override
         public void mouseClicked(MouseEvent e) {
 	          box.setBoxColor(((JPanel) e.getSource()).getBackground());
+	          XYPlot plot= box.parent.performanceGraph.getGraph().getXYPlot();
+	          plot.getRenderer().setSeriesPaint(box.boxNumber, ((JPanel) e.getSource()).getBackground());
 	          setVisible(false);
 	          dispose();
           }

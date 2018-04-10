@@ -23,15 +23,18 @@ import javax.swing.border.LineBorder;
 public class BoxesPanel extends JPanel {
   PerformanceMetricPanel parent;
   int actionListenerFlag = 0;
+  int boxNumber;
 
  /* 
   * Constructor for BoxPanel class
   */
- public BoxesPanel(PerformanceMetricPanel parent, String boxName) {
+ public BoxesPanel(PerformanceMetricPanel parent, String boxName,int boxNumber) {
     setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
     this.parent = parent;
     setLayout(new BorderLayout(0, 0));
     initializer(boxName);
+    this.boxNumber= boxNumber;
+    
   }
 
   /* 
