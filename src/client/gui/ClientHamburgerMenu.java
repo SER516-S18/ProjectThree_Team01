@@ -33,18 +33,12 @@ public class ClientHamburgerMenu extends JMenuBar {
 	applicationsOption.add(composerOption);
 	composerOption.addActionListener(new ClientActionEvents(this, "EMOTIV Xavier Composer"));
 	
-	JMenuItem screenshotOption = new JMenuItem("Save Current Screnshot");
-	applicationsOption.add(screenshotOption);
-	
 	JMenu connectOption = new JMenu("CONNECT");
 	menu.add(connectOption);
 	
 	JMenuItem connectComposer = new JMenuItem("Connect Composer");
 	connectComposer.addActionListener(new ClientActionEvents(this, "Connect Composer"));
 	connectOption.add(connectComposer);
-	
-	JMenuItem reconnectComposer = new JMenuItem("Reconnect Composer");
-	connectOption.add(reconnectComposer);
 	
 	JMenu detectionsOption = new JMenu("DETECTIONS");
 	menu.add(detectionsOption);

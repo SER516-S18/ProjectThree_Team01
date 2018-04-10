@@ -52,7 +52,6 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 	public static void main(String[] args) {
 		EmotivControlPanel frame = EmotivControlPanel.getInstance();
 		frame.setVisible(true);
-		// frame.setSize(1000,1000);
 	}
 	
 	/**
