@@ -10,8 +10,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
 /**
- * The ConsolePanel implements a JPanel to create a console. The console will be
- * able to display any message passed to it.
+ * The ConsolePanel implements a JPanel to create a console. The console will be able to
+ * display any message passed to it.
  * 
  * @author Karansher Bhangal
  * @author Group 1 #001 - #013
@@ -33,9 +33,8 @@ public class ConsolePanel extends JPanel {
   private GridLayout layout = new GridLayout(1, 1);
 
   /**
-   * This function is the constructor of the console. It generates the header and
-   * message label of the JScrollPane. It also sets the properties of the
-   * JScrollPane.
+   * This function is the constructor of the console. It generates the header and message label
+   * of the JScrollPane. It also sets the properties of the JScrollPane.
    * 
    */
   public ConsolePanel() {
@@ -52,15 +51,23 @@ public class ConsolePanel extends JPanel {
   }
 
   /**
-   * This function is used to add new message in the console and update the
-   * position of vertical scroll to the bottom.
+   * This function is used to add new message in the console and update the position of vertical
+   * scroll to the bottom.
    * 
-   * @param message. This is the message that needs to be displayed on the
-   *          console.
+   * @param message. This is the message that needs to be displayed on the console.
    * @return void.
    */
   public void updateText(String message) {
     completeMessage = completeMessage + addColor(message) + "<br/>";
+    messageDisplay = completeMessage + "</html>";
+    consoleMessageLabel.setText(messageDisplay);
+
+    int ht = consoleMessageLabel.getSize().height;
+    consoleScrollPane.getViewport().setViewPosition(new Point(0, ht));
+  }
+
+  public void updateError(String message) {
+    completeMessage = completeMessage + "<font color=red>" + message + "</font>" + "<br/>";
     messageDisplay = completeMessage + "</html>";
     consoleMessageLabel.setText(messageDisplay);
 
@@ -82,8 +89,7 @@ public class ConsolePanel extends JPanel {
   /**
    * This function is used to change the color of each line.
    * 
-   * @param message. This is the message that needs to be displayed on the
-   *          console.
+   * @param message. This is the message that needs to be displayed on the console.
    * @return message. Message with color attribute.
    */
   private String addColor(String message) {

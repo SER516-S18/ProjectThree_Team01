@@ -35,7 +35,7 @@ public class InteractivePanel extends JPanel implements EmotivObserver {
 
   private JButton sendButton;
   private JCheckBox autoResetCheckBox;
-  private JComboBox<String> playerComboBox;
+  private JComboBox<Integer> playerComboBox;
   private ComboControl emoStateInterval;
 
   private SubjectImplementation er;
@@ -78,8 +78,8 @@ public class InteractivePanel extends JPanel implements EmotivObserver {
     autoResetCheckBox.setBounds(170, 55, 115, 30);
     autoResetCheckBox.addItemListener(new ItemEvents(this));
 
-    playerComboBox = new JComboBox<String>();
-    playerComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "0", "1" }));
+    playerComboBox = new JComboBox<Integer>();
+    playerComboBox.setModel(new DefaultComboBoxModel<Integer>(new Integer[] { 0, 1 }));
     playerComboBox.setBounds(65, 10, 80, 30);
 
     emoStateInterval = new ComboControl(er, 110, 0.5, true, "Frequency");

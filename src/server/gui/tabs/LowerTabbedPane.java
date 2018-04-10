@@ -49,11 +49,11 @@ public class LowerTabbedPane extends JTabbedPane {
 
     emoStatePanel = new EmoStatePanel(er);
 
-    trainingResults = new TrainingResults();
-    trainingResults.setBounds(0, 325, 170, 195);
+    trainingResults = new TrainingResults(er);
+    trainingResults.setBounds(0, 325, 180, 195);
 
     emoLogPanel = new LogPanel();
-    emoLogPanel.setBounds(170, 325, 265, 195);
+    emoLogPanel.setBounds(190, 325, 245, 195);
 
     detectionPanel = new JPanel();
     detectionPanel.setLayout(null);

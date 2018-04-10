@@ -20,8 +20,8 @@ import server.sys.observer.PassedData;
 import util.Constants;
 
 /**
- * This class is used as a general utility for a field needing an increment and decrement
- * with a text box
+ * This class is used as a general utility for a field needing an increment and decrement with
+ * a text box
  * 
  * @author Cephas Armstrong-Mensah
  * @author Group 1 #001 - #013
@@ -67,6 +67,7 @@ public class ComboControl extends JPanel implements EmotivObserver {
 
   private void initialize(int newWidth) {
     outputTextBox = new JTextField("0.0");
+    outputTextBox.setHorizontalAlignment(SwingConstants.LEFT);
     outputTextBox.setBounds(0, 0, newWidth - 30, 30);
     outputTextBox.addActionListener(new ActionEvents(this));
 
@@ -146,6 +147,8 @@ public class ComboControl extends JPanel implements EmotivObserver {
       formatDoubleFirst(value);
       if (switcher.equals("Upper Face") || switcher.equals("Lower Face")) {
         er.updateFacialPanel(true);
+      } else if (switcher.equals("Performance")) {
+        er.updatePerformance(true);
       }
     } catch (NumberFormatException | IOException exception) {
       outputTextBox.setForeground(Color.RED);
@@ -175,6 +178,8 @@ public class ComboControl extends JPanel implements EmotivObserver {
       formatDoubleFirst(value);
       if (switcher.equals("Upper Face") || switcher.equals("Lower Face")) {
         er.updateFacialPanel(true);
+      } else if (switcher.equals("Performance")) {
+        er.updatePerformance(true);
       }
     } catch (NumberFormatException | IOException exception) {
       outputTextBox.setForeground(Constants.RED);

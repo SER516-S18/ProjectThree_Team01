@@ -1,9 +1,7 @@
 package server.sys;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 import data.EmotivData;
 import server.sys.observer.EmotivObserver;
@@ -22,8 +20,6 @@ import server.sys.observer.PassedData;
  */
 public class SubjectImplementation implements EmotivSubject {
   private EmotivData data;
-  private Iterator<String> objs;
-  private Random generator;
 
   private List<EmotivObserver> observers = new ArrayList<EmotivObserver>();
 
@@ -33,49 +29,14 @@ public class SubjectImplementation implements EmotivSubject {
   private boolean isSent;
   private boolean facial;
 
+  private boolean performance;
+
   public SubjectImplementation() {
     data = new EmotivData();
     interval = 0.0;
-    generator = new Random();
     sendButtonText = "Send";
     interactiveResetButton = false;
     isSent = false;
-  }
-
-  private void getRandomData() {
-    randomizePerformanceMetrics();
-    notifyObservers();
-  }
-
-  // This will be removed later, leaving it here for testing purposes
-  private void randomizePerformanceMetrics() {
-    objs = data.getPerformance().keys();
-    String strKey;
-    while (objs.hasNext()) {
-      strKey = objs.next();
-      switch (strKey.toLowerCase()) {
-      case "interest":
-        data.setInterest(generator.nextDouble());
-        break;
-      case "engagement":
-        data.setEngagement(generator.nextDouble());
-        break;
-      case "stress":
-        data.setStress(generator.nextDouble());
-        break;
-      case "relaxation":
-        data.setRelaxation(generator.nextDouble());
-        break;
-      case "excitement":
-        data.setExcitement(generator.nextDouble());
-        break;
-      case "focus":
-        data.setFocus(generator.nextDouble());
-        break;
-      default:
-        break;
-      }
-    }
   }
 
   public void setEmotivData(EmotivData data) {
@@ -108,6 +69,18 @@ public class SubjectImplementation implements EmotivSubject {
     notifyObservers();
   }
 
+  public void updateFacialPanel(boolean facial) {
+    this.facial = facial;
+
+    notifyObservers();
+  }
+
+  public void updatePerformance(boolean performance) {
+    this.performance = performance;
+
+    notifyObservers();
+  }
+
   @Override
   public void addToObserver(EmotivObserver o) {
     observers.add(o);
@@ -121,16 +94,10 @@ public class SubjectImplementation implements EmotivSubject {
   @Override
   public void notifyObservers() {
     PassedData passedData = new PassedData(data, sendButtonText, interval, interactiveResetButton,
-        isSent, facial);
+        isSent, facial, performance);
     for (EmotivObserver observer : observers) {
       observer.update(passedData);
     }
     isSent = false;
-  }
-
-  public void updateFacialPanel(boolean facial) {
-    this.facial = facial;
-
-    notifyObservers();
   }
 }
