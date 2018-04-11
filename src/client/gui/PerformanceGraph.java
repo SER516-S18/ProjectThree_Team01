@@ -74,6 +74,7 @@ public class PerformanceGraph extends JPanel {
     ValueAxis axis = plot.getDomainAxis();
     axis.setAutoRange(true);
     axis = plot.getRangeAxis();
+    axis.setTickLabelsVisible(false);
     plot.getRenderer().setSeriesPaint(0, Constants.MAGENTA);
     plot.getRenderer().setSeriesPaint(1, Constants.ORANGE);
     plot.getRenderer().setSeriesPaint(2, Constants.PEACH);

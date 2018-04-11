@@ -84,6 +84,7 @@ public class DisplayGraph extends JPanel {
     ValueAxis axis = plot.getDomainAxis();
     axis.setAutoRange(true);
     axis = plot.getRangeAxis();
+    axis.setTickLabelsVisible(false);
     return result;
   }
 
