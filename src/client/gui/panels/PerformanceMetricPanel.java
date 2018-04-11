@@ -25,7 +25,7 @@ import client.gui.PerformanceGraph;
 public class PerformanceMetricPanel extends JPanel {
 
   private ColorChooserPanel colorChooser;
-  private BoxesPanel boxesPanel;
+  private EmoStatePanel boxesPanel;
   private JPanel graphPanel;
   private JLabel lblHeaderName;
   private JPanel metrixPanel;
@@ -90,27 +90,27 @@ public class PerformanceMetricPanel extends JPanel {
     lblTimeMeasure.setBounds(165, 525, 80, 32);
     metrixPanel.add(lblTimeMeasure);
 
-    BoxesPanel interestPanel = new BoxesPanel(this, "Interest",0);
+    EmoStatePanel interestPanel = new EmoStatePanel(this, "Interest",0);
     interestPanel.setBounds(24, 79, 90, 90);
     metrixPanel.add(interestPanel);
 
-    BoxesPanel excitementPanel = new BoxesPanel(this, "Excitement",1);
+    EmoStatePanel excitementPanel = new EmoStatePanel(this, "Excitement",1);
     excitementPanel.setBounds(141, 79, 90, 90);
     metrixPanel.add(excitementPanel);
 
-    BoxesPanel engagementPanel = new BoxesPanel(this, "Engagement",2);
+    EmoStatePanel engagementPanel = new EmoStatePanel(this, "Engagement",2);
     engagementPanel.setBounds(24, 223, 90, 90);
     metrixPanel.add(engagementPanel);
 
-    BoxesPanel stressPanel = new BoxesPanel(this, "Stress",3);
+    EmoStatePanel stressPanel = new EmoStatePanel(this, "Stress",3);
     stressPanel.setBounds(141, 223, 90, 90);
     metrixPanel.add(stressPanel);
 
-    BoxesPanel relaxationPanel = new BoxesPanel(this, "Relaxation",4);
+    EmoStatePanel relaxationPanel = new EmoStatePanel(this, "Relaxation",4);
     relaxationPanel.setBounds(24, 367, 90, 90);
     metrixPanel.add(relaxationPanel);
 
-    BoxesPanel focusPanel = new BoxesPanel(this, "Focus",5);
+    EmoStatePanel focusPanel = new EmoStatePanel(this, "Focus",5);
     focusPanel.setBounds(141, 367, 90, 90);
     metrixPanel.add(focusPanel);
 

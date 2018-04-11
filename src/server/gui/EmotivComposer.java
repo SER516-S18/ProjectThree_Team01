@@ -1,5 +1,7 @@
 package server.gui;
 
+import java.time.LocalTime;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -9,13 +11,14 @@ import org.glassfish.tyrus.server.Server;
 
 import server.gui.actions.WindowEvents;
 import server.gui.panels.HamburgerMenu;
+import server.gui.panels.LogPanel;
 import server.gui.panels.MenuBarPanel;
 import server.gui.panels.SignalMenu;
 import server.gui.tabs.LowerTabbedPane;
 import server.gui.tabs.UpperTabbedPane;
-import server.sys.SubjectImplementation;
 import server.sys.ServerThread;
 import server.sys.ServerWebSocket;
+import server.sys.SubjectImplementation;
 import util.Constants;
 
 /**
@@ -32,7 +35,6 @@ public class EmotivComposer extends JFrame {
 
   private static final long serialVersionUID = 6196061116172281774L;
   private static EmotivComposer instance = null;
-  protected static boolean isStarted = false;
 
   private UpperTabbedPane upperTabbedPane;
   private LowerTabbedPane lowerTabbedPane;
@@ -92,22 +94,29 @@ public class EmotivComposer extends JFrame {
   /**
    * This starts the tyrus server using the websocket class ServerWebSocket
    */
-  private boolean startServer() {
+  private void startServer() {
     Server server = new Server(Constants.URI, Constants.PORT, Constants.LINK, ServerWebSocket.class);
     try {
       server.start();
-      System.out.println("Server started successfully...");
-      isStarted = true;
+      updateConsolePanel("Server started successfully...", false);
       new Thread(new ServerThread(server)).start();
     } catch (DeploymentException e) {
+      updateConsolePanel(e.getLocalizedMessage(), true);
       throw new RuntimeException(e);
     }
-    return isStarted;
+  }
+
+  private void updateConsolePanel(String message, boolean isError) {
+    if (isError) {
+      LogPanel.getConsolePanel().updateError(message + "&emsp;&emsp&lt;" + LocalTime.now() + "&gt;");
+    } else {
+      LogPanel.getConsolePanel().updateText(message + "&emsp;&emsp&lt;" + LocalTime.now() + "&gt;");
+    }
   }
 
   public synchronized void closeThread() {
     notify();
-    System.out.println("Server is closing...");
+    updateConsolePanel("Server is closing...", true);
     System.exit(0);
   }
 

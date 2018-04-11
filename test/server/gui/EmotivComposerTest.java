@@ -9,6 +9,6 @@ class EmotivComposerTest {
 
   @Test
   public void testStartServer() {
-    assertTrue(EmotivComposer.isStarted);
+    assertTrue(EmotivComposer.getInstance() != null);
   }
 }

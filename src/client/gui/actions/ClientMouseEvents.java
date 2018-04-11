@@ -46,8 +46,8 @@ public class ClientMouseEvents implements MouseListener {
 	  @Override
 	  public void mouseClicked(MouseEvent arg0) {
 		  
-		  if(actionClass instanceof BoxesPanel && switcher == "V"){
-			  ((BoxesPanel) actionClass).createColorChooser();
+		  if(actionClass instanceof EmoStatePanel && switcher == "V"){
+			  ((EmoStatePanel) actionClass).createColorChooser();
 		  }
 		  
 		  if(actionClass instanceof ColorChooserPanel){

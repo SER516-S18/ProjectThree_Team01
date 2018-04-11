@@ -43,8 +43,6 @@ public class MouseEvents implements MouseListener {
     }
 
     if (actionClass instanceof ComboControl) {
-      System.out.println("They all come here");
-      System.out.println(this.switcher);
       if (label.getText().trim() == "v")
         ((ComboControl) actionClass).decrementOutputText(switcher);
       else

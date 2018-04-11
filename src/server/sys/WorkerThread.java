@@ -12,8 +12,8 @@ import server.sys.observer.EmotivObserver;
 import server.sys.observer.PassedData;
 
 /**
- * The purpose of this class is to implement a working thread to handle the server
- * interaction by sending random data to the client on the other end.
+ * The purpose of this class is to implement a working thread to handle the server interaction
+ * by sending random data to the client on the other end.
  * 
  * @author Cephas Armstrong-Mensah
  * @author Group 1 #001 - #013
@@ -71,7 +71,7 @@ public class WorkerThread implements Runnable, EmotivObserver {
           er.setIsSent(true);
         } else {
           interval = 5000;
-          updateConsolePanel("Execution suspended, fix error to resume");
+          updateConsolePanel("Execution suspended, fix error to resume", true);
         }
 
         try {
@@ -93,18 +93,22 @@ public class WorkerThread implements Runnable, EmotivObserver {
     try {
       temp = clients.get(0);
       ServerWebSocket.sendMessage(temp, data.toString());
-      updateConsolePanel(String.format("Sent data to client: %s", temp.getId()));
+      updateConsolePanel(String.format("Sent data to client: %s", temp.getId()), false);
     } catch (IOException e) {
-      updateConsolePanel("Server or Client unable to exchange details...");
+      updateConsolePanel("Server or Client unable to exchange details...", true);
     } catch (NullPointerException e) {
-      updateConsolePanel("Session not bound to this connection...");
+      updateConsolePanel("Session not bound to this connection...", true);
     } catch (IndexOutOfBoundsException e) {
-      updateConsolePanel("Client not found...");
+      updateConsolePanel("Client not found...", true);
     }
   }
 
-  private void updateConsolePanel(String message) {
-    LogPanel.getConsolePanel().updateText(message + "&emsp;&emsp&lt;" + LocalTime.now() + "&gt;");
+  private void updateConsolePanel(String message, boolean isError) {
+    if (isError) {
+      LogPanel.getConsolePanel().updateError(message + "&emsp;&emsp&lt;" + LocalTime.now() + "&gt;");
+    } else {
+      LogPanel.getConsolePanel().updateText(message + "&emsp;&emsp&lt;" + LocalTime.now() + "&gt;");
+    }
   }
 
   @Override

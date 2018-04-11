@@ -57,9 +57,6 @@ public class FacialPanel extends JPanel implements EmotivObserver {
     initialize();
   }
 
-  /**
-   * Initialize the contents of the frame.
-   */
   private void initialize() {
     upperfaceupdownButton = new ComboControl(er, 70, 0.1, false, "Upper Face");
     upperfaceupdownButton.setBounds(135, 30, 70, 30);
@@ -147,8 +144,6 @@ public class FacialPanel extends JPanel implements EmotivObserver {
     EmotivData data = er.getEmotivData();
     data.resetExpressiveLowerData();
 
-    System.out.println("Lowerface: " + key + " - " + value);
-
     if (key.equals("Smirk Right")) {
       data.setSmirkRight(value);
     } else if (key.equals("Smirk Left")) {
@@ -174,14 +169,11 @@ public class FacialPanel extends JPanel implements EmotivObserver {
   private void updateUpperFaceAction(String key, double value) {
     EmotivData data = er.getEmotivData();
     data.resetExpressiveUpperData();
-    System.out.println("Upperface: " + key + " - " + value);
 
     if (key.equals("Furrow Brow")) {
       data.setEyebrowFurrow(value);
     } else if (key.equals("Raise Brow")) {
       data.setEyebrowRaise(value);
-    } else {
-      System.out.println("Not FOUND: " + key + " - " + value);
     }
 
     er.updateFacialPanel(false);
@@ -207,10 +199,9 @@ public class FacialPanel extends JPanel implements EmotivObserver {
         data.setRightWink(value);
       } else if (key.equals("Wink Left")) {
         data.setLeftWink(value);
-      } else {
-        System.out.println("Not FOUND: " + key + " - " + value);
       }
     }
+
     er.notifyObservers();
   }
   
@@ -255,8 +246,6 @@ public class FacialPanel extends JPanel implements EmotivObserver {
       eyeActiveValue = 0;
     }
 
-    System.out.println("Eye action: " + eyeActiveValue);
-
     updateEyeAction(eyecomboBox.getSelectedItem().toString(), eyeActiveValue);
   }
   
@@ -264,7 +253,6 @@ public class FacialPanel extends JPanel implements EmotivObserver {
    * Eyebutton actionlistener. When this button is clicked, the value of eye is changed.
    */
   public void activateButtonAction() {
-    System.out.println("Eye active value: " + eyeActiveValue);
     if (eyeActiveValue == 0) {
       eyeActiveValue = 1;
     } else {
@@ -284,7 +272,6 @@ public class FacialPanel extends JPanel implements EmotivObserver {
     }
 
     if (passedData.isSent) {
-      System.out.println("Is sent set: " + passedData.isSent);
       if (resetCheckBox.isSelected()) {
         System.out.println("Reset");
         if (eyeActive.isSelected()) {
