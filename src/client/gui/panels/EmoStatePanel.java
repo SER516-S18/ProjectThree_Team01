@@ -46,16 +46,19 @@ public class EmoStatePanel extends JPanel {
     String initial = boxName.substring(0, 2);
     setSize(90, 90);
     JLabel lblShortName = new JLabel(initial);
+    lblShortName.setForeground(Color.WHITE);
     lblShortName.setVerticalAlignment(SwingConstants.TOP);
     lblShortName.setFont(new Font("Century", Font.BOLD, 30));
     lblShortName.setHorizontalAlignment(SwingConstants.CENTER);
 
     JLabel lblFullName = new JLabel(boxName);
+    lblFullName.setForeground(Color.WHITE);
     lblFullName.setVerticalAlignment(SwingConstants.TOP);
     lblFullName.setFont(new Font("Century", Font.PLAIN, 14));
     lblFullName.setHorizontalAlignment(SwingConstants.CENTER);
 
     JLabel lblDropDown = new JLabel("V    ");
+    lblDropDown.setForeground(Color.WHITE);
     lblDropDown.addMouseListener(new ClientMouseEvents(this, "V"));
     lblDropDown.setSize(20, 20);
     lblDropDown.setFont(new Font("Lucida Sans Unicode", Font.BOLD, 10));
