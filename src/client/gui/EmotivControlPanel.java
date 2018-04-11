@@ -112,13 +112,13 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
     timerLabel = new JLabel();
     ImageIcon timerIcon = new ImageIcon("img/icons8-timer-19.png");
     timerLabel.setIcon(timerIcon);
-    timerLabel.setBounds(830, 0, 50, 50);
+    timerLabel.setBounds(800, 0, 50, 50);
     contentPane.add(timerLabel);
 
     timerValue = new JLabel();
     timerValue.setFont(new Font("Lucida Grande", Font.BOLD, 17));
     timerValue.setText("0");
-    timerValue.setBounds(860, 0, 50, 50);
+    timerValue.setBounds(830, 0, 80, 50);
     timerValue.setForeground(Color.LIGHT_GRAY);
     contentPane.add(timerValue);
     timerValue.setVisible(false);
