@@ -70,22 +70,6 @@ public class PerformanceMetricPanel extends JPanel {
     lblParameters.setFont(new Font("Arial", Font.PLAIN, 15));
     metrixPanel.add(lblParameters);
 
-    JLabel lblDisplayLength = new JLabel("  Display Length:");
-    lblDisplayLength.setFont(new Font("Arial", Font.PLAIN, 15));
-    lblDisplayLength.setBounds(0, 525, 130, 32);
-    metrixPanel.add(lblDisplayLength);
-
-    JLabel lblTime = new JLabel("2");
-    lblTime.setHorizontalAlignment(SwingConstants.CENTER);
-    lblTime.setFont(new Font("Arial", Font.PLAIN, 15));
-    lblTime.setBounds(130, 525, 35, 32);
-    metrixPanel.add(lblTime);
-
-    JLabel lblTimeMeasure = new JLabel(" seconds");
-    lblTimeMeasure.setFont(new Font("Arial", Font.PLAIN, 15));
-    lblTimeMeasure.setBounds(165, 525, 80, 32);
-    metrixPanel.add(lblTimeMeasure);
-
     EmoStatePanel interestPanel = new EmoStatePanel(this, "Interest",0);
     interestPanel.setBounds(24, 79, 90, 90);
     interestPanel.setBackground(Constants.DEEPBLUE);
@@ -115,6 +99,31 @@ public class PerformanceMetricPanel extends JPanel {
     focusPanel.setBounds(141, 367, 90, 90);
     focusPanel.setBackground(Constants.PINK);
     metrixPanel.add(focusPanel);
+    
+
+    JLabel lblInterest = new JLabel("Interest");
+    lblInterest.setBounds(524, 428, 61, 16);
+    graphPanel.add(lblInterest);
+    
+    JLabel lblExcitement = new JLabel("Excitement");
+    lblExcitement.setBounds(524, 358, 110, 16);
+    graphPanel.add(lblExcitement);
+    
+    JLabel lblEngagement = new JLabel("Engagement");
+    lblEngagement.setBounds(524, 283, 124, 16);
+    graphPanel.add(lblEngagement);
+    
+    JLabel lblStress = new JLabel("Stress");
+    lblStress.setBounds(522, 214, 61, 16);
+    graphPanel.add(lblStress);
+    
+    JLabel lblRelaxation = new JLabel("Relaxation");
+    lblRelaxation.setBounds(522, 138, 110, 27);
+    graphPanel.add(lblRelaxation);
+    
+    JLabel lblFocus = new JLabel("Focus");
+    lblFocus.setBounds(522, 76, 61, 16);
+    graphPanel.add(lblFocus);
 
     add(metrixPanel);
   }

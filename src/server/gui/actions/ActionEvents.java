@@ -39,7 +39,6 @@ public class ActionEvents implements ActionListener {
     } else if (actionClass instanceof InteractivePanel) {
       ((InteractivePanel) actionClass).triggerStartStopSend();
     } else if (actionClass instanceof FacialPanel) {
-      System.out.println("Something called us");
       if (item == "upperfaceComboBox") {
         ((FacialPanel) actionClass).upperfaceAction();
       } else if (item == "lowerfaceComboBox") {
