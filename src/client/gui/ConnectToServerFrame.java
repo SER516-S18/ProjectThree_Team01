@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 import client.gui.actions.ClientActionEvents;
 import client.sys.ClientThread;
+import util.Constants;
 
 /**
  * 
@@ -90,10 +91,10 @@ public class ConnectToServerFrame extends JFrame {
    * @return True if port number entered is valid
    */
   private Boolean checkValidPortNumber() {
-    String portErrorMessage = "Please enter a port number between 1024 and 65535!";
+    String portErrorMessage = "Server is not connected on this port, consult the documentation!";
     try {
       portNumber = Integer.parseInt(portTextField.getText());
-      if (portNumber < 1024 || portNumber > 65535) {
+      if (portNumber != Constants.PORT) {
         JOptionPane.showMessageDialog(new JFrame(), portErrorMessage);
         portTextField.setText("");
         return false;
