@@ -65,25 +65,24 @@ public class ColorChooserPanel extends JDialog {
   private void setColors() {
 	  
     setUndecorated(true);
-    colorArray.add(Constants.GREEN);
-    colorArray.add(Constants.RED);
-    colorArray.add(Constants.PINK);
-    colorArray.add(Constants.LIGHTBLUE);
-    colorArray.add(Constants.PEACH);
+    colorArray.add(Constants.LIGHTRED);
+    colorArray.add(Constants.CORAL);
+    colorArray.add(Constants.ORANGE);
     colorArray.add(Constants.YELLOW);
     colorArray.add(Constants.CYAN);
     colorArray.add(Constants.BLUE);
-    colorArray.add(Constants.LIGHTPINK);
-    colorArray.add(Constants.MAGENTA);
-    colorArray.add(Constants.ORANGE);
-    colorArray.add(Constants.BROWN);
+    colorArray.add(Constants.LIGHTBLUE);
+    colorArray.add(Constants.DEEPBLUE);
+    colorArray.add(Constants.NAVYBLUE);
+    colorArray.add(Constants.SLATE);
+    colorArray.add(Constants.PINK);
     colorArray.add(Constants.MAROON);
     colorArray.add(Constants.LIGHTGREEN);
-    colorArray.add(Constants.WHITE);
-    colorArray.add(Constants.BLACK);
-    colorArray.add(Constants.VIOLET);
+    colorArray.add(Constants.GREEN);
+    colorArray.add(Constants.BROWN);
     colorArray.add(Constants.CREAM);
-    
+    colorArray.add(Constants.PEACH);
+    colorArray.add(Constants.DARKGRAY);
   }
 
  /*

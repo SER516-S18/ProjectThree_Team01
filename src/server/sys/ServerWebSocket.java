@@ -32,7 +32,7 @@ public class ServerWebSocket {
   public EmotivData emotivData = new EmotivData();
 
   static List<Session> clients = Collections.synchronizedList(new ArrayList<Session>());
-
+  
   @OnOpen
   public void onOpen(Session session) {
     if (!clients.contains(session)) {

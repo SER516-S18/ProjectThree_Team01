@@ -123,6 +123,11 @@ public class FacialPanel extends JPanel implements EmotivObserver {
     add(eyeActiveButton);
   }
 
+  /**
+   * If auto reset is checked, the activate button will replace the activate radiobutton
+   * 
+   * @param isButton auto reset is checked or not
+   */
   private void replaceRadioButton(boolean isButton) {
     if (isButton) {
       eyeActive.setVisible(false);
@@ -133,6 +138,12 @@ public class FacialPanel extends JPanel implements EmotivObserver {
     }
   }
 
+  /**
+   * Assign current lower facial value to specific lower facial item
+   * 
+   * @param key the item is selected right now
+   * @param value current facial value
+   */
   private void updateLowerFaceAction(String key, double value) {
     EmotivData data = er.getEmotivData();
     data.resetExpressiveLowerData();
@@ -154,6 +165,12 @@ public class FacialPanel extends JPanel implements EmotivObserver {
     er.updateFacialPanel(false);
   }
 
+  /**
+   * Assign current upper facial value to specific upper facial item
+   * 
+   * @param key the item is selected right now
+   * @param value current facial value
+   */
   private void updateUpperFaceAction(String key, double value) {
     EmotivData data = er.getEmotivData();
     data.resetExpressiveUpperData();
@@ -167,6 +184,12 @@ public class FacialPanel extends JPanel implements EmotivObserver {
     er.updateFacialPanel(false);
   }
 
+  /**
+   * Assign current eye facial value to specific eye facial item
+   * 
+   * @param key the item is selected right now
+   * @param value current facial value
+   */
   private void updateEyeAction(String key, int value) {
     EmotivData data = er.getEmotivData();
     data.resetExpressiveEyeData();
@@ -184,12 +207,12 @@ public class FacialPanel extends JPanel implements EmotivObserver {
         data.setLeftWink(value);
       }
     }
-
     er.notifyObservers();
   }
 
   /**
-   * This method controls the upper face action area
+   * Upperface comboBox actionlistener. When the item is select, it stores current item's
+   * name and current value.
    */
   public void upperfaceAction() {
     String item = upperfaceComboBox.getSelectedItem().toString();
@@ -199,7 +222,8 @@ public class FacialPanel extends JPanel implements EmotivObserver {
   }
 
   /**
-   * This method controls the lower face action area
+   * Lowerface comboBox actionlistener. When the item is select, it stores current item's
+   * name and current value.
    */
   public void lowerfaceAction() {
     String item = lowerfaceComboBox.getSelectedItem().toString();
@@ -209,7 +233,8 @@ public class FacialPanel extends JPanel implements EmotivObserver {
   }
 
   /**
-   * This method controls the selected item for the Eye area combo item
+   * Eye comboBox actionlistener. When the item is select, it stores current item's name and
+   * current value.
    */
   public void eyecomboBoxAction() {
     String item = eyecomboBox.getSelectedItem().toString();
@@ -231,6 +256,7 @@ public class FacialPanel extends JPanel implements EmotivObserver {
 
   /**
    * This method controls the action performed when the Activate button is shown and clicked
+   * 
    */
   public void activateButtonAction() {
     if (eyeActiveValue == 0) {

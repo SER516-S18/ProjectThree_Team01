@@ -22,8 +22,8 @@ import server.sys.SubjectImplementation;
 import util.Constants;
 
 /**
- * The purpose of this class is to provide the GUI handler for the server and serves as the
- * main interaction between the user, server and client.
+ * The purpose of this class is to provide the GUI handler for the server and serves as
+ * the main interaction between the user, server and client.
  * 
  * @author Cephas Armstrong-Mensah
  * @author Group 1 #001 - #013
@@ -61,7 +61,7 @@ public class EmotivComposer extends JFrame {
 
     contentPane = new JPanel();
     contentPane.setBounds(0, 0, 450, 800);
-    contentPane.setBackground(Constants.PEACH);
+    contentPane.setBackground(Constants.PEACH_S);
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     contentPane.setLayout(null);
 
