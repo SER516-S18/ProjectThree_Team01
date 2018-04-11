@@ -7,21 +7,19 @@ import interfaces.ClientObservable;
 import interfaces.ClientObserver;
 
 /**
+ * Observable - This class is the subject that is observed to get data from the server.
+ * Uses Singleton pattern so that the same instance is used by websocket and the
+ * observers.
  * 
  * @author Shilpa Bhat
  * 
- * Observable - This class is the subject that is
- * observed to get data from the server.
- * Uses Singleton pattern so that the same instance
- * is used by websocket and the observers.
  */
 public class ClientSubject implements ClientObservable {
 
   ArrayList<ClientObserver> observerList = new ArrayList<>();
   EmotivData emotivData;
   private static ClientSubject subjectInstance;
-  
-  //update the observer list about the incoming data.
+
   public void updateObservers(EmotivData data) {
     System.out.println("Are we here then: " + data.getExcitementLongTerm());
     emotivData = data;
@@ -30,7 +28,7 @@ public class ClientSubject implements ClientObservable {
 
   private ClientSubject() {
   }
-  
+
   /**
    * @return the singleton instance of the class
    */
@@ -40,18 +38,20 @@ public class ClientSubject implements ClientObservable {
     }
     return subjectInstance;
   }
-  
+
   /*
    * (non-Javadoc)
+   * 
    * @see interfaces.ClientObservable#addObserver(interfaces.ClientObserver)
    */
   @Override
   public void addObserver(ClientObserver observer) {
     observerList.add(observer);
   }
-  
+
   /*
    * (non-Javadoc)
+   * 
    * @see interfaces.ClientObservable#removeObserver(interfaces.ClientObserver)
    */
   @Override
@@ -59,9 +59,10 @@ public class ClientSubject implements ClientObservable {
     observerList.remove(observer);
 
   }
-  
+
   /*
    * (non-Javadoc)
+   * 
    * @see interfaces.ClientObservable#notifyObserver(java.util.ArrayList)
    */
   @Override

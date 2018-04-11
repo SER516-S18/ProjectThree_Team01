@@ -1,4 +1,5 @@
 package client.gui;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -10,14 +11,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
+
 import org.jfree.chart.ChartPanel;
+
 import client.gui.actions.ClientWindowEvents;
 import client.gui.panels.PerformanceMetricPanel;
 import client.sys.ClientSubject;
 import data.EmotivData;
 import interfaces.ClientObserver;
 
-/*
+/**
  * This is the class that contains the main and launches the entire application
  * 
  * @author Group 1 #001 - #013
@@ -28,6 +31,7 @@ import interfaces.ClientObserver;
 
 public class EmotivControlPanel extends JFrame implements ClientObserver {
   private static final long serialVersionUID = 8528760467775723790L;
+
   private JPanel contentPane;
   private JPanel facialExpressionPanel;
   private DisplayGraph displayGraph;
@@ -58,7 +62,7 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 
   private EmotivControlPanel() {
 
-	this.setTitle("Emotiv Xavier Control Panel");
+    this.setTitle("Emotiv Xavier Control Panel");
     addWindowListener(new ClientWindowEvents(this));
     setBounds(100, 100, 982, 650);
     menu = new ClientHamburgerMenu();
@@ -153,10 +157,11 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
   public boolean getIsClosing() {
     return isClosing;
   }
-  
+
   public void setIsClosing(boolean val) {
-	  isClosing = val;
+    isClosing = val;
   }
+
   /**
    * Update the subscribed observers (display graph, face panel and performanceMetric panel
    * and pass the data received)
@@ -188,8 +193,8 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
    * @param data - gets the data from server for the interval values on the Client panel
    */
   private void updateTimerValue(EmotivData data) {
-	DecimalFormat dc = new DecimalFormat("#.00"); 
-	timerValue.setText(dc.format(data.getTimer()));
+    DecimalFormat dc = new DecimalFormat("#.00");
+    timerValue.setText(dc.format(data.getTimer()));
     repaint();
   }
 }

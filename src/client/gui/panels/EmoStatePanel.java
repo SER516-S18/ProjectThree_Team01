@@ -3,18 +3,17 @@ package client.gui.panels;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import client.gui.actions.*;
+import client.gui.actions.ClientMouseEvents;
 
-/*
- * This class is used to create a panel for the Color chooser section in the Performance Metrics frame
+/**
+ * This class is used to create a panel for the Color chooser section in the Performance
+ * Metrics frame
  * 
  * @author Group 1 #001 - #013
  * @version 1.0
@@ -23,25 +22,26 @@ import client.gui.actions.*;
  */
 
 public class EmoStatePanel extends JPanel {
+  private static final long serialVersionUID = 8834818931023364414L;
+
   public PerformanceMetricPanel parent;
-  private int actionListenerFlag = 0;
   public int boxNumber;
 
- /* 
-  * Constructor for BoxPanel class
-  */
- public EmoStatePanel(PerformanceMetricPanel parent, String boxName,int boxNumber) {
+  /*
+   * Constructor for BoxPanel class
+   */
+  public EmoStatePanel(PerformanceMetricPanel parent, String boxName, int boxNumber) {
     setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
     this.parent = parent;
     setLayout(new BorderLayout(0, 0));
     initializer(boxName);
-    this.boxNumber= boxNumber;
-    
+    this.boxNumber = boxNumber;
+
   }
 
-  /* 
-  * Constructor for BoxPanel class
-  */
+  /*
+   * Constructor for BoxPanel class
+   */
   public void initializer(String boxName) {
     String initial = boxName.substring(0, 2);
     setSize(90, 90);
@@ -65,7 +65,7 @@ public class EmoStatePanel extends JPanel {
     add(lblShortName, BorderLayout.CENTER);
     add(lblFullName, BorderLayout.SOUTH);
   }
-  
+
   /*
    * Method to set the background of the panel
    */
@@ -74,7 +74,7 @@ public class EmoStatePanel extends JPanel {
   }
 
   /*
-   * Method to create a ColorChooserPanel class object with relative positioning 
+   * Method to create a ColorChooserPanel class object with relative positioning
    */
   public void createColorChooser() {
     ColorChooserPanel cc = new ColorChooserPanel(this);

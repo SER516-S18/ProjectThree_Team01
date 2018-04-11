@@ -9,6 +9,7 @@ import javax.swing.SwingConstants;
 
 import client.sys.Faces;
 import data.EmotivData;
+import util.Constants;
 
 /**
  * The FacePanel implements a JPanel to create a Panel for displaying different facial
@@ -29,7 +30,7 @@ public class FacePanel extends JPanel {
 
   public FacePanel() {
     setBounds(0, 0, 450, 300);
-    setBackground(Color.white);
+    setBackground(Constants.WHITE);
     setLayout(null);
     initialize();
   }

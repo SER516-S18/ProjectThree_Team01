@@ -15,8 +15,8 @@ import client.sys.DisplayThread;
 import data.EmotivData;
 
 /**
- * This class represents the graph panel It contains the graph, dataset and
- * other chart related parameters
+ * This class represents the graph panel It contains the graph, dataset and other chart
+ * related parameters
  *
  * @author Jahnavi Bantupalli
  * @version 1.0
@@ -24,6 +24,8 @@ import data.EmotivData;
  * 
  */
 public class DisplayGraph extends JPanel {
+  private static final long serialVersionUID = -7185429600066938955L;
+
   private JFreeChart graph;
   private TimeSeriesCollection dataset;
   private TimeSeries graphSeries[];
@@ -31,7 +33,8 @@ public class DisplayGraph extends JPanel {
   private String channelNames[];
   private static DisplayThread displayThread;
 
-  /*Initializing the channels for the plot of facial expressions.
+  /*
+   * Initializing the channels for the plot of facial expressions.
    * 
    */
   public DisplayGraph() {
@@ -57,26 +60,28 @@ public class DisplayGraph extends JPanel {
     }
     graph = createChart(dataset);
   }
-/*This function returns the graph.
- * 
- */
+
+  /*
+   * This function returns the graph.
+   * 
+   */
   public JFreeChart getGraph() {
-	return graph;
+    return graph;
   }
-  
-  /*This function returns the chart panel. 
+
+  /*
+   * This function returns the chart panel.
    * 
    */
   public ChartPanel getChartPanel() {
-		// TODO Auto-generated method stub
-		
-		return chartPanel;
-	}
+    // TODO Auto-generated method stub
 
+    return chartPanel;
+  }
 
-/**
+  /**
    * This function creates the chart with necessary parameters.
-*/
+   */
   private JFreeChart createChart(final XYDataset dataset) {
     final JFreeChart result = ChartFactory.createTimeSeriesChart("Plot", "Time", "Value", dataset, true,
         true, false);

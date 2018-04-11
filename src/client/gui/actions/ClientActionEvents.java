@@ -23,7 +23,6 @@ import client.gui.EmotivControlPanel;
  * @since 09APRIL2018
  *
  */
-
 public class ClientActionEvents implements ActionListener {
   private Component actionClass;
   private String item;

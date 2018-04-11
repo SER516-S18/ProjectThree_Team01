@@ -3,8 +3,6 @@ package client.gui.panels;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,13 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.XYPlot;
-
-import client.gui.actions.*;
+import client.gui.actions.ClientMouseEvents;
 import util.Constants;
 
-/*
+/**
  * This class is used to create a color choice palette as a drop down panel
  * 
  * @author Group 1 #001 - #013
@@ -30,26 +25,29 @@ import util.Constants;
  */
 
 public class ColorChooserPanel extends JDialog {
+  private static final long serialVersionUID = 7989606257210515901L;
+
   private JPanel contentPane;
   public EmoStatePanel box;
   private List<JPanel> palettes = new ArrayList<JPanel>();
   public List<Color> colorArray = new ArrayList<Color>();
   private JPanel colorPanel;
-  
+
   /*
    * Constructor for the class
    */
   public ColorChooserPanel(EmoStatePanel box) {
-	    this.box = box;
-	    contentPane = new JPanel();
-	    setSize(195, 100);
-	    setContentPane(contentPane);
-	    setColors();
-	    colorChooser();
+    this.box = box;
+    contentPane = new JPanel();
+    setSize(195, 100);
+    setContentPane(contentPane);
+    setColors();
+    colorChooser();
   }
 
   /*
-   * Method that calls the setColor method which creates the palette and the colorChooser method which creates the entire panel
+   * Method that calls the setColor method which creates the palette and the colorChooser
+   * method which creates the entire panel
    */
   public ColorChooserPanel() {
     contentPane = new JPanel();
@@ -63,7 +61,7 @@ public class ColorChooserPanel extends JDialog {
    * Method to create and add colors to the palette
    */
   private void setColors() {
-	  
+
     setUndecorated(true);
     colorArray.add(Constants.LIGHTRED);
     colorArray.add(Constants.CORAL);
@@ -85,26 +83,26 @@ public class ColorChooserPanel extends JDialog {
     colorArray.add(Constants.DARKGRAY);
   }
 
- /*
-  * Method that creates the entire panel along with the palette
-  */
+  /*
+   * Method that creates the entire panel along with the palette
+   */
   public void colorChooser() {
-	  
+
     int x = 8;
-	int y = 8;
-	    
+    int y = 8;
+
     setBounds(0, 0, 125, 68);
     contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
     contentPane.setLayout(null);
     contentPane.setLayout(new BorderLayout(0, 0));
-    
+
     JPanel outerPanel = new JPanel();
     outerPanel.setBounds(97, 6, 1, 1);
     contentPane.add(outerPanel);
     colorPanel = new JPanel();
     Color defaultColor = new Color(255, 0, 0);
     colorPanel.setBackground(defaultColor);
-    
+
     for (int i = 0; i < 18; i++) {
       colorPanel = new JPanel();
       colorPanel.setBackground(colorArray.get(i));
@@ -119,7 +117,7 @@ public class ColorChooserPanel extends JDialog {
       x += 8 + 10;
       outerPanel.add(colorPanel);
     }
-    
+
     contentPane.add(outerPanel);
     outerPanel.setLayout(null);
     JLabel lblClose = new JLabel("X");

@@ -1,9 +1,7 @@
 package client.gui;
-import java.awt.Color;
 
-import client.gui.panels.EmoStatePanel;
-import client.sys.*;
 import javax.swing.JPanel;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -12,38 +10,43 @@ import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
+
+import client.sys.PerformanceThread;
 import data.EmotivData;
 import util.Constants;
 
 /**
- * This class represents the graph panel It contains the graph, dataset and
- * other chart related parameters
+ * This class represents the graph panel It contains the graph, dataset and other chart
+ * related parameters
  * 
  */
 public class PerformanceGraph extends JPanel {
+  private static final long serialVersionUID = -7209444642194896831L;
+
   private JFreeChart graph;
   private TimeSeriesCollection dataset;
   private TimeSeries graphSeries[];
   private ChartPanel chartPanel;
   private String channelNames[];
   private static PerformanceThread performanceThread;
-  
+
   /*
    * This function returns the performance graph
    */
   public JFreeChart getGraph() {
-	return graph;
-}
+    return graph;
+  }
+
   /*
    * This function returns the chart panel
    */
   public ChartPanel getChartPanel() {
-		return chartPanel;
-	}
+    return chartPanel;
+  }
 
   /*
-  * Intializing the performance graph parameters
-  */
+   * Intializing the performance graph parameters
+   */
   public PerformanceGraph() {
     super();
     graphSeries = new TimeSeries[6];
@@ -61,15 +64,15 @@ public class PerformanceGraph extends JPanel {
       graphSeries[i] = new TimeSeries(channelNames[i]);
       dataset.addSeries(graphSeries[i]);
     }
-       graph = createChart(dataset);
+    graph = createChart(dataset);
   }
 
   /**
    * This function creates the chart with necessary parameters.
    */
   private JFreeChart createChart(final XYDataset dataset) {
-    graph = ChartFactory.createTimeSeriesChart("Performance Plot", "Time", "Value", dataset, true,
-        true, false);
+    graph = ChartFactory.createTimeSeriesChart("Performance Plot", "Time", "Value", dataset, true, true,
+        false);
     final XYPlot plot = graph.getXYPlot();
     ValueAxis axis = plot.getDomainAxis();
     axis.setAutoRange(true);
@@ -82,8 +85,6 @@ public class PerformanceGraph extends JPanel {
     plot.getRenderer().setSeriesPaint(4, Constants.CORAL);
     plot.getRenderer().setSeriesPaint(5, Constants.PINK);
 
-    
-    
     return graph;
   }
 
@@ -91,10 +92,10 @@ public class PerformanceGraph extends JPanel {
    * This method starts the thread each time a value is received
    */
   public void updateGraph(EmotivData data) {
-	    if (performanceThread == null) {
-	        performanceThread = new PerformanceThread(data, graphSeries, dataset);
-	      }
-        new Thread(performanceThread).start();
-
+    if (performanceThread == null) {
+      performanceThread = new PerformanceThread(data, graphSeries, dataset);
     }
+    new Thread(performanceThread).start();
+
   }
+}
