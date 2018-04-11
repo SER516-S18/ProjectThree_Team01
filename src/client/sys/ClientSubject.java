@@ -12,6 +12,7 @@ import interfaces.ClientObserver;
  * observers.
  * 
  * @author Shilpa Bhat
+ * @author
  * 
  */
 public class ClientSubject implements ClientObservable {
