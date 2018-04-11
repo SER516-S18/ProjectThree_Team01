@@ -13,7 +13,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
  * @since 03APR2018
  *
  */
-public class MainHandler {
+public class ServerMainHandler {
   private static EmotivComposer frame;
 
   public static void main(String[] args) {

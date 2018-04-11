@@ -11,8 +11,8 @@ import client.sys.Faces;
 import data.EmotivData;
 
 /**
- * The FacePanel implements a JPanel to create a Panel for displaying different
- * facial expressions
+ * The FacePanel implements a JPanel to create a Panel for displaying different facial
+ * expressions
  * 
  * @author Karansher Bhangal
  * @author Group 1 #001 - #013
@@ -26,9 +26,6 @@ public class FacePanel extends JPanel {
   private JLabel JLabelUpperFace;
   private JLabel JLabelLowerFace;
 
-  /*
-   * Constructor for the class
-   */
   public FacePanel() {
     setBounds(0, 0, 450, 300);
     setBackground(Color.white);
@@ -69,7 +66,6 @@ public class FacePanel extends JPanel {
    * Method to update the face images
    */
   public void updateFace(EmotivData emotiveData) {
-
     ImageIcon upperFaceImage = Faces.upperFace(emotiveData.getBlink(), emotiveData.getRightWink(),
         emotiveData.getLeftWink(), emotiveData.getLookingLeft(), emotiveData.getLookingRight(),
         emotiveData.getEyebrowFurrow(), emotiveData.getEyebrowRaise());

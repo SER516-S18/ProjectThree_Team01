@@ -8,8 +8,7 @@ import javax.swing.JFrame;
 import server.gui.EmotivComposer;
 
 /**
- * This class is responsible for handling Window Events triggered from the
- * server
+ * This class is responsible for handling Window Events triggered from the server
  * 
  * @author Cephas Armstrong-Mensah
  * @author Group 1 #001 - #013
@@ -54,5 +53,4 @@ public class WindowEvents implements WindowListener {
   @Override
   public void windowOpened(WindowEvent arg0) {
   }
-
 }

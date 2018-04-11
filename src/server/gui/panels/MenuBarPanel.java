@@ -10,9 +10,8 @@ import server.gui.actions.MouseEvents;
 import util.Constants;
 
 /**
- * This class's purpose is to show a menu area, instead of using JMenuBar I
- * chose to go this route for a better look and feel over the traditional Menu
- * bar.
+ * This class's purpose is to show a menu area, instead of using JMenuBar I chose to go
+ * this route for a better look and feel over the traditional Menu bar.
  * 
  * @author Vihar Bhatt
  * @author Cephas Armstrong-Mensah
@@ -99,7 +98,6 @@ public class MenuBarPanel extends JPanel {
   }
 
   public static void setIconImage(String filename) {
-    System.out.println("Icon image: " + filename);
     signalLabel.setIcon(new ImageIcon(loader.getResource(filename)));
   }
 }

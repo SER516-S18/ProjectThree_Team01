@@ -17,9 +17,9 @@ import server.gui.panels.LogPanel;
 import util.Constants;
 
 /**
- * The purpose of this class is to provide the websocket logic for the different
- * life cycles and other static methods to expose the websocket since all of the
- * interaction is from the server outwards.
+ * The purpose of this class is to provide the websocket logic for the different life
+ * cycles and other static methods to expose the websocket since all of the interaction is
+ * from the server outwards.
  * 
  * @author Cephas Armstrong-Mensah
  * @author Group 1 #001 - #013
@@ -27,19 +27,16 @@ import util.Constants;
  * @since 28MAR2018
  *
  */
-
 @ServerEndpoint(value = Constants.ENDPOINT)
 public class ServerWebSocket {
   public EmotivData emotivData = new EmotivData();
 
-  // Using a List so we can index and keep order
   static List<Session> clients = Collections.synchronizedList(new ArrayList<Session>());
 
   @OnOpen
   public void onOpen(Session session) {
     if (!clients.contains(session)) {
       clients.add(session);
-      System.out.println(String.format("Welcome client: %s", session.getId()));
       LogPanel.getConsolePanel().updateText(String.format("Welcome client: %s", session.getId()));
     }
   }
@@ -51,7 +48,6 @@ public class ServerWebSocket {
   @OnClose
   public void onClose(Session session) throws IOException {
     clients.remove(session);
-    System.out.println(String.format("%s: disconnected", session.getId()));
     LogPanel.getConsolePanel().updateText(String.format("Session %s disconnected...", session.getId()));
   }
 

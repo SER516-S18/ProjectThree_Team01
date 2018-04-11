@@ -20,7 +20,6 @@ import util.ConsolePanel;
 public class LogPanel extends JPanel {
 
   private static final long serialVersionUID = 270965232038903697L;
-  private static JPanel emoLogPanel;
   private static JLabel labelLog;
   private static ConsolePanel consolePanel;
   private static JButton clearLogButton;

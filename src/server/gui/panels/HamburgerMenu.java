@@ -14,8 +14,8 @@ import server.gui.actions.MouseEvents;
 import util.Constants;
 
 /**
- * This class's purpose is to display the drop down menu items for the hamburger
- * icon section. The menu items included are About and Quit.
+ * This class's purpose is to display the drop down menu items for the hamburger icon
+ * section. The menu items included are About and Quit.
  * 
  * @author Vihar Bhatt
  * @author Cephas Armstrong-Mensah
@@ -29,13 +29,12 @@ public class HamburgerMenu extends JDialog {
   private static final long serialVersionUID = 744880228052339810L;
 
   private EmotivComposer parent;
+  private JPanel contentPane;
   private JPanel aboutPanel;
   private JPanel quitPanel;
 
   private JLabel aboutLabel;
   private JLabel quitLabel;
-
-  private JPanel contentPane;
 
   public HamburgerMenu(EmotivComposer parent) {
     super(parent);

@@ -53,7 +53,7 @@ public class ClientActionEvents implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		if (actionClass instanceof ClientHamburgerMenu) {
 			if (item == "EMOTIV Xavier Composer") {
-				server.gui.MainHandler.main(null);
+				server.gui.ServerMainHandler.main(null);
 			} else if (item == "Facial Expressions") {
 				client.gui.EmotivControlPanel showFacialGraphObject = EmotivControlPanel.getInstance();
 				showFacialGraphObject.showFacialGraph();

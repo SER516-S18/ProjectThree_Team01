@@ -188,6 +188,9 @@ public class FacialPanel extends JPanel implements EmotivObserver {
     er.notifyObservers();
   }
 
+  /**
+   * This method controls the upper face action area
+   */
   public void upperfaceAction() {
     String item = upperfaceComboBox.getSelectedItem().toString();
     String upperbuttonValue = upperfaceupdownButton.getOutputText();
@@ -195,6 +198,9 @@ public class FacialPanel extends JPanel implements EmotivObserver {
     updateUpperFaceAction(item, upperfaceValue);
   }
 
+  /**
+   * This method controls the lower face action area
+   */
   public void lowerfaceAction() {
     String item = lowerfaceComboBox.getSelectedItem().toString();
     String lowerbuttonValue = lowerfaceupdownButton.getOutputText();
@@ -202,11 +208,17 @@ public class FacialPanel extends JPanel implements EmotivObserver {
     updateLowerFaceAction(item, lowerfaceValue);
   }
 
+  /**
+   * This method controls the selected item for the Eye area combo item
+   */
   public void eyecomboBoxAction() {
     String item = eyecomboBox.getSelectedItem().toString();
     updateEyeAction(item, eyeActiveValue);
   }
 
+  /**
+   * This method controls the radio button value for Eye Action
+   */
   public void eyeAction() {
     if (eyeActive.isSelected()) {
       eyeActiveValue = 1;
@@ -217,6 +229,9 @@ public class FacialPanel extends JPanel implements EmotivObserver {
     updateEyeAction(eyecomboBox.getSelectedItem().toString(), eyeActiveValue);
   }
 
+  /**
+   * This method controls the action performed when the Activate button is shown and clicked
+   */
   public void activateButtonAction() {
     if (eyeActiveValue == 0) {
       eyeActiveValue = 1;

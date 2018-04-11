@@ -28,7 +28,6 @@ public class SubjectImplementation implements EmotivSubject {
   private boolean interactiveResetButton;
   private boolean isSent;
   private boolean facial;
-
   private boolean performance;
 
   public SubjectImplementation() {
