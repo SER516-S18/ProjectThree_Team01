@@ -92,7 +92,7 @@ public class PerformanceMetricPanel extends JPanel {
 
     EmoStatePanel interestPanel = new EmoStatePanel(this, "Interest",0);
     interestPanel.setBounds(24, 79, 90, 90);
-    interestPanel.setBackground(Constants.MAGENTA);
+    interestPanel.setBackground(Constants.DEEPBLUE);
     metrixPanel.add(interestPanel);
 
     EmoStatePanel excitementPanel = new EmoStatePanel(this, "Excitement",1);
@@ -102,7 +102,7 @@ public class PerformanceMetricPanel extends JPanel {
 
     EmoStatePanel engagementPanel = new EmoStatePanel(this, "Engagement",2);
     engagementPanel.setBounds(24, 223, 90, 90);
-    engagementPanel.setBackground(Constants.PEACH);;
+    engagementPanel.setBackground(Constants.MAROON);;
     metrixPanel.add(engagementPanel);
 
     EmoStatePanel stressPanel = new EmoStatePanel(this, "Stress",3);
@@ -112,12 +112,12 @@ public class PerformanceMetricPanel extends JPanel {
 
     EmoStatePanel relaxationPanel = new EmoStatePanel(this, "Relaxation",4);
     relaxationPanel.setBounds(24, 367, 90, 90);
-    relaxationPanel.setBackground(Constants.LIGHTBLUE);
+    relaxationPanel.setBackground(Constants.CORAL);
     metrixPanel.add(relaxationPanel);
 
     EmoStatePanel focusPanel = new EmoStatePanel(this, "Focus",5);
     focusPanel.setBounds(141, 367, 90, 90);
-    focusPanel.setBackground(Constants.LIGHTPINK);
+    focusPanel.setBackground(Constants.PINK);
     metrixPanel.add(focusPanel);
 
     add(metrixPanel);

@@ -75,12 +75,12 @@ public class PerformanceGraph extends JPanel {
     axis.setAutoRange(true);
     axis = plot.getRangeAxis();
     axis.setTickLabelsVisible(false);
-    plot.getRenderer().setSeriesPaint(0, Constants.MAGENTA);
+    plot.getRenderer().setSeriesPaint(0, Constants.DEEPBLUE);
     plot.getRenderer().setSeriesPaint(1, Constants.ORANGE);
-    plot.getRenderer().setSeriesPaint(2, Constants.PEACH);
+    plot.getRenderer().setSeriesPaint(2, Constants.MAROON);
     plot.getRenderer().setSeriesPaint(3, Constants.GREEN);
-    plot.getRenderer().setSeriesPaint(4, Constants.LIGHTBLUE);
-    plot.getRenderer().setSeriesPaint(5, Constants.LIGHTPINK);
+    plot.getRenderer().setSeriesPaint(4, Constants.CORAL);
+    plot.getRenderer().setSeriesPaint(5, Constants.PINK);
 
     
     
