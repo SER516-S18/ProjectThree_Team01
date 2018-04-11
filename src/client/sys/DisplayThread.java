@@ -37,17 +37,17 @@ public class DisplayThread implements Runnable {
     values = new double[12];
     
       values[0] = 1 + data.getEyebrowRaise();
-      values[1] = 2 + data.getEyebrowFurrow();
-      values[2] = 3 + data.getSmile();
-      values[3] = 4 + data.getClench();
-      values[4] = 5 + data.getLaugh();
-      values[5] = 6 + data.getSmirkRight();
-      values[6] = 7 + data.getSmirkLeft();
-      values[7] = 8 + data.getLookingRight();
-      values[8] = 9 + data.getLookingLeft();
-      values[9] = 10 + data.getRightWink();
-      values[10] = 11 + data.getLeftWink();
-      values[11] = 12 + data.getBlink();
+      values[1] = 3 + data.getEyebrowFurrow();
+      values[2] = 5 + data.getSmile();
+      values[3] = 7 + data.getClench();
+      values[4] = 9 + data.getLaugh();
+      values[5] = 11 + data.getSmirkRight();
+      values[6] = 13+ data.getSmirkLeft();
+      values[7] = 15+ data.getLookingRight();
+      values[8] = 17+ data.getLookingLeft();
+      values[9] = 19 + data.getRightWink();
+      values[10] = 21 + data.getLeftWink();
+      values[11] = 23 + data.getBlink();
 
       for (int i = 0; i < 12; i++) {
         System.out.println(values[i]);
