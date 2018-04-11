@@ -122,6 +122,7 @@ public class FacialPanel extends JPanel implements EmotivObserver {
     add(eyeActive);
     add(eyeActiveButton);
   }
+  
   /**
    * If auto reset is checked, the activate button will replace the activate radiobutton
    * @param isButton	auto reset is checked or not 
@@ -135,6 +136,7 @@ public class FacialPanel extends JPanel implements EmotivObserver {
       eyeActiveButton.setVisible(false);
     }
   }
+  
   /**
    * Assign current lower facial value to specific lower facial item
    * @param key		the item is selected right now
@@ -201,7 +203,6 @@ public class FacialPanel extends JPanel implements EmotivObserver {
         data.setLeftWink(value);
       }
     }
-
     er.notifyObservers();
   }
   

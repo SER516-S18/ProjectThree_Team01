@@ -34,7 +34,7 @@ public class ServerWebSocket {
 
   // Using a List so we can index and keep order
   static List<Session> clients = Collections.synchronizedList(new ArrayList<Session>());
-
+  
   @OnOpen
   public void onOpen(Session session) {
     if (!clients.contains(session)) {
