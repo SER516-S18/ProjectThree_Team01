@@ -9,6 +9,9 @@ import data.EmotivData;
 
 /**
  * This thread adds each value to the graph dynamically.
+ * @author Jahnavi Bantupalli
+ * @version 1.0
+ * @since 2018-04-01 
  */
 public class PerformanceThread implements Runnable {
   private EmotivData data;

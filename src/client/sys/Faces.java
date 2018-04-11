@@ -17,16 +17,16 @@ public class Faces {
 	 * Default upperFace image
 	 * @return ImageIcon.
 	 */
-	public static ImageIcon defaultUpperFace() {
-		return new ImageIcon("img/upperFace_normal.png");
+	public static ImageIcon defaultUpperFace(ClassLoader loader) {
+		return new ImageIcon(loader.getResource("upperFace_normal.png"));
 	}
 	
 	/**
 	 * Default lowerFace image
 	 * @return ImageIcon.
 	 */
-	public static ImageIcon defaultLoweFace() {
-		return new ImageIcon("img/lowerFace_normal.png");
+	public static ImageIcon defaultLoweFace(ClassLoader loader) {
+		return new ImageIcon(loader.getResource("lowerFace_normal.png"));
 	}
 	
 	/**
@@ -40,25 +40,25 @@ public class Faces {
 	 * @param raise.
 	 * @return ImageIcon.
 	 */
-	public static ImageIcon upperFace(double blink, double rightWink, double leftWink, 
+	public static ImageIcon upperFace(ClassLoader loader, double blink, double rightWink, double leftWink, 
 			double lookLeft, double lookRight, double furrow, double raise) {
 		
 		if(blink==1) {
-			return new ImageIcon("img/blink.png");
+			return new ImageIcon(loader.getResource("blink.png"));
 		}else if(rightWink==1) {
-			return new ImageIcon("img/wink_right.png");
+			return new ImageIcon(loader.getResource("wink_right.png"));
 		}else if(leftWink==1) {
-			return new ImageIcon("img/wing_left.png");
+			return new ImageIcon(loader.getResource("wink_left.png"));
 		}else if(lookLeft==1) {
-			return new ImageIcon("img/look_left.png");
+			return new ImageIcon(loader.getResource("look_left.png"));
 		}else if(lookRight==1) {
-			return new ImageIcon("img/look_right.png");
+			return new ImageIcon(loader.getResource("look_right.png"));
 		}else if(furrow > .5) {
-			return new ImageIcon("img/furrow.png");
+			return new ImageIcon(loader.getResource("furrow.png"));
 		}else if(raise > .5) {
-			return new ImageIcon("img/raise.png");
+			return new ImageIcon(loader.getResource("raise.png"));
 		}
-		return defaultUpperFace();
+		return defaultUpperFace(loader);
 	}
 	
 	/**
@@ -71,20 +71,20 @@ public class Faces {
 	 * @return ImageIcon
 	 * 
 	 */
-	public static ImageIcon lowerFace(double smile, double clench, double leftSmirk, 
+	public static ImageIcon lowerFace(ClassLoader loader, double smile, double clench, double leftSmirk, 
 			double rightSmirk, double laugh) {
 		if(smile > .5) {
-			return new ImageIcon("img/smile.png");
+			return new ImageIcon(loader.getResource("smile.png"));
 		}else if(clench > .5) {
-			return new ImageIcon("img/clench.png");
+			return new ImageIcon(loader.getResource("clench.png"));
 		}else if(leftSmirk > .5) {
-			return new ImageIcon("img/smirk_left.png");
+			return new ImageIcon(loader.getResource("smirk_left.png"));
 		}else if(rightSmirk > .5) {
-			return new ImageIcon("img/smirk_right.png");
+			return new ImageIcon(loader.getResource("smirk_right.png"));
 		}else if(laugh > .5) {
-			return new ImageIcon("img/laugh.png");
+			return new ImageIcon(loader.getResource("laugh.png"));
 		}
-		return defaultLoweFace();
+		return defaultLoweFace(loader);
 	}
 
 

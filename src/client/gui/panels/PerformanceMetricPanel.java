@@ -1,22 +1,18 @@
 package client.gui.panels;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-
 import org.jfree.chart.ChartPanel;
-
 import util.Constants;
 import client.gui.PerformanceGraph;
 /*
  * This class is used to create the Performance Metrics section of the main frame in the application
  * 
- * @author Group 1 #001 - #013
+ * @author Jahnavi Bantupalli
  * @version 1.0
  * @since 03APR2018
  *

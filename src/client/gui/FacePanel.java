@@ -1,4 +1,5 @@
 package client.gui;
+
 import java.awt.Color;
 
 import javax.swing.ImageIcon;
@@ -22,12 +23,10 @@ import data.EmotivData;
 public class FacePanel extends JPanel {
 
   private static final long serialVersionUID = -5762535688754954249L;
+  private ClassLoader loader = getClass().getClassLoader();
   private JLabel JLabelUpperFace;
   private JLabel JLabelLowerFace;
 
-  /*
-   * Constructor for the class
-   */
   public FacePanel() {
     setBounds(0, 0, 450, 300);
     setBackground(Color.white);
@@ -60,19 +59,22 @@ public class FacePanel extends JPanel {
    *
    */
   private void setDefaultImage() {
-    JLabelUpperFace.setIcon(Faces.defaultUpperFace());
-    JLabelLowerFace.setIcon(Faces.defaultLoweFace());
+    JLabelUpperFace.setIcon(Faces.defaultUpperFace(loader));
+    JLabelLowerFace.setIcon(Faces.defaultLoweFace(loader));
   }
 
-  /*
-   * Method to update the face images
+  /**
+   * This method is used to update the facial expressions 
+   * 
+   * @param emotiveData data received from the server
+   *
    */
   public void updateFace(EmotivData emotiveData) {
 
-    ImageIcon upperFaceImage = Faces.upperFace(emotiveData.getBlink(), emotiveData.getRightWink(),
+    ImageIcon upperFaceImage = Faces.upperFace(loader, emotiveData.getBlink(), emotiveData.getRightWink(),
         emotiveData.getLeftWink(), emotiveData.getLookingLeft(), emotiveData.getLookingRight(),
         emotiveData.getEyebrowFurrow(), emotiveData.getEyebrowRaise());
-    ImageIcon lowerFaceImage = Faces.lowerFace(emotiveData.getSmile(), emotiveData.getClench(),
+    ImageIcon lowerFaceImage = Faces.lowerFace(loader, emotiveData.getSmile(), emotiveData.getClench(),
         emotiveData.getSmirkLeft(), emotiveData.getSmirkRight(), emotiveData.getLaugh());
 
     JLabelUpperFace.setIcon(upperFaceImage);
