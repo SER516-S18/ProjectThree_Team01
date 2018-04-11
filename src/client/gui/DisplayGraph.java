@@ -24,8 +24,6 @@ import data.EmotivData;
  * 
  */
 public class DisplayGraph extends JPanel {
-
-  private static final long serialVersionUID = 7028325762888041341L;
   private JFreeChart graph;
   private TimeSeriesCollection dataset;
   private TimeSeries graphSeries[];

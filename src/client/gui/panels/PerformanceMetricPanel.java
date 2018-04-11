@@ -11,8 +11,8 @@ import javax.swing.border.LineBorder;
 
 import org.jfree.chart.ChartPanel;
 
+import util.Constants;
 import client.gui.PerformanceGraph;
-
 /*
  * This class is used to create the Performance Metrics section of the main frame in the application
  * 
@@ -92,26 +92,32 @@ public class PerformanceMetricPanel extends JPanel {
 
     EmoStatePanel interestPanel = new EmoStatePanel(this, "Interest",0);
     interestPanel.setBounds(24, 79, 90, 90);
+    interestPanel.setBackground(Constants.MAGENTA);
     metrixPanel.add(interestPanel);
 
     EmoStatePanel excitementPanel = new EmoStatePanel(this, "Excitement",1);
     excitementPanel.setBounds(141, 79, 90, 90);
+    excitementPanel.setBackground(Constants.ORANGE);
     metrixPanel.add(excitementPanel);
 
     EmoStatePanel engagementPanel = new EmoStatePanel(this, "Engagement",2);
     engagementPanel.setBounds(24, 223, 90, 90);
+    engagementPanel.setBackground(Constants.PEACH);;
     metrixPanel.add(engagementPanel);
 
     EmoStatePanel stressPanel = new EmoStatePanel(this, "Stress",3);
     stressPanel.setBounds(141, 223, 90, 90);
+    stressPanel.setBackground(Constants.GREEN);
     metrixPanel.add(stressPanel);
 
     EmoStatePanel relaxationPanel = new EmoStatePanel(this, "Relaxation",4);
     relaxationPanel.setBounds(24, 367, 90, 90);
+    relaxationPanel.setBackground(Constants.LIGHTBLUE);
     metrixPanel.add(relaxationPanel);
 
     EmoStatePanel focusPanel = new EmoStatePanel(this, "Focus",5);
     focusPanel.setBounds(141, 367, 90, 90);
+    focusPanel.setBackground(Constants.LIGHTPINK);
     metrixPanel.add(focusPanel);
 
     add(metrixPanel);
