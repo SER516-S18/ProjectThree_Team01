@@ -1,18 +1,14 @@
 package client.gui;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
-
 import org.jfree.chart.ChartPanel;
-
 import client.gui.actions.ClientWindowEvents;
 import client.gui.panels.PerformanceMetricPanel;
 import client.sys.ClientSubject;

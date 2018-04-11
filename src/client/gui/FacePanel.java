@@ -1,5 +1,4 @@
 package client.gui;
-
 import java.awt.Color;
 
 import javax.swing.ImageIcon;

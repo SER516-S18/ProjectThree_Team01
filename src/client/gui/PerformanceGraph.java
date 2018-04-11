@@ -1,5 +1,7 @@
 package client.gui;
 import java.awt.Color;
+
+import client.gui.panels.EmoStatePanel;
 import client.sys.*;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
@@ -11,6 +13,7 @@ import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 import data.EmotivData;
+import util.Constants;
 
 /**
  * This class represents the graph panel It contains the graph, dataset and
@@ -18,8 +21,6 @@ import data.EmotivData;
  * 
  */
 public class PerformanceGraph extends JPanel {
-
-  private static final long serialVersionUID = 7028325762888041341L;
   private JFreeChart graph;
   private TimeSeriesCollection dataset;
   private TimeSeries graphSeries[];
@@ -73,9 +74,16 @@ public class PerformanceGraph extends JPanel {
     ValueAxis axis = plot.getDomainAxis();
     axis.setAutoRange(true);
     axis = plot.getRangeAxis();
-    plot.getRenderer().setSeriesPaint(0, Color.RED);
- 
+    axis.setTickLabelsVisible(false);
+    plot.getRenderer().setSeriesPaint(0, Constants.MAGENTA);
+    plot.getRenderer().setSeriesPaint(1, Constants.ORANGE);
+    plot.getRenderer().setSeriesPaint(2, Constants.PEACH);
+    plot.getRenderer().setSeriesPaint(3, Constants.GREEN);
+    plot.getRenderer().setSeriesPaint(4, Constants.LIGHTBLUE);
+    plot.getRenderer().setSeriesPaint(5, Constants.LIGHTPINK);
 
+    
+    
     return graph;
   }
 

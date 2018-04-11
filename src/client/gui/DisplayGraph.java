@@ -18,14 +18,12 @@ import data.EmotivData;
  * This class represents the graph panel It contains the graph, dataset and
  * other chart related parameters
  *
- * @author Group 1 #001 - #013
+ * @author Jahnavi Bantupalli
  * @version 1.0
  * @since 2018-04-04
  * 
  */
 public class DisplayGraph extends JPanel {
-
-  private static final long serialVersionUID = 7028325762888041341L;
   private JFreeChart graph;
   private TimeSeriesCollection dataset;
   private TimeSeries graphSeries[];
@@ -59,12 +57,21 @@ public class DisplayGraph extends JPanel {
     }
     graph = createChart(dataset);
   }
-/*This function returns the graph 
+/*This function returns the graph.
  * 
  */
   public JFreeChart getGraph() {
 	return graph;
-}
+  }
+  
+  /*This function returns the chart panel. 
+   * 
+   */
+  public ChartPanel getChartPanel() {
+		// TODO Auto-generated method stub
+		
+		return chartPanel;
+	}
 
 
 /**
@@ -77,6 +84,7 @@ public class DisplayGraph extends JPanel {
     ValueAxis axis = plot.getDomainAxis();
     axis.setAutoRange(true);
     axis = plot.getRangeAxis();
+    axis.setTickLabelsVisible(false);
     return result;
   }
 
@@ -90,9 +98,5 @@ public class DisplayGraph extends JPanel {
     new Thread(displayThread).start();
 
   }
-public ChartPanel getChartPanel() {
-	// TODO Auto-generated method stub
-	
-	return chartPanel;
-}
+
 }
