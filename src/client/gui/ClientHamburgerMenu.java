@@ -32,9 +32,9 @@ public class ClientHamburgerMenu extends JMenuBar {
 	JMenu applicationsOption = new JMenu("APPLICATION");
 	menu.add(applicationsOption);
 	
-	JMenuItem composerOption = new JMenuItem("EMOTIV Xavier Composer");
+	JMenuItem composerOption = new JMenuItem("EmoComposer");
 	applicationsOption.add(composerOption);
-	composerOption.addActionListener(new ClientActionEvents(this, "EMOTIV Xavier Composer"));
+	composerOption.addActionListener(new ClientActionEvents(this, "EmoComposer"));
 	
 	JMenu connectOption = new JMenu("CONNECT");
 	menu.add(connectOption);

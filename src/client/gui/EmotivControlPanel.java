@@ -2,18 +2,23 @@ package client.gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+
 import org.jfree.chart.ChartPanel;
 import client.gui.actions.ClientWindowEvents;
 import client.gui.panels.PerformanceMetricPanel;
 import client.sys.ClientSubject;
 import data.EmotivData;
 import interfaces.ClientObserver;
+import javax.swing.SwingConstants;
 
 /*
  * This is the class that contains the main and launches the entire application
@@ -56,6 +61,7 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
 
   private EmotivControlPanel() {
 
+	this.setTitle("Emotiv Xavier Control Panel");
     addWindowListener(new ClientWindowEvents(this));
     setBounds(100, 100, 982, 650);
     menu = new ClientHamburgerMenu();
