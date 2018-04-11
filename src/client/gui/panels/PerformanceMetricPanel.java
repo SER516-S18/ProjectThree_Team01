@@ -70,22 +70,6 @@ public class PerformanceMetricPanel extends JPanel {
     lblParameters.setFont(new Font("Arial", Font.PLAIN, 15));
     metrixPanel.add(lblParameters);
 
-    JLabel lblDisplayLength = new JLabel("  Display Length:");
-    lblDisplayLength.setFont(new Font("Arial", Font.PLAIN, 15));
-    lblDisplayLength.setBounds(0, 525, 130, 32);
-    metrixPanel.add(lblDisplayLength);
-
-    JLabel lblTime = new JLabel("2");
-    lblTime.setHorizontalAlignment(SwingConstants.CENTER);
-    lblTime.setFont(new Font("Arial", Font.PLAIN, 15));
-    lblTime.setBounds(130, 525, 35, 32);
-    metrixPanel.add(lblTime);
-
-    JLabel lblTimeMeasure = new JLabel(" seconds");
-    lblTimeMeasure.setFont(new Font("Arial", Font.PLAIN, 15));
-    lblTimeMeasure.setBounds(165, 525, 80, 32);
-    metrixPanel.add(lblTimeMeasure);
-
     EmoStatePanel interestPanel = new EmoStatePanel(this, "Interest",0);
     interestPanel.setBounds(24, 79, 90, 90);
     interestPanel.setBackground(Constants.DEEPBLUE);
