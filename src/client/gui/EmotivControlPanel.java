@@ -2,6 +2,8 @@ package client.gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.text.DecimalFormat;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -185,7 +187,8 @@ public class EmotivControlPanel extends JFrame implements ClientObserver {
    * @param data - gets the data from server for the interval values on the Client panel
    */
   private void updateTimerValue(EmotivData data) {
-    timerValue.setText(Double.toString(data.getTimer()));
+	DecimalFormat dc = new DecimalFormat("#.00"); 
+	timerValue.setText(dc.format(data.getTimer()));
     repaint();
   }
 }
