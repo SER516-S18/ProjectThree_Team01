@@ -21,6 +21,9 @@ import client.gui.actions.*;
 
 public class ClientHamburgerMenu extends JMenuBar {
 	
+	/*This function initializes the hamburger menu with the
+	 * required components
+	 */
 	public ClientHamburgerMenu() {
 	
 	JMenu menu = new JMenu("MENU");
