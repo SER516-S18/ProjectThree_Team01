@@ -18,6 +18,7 @@
 
 ### Use the below steps to run the application:
 
+*   Server is only listening on PORT 10001
 *   Run the executable Emotiv_Team01.jar
 *   The Emotiv Xavier Control Panel(client) will pop up
 *   Go to Applications -> EmoComposer
